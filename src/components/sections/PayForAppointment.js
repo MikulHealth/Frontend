@@ -14,20 +14,20 @@ import {
 } from "@chakra-ui/react";
 
 const customTheme = extendTheme({
-    components: {
-      Link: {
-        baseStyle: {
-          _focus: {
-            boxShadow: "none",
-          },
+  components: {
+    Link: {
+      baseStyle: {
+        _focus: {
+          boxShadow: "none",
         },
       },
     },
-    fonts: {
-      body: "Montserrat, sans-serif",
-      heading: "Gill Sans MT, sans-serif",
-    },
-  });
+  },
+  fonts: {
+    body: "Montserrat, sans-serif",
+    heading: "Gill Sans MT, sans-serif",
+  },
+});
 
 const PayForAppointmentModal = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
@@ -45,13 +45,12 @@ const PayForAppointmentModal = ({ isOpen, onClose }) => {
         <ModalBody>
           <Text>
             {" "}
-            Hello {user?.firstName},
-            We notice your pending appointment has not been paid for, kindly make payment to
-            get matched with a caregiver.
+            Hello {user?.firstName}, We notice your pending appointment has not
+            been paid for, kindly make payment to get matched with a caregiver.
           </Text>
         </ModalBody>
         <ModalFooter>
-          <Button   bg="#A210C6" color="white" mr={3} onClick={handlePayment}>
+          <Button bg="#A210C6" color="white" mr={3} onClick={handlePayment}>
             Pay for appointment
           </Button>
         </ModalFooter>

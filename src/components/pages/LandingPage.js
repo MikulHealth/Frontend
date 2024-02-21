@@ -114,9 +114,9 @@ const LandingPage = () => {
           <HStack spacing={10}>
             <Box w="5px" />
             <a href="/">
-            <Image src={logo} alt="Logo" w="100px" h="30px" />
+              <Image src={logo} alt="Logo" w="100px" h="30px" />
             </a>
-           
+
             <Spacer />
             <Spacer />
             <Spacer />
@@ -228,12 +228,33 @@ const LandingPage = () => {
               <Box>
                 <Text fontSize="6xl" fontWeight="bold" fontFamily="body">
                   <span style={{ color: "#A210C6" }}>Healthcare</span> that you{" "}
-                  <br />
-                  deserve at your
-                  <br />
-                  fingertips
+                  <Text
+                    marginTop="-10px"
+                    marginLeft="-125px"
+                    fontSize="6xl"
+                    fontWeight="bold"
+                    fontFamily="body"
+                  >
+                    deserve at your
+                  </Text>
+                  <Text
+                    marginTop="-10px"
+                    marginLeft="-300px"
+                    fontSize="6xl"
+                    fontWeight="bold"
+                    fontFamily="body"
+                  >
+                    fingertips
+                  </Text>
                 </Text>
-                <Text fontSize="20px" color="#A210C6" fontFamily="Montserrat">
+                <Text
+                  marginTop="10px"
+                  marginLeft="-160px"
+                  fontWeight="bold"
+                  fontFamily="body"
+                  fontSize="20px"
+                  color="#A210C6"
+                >
                   We source carefully trained medics to help <br />
                   you and your loved ones on their health
                   <br />
@@ -243,6 +264,7 @@ const LandingPage = () => {
                 <Button
                   bg="#A210C6"
                   color="white"
+                  marginLeft="-160px"
                   //  onMouseOver={handleMouseOver}
                   //  onMouseOut={handleMouseOut}
                   onClick={onOpen}
@@ -881,26 +903,45 @@ const LandingPage = () => {
           </Box>
           <Box h="40px" />
         </Box>
-        <Box marginLeft="300px" marginBottom="80px" bg="#D087E2" padding="40px" w="750px" borderRadius="10px">
+        <Box
+          marginLeft="300px"
+          marginBottom="80px"
+          bg="#D087E2"
+          padding="40px"
+          w="750px"
+          borderRadius="10px"
+        >
           <FormControl display="flex" alignItems="center">
-            <FormLabel htmlFor="email-alerts" mb="0" fontFamily="body" fontSize="20px">
-              Don't want to miss out on any information? Subscribe to our newsletter
+            <FormLabel
+              htmlFor="email-alerts"
+              mb="0"
+              fontFamily="body"
+              fontSize="20px"
+            >
+              Don't want to miss out on any information? Subscribe to our
+              newsletter
             </FormLabel>
             <Switch
               size="lg"
               id="email-alerts"
               isChecked={isSwitchOn}
               onChange={handleSwitchToggle}
-              colorScheme={isSwitchOn ? 'green' : 'gray'}
+              colorScheme={isSwitchOn ? "green" : "gray"}
             />
           </FormControl>
 
           {isSwitchOn && (
-            <form >
+            <form>
               <FormControl marginLeft="150px" w="400px" marginTop="10px">
                 <Input type="email" id="email" placeholder="Enter your email" />
               </FormControl>
-              <Button type="submit" mt="4" color="white" bg="#A210C6" marginLeft="-45px">
+              <Button
+                type="submit"
+                mt="4"
+                color="white"
+                bg="#A210C6"
+                marginLeft="-45px"
+              >
                 Subscribe
               </Button>
             </form>
