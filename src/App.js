@@ -31,6 +31,7 @@ import { DeleteIcon } from "@chakra-ui/icons";
 import PendingAppointmentPage from "./components/pages/PendingAppointmentPage";
 import ActiveAppointmentPage from "./components/pages/ActiveAppointmentPage";
 import CustomizeServicePage from "./components/pages/CustomizeServicePage";
+import RootLayout from "./components/layouts/RootLayout";
 
 
 function App() {
@@ -74,6 +75,7 @@ function App() {
           <Route path="/pending-appointments" element={<PendingAppointmentPage />} />
           <Route path="/active-appointments" element={<ActiveAppointmentPage />} />
           <Route path="/customize-service" element={<CustomizeServicePage />} />
+          <Route path="/root" element={<RootLayout />} />
         </Routes>
       </BrowserRouter>
     </div>

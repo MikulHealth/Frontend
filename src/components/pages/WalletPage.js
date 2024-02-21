@@ -46,6 +46,8 @@ import Online from "../../assets/OnlinePayment.svg";
 import RightArrow from "../../assets/RightArrow.svg";
 import Wallet from "../../assets/WalletWhite.svg";
 import LoadingSpinner from "../../utils/Spiner";
+import SideBar from "../layouts/SideBar";
+import NavBar from "../layouts/NavBar";
 
 const customTheme = extendTheme({
   components: {
@@ -335,387 +337,172 @@ const WalletPage = () => {
 
   return (
     <ChakraProvider theme={customTheme}>
-      <Box width="25%" p={3} h="100vh">
-        <Image
-          src={logo}
-          alt="Logo"
-          w="160px"
-          h="60px"
-          marginLeft="90px"
-          marginTop="10px"
-        />
+      <Flex>
 
-        <VStack spacing={3} align="center" mt={5}>
-          <Flex marginTop="50px" alignItems="center">
-            <Image
-              marginLeft="-40px"
-              w="20px"
-              h="20px"
-              src={HomeIcon}
-              alt="HomeIcon"
-            />
-
-            <Text
-              marginLeft="15px"
-              color="black"
-              onClick={() => {
-                handleOpenDashboard();
-              }}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-              fontSize="18px"
-            >
-              Home
-            </Text>
-          </Flex>
-
-          <Flex alignItems="center" marginTop="30px">
-            <Image
-              marginLeft="20px"
-              w="20px"
-              h="20px"
-              src={AppointmentsIcon}
-              alt="Appointments"
-            />
-            <Text
-              marginLeft="15px"
-              color="black"
-              onClick={handleOpenAppointmentsModal}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-              fontSize="18px"
-            >
-              Appointments
-            </Text>
-          </Flex>
-
-          <Flex
-            alignItems="center"
+      
+      <SideBar />
+      <VStack w="75%" h="100vh">
+        <NavBar />
+        <Box>
+          <Box
             marginTop="30px"
-            marginLeft="-10px"
-            bg="#A210C6"
-            w="15vw"
-            p={3}
+          
+            border="1px solid gray"
             borderRadius="md"
+            padding="3px"
+            w="70vw"
+            h="6vh"
           >
-            <Image
-              marginLeft="32px"
-              w="20px"
-              h="20px"
-              src={Wallet}
-              alt="wallet"
-            />
-            <Text
-              marginLeft="17px"
-              color="white"
-              // onClick={handleOpenWalletModal}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "white" }}
-              fontSize="18px"
-            >
-              Wallet
-            </Text>
-          </Flex>
-
-          <Flex alignItems="center" marginTop="30px" marginLeft="-60px">
-            <Image
-              marginLeft="26px"
-              w="20px"
-              h="20px"
-              src={serviceIcon}
-              alt="Help"
-            />
-            <Text
-              marginLeft="15px"
-              color="black"
-              onClick={Services}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-              fontSize="18px"
-            >
-              Service
-            </Text>
-          </Flex>
-
-          <Flex alignItems="center" marginTop="30px" marginLeft="-46px">
-            <Image
-              marginLeft="20px"
-              w="20px"
-              h="20px"
-              src={SettingsIcon}
-              alt="Settings"
-            />
-            <Text
-              marginLeft="15px"
-              color="black"
-              onClick={() => {
-                handleOpenSettingsModal();
-              }}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-              fontSize="18px"
-            >
-              Settings
-            </Text>
-          </Flex>
-
-          <Flex alignItems="center" marginTop="100px" marginLeft="-55px">
-            <Image
-              marginLeft="20px"
-              w="20px"
-              h="20px"
-              src={LogoutIcon}
-              alt="Logout"
-            />
-            <Text
-              onClick={handleOpenLogoutModal}
-              marginLeft="15px"
-              color="#A210C6"
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-              fontSize="18px"
-            >
-              Logout
-            </Text>
-          </Flex>
-        </VStack>
-        <Box
-          borderRight="2px solid #A210C6"
-          height="104%"
-          marginX={3}
-          marginTop="-620px"
-        />
-      </Box>
-      <Box
-        position="fixed"
-        top="0"
-        left="25%"
-        width="80%"
-        height="100%"
-        backgroundColor="white"
-        zIndex="1000"
-      >
-        <Flex>
-          <Text
-            fontSize="28px"
-            fontFamily="heading"
-            color="#A210C6"
-            marginLeft="30px"
-            marginTop="30px"
-          >
-            Wallet
-          </Text>
-          <Flex
-             marginLeft="790px"
-            style={{
-              cursor: "pointer",
-            }}
-            _hover={{ color: "#A210C6" }}
-          >
-            <Box marginTop="30px">
-              <Image
-                src={NotificationIcon}
-                alt="Notificatio icon"
-                h="26px"
-                w="30px"
-                marginBottom="10px"
-              />
-            </Box>
-
-            <Box marginLeft="10px" marginTop="30px">
-              {user?.image ? (
-                <Link onClick={handleOpenUserDetailsModal}>
-                  <Image
-                    borderRadius="100px"
-                    h="29px"
-                    w="30px"
-                    src={user?.image}
-                    alt="User Image"
-                  />
-                </Link>
-              ) : (
-                <Link onClick={handleOpenUserDetailsModal}>
-                  <Image
-                    src={userImageIcon}
-                    alt="User Image Icon"
-                    boxSize="50px"
-                    marginBottom="2%"
-                    h="19px"
-                    w="20px"
-                    borderRadius="100%"
-                  />
-                </Link>
-              )}
-            </Box>
-          </Flex>
-        </Flex>
-
-        <Box
-          marginTop="30px"
-          marginLeft="13px"
-          border="1px solid gray"
-          borderRadius="md"
-          padding="3px"
-          w="70vw"
-          h="6vh"
-        >
-          <Flex marginLeft="10px" marginTop="5px">
-            <SearchIcon boxSize={4} marginRight="10px" marginTop="5px" />
-            <Text
-              fontSize="16px"
-              fontFamily="body"
-              style={{
-                marginLeft: "5px",
-                marginTop: "1px",
-                fontStyle: "italic",
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-              // onClick={handleOpenSearchAppointmentsModal}
-            >
-              Search transaction by date
-            </Text>
-          </Flex>
-        </Box>
-        <Box
-          marginTop="20px"
-          marginLeft="15px"
-          bg="#A210C6"
-          w="70vw"
-          h="25vh"
-          borderRadius="20px"
-          display="flex"
-        >
-          <Box>
-            {" "}
-            <Flex marginLeft="30">
-              <Box color="white">
-                <Text
-                  fontSize="16px"
-                  fontFamily="body"
-                  marginTop="25px"
-                  style={{ marginLeft: "5px" }}
-                >
-                  Mikul health wallet
-                </Text>
-                <Text fontSize="24px" style={{ marginLeft: "-55px" }}>
-                  ₦ {balance.toFixed(2)}
-                </Text>
-              </Box>
-              <Box>
-                <Button
-                  borderRadius="15px"
-                  color="#A210C6"
-                  marginLeft="650px"
-                  marginTop="30px"
-                  onClick={handleOpenFundWalletModal}
-                  bg="white"
-                  _hover={{ backgroundColor: "blue.500", color: "white" }}
-                >
-                  Fund wallet
-                </Button>
-              </Box>
-            </Flex>
-            <Flex marginLeft="35px" marginTop="20px">
-              <Box w="15vw" color="white" marginTop="5px">
-                <Text marginLeft="-135px" fontSize="16px">
-                  Wallet ID:
-                </Text>
-                <Text fontFamily="body" marginLeft="-23px" fontSize="16px">
-                  Wema Bank 0124536789
-                </Text>
-              </Box>
-              <Flex marginLeft="480px">
-                <Box w="8vw" color="white">
-                  <Text fontSize="14px">Total funded</Text>
-                  <Text color="white" fontSize="12px" marginLeft="-44px">
-                    ₦{balance.toFixed(2)}
-                  </Text>
-                </Box>
-                <Box w="8vw" color="white" marginLeft="10px">
-                  <Text fontSize="14px">Total spent</Text>
-                  <Text color="white" fontSize="12px" marginLeft="-34px">
-                    ₦{balance.toFixed(2)}
-                  </Text>
-                </Box>
-              </Flex>
+            <Flex marginLeft="10px" marginTop="5px">
+              <SearchIcon boxSize={4} marginRight="10px" marginTop="5px" />
+              <Text
+                fontSize="16px"
+                fontFamily="body"
+                style={{
+                  marginLeft: "5px",
+                  marginTop: "1px",
+                  fontStyle: "italic",
+                  cursor: "pointer",
+                }}
+                _hover={{ color: "#A210C6" }}
+                // onClick={handleOpenSearchAppointmentsModal}
+              >
+                Search transaction by date
+              </Text>
             </Flex>
           </Box>
-        </Box>
-
-        <Box>
-          <Text
-            fontSize="28px"
-            fontFamily="heading"
-            color="black"
-            marginLeft="-860px"
-            marginTop="20px"
+          <Box
+            marginTop="10px"
+           
+            bg="#A210C6"
+            w="70vw"
+            h="25vh"
+            borderRadius="20px"
+            display="flex"
           >
-            Recent activity
-          </Text>
-          <Flex marginTop="10px">
-            <Text
-              style={{
-                cursor: "pointer",
-                textDecoration: "underline",
-                textDecorationThickness: "5px",
-              }}
-              _hover={{ color: "#A210C6" }}
-              marginLeft="30px"
-             
-            >
-              All
-            </Text>{" "}
-            <Text
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-              marginLeft="50px"
-              onClick={openCreditpage}
-            >
-              Credit
-            </Text>{" "}
-            <Text
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-              marginLeft="50px"
-              onClick={openDebitpage}
-            >
-              Debit
-            </Text>
-          </Flex>
-          <Divider marginTop="-10%" marginLeft="2%" my={4} borderColor="gray.500" width="60%" />
-        </Box>
-        <Box marginLeft="900px" marginTop="120px">
-          <Image
-            onClick={help}
-            src={HelppIcon}
-            alt="Logo"
-            w="70px"
-            h="70px"
-            style={{
-              cursor: "pointer",
-              animation: "zoomInOut 2s infinite alternate",
-            }}
-          />
+            <Box>
+              {" "}
+              <Flex marginLeft="30">
+                <Box color="white">
+                  <Text
+                    fontSize="16px"
+                    fontFamily="body"
+                    marginTop="25px"
+                    style={{ marginLeft: "5px" }}
+                  >
+                    Mikul health wallet
+                  </Text>
+                  <Text fontSize="24px" style={{ marginLeft: "-55px" }}>
+                    ₦ {balance.toFixed(2)}
+                  </Text>
+                </Box>
+                <Box>
+                  <Button
+                    borderRadius="15px"
+                    color="#A210C6"
+                    marginLeft="650px"
+                    marginTop="30px"
+                    onClick={handleOpenFundWalletModal}
+                    bg="white"
+                    _hover={{ backgroundColor: "blue.500", color: "white" }}
+                  >
+                    Fund wallet
+                  </Button>
+                </Box>
+              </Flex>
+              <Flex marginLeft="35px" marginTop="20px">
+                <Box w="15vw" color="white" marginTop="5px">
+                  <Text marginLeft="-135px" fontSize="16px">
+                    Wallet ID:
+                  </Text>
+                  <Text fontFamily="body" marginLeft="-23px" fontSize="16px">
+                    Wema Bank 0124536789
+                  </Text>
+                </Box>
+                <Flex marginLeft="480px">
+                  <Box w="8vw" color="white">
+                    <Text fontSize="14px">Total funded</Text>
+                    <Text color="white" fontSize="12px" marginLeft="-44px">
+                      ₦{balance.toFixed(2)}
+                    </Text>
+                  </Box>
+                  <Box w="8vw" color="white" marginLeft="10px">
+                    <Text fontSize="14px">Total spent</Text>
+                    <Text color="white" fontSize="12px" marginLeft="-34px">
+                      ₦{balance.toFixed(2)}
+                    </Text>
+                  </Box>
+                </Flex>
+              </Flex>
+            </Box>
+          </Box>
 
-          <style>
-            {`
+          <Box>
+            <Text
+              fontSize="28px"
+              fontFamily="heading"
+              color="black"
+              marginLeft="-780px"
+              marginTop="20px"
+            >
+              Recent activity
+            </Text>
+            <Flex marginTop="10px">
+              <Text
+                style={{
+                  cursor: "pointer",
+                  textDecoration: "underline",
+                  textDecorationThickness: "5px",
+                }}
+                _hover={{ color: "#A210C6" }}
+                marginLeft="15px"
+              >
+                All
+              </Text>{" "}
+              <Text
+                style={{
+                  cursor: "pointer",
+                }}
+                _hover={{ color: "#A210C6" }}
+                marginLeft="50px"
+                onClick={openCreditpage}
+              >
+                Credit
+              </Text>{" "}
+              <Text
+                style={{
+                  cursor: "pointer",
+                }}
+                _hover={{ color: "#A210C6" }}
+                marginLeft="50px"
+                onClick={openDebitpage}
+              >
+                Debit
+              </Text>
+            </Flex>
+            <Divider
+              marginTop="-10%"
+              marginLeft="2%"
+              my={4}
+              borderColor="gray.500"
+              width="60%"
+            />
+          </Box>
+          <Box marginLeft="900px" marginTop="120px">
+            <Image
+              onClick={help}
+              src={HelppIcon}
+              alt="Logo"
+              w="70px"
+              h="70px"
+              style={{
+                cursor: "pointer",
+                animation: "zoomInOut 2s infinite alternate",
+              }}
+            />
+
+            <style>
+              {`
           @keyframes zoomInOut {
             0% {
               transform: scale(1);
@@ -725,9 +512,11 @@ const WalletPage = () => {
             }
           }
         `}
-          </style>
+            </style>
+          </Box>
         </Box>
-      </Box>
+      </VStack>
+
       <UserDetailsModal
         isOpen={showUserDetailsModal}
         onClose={handleCloseUserDetailsModal}
@@ -747,7 +536,7 @@ const WalletPage = () => {
           accountNumber: "0123456789",
         }}
       />
-        <LogoutModal
+      <LogoutModal
         isOpen={showLogoutModal}
         onClose={() => setShowLogoutModal(false)}
         onConfirm={handleConfirmLogout}
@@ -756,6 +545,7 @@ const WalletPage = () => {
         isOpen={showOnlinePaymentModal}
         onClose={handleCloseOnlinePaymentModal}
       />
+      </Flex>
     </ChakraProvider>
   );
 };
