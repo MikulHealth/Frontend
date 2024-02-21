@@ -34,6 +34,11 @@ import {
   FormControl,
   Divider,
   FormLabel,
+  Tabs,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
 } from "@chakra-ui/react";
 import userImageIcon from "../../assets/userImage.svg";
 import NotificationIcon from "../../assets/notification.svg";
@@ -87,9 +92,13 @@ const AppointmentPage = () => {
   const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [showSearchAppointmentsModal, setShowSearchAppointmentsModal] =
     useState(false);
-
-  const handleOpenUserDetailsModal = () => {
-    setShowUserDetailsModal(true);
+  const [confirmationModalOpen, setConfirmationModalOpen] = useState(false);
+  const [cancellingAppointmentId, setCancellingAppointmentId] = useState(null);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [selectedTab, setSelectedTab] = useState(0);
+  const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
+  const handleTabChange = (index) => {
+    setSelectedTab(index);
   };
 
   const handleCloseUserDetailsModal = () => {
@@ -108,46 +117,12 @@ const AppointmentPage = () => {
     setShowSearchAppointmentsModal(false);
   };
 
-  const handleOpenHelpModal = () => {};
-
   const handleCloseAppointmentModal = () => {
     setShowAppointmentModal(false);
   };
 
-  const handleOpenWalletModal = () => {
-    navigate("/wallet");
-  };
-
   const help = () => {
     navigate("/help");
-  };
-
-  const handleOpenSettingsModal = () => {
-    navigate("/settings");
-  };
-
-  const Services = () => {
-    navigate("/services");
-  };
-
-  const PendingAppointmentPage = () => {
-    navigate("/pending-appointments");
-  };
-
-  const handleOpenActiveAppointmentsModal = () => {
-    navigate("/active-appointments");
-  };
-
-  const handleOpenLogoutModal = () => {
-    setShowLogoutModal(true);
-  };
-
-  const handleConfirmLogout = () => {
-    setShowLogoutModal(false);
-    localStorage.removeItem("token");
-    localStorage.removeItem("phoneNumber");
-    localStorage.removeItem("orderId");
-    navigate("/");
   };
 
   const formattedCost = (cost) => {
@@ -160,9 +135,31 @@ const AppointmentPage = () => {
 
     return formattedCost;
   };
+  const fetchData = async (url) => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
+
+      const response = await axios.get(url, config);
+
+      if (response.data.success) {
+        setAppointments(response.data.data);
+      } else {
+        console.error("Failed to fetch appointments");
+      }
+    } catch (error) {
+      console.error("Error fetching appointments:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (url) => {
       try {
         const config = {
           headers: {
@@ -170,10 +167,7 @@ const AppointmentPage = () => {
           },
         };
 
-        const response = await axios.get(
-          "http://localhost:8080/v1/appointment/allAppointments",
-          config
-        );
+        const response = await axios.get(url, config);
 
         if (response.data.success) {
           setAppointments(response.data.data);
@@ -187,8 +181,50 @@ const AppointmentPage = () => {
       }
     };
 
-    fetchData();
-  }, [toast]);
+    const fetchAllAppointments = async () => {
+      await fetchData("http://localhost:8080/v1/appointment/allAppointments");
+    };
+
+    const fetchPendingAppointments = async () => {
+      await fetchData(
+        "http://localhost:8080/v1/appointment/pendingAppointments"
+      );
+    };
+
+    const fetchActiveAppointments = async () => {
+      await fetchData(
+        "http://localhost:8080/v1/appointment/activeAppointments"
+      );
+    };
+
+    const fetchCompletedAppointments = async () => {
+      await fetchData(
+        "http://localhost:8080/v1/appointment/completedAppointments"
+      );
+    };
+
+    const fetchDataBasedOnTab = async () => {
+      switch (selectedTab) {
+        case 0:
+          await fetchAllAppointments();
+          break;
+        case 1:
+          await fetchPendingAppointments();
+          break;
+        case 2:
+          await fetchActiveAppointments();
+          break;
+        case 3:
+          await fetchCompletedAppointments();
+          break;
+        default:
+          await fetchAllAppointments();
+          break;
+      }
+    };
+
+    fetchDataBasedOnTab();
+  }, [selectedTab]);
 
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -225,11 +261,23 @@ const AppointmentPage = () => {
       );
     }
   };
-  const handleViewMore = async (id) => {
+  const handleViewMorePending = async (id) => {
     await fetchAndDisplayAppointmentDetails(id);
     // onClose();
     console.log(`View more details for appointment with ID: ${id}`);
   };
+
+  const handleEditAppointment = (id) => {
+    setSelectedAppointmentId(id);
+    setEditModalOpen(true);
+    setDetailsModalOpen(false);
+  };
+
+  const handleCancelModalClose = () => {
+    // Close the confirmation modal
+    setConfirmationModalOpen(false);
+  };
+
 
   const formatDateTime = (dateTimeString) => {
     const options = {
@@ -249,6 +297,52 @@ const AppointmentPage = () => {
 
   const handleOpenDashboard = () => {
     navigate("/dashboard");
+  };
+
+  const handleCancelAppointment = (appointmentId) => {
+    setCancellingAppointmentId(appointmentId);
+    setConfirmationModalOpen(true);
+  };
+
+  const handleConfirmation = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const apiUrl = `http://localhost:8080/v1/appointment/cancelAppointment/${cancellingAppointmentId}`;
+
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+
+      const response = await axios.post(apiUrl, {}, { headers });
+
+      if (response.data.success) {
+        toast({
+          title: response.data.message,
+          status: "success",
+          duration: 6000,
+        });
+        localStorage.removeItem("appointmentId");
+        fetchData();
+      } else {
+        toast({
+          title: "Error canceling appointment",
+          description: response.data.message,
+          status: "error",
+          duration: 6000,
+        });
+        console.error("Error canceling appointment");
+      }
+    } catch (error) {
+      console.error("An error occurred while canceling appointment:", error);
+    } finally {
+      setConfirmationModalOpen(false);
+    }
+  };
+
+  const handleViewMore = async (id) => {
+    await fetchAndDisplayAppointmentDetails(id);
+    console.log(`View more details for appointment with ID: ${id}`);
   };
 
   return (
@@ -346,147 +440,491 @@ const AppointmentPage = () => {
             </Box>
           </Flex>
 
-          <Box marginLeft="-400px">
-            <Flex marginTop="30px">
-              <Text
-                style={{
-                  cursor: "pointer",
-                  textDecoration: "underline",
-                  textDecorationThickness: "5px",
-                }}
-                _hover={{ color: "#A210C6" }}
-                marginLeft="25px"
-              >
-                All
-              </Text>{" "}
-              <Text
-                style={{
-                  cursor: "pointer",
-                }}
-                _hover={{ color: "#A210C6" }}
-                marginLeft="130px"
-                onClick={PendingAppointmentPage}
-              >
-                Pending
-              </Text>{" "}
-              <Text
-                style={{
-                  cursor: "pointer",
-                }}
-                _hover={{ color: "#A210C6" }}
-                marginLeft="130px"
-                onClick={handleOpenActiveAppointmentsModal}
-              >
-                Active
-              </Text>
-              <Text
-                style={{
-                  cursor: "pointer",
-                }}
-                _hover={{ color: "#A210C6" }}
-                marginLeft="130px"
-              >
-                Completed
-              </Text>
-            </Flex>
-            <Divider
-              marginTop="-10%"
-              marginLeft="2%"
-              my={4}
-              borderColor="gray.500"
-              width="52%"
-            />
-            <Box
-              className="all-appointment"
-              overflow="scroll"
-              marginLeft="2%"
-              w="45vw"
-              h="28vh"
-            >
-              {loading ? (
-                <LoadingSpinner />
-              ) : appointments.length === 0 ? (
-                <Text marginLeft="35px">
-                  You have no appointments yet. click{" "}
-                  <a
-                    href="#"
-                    style={{
-                      color: "#A210C6",
-                      fontStyle: "italic",
-                      textDecoration: "none",
-                      cursor: "pointer",
-                    }}
-                    onClick={handleOpenAppointmentModal}
-                  >
-                    book appointment
-                  </a>{" "}
-                  to begin.
-                </Text>
-              ) : (
-                <VStack align="start" spacing={4}>
-                  {appointments.map((appointment) => (
-                    <Box key={appointment.id}>
-                      <Flex>
-                        <Text fontWeight="bold" color="black">
-                          Care beneficiary:
+          <Box marginLeft="-350px" className="appointment-tabs">
+            <VStack>
+              <Tabs colorScheme="purple.100" mt="40px">
+                <TabList justifyContent="space-between">
+                  <Tab onClick={() => handleTabChange(0)}>All</Tab>
+                  <Tab onClick={() => handleTabChange(1)}>Pending</Tab>
+                  <Tab onClick={() => handleTabChange(2)}>Active</Tab>
+                  <Tab onClick={() => handleTabChange(3)}>Completed</Tab>
+                </TabList>
+                <TabPanels marginLeft="-30px">
+                  <TabPanel>
+                    <Box
+                      className="all-appointment"
+                      overflow="scroll"
+                      marginLeft="2%"
+                      w="45vw"
+                      h="28vh"
+                    >
+                      {loading ? (
+                        <LoadingSpinner />
+                      ) : appointments.length === 0 ? (
+                        <Text marginLeft="35px">
+                          You have no appointments yet. Click{" "}
+                          <a
+                            href="#"
+                            style={{
+                              color: "#A210C6",
+                              fontStyle: "italic",
+                              textDecoration: "none",
+                              cursor: "pointer",
+                            }}
+                            onClick={() => handleTabChange(0)}
+                          >
+                            here
+                          </a>{" "}
+                          to book an appointment.
                         </Text>
-                        <Text marginLeft="5px" color="black">
-                          {`${appointment.recipientFirstname} ${appointment.recipientLastname}`}
-                        </Text>
-                      </Flex>
-                      <Flex>
-                        <Text fontWeight="bold" color="black">
-                          Booked on:
-                        </Text>
-                        <Text marginLeft="5px" color="black">
-                          {formatDateTime(appointment.createdAt)}
-                        </Text>
-                        <Text
-                          fontSize="16px"
-                          onClick={() => handleViewMore(appointment.id)}
-                          style={{
-                            marginLeft: "60px",
-                            color: "#A210C6",
-                            fontStyle: "italic",
-                            cursor: "pointer",
-                          }}
-                          _hover={{ color: "#A210C6" }}
-                        >
-                          Details
-                        </Text>
-                        <Text
-                          fontSize="16px"
-                          marginLeft="60px"
-                          color={
-                            appointment.appointmentCompleted
-                              ? "green.500"
-                              : appointment.appointmentActive
-                              ? "blue.500"
-                              : appointment.appointmentMatched
-                              ? "yellow.500"
-                              : appointment.appointmentPending
-                              ? "yellow.500"
-                              : "black"
-                          }
-                          fontStyle="italic"
-                        >
-                          {appointment.appointmentCompleted
-                            ? "Completed"
-                            : appointment.appointmentActive
-                            ? "Active"
-                            : appointment.appointmentMatched
-                            ? "Paired"
-                            : appointment.appointmentPending
-                            ? "Pending"
-                            : "Unknown"}
-                        </Text>
-                      </Flex>
-                      <Divider my={4} borderColor="gray.500" />
+                      ) : (
+                        <VStack align="start" spacing={4}>
+                          {loading ? (
+                            <LoadingSpinner />
+                          ) : appointments.length === 0 ? (
+                            <Text marginLeft="35px">
+                              You have no appointments yet. click{" "}
+                              <a
+                                href="#"
+                                style={{
+                                  color: "#A210C6",
+                                  fontStyle: "italic",
+                                  textDecoration: "none",
+                                  cursor: "pointer",
+                                }}
+                                onClick={handleOpenAppointmentModal}
+                              >
+                                book appointment
+                              </a>{" "}
+                              to begin.
+                            </Text>
+                          ) : (
+                            <VStack align="start" spacing={4}>
+                              {appointments.map((appointment) => (
+                                <Box key={appointment.id}>
+                                  <Flex>
+                                    <Text fontWeight="bold" color="black">
+                                      Care beneficiary:
+                                    </Text>
+                                    <Text marginLeft="5px" color="black">
+                                      {`${appointment.recipientFirstname} ${appointment.recipientLastname}`}
+                                    </Text>
+                                  </Flex>
+                                  <Flex>
+                                    <Text fontWeight="bold" color="black">
+                                      Booked on:
+                                    </Text>
+                                    <Text marginLeft="5px" color="black">
+                                      {formatDateTime(appointment.createdAt)}
+                                    </Text>
+                                    <Text
+                                      fontSize="16px"
+                                      onClick={() =>
+                                        handleViewMore(appointment.id)
+                                      }
+                                      style={{
+                                        marginLeft: "60px",
+                                        color: "#A210C6",
+                                        fontStyle: "italic",
+                                        cursor: "pointer",
+                                      }}
+                                      _hover={{ color: "#A210C6" }}
+                                    >
+                                      Details
+                                    </Text>
+                                    <Text
+                                      fontSize="16px"
+                                      marginLeft="60px"
+                                      color={
+                                        appointment.appointmentCompleted
+                                          ? "green.500"
+                                          : appointment.appointmentActive
+                                          ? "blue.500"
+                                          : appointment.appointmentMatched
+                                          ? "yellow.500"
+                                          : appointment.appointmentPending
+                                          ? "yellow.500"
+                                          : "black"
+                                      }
+                                      fontStyle="italic"
+                                    >
+                                      {appointment.appointmentCompleted
+                                        ? "Completed"
+                                        : appointment.appointmentActive
+                                        ? "Active"
+                                        : appointment.appointmentMatched
+                                        ? "Paired"
+                                        : appointment.appointmentPending
+                                        ? "Pending"
+                                        : "Unknown"}
+                                    </Text>
+                                  </Flex>
+                                  <Divider my={4} borderColor="gray.500" />
+                                </Box>
+                              ))}
+                            </VStack>
+                          )}
+                        </VStack>
+                      )}
                     </Box>
-                  ))}
-                </VStack>
-              )}
-            </Box>
+                  </TabPanel>
+                  <TabPanel>
+                    <Box
+                      className="pending-appointment"
+                      overflow="scroll"
+                      marginLeft="2%"
+                      w="45vw"
+                      h="28vh"
+                    >
+                      {loading ? (
+                        <LoadingSpinner />
+                      ) : appointments.length === 0 ? (
+                        <Text marginLeft="35px">
+                          You have no appointments yet. Click{" "}
+                          <a
+                            href="#"
+                            style={{
+                              color: "#A210C6",
+                              fontStyle: "italic",
+                              textDecoration: "none",
+                              cursor: "pointer",
+                            }}
+                            onClick={() => handleTabChange(0)}
+                          >
+                            here
+                          </a>{" "}
+                          to book an appointment.
+                        </Text>
+                      ) : (
+                        <VStack align="start" spacing={4}>
+                          {loading ? (
+                            <LoadingSpinner />
+                          ) : appointments.length === 0 ? (
+                            <Text marginLeft="35px">
+                              You have no appointments yet. click{" "}
+                              <a
+                                href="#"
+                                style={{
+                                  color: "#A210C6",
+                                  fontStyle: "italic",
+                                  textDecoration: "none",
+                                  cursor: "pointer",
+                                }}
+                                onClick={handleOpenAppointmentModal}
+                              >
+                                book appointment
+                              </a>{" "}
+                              to begin.
+                            </Text>
+                          ) : (
+                            <VStack align="start" spacing={4}>
+                              {appointments.map((appointment) => (
+                                <Box key={appointment.id}>
+                                  <Flex>
+                                    <Text fontWeight="bold" color="black">
+                                      Care beneficiary:
+                                    </Text>
+                                    <Text marginLeft="5px" color="black">
+                                      {`${appointment.recipientFirstname} ${appointment.recipientLastname}`}
+                                    </Text>
+                                  </Flex>
+                                  <Flex>
+                                    <Text fontWeight="bold" color="black">
+                                      Booked on:
+                                    </Text>
+                                    <Text marginLeft="5px" color="black">
+                                      {formatDateTime(appointment.createdAt)}
+                                    </Text>
+                                    <Text
+                                      fontSize="16px"
+                                      onClick={() =>
+                                        handleViewMore(appointment.id)
+                                      }
+                                      style={{
+                                        marginLeft: "60px",
+                                        color: "#A210C6",
+                                        fontStyle: "italic",
+                                        cursor: "pointer",
+                                      }}
+                                      _hover={{ color: "#A210C6" }}
+                                    >
+                                      Details
+                                    </Text>
+                                    <Text
+                                      fontSize="16px"
+                                      marginLeft="60px"
+                                      color={
+                                        appointment.appointmentCompleted
+                                          ? "green.500"
+                                          : appointment.appointmentActive
+                                          ? "blue.500"
+                                          : appointment.appointmentMatched
+                                          ? "yellow.500"
+                                          : appointment.appointmentPending
+                                          ? "yellow.500"
+                                          : "black"
+                                      }
+                                      fontStyle="italic"
+                                    >
+                                      {appointment.appointmentCompleted
+                                        ? "Completed"
+                                        : appointment.appointmentActive
+                                        ? "Active"
+                                        : appointment.appointmentMatched
+                                        ? "Paired"
+                                        : appointment.appointmentPending
+                                        ? "Pending"
+                                        : "Unknown"}
+                                    </Text>
+                                  </Flex>
+                                  <Divider my={4} borderColor="gray.500" />
+                                </Box>
+                              ))}
+                            </VStack>
+                          )}
+                        </VStack>
+                      )}
+                    </Box>
+                  </TabPanel>
+                  <TabPanel>
+                    <Box
+                      className="active-appointment"
+                      overflow="scroll"
+                      marginLeft="2%"
+                      w="45vw"
+                      h="28vh"
+                    >
+                      {loading ? (
+                        <LoadingSpinner />
+                      ) : appointments.length === 0 ? (
+                        <Text marginLeft="35px">
+                          You have no appointments yet. Click{" "}
+                          <a
+                            href="#"
+                            style={{
+                              color: "#A210C6",
+                              fontStyle: "italic",
+                              textDecoration: "none",
+                              cursor: "pointer",
+                            }}
+                            onClick={() => handleTabChange(0)}
+                          >
+                            here
+                          </a>{" "}
+                          to book an appointment.
+                        </Text>
+                      ) : (
+                        <VStack align="start" spacing={4}>
+                          {loading ? (
+                            <LoadingSpinner />
+                          ) : appointments.length === 0 ? (
+                            <Text marginLeft="35px">
+                              You have no appointments yet. click{" "}
+                              <a
+                                href="#"
+                                style={{
+                                  color: "#A210C6",
+                                  fontStyle: "italic",
+                                  textDecoration: "none",
+                                  cursor: "pointer",
+                                }}
+                                onClick={handleOpenAppointmentModal}
+                              >
+                                book appointment
+                              </a>{" "}
+                              to begin.
+                            </Text>
+                          ) : (
+                            <VStack align="start" spacing={4}>
+                              {appointments.map((appointment) => (
+                                <Box key={appointment.id}>
+                                  <Flex>
+                                    <Text fontWeight="bold" color="black">
+                                      Care beneficiary:
+                                    </Text>
+                                    <Text marginLeft="5px" color="black">
+                                      {`${appointment.recipientFirstname} ${appointment.recipientLastname}`}
+                                    </Text>
+                                  </Flex>
+                                  <Flex>
+                                    <Text fontWeight="bold" color="black">
+                                      Booked on:
+                                    </Text>
+                                    <Text marginLeft="5px" color="black">
+                                      {formatDateTime(appointment.createdAt)}
+                                    </Text>
+                                    <Text
+                                      fontSize="16px"
+                                      onClick={() =>
+                                        handleViewMore(appointment.id)
+                                      }
+                                      style={{
+                                        marginLeft: "60px",
+                                        color: "#A210C6",
+                                        fontStyle: "italic",
+                                        cursor: "pointer",
+                                      }}
+                                      _hover={{ color: "#A210C6" }}
+                                    >
+                                      Details
+                                    </Text>
+                                    <Text
+                                      fontSize="16px"
+                                      marginLeft="60px"
+                                      color={
+                                        appointment.appointmentCompleted
+                                          ? "green.500"
+                                          : appointment.appointmentActive
+                                          ? "blue.500"
+                                          : appointment.appointmentMatched
+                                          ? "yellow.500"
+                                          : appointment.appointmentPending
+                                          ? "yellow.500"
+                                          : "black"
+                                      }
+                                      fontStyle="italic"
+                                    >
+                                      {appointment.appointmentCompleted
+                                        ? "Completed"
+                                        : appointment.appointmentActive
+                                        ? "Active"
+                                        : appointment.appointmentMatched
+                                        ? "Paired"
+                                        : appointment.appointmentPending
+                                        ? "Pending"
+                                        : "Unknown"}
+                                    </Text>
+                                  </Flex>
+                                  <Divider my={4} borderColor="gray.500" />
+                                </Box>
+                              ))}
+                            </VStack>
+                          )}
+                        </VStack>
+                      )}
+                    </Box>
+                  </TabPanel>
+                  <TabPanel>
+                    <Box
+                      className="completed-appointment"
+                      overflow="scroll"
+                      marginLeft="2%"
+                      w="45vw"
+                      h="28vh"
+                    >
+                      {loading ? (
+                        <LoadingSpinner />
+                      ) : appointments.length === 0 ? (
+                        <Text marginLeft="35px">
+                          You have no appointments yet. Click{" "}
+                          <a
+                            href="#"
+                            style={{
+                              color: "#A210C6",
+                              fontStyle: "italic",
+                              textDecoration: "none",
+                              cursor: "pointer",
+                            }}
+                            onClick={() => handleTabChange(0)}
+                          >
+                            here
+                          </a>{" "}
+                          to book an appointment.
+                        </Text>
+                      ) : (
+                        <VStack align="start" spacing={4}>
+                          {loading ? (
+                            <LoadingSpinner />
+                          ) : appointments.length === 0 ? (
+                            <Text marginLeft="35px">
+                              You have no appointments yet. click{" "}
+                              <a
+                                href="#"
+                                style={{
+                                  color: "#A210C6",
+                                  fontStyle: "italic",
+                                  textDecoration: "none",
+                                  cursor: "pointer",
+                                }}
+                                onClick={handleOpenAppointmentModal}
+                              >
+                                book appointment
+                              </a>{" "}
+                              to begin.
+                            </Text>
+                          ) : (
+                            <VStack align="start" spacing={4}>
+                              {appointments.map((appointment) => (
+                                <Box key={appointment.id}>
+                                  <Flex>
+                                    <Text fontWeight="bold" color="black">
+                                      Care beneficiary:
+                                    </Text>
+                                    <Text marginLeft="5px" color="black">
+                                      {`${appointment.recipientFirstname} ${appointment.recipientLastname}`}
+                                    </Text>
+                                  </Flex>
+                                  <Flex>
+                                    <Text fontWeight="bold" color="black">
+                                      Booked on:
+                                    </Text>
+                                    <Text marginLeft="5px" color="black">
+                                      {formatDateTime(appointment.createdAt)}
+                                    </Text>
+                                    <Text
+                                      fontSize="16px"
+                                      onClick={() =>
+                                        handleViewMore(appointment.id)
+                                      }
+                                      style={{
+                                        marginLeft: "60px",
+                                        color: "#A210C6",
+                                        fontStyle: "italic",
+                                        cursor: "pointer",
+                                      }}
+                                      _hover={{ color: "#A210C6" }}
+                                    >
+                                      Details
+                                    </Text>
+                                    <Text
+                                      fontSize="16px"
+                                      marginLeft="60px"
+                                      color={
+                                        appointment.appointmentCompleted
+                                          ? "green.500"
+                                          : appointment.appointmentActive
+                                          ? "blue.500"
+                                          : appointment.appointmentMatched
+                                          ? "yellow.500"
+                                          : appointment.appointmentPending
+                                          ? "yellow.500"
+                                          : "black"
+                                      }
+                                      fontStyle="italic"
+                                    >
+                                      {appointment.appointmentCompleted
+                                        ? "Completed"
+                                        : appointment.appointmentActive
+                                        ? "Active"
+                                        : appointment.appointmentMatched
+                                        ? "Paired"
+                                        : appointment.appointmentPending
+                                        ? "Pending"
+                                        : "Unknown"}
+                                    </Text>
+                                  </Flex>
+                                  {/* <Divider my={4} borderColor="gray.500" /> */}
+                                </Box>
+                              ))}
+                            </VStack>
+                          )}
+                        </VStack>
+                      )}
+                    </Box>
+                  </TabPanel>
+                </TabPanels>
+              </Tabs>
+            </VStack>
           </Box>
           <Box marginLeft="900px" marginTop="-85px">
             <Image
@@ -526,11 +964,6 @@ const AppointmentPage = () => {
           <CanceledAppointmentsModal
             isOpen={showCanceledModal}
             onClose={() => setShowCanceledModal(false)}
-          />
-          <LogoutModal
-            isOpen={showLogoutModal}
-            onClose={() => setShowLogoutModal(false)}
-            onConfirm={handleConfirmLogout}
           />
           <SearchAppointmentsModal
             isOpen={showSearchAppointmentsModal}
@@ -758,6 +1191,32 @@ const AppointmentPage = () => {
           )}
         </VStack>
       </Flex>
+      
+      {confirmationModalOpen && (
+        <Modal
+          isOpen={confirmationModalOpen}
+          onClose={handleCancelModalClose}
+          size="md"
+        >
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Confirmation</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              Are you sure you want to cancel this appointment? <br></br>
+              This action is irreversible.
+            </ModalBody>
+            <ModalFooter>
+              <Button colorScheme="red" onClick={handleCancelModalClose}>
+                No
+              </Button>
+              <Button marginLeft="5px" onClick={handleConfirmation}>
+                Yes
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      )}
     </ChakraProvider>
   );
 };

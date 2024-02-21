@@ -1,7 +1,6 @@
 import { List, ListIcon, ListItem } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import LogoutModal from "../sections/LogoutModal";
 import {
   AiOutlineHome,
@@ -26,6 +25,7 @@ import {
 
 export default function SideBar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const handleConfirmLogout = () => {
     setShowLogoutModal(false);
@@ -40,6 +40,7 @@ export default function SideBar() {
   const reloadPage = () => {
     window.location.reload();
   };
+
   return (
     <Flex width="25%" as="sidebar" p="10px" h="100vh">
       <List
@@ -49,7 +50,7 @@ export default function SideBar() {
         spacing={10}
         paddingLeft={0}
       >
-        <ListItem marginLeft="50px">
+        <ListItem marginLeft="50px" w="100%">
           <Image
             src={logo}
             alt="Logo"
@@ -63,47 +64,79 @@ export default function SideBar() {
             _hover={{ color: "" }}
           />
         </ListItem>
-        <Box></Box>
-        <ListItem marginLeft="-5px">
+
+        <ListItem
+          marginLeft="-5px"
+          color={location.pathname === "/dashboard" ? "#A210C6" : ""}
+          textDecoration={location.pathname === "/dashboard" ? "underline" : ""}
+       
+        >
           <NavLink to="/dashboard">
             <ListIcon as={AiOutlineHome} />
             Home
           </NavLink>
         </ListItem>
 
-        <ListItem marginLeft="76px">
+        <ListItem
+          marginLeft="76px"
+          color={location.pathname === "/appointment" ? "#A210C6" : ""}
+          textDecoration={
+            location.pathname === "/appointment" ? "underline" : ""
+          }
+       
+        >
           <NavLink to="/appointment">
             <ListIcon as={AiOutlineCalendar} />
             Appointments
           </NavLink>
         </ListItem>
-        <ListItem marginLeft="-5px">
-          <NavLink to="/wallet">
+
+        <ListItem
+          marginLeft="-5px"
+          color={location.pathname === "/wallet" ? "#A210C6" : ""}
+          textDecoration={location.pathname === "/wallet" ? "underline" : ""}
+        
+        >
+          {/* <NavLink to="/wallet"> */}
             <ListIcon as={AiOutlineWallet} />
             Wallet
-          </NavLink>
+          {/* </NavLink> */}
         </ListItem>
-        <ListItem>
+
+        <ListItem
+          color={location.pathname === "/services" ? "#A210C6" : ""}
+          textDecoration={location.pathname === "/services" ? "underline" : ""}
+       
+        >
           <NavLink to="/services">
             <ListIcon as={AiOutlineTool} />
             Services
           </NavLink>
         </ListItem>
-        <ListItem marginLeft="10px">
+
+        <ListItem
+          marginLeft="15px"
+          color={location.pathname === "/settings" ? "#A210C6" : ""}
+          textDecoration={location.pathname === "/settings" ? "underline" : ""}
+         
+        >
           <NavLink to="/settings">
             <ListIcon as={AiOutlineSetting} />
             Settings
           </NavLink>
         </ListItem>
+
         <Spacer />
 
         <ListItem
-            onClick={handleOpenLogoutModal}
-          color="#A210C6"
+          onClick={handleOpenLogoutModal}
+         
           marginLeft="10px"
           style={{
             marginTop: "100px",
           }}
+          textDecoration={location.pathname === "/logout" ? "underline" : ""}
+         
         >
           <NavLink>
             <ListIcon as={AiOutlineLogout} />
