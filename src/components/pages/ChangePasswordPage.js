@@ -8,7 +8,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import RightArrow from "../../assets/RightArrow.svg";
 import Help from "../../assets/Help.svg";
 import serviceIcon from "../../assets/ServiceIcon.svg";
-
+import SideBar from "../layouts/SideBar";
+import NavBar from "../layouts/NavBar";
 import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from "@chakra-ui/icons";
 import {
   ChakraProvider,
@@ -281,235 +282,13 @@ const ChangePasswordPage = () => {
 
   return (
     <ChakraProvider theme={customTheme}>
-      <Box width="25%" p={3} h="90vh">
-        <Image
-          src={logo}
-          alt="Logo"
-          w="160px"
-          h="60px"
-          marginLeft="90px"
-          marginTop="10px"
-        />
-
-        <VStack spacing={3} align="center" mt={5}>
-          <Flex marginTop="50px" alignItems="center">
-            <Image
-              marginLeft="-47px"
-              w="20px"
-              h="20px"
-              src={HomeIcon}
-              alt="HomeIcon"
-            />
-
-            <Text
-              marginLeft="15px"
-              color="black"
-              fontSize="18px"
-              onClick={() => {
-                handleOpenDashboard();
-              }}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Home
-            </Text>
-          </Flex>
-
-          <Flex
-            alignItems="center"
-            marginTop="10px"
-            // bg="#A210C6"
-            w="15vw"
-            p={3}
-            borderRadius="md"
-          >
-            <Image
-              marginLeft="25px"
-              w="20px"
-              h="20px"
-              src={AppointmentsIcon}
-              alt="Appointments"
-            />
-            <Text
-              marginLeft="15px"
-              fontSize="18px"
-              color="black"
-              onClick={handleOpenAppointmentsModal}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "" }}
-            >
-              Appointments
-            </Text>
-          </Flex>
-
-          <Flex alignItems="center" marginTop="10px" marginLeft="-48px">
-            <Image w="20px" h="20px" src={Wallet} alt="wallet" />
-            <Text
-              marginLeft="15px"
-              color="black"
-              fontSize="18px"
-              onClick={handleOpenWalletModal}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Wallet
-            </Text>
-          </Flex>
-
-          <Flex alignItems="center" marginTop="30px" marginLeft="-60px">
-            <Image
-              marginLeft="26px"
-              w="20px"
-              h="20px"
-              src={serviceIcon}
-              alt="Help"
-            />
-            <Text
-              marginLeft="15px"
-              color="black"
-              fontSize="18px"
-              onClick={Services}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Service
-            </Text>
-          </Flex>
-
-          <Flex
-            alignItems="center"
-            bg="#A210C6"
-            w="15vw"
-            p={3}
-            borderRadius="md"
-            marginTop="30px"
-            marginLeft="28px"
-          >
-            <Image
-              marginLeft="10px"
-              w="20px"
-              fontSize="24px"
-              h="20px"
-              src={SettingsIcon}
-              alt="Settings"
-            />
-            <Text
-              marginLeft="15px"
-              color="white"
-              fontSize="18px"
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "" }}
-              onClick={handleOpenSettingsModal}
-            >
-              Settings
-            </Text>
-          </Flex>
-
-          <Flex alignItems="center" marginTop="100px" marginLeft="-55px">
-            <Image
-              marginLeft="15px"
-              w="20px"
-              h="20px"
-              src={LogoutIcon}
-              alt="Logout"
-            />
-            <Text
-              onClick={handleOpenLogoutModal}
-              fontSize="18px"
-              marginLeft="15px"
-              color="black"
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Logout
-            </Text>
-          </Flex>
-        </VStack>
-        <Box
-          borderRight="2px solid #A210C6"
-          height="113%"
-          marginX={3}
-          marginTop="-590px"
-        />
-      </Box>
-      <Box
-        position="fixed"
-        top="0"
-        left="25%"
-        width="85%"
-        height="100%"
-        backgroundColor="white"
-        zIndex="1000"
-      >
+       <Flex overflow="hidden" height="100vh" w="100vw">
+        <SideBar />
+        <Box w="75%" h="100vh">
+          <NavBar />
+       
         <Flex>
-          <Text
-            fontSize="36px"
-            fontFamily="heading"
-            color="#A210C6"
-            marginLeft="25px"
-            marginTop="30px"
-          >
-            Settings
-          </Text>
-          <Flex
-            marginLeft="700px"
-            style={{
-              cursor: "pointer",
-            }}
-            _hover={{ color: "#A210C6" }}
-            onClick={handleOpenSettingsModal}
-          >
-            <Box marginTop="30px">
-              <Image
-                src={NotificationIcon}
-                alt="Notificatio icon"
-                h="26px"
-                w="30px"
-                marginBottom="10px"
-              />
-            </Box>
-
-            <Box marginLeft="10px" marginTop="30px">
-              {user?.image ? (
-                <Link onClick={handleOpenUserDetailsModal}>
-                  <Image
-                    borderRadius="100px"
-                    h="29px"
-                    w="30px"
-                    src={user?.image}
-                    alt="User Image"
-                  />
-                </Link>
-              ) : (
-                <Link onClick={handleOpenUserDetailsModal}>
-                  <Image
-                    src={userImageIcon}
-                    alt="User Image Icon"
-                    boxSize="50px"
-                    marginBottom="2%"
-                    h="19px"
-                    w="20px"
-                    borderRadius="100%"
-                  />
-                </Link>
-              )}
-            </Box>
-          </Flex>
-        </Flex>
-        <Flex>
-          <Box width="25%" p={3} h="80vh">
+          <Box width="30%" p={3} h="80vh">
             <Text fontFamily="heading" marginLeft="-160px" fontSize="24px">
               Account
             </Text>
@@ -755,15 +534,7 @@ const ChangePasswordPage = () => {
           </Box>
         </Flex>
       </Box>
-      <UserDetailsModal
-        isOpen={showUserDetailsModal}
-        onClose={handleCloseUserDetailsModal}
-      />
-      <LogoutModal
-        isOpen={showLogoutModal}
-        onClose={() => setShowLogoutModal(false)}
-        onConfirm={handleConfirmLogout}
-      />
+      </Flex>
     </ChakraProvider>
   );
 };

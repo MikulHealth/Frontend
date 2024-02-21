@@ -11,7 +11,8 @@ import WebIcon from "../../assets/WebIcon.svg";
 import EmailIcon from "../../assets/EmailIcon.svg";
 import TextIcon from "../../assets/TextIcon.svg";
 import LogoutModal from "../sections/LogoutModal";
-
+import SideBar from "../layouts/SideBar";
+import NavBar from "../layouts/NavBar";
 import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from "@chakra-ui/icons";
 import {
   ChakraProvider,
@@ -65,7 +66,6 @@ const customTheme = extendTheme({
     heading: "Gill Sans MT, sans-serif",
   },
 });
-
 
 const NotificationSettingsPage = () => {
   const navigate = useNavigate();
@@ -180,492 +180,266 @@ const NotificationSettingsPage = () => {
     navigate("/services");
   };
 
-
   return (
     <ChakraProvider theme={customTheme}>
-      <Box width="25%" p={3} h="90vh">
-        <Image
-          src={logo}
-          alt="Logo"
-          w="160px"
-          h="60px"
-          marginLeft="90px"
-          marginTop="10px"
-        />
+      <Flex overflow="hidden" height="100vh" w="100vw">
+        <SideBar />
+        <Box w="75%" h="100vh">
+          <NavBar />
 
-        <VStack spacing={3} align="center" mt={5}>
-          <Flex marginTop="50px" alignItems="center">
-            <Image
-              marginLeft="-47px"
-              w="20px"
-              h="20px"
-              src={HomeIcon}
-              alt="HomeIcon"
-            />
+          <Flex>
+            <Box width="30%" p={3} h="80vh">
+              <Text fontFamily="heading" marginLeft="-160px" fontSize="24px">
+                Account
+              </Text>
 
-            <Text
-              marginLeft="15px"
-              color="black"
-              fontSize="18px"
-              onClick={() => {
-                handleOpenDashboard();
-              }}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Home
-            </Text>
-          </Flex>
-
-          <Flex
-            alignItems="center"
-            marginTop="10px"
-            // bg="#A210C6"
-            w="15vw"
-            p={3}
-            borderRadius="md"
-          >
-            <Image
-              marginLeft="25px"
-              w="20px"
-              h="20px"
-              src={AppointmentsIcon}
-              alt="Appointments"
-            />
-            <Text
-              marginLeft="15px"
-              fontSize="18px"
-              color="black"
-              onClick={handleOpenAppointmentsModal}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "" }}
-            >
-              Appointments
-            </Text>
-          </Flex>
-
-          <Flex alignItems="center" marginTop="10px" marginLeft="-48px">
-            <Image w="20px" h="20px" src={Wallet} alt="wallet" />
-            <Text
-              marginLeft="15px"
-              color="black"
-              fontSize="18px"
-              onClick={handleOpenWalletModal}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Wallet
-            </Text>
-          </Flex>
-
-          <Flex alignItems="center" marginTop="30px" marginLeft="-60px">
-            <Image  marginLeft="26px" w="20px" h="20px" src={serviceIcon} alt="Help" />
-            <Text
-              marginLeft="15px"
-              color="black"
-              fontSize="18px"
-              onClick={Services}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Service
-            </Text>
-          </Flex>
-
-          <Flex
-            alignItems="center"
-            bg="#A210C6"
-            w="15vw"
-            p={3}
-            borderRadius="md"
-            marginTop="30px"
-            marginLeft="28px"
-          >
-            <Image
-              marginLeft="10px"
-              w="20px"
-              fontSize="24px"
-              h="20px"
-              src={SettingsIcon}
-              alt="Settings"
-            />
-            <Text
-              marginLeft="15px"
-              color="white"
-              fontSize="18px"
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "" }}
-              onClick={handleOpenSettingsModal}
-            >
-              Settings
-            </Text>
-          </Flex>
-
-  
-
-          <Flex alignItems="center" marginTop="100px" marginLeft="-55px">
-            <Image
-              marginLeft="15px"
-              w="20px"
-              h="20px"
-              src={LogoutIcon}
-              alt="Logout"
-            />
-            <Text
-              onClick={handleOpenLogoutModal}
-              fontSize="18px"
-              marginLeft="15px"
-              color="black"
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Logout
-            </Text>
-          </Flex>
-        </VStack>
-        <Box
-          borderRight="2px solid #A210C6"
-          height="113%"
-          marginX={3}
-          marginTop="-590px"
-        />
-      </Box>
-      <Box
-        position="fixed"
-        top="0"
-        left="25%"
-        width="85%"
-        height="100%"
-        backgroundColor="white"
-        zIndex="1000"
-      >
-        <Flex>
-          <Text
-            fontSize="36px"
-            fontFamily="heading"
-            color="#A210C6"
-            marginLeft="25px"
-            marginTop="30px"
-          >
-            Settings
-          </Text>
-          <Flex
-            marginLeft="700px"
-            style={{
-              cursor: "pointer",
-            }}
-            _hover={{ color: "#A210C6" }}
-          >
-            <Box marginTop="30px">
-              <Image
-                src={NotificationIcon}
-                alt="Notificatio icon"
-                h="26px"
-                w="30px"
-                marginBottom="10px"
-              />
-            </Box>
-
-            <Box marginLeft="10px" marginTop="30px">
-              {user?.image ? (
-                <Link onClick={handleOpenUserDetailsModal}>
+              <Box>
+                <Flex
+                  marginTop="25px"
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  _hover={{ color: "#A210C6" }}
+                  onClick={handleOpenEditProfileDashboard}
+                >
                   <Image
-                    borderRadius="100px"
-                    h="29px"
-                    w="30px"
-                    src={user?.image}
-                    alt="User Image"
-                  />
-                </Link>
-              ) : (
-                <Link onClick={handleOpenUserDetailsModal}>
-                  <Image
-                    src={userImageIcon}
-                    alt="User Image Icon"
+                    src={ProfileIcon}
+                    alt="Profile Icon"
                     boxSize="50px"
                     marginBottom="2%"
-                    h="19px"
-                    w="20px"
+                    h="50px"
+                    w="50px"
+                    borderRadius="10%"
+                  />
+                  <Text fontSize="20px" marginLeft="5px" marginTop="10px">
+                    Profile
+                  </Text>
+                  <Image
+                    marginLeft="135px"
+                    marginTop="20px"
+                    w="10px"
+                    h="15px"
+                    src={RightArrow}
+                    alt="right arrow"
+                  />
+                </Flex>
+                <Divider my={1} borderColor="black.500" />
+              </Box>
+              <Box>
+                {" "}
+                <Flex
+                  marginTop="25px"
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  _hover={{ color: "#A210C6" }}
+                  onClick={handleChangePassowrdModal}
+                >
+                  <Image
+                    src={PasswordIcon}
+                    alt="Password Icon"
+                    boxSize="50px"
+                    marginBottom="2%"
+                    h="50px"
+                    w="50px"
+                    borderRadius="10%"
+                  />
+                  <Text fontSize="20px" marginLeft="5px" marginTop="10px">
+                    Change password
+                  </Text>
+                  <Image
+                    marginLeft="32px"
+                    marginTop="20px"
+                    w="10px"
+                    h="15px"
+                    src={RightArrow}
+                    alt="right arrow"
+                  />
+                </Flex>
+                <Divider my={1} borderColor="black.500" />{" "}
+              </Box>
+              <Box>
+                {" "}
+                <Flex
+                  marginTop="25px"
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  _hover={{ color: "#A210C6" }}
+                  marginLeft="-25px"
+                >
+                  <Image
+                    src={Bar}
+                    alt="Profile Icon"
+                    boxSize="50px"
+                    marginBottom="2%"
+                    h="50px"
+                    w="50px"
                     borderRadius="100%"
                   />
-                </Link>
-              )}
+                  <Image
+                    src={NotificationIconn}
+                    alt="Notification Icon"
+                    boxSize="50px"
+                    marginBottom="2%"
+                    marginLeft="-20px"
+                    h="50px"
+                    w="50px"
+                    borderRadius="10%"
+                  />
+                  <Text
+                    color="#A210C6"
+                    fontSize="20px"
+                    marginLeft="5px"
+                    marginTop="10px"
+                    fontFamily="heading"
+                  >
+                    Notification Settings
+                  </Text>
+                  <Image
+                    marginLeft="10px"
+                    marginTop="20px"
+                    w="10px"
+                    h="15px"
+                    src={RightArrow}
+                    alt="right arrow"
+                  />
+                </Flex>
+                <Divider my={1} borderColor="black.500" />{" "}
+              </Box>
+              <Box>
+                {" "}
+                <Flex
+                  marginTop="25px"
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  _hover={{ color: "#A210C6" }}
+                  onClick={help}
+                >
+                  <Image
+                    src={Help}
+                    alt="Notification Icon"
+                    boxSize="50px"
+                    marginBottom="2%"
+                    h="50px"
+                    w="50px"
+                    borderRadius="10%"
+                  />
+                  <Text fontSize="20px" marginLeft="5px" marginTop="10px">
+                    Help
+                  </Text>
+                  <Image
+                    marginLeft="145px"
+                    marginTop="20px"
+                    w="10px"
+                    h="15px"
+                    src={RightArrow}
+                    alt="right arrow"
+                  />
+                </Flex>
+                <Divider my={1} borderColor="black.500" />{" "}
+              </Box>
+            </Box>
+            <Box
+              marginTop="10px"
+              className="notification-settings"
+              marginLeft="50px"
+              width="35%"
+              p={3}
+              h="80vh"
+            >
+              {" "}
+              <Text fontSize="20px">Notification settings</Text>{" "}
+              <VStack spacing={4}>
+                <Flex marginTop="30px" alignItems="center">
+                  <Image
+                    src={WebIcon}
+                    alt="Web Icon"
+                    boxSize="50px"
+                    marginBottom="2%"
+                    h="24px"
+                    w="30px"
+                    borderRadius="100%"
+                  />
+                  <Text marginLeft="10px" fontSize="16px">
+                    WebApp Push Notifications
+                  </Text>
+                  <Switch
+                    style={{
+                      backgroundColor: webAppNotification
+                        ? "purple.500"
+                        : "gray.400",
+                    }}
+                    marginLeft="60px"
+                    isChecked={webAppNotification}
+                    onChange={handleWebAppNotificationChange}
+                  />
+                </Flex>
+                <Text marginTop="-15px" marginLeft="20px" fontSize="14px">
+                  Receive push notifications on appointments
+                </Text>
+                <Text marginTop="-15px" marginLeft="-95px" fontSize="14px">
+                  {" "}
+                  and updates via webapp.
+                </Text>
+                <Flex marginTop="5px" alignItems="center">
+                  <Image
+                    src={EmailIcon}
+                    alt="Email Icon"
+                    boxSize="50px"
+                    marginBottom="2%"
+                    h="24px"
+                    w="30px"
+                    borderRadius="100%"
+                  />
+                  <Text marginLeft="10px" fontSize="16px">
+                    Email notifications
+                  </Text>
+                  <Switch
+                    marginLeft="125px"
+                    isChecked={emailNotification}
+                    onChange={handleEmailNotificationChange}
+                  />
+                </Flex>
+                <Text marginTop="-15px" marginLeft="20px" fontSize="14px">
+                  Receive push notifications on appointments
+                </Text>
+                <Text marginTop="-15px" marginLeft="-112px" fontSize="14px">
+                  {" "}
+                  and updates via email
+                </Text>
+                <Flex marginLeft="3px" marginTop="5px" alignItems="center">
+                  <Image
+                    src={TextIcon}
+                    alt="Text Icon"
+                    boxSize="50px"
+                    marginBottom="2%"
+                    h="24px"
+                    w="30px"
+                    borderRadius="100%"
+                  />
+                  <Text marginLeft="10px" fontSize="16px">
+                    Text message notifications
+                  </Text>
+                  <Switch
+                    marginLeft="70px"
+                    isChecked={textNotification}
+                    onChange={handleTextppNotificationChange}
+                  />
+                </Flex>
+                <Text marginTop="-15px" marginLeft="20px" fontSize="14px">
+                  Receive push notifications on appointments
+                </Text>
+                <Text marginTop="-15px" marginLeft="-123px" fontSize="14px">
+                  {" "}
+                  and updates via text
+                </Text>
+              </VStack>
             </Box>
           </Flex>
-        </Flex>
-        <Flex>
-          <Box width="25%" p={3} h="80vh">
-            <Text  fontFamily="heading" marginLeft="-160px" fontSize="24px">
-              Account
-            </Text>
-
-            <Box>
-              <Flex
-                marginTop="25px"
-                style={{
-                  cursor: "pointer",
-                }}
-                _hover={{ color: "#A210C6" }}
-                onClick={handleOpenEditProfileDashboard}
-              >
-                <Image
-                  src={ProfileIcon}
-                  alt="Profile Icon"
-                  boxSize="50px"
-                  marginBottom="2%"
-                  h="50px"
-                  w="50px"
-                  borderRadius="10%"
-                />
-                <Text fontSize="20px" marginLeft="5px" marginTop="10px">
-                  Profile
-                </Text>
-                <Image
-                  marginLeft="135px"
-                  marginTop="20px"
-                  w="10px"
-                  h="15px"
-                  src={RightArrow}
-                  alt="right arrow"
-                />
-              </Flex>
-              <Divider my={1} borderColor="black.500" />
-            </Box>
-            <Box>
-              {" "}
-              <Flex
-                marginTop="25px"
-                style={{
-                  cursor: "pointer",
-                }}
-                _hover={{ color: "#A210C6" }}
-                onClick={handleChangePassowrdModal}
-              >
-                <Image
-                  src={PasswordIcon}
-                  alt="Password Icon"
-                  boxSize="50px"
-                  marginBottom="2%"
-                  h="50px"
-                  w="50px"
-                  borderRadius="10%"
-                />
-                <Text fontSize="20px" marginLeft="5px" marginTop="10px">
-                  Change password
-                </Text>
-                <Image
-                  marginLeft="32px"
-                  marginTop="20px"
-                  w="10px"
-                  h="15px"
-                  src={RightArrow}
-                  alt="right arrow"
-                />
-              </Flex>
-              <Divider my={1} borderColor="black.500" />{" "}
-            </Box>
-            <Box>
-              {" "}
-              <Flex
-                marginTop="25px"
-                style={{
-                  cursor: "pointer",
-                }}
-                _hover={{ color: "#A210C6" }}
-                marginLeft="-25px"
-              >
-                <Image
-                  src={Bar}
-                  alt="Profile Icon"
-                  boxSize="50px"
-                  marginBottom="2%"
-                  h="50px"
-                  w="50px"
-                  borderRadius="100%"
-                />
-                <Image
-                  src={NotificationIconn}
-                  alt="Notification Icon"
-                  boxSize="50px"
-                  marginBottom="2%"
-                  marginLeft="-20px"
-                  h="50px"
-                  w="50px"
-                  borderRadius="10%"
-                />
-                <Text
-                  color="#A210C6"
-                  fontSize="20px"
-                  marginLeft="5px"
-                  marginTop="10px"
-                  fontFamily="heading"
-                >
-                  Notification Settings
-                </Text>
-                <Image
-                  marginLeft="10px"
-                  marginTop="20px"
-                  w="10px"
-                  h="15px"
-                  src={RightArrow}
-                  alt="right arrow"
-                />
-              </Flex>
-              <Divider my={1} borderColor="black.500" />{" "}
-            </Box>
-            <Box>
-            {" "}
-            <Flex
-              marginTop="25px"
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-              onClick={help}
-            >
-              <Image
-                src={Help}
-                alt="Notification Icon"
-                boxSize="50px"
-                marginBottom="2%"
-                h="50px"
-                w="50px"
-                borderRadius="10%"
-              />
-              <Text fontSize="20px" marginLeft="5px" marginTop="10px">
-                Help
-              </Text>
-              <Image
-                marginLeft="145px"
-                marginTop="20px"
-                w="10px"
-                h="15px"
-                src={RightArrow}
-                alt="right arrow"
-              />
-            </Flex>
-            <Divider my={1} borderColor="black.500" />{" "}
-          </Box>
-          </Box>
-          <Box
-            marginTop="10px"
-            className="notification-settings"
-            marginLeft="50px"
-            width="35%"
-            p={3}
-            h="80vh"
-          >
-            {" "}
-            <Text fontSize="20px">Notification settings</Text>{" "}
-            <VStack spacing={4}>
-              <Flex marginTop="30px" alignItems="center">
-                <Image
-                  src={WebIcon}
-                  alt="Web Icon"
-                  boxSize="50px"
-                  marginBottom="2%"
-                  h="24px"
-                  w="30px"
-                  borderRadius="100%"
-                />
-                <Text marginLeft="10px" fontSize="16px">
-                  WebApp Push Notifications
-                </Text>
-                <Switch
-                 style={{
-                    backgroundColor: webAppNotification ? "purple.500" : "gray.400",
-                  }}
-                  marginLeft="60px"
-                  isChecked={webAppNotification}
-                  onChange={handleWebAppNotificationChange}
-                />
-              </Flex>
-              <Text marginTop="-15px" marginLeft="20px" fontSize="14px">
-                Receive push notifications on appointments
-              </Text>
-              <Text marginTop="-15px" marginLeft="-95px" fontSize="14px">
-                {" "}
-                and updates via webapp.
-              </Text>
-              <Flex marginTop="5px" alignItems="center">
-                <Image
-                  src={EmailIcon}
-                  alt="Email Icon"
-                  boxSize="50px"
-                  marginBottom="2%"
-                  h="24px"
-                  w="30px"
-                  borderRadius="100%"
-                />
-                <Text marginLeft="10px" fontSize="16px">
-                  Email notifications
-                </Text>
-                <Switch
-                  marginLeft="125px"
-                  isChecked={emailNotification}
-                  onChange={handleEmailNotificationChange}
-                />
-              </Flex>
-              <Text marginTop="-15px" marginLeft="20px" fontSize="14px">
-                Receive push notifications on appointments
-              </Text>
-              <Text marginTop="-15px" marginLeft="-112px" fontSize="14px">
-                {" "}
-                and updates via email
-              </Text>
-              <Flex marginLeft="3px" marginTop="5px" alignItems="center">
-                <Image
-                  src={TextIcon}
-                  alt="Text Icon"
-                  boxSize="50px"
-                  marginBottom="2%"
-                  h="24px"
-                  w="30px"
-                  borderRadius="100%"
-                />
-                <Text marginLeft="10px" fontSize="16px">
-                  Text message notifications
-                </Text>
-                <Switch
-                
-                  marginLeft="70px"
-                  isChecked={textNotification}
-                  onChange={handleTextppNotificationChange}
-                />
-              </Flex>
-              <Text marginTop="-15px" marginLeft="20px" fontSize="14px">
-                Receive push notifications on appointments
-              </Text>
-              <Text marginTop="-15px" marginLeft="-123px" fontSize="14px">
-                {" "}
-                and updates via text
-              </Text>
-            </VStack>
-          </Box>
-        </Flex>
-      </Box>
-      <UserDetailsModal
-        isOpen={showUserDetailsModal}
-        onClose={handleCloseUserDetailsModal}
-      />
-          <LogoutModal
-        isOpen={showLogoutModal}
-        onClose={() => setShowLogoutModal(false)}
-        onConfirm={handleConfirmLogout}
-      />
-
+        </Box>
+      </Flex>
     </ChakraProvider>
   );
 };

@@ -10,7 +10,9 @@ import {
   AiOutlineSetting,
   AiOutlineLogout,
 } from "react-icons/ai";
+import { FaFirstAid } from "react-icons/fa";
 import logo from "../../assets/LogoColoured.svg";
+import { AiOutlineMedicineBox } from "react-icons/ai";
 import {
   Avatar,
   HStack,
@@ -22,6 +24,22 @@ import {
   extendTheme,
   Image,
 } from "@chakra-ui/react";
+
+const customTheme = extendTheme({
+  components: {
+    Link: {
+      baseStyle: {
+        _focus: {
+          boxShadow: "none",
+        },
+      },
+    },
+  },
+  fonts: {
+    body: "Montserrat, sans-serif",
+    heading: "Gill Sans MT, sans-serif",
+  },
+});
 
 export default function SideBar() {
   const navigate = useNavigate();
@@ -42,7 +60,7 @@ export default function SideBar() {
   };
 
   return (
-    <Flex width="25%" as="sidebar" p="10px" h="100vh">
+    <Flex theme={customTheme} width="25%" as="sidebar" p="10px" h="100vh">
       <List
         marginLeft="-10px"
         marginTop="10px"
@@ -69,7 +87,6 @@ export default function SideBar() {
           marginLeft="-5px"
           color={location.pathname === "/dashboard" ? "#A210C6" : ""}
           textDecoration={location.pathname === "/dashboard" ? "underline" : ""}
-       
         >
           <NavLink to="/dashboard">
             <ListIcon as={AiOutlineHome} />
@@ -83,7 +100,6 @@ export default function SideBar() {
           textDecoration={
             location.pathname === "/appointment" ? "underline" : ""
           }
-       
         >
           <NavLink to="/appointment">
             <ListIcon as={AiOutlineCalendar} />
@@ -95,30 +111,54 @@ export default function SideBar() {
           marginLeft="-5px"
           color={location.pathname === "/wallet" ? "#A210C6" : ""}
           textDecoration={location.pathname === "/wallet" ? "underline" : ""}
-        
         >
-          {/* <NavLink to="/wallet"> */}
+          <NavLink to="/wallet">
             <ListIcon as={AiOutlineWallet} />
             Wallet
-          {/* </NavLink> */}
+          </NavLink>
         </ListItem>
 
         <ListItem
-          color={location.pathname === "/services" ? "#A210C6" : ""}
-          textDecoration={location.pathname === "/services" ? "underline" : ""}
-       
+          marginLeft="16px"
+          color={
+            location.pathname === "/services" ||
+            location.pathname === "/customize-service"
+              ? "#A210C6"
+              : ""
+          }
+          textDecoration={
+            location.pathname === "/services" ||
+            location.pathname === "/customize-service"
+              ? "underline"
+              : ""
+          }
         >
           <NavLink to="/services">
-            <ListIcon as={AiOutlineTool} />
+            <ListIcon as={AiOutlineMedicineBox} />
             Services
           </NavLink>
         </ListItem>
 
         <ListItem
           marginLeft="15px"
-          color={location.pathname === "/settings" ? "#A210C6" : ""}
-          textDecoration={location.pathname === "/settings" ? "underline" : ""}
-         
+          color={
+            location.pathname === "/settings" ||
+            location.pathname === "/edit-profile" ||
+            location.pathname === "/change-password" ||
+            location.pathname === "/notification-settings" ||
+            location.pathname === "/help"
+              ? "#A210C6"
+              : ""
+          }
+          textDecoration={
+            location.pathname === "/settings" ||
+            location.pathname === "/edit-profile" ||
+            location.pathname === "/change-password" ||
+            location.pathname === "/notification-settings" ||
+            location.pathname === "/help"
+              ? "underline"
+              : ""
+          }
         >
           <NavLink to="/settings">
             <ListIcon as={AiOutlineSetting} />
@@ -129,14 +169,13 @@ export default function SideBar() {
         <Spacer />
 
         <ListItem
+          color="#A210C6"
           onClick={handleOpenLogoutModal}
-         
           marginLeft="10px"
           style={{
             marginTop: "100px",
           }}
           textDecoration={location.pathname === "/logout" ? "underline" : ""}
-         
         >
           <NavLink>
             <ListIcon as={AiOutlineLogout} />

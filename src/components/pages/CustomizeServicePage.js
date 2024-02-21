@@ -48,6 +48,8 @@ import HelppIcon from "../../assets/HelppIcon.svg";
 import LogoutModal from "../sections/LogoutModal";
 import serviceIcon from "../../assets/WhiteServiceIcon.svg";
 import CustomizeServiceModal from "../sections/CustomizeServiceModal";
+import SideBar from "../layouts/SideBar";
+import NavBar from "../layouts/NavBar";
 
 const customTheme = extendTheme({
   components: {
@@ -256,238 +258,10 @@ const CustomizeServicePage = () => {
 
   return (
     <ChakraProvider theme={customTheme}>
-      <Box width="25%" p={3} h="90vh">
-        <Image
-          src={logo}
-          alt="Logo"
-          w="160px"
-          h="60px"
-          marginLeft="90px"
-          marginTop="10px"
-        />
-
-        <VStack spacing={3} align="center" mt={5}>
-          <Flex marginTop="50px" alignItems="center">
-            <Image
-              marginLeft="-47px"
-              w="20px"
-              h="20px"
-              src={HomeIcon}
-              alt="HomeIcon"
-            />
-
-            <Text
-              marginLeft="15px"
-              color="black"
-              fontSize="18px"
-              onClick={() => {
-                handleOpenDashboard();
-              }}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Home
-            </Text>
-          </Flex>
-
-          <Flex
-            alignItems="center"
-            marginTop="20px"
-            w="15vw"
-            p={3}
-            borderRadius="md"
-          >
-            <Image
-              marginLeft="25px"
-              w="20px"
-              h="20px"
-              src={AppointmentsIcon}
-              alt="Appointments"
-            />
-            <Text
-              marginLeft="15px"
-              fontSize="18px"
-              color="black"
-              onClick={handleOpenAppointmentsModal}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "" }}
-            >
-              Appointments
-            </Text>
-          </Flex>
-
-          <Flex alignItems="center" marginTop="20px" marginLeft="-48px">
-            <Image w="20px" h="20px" src={Wallet} alt="wallet" />
-            <Text
-              marginLeft="15px"
-              color="black"
-              fontSize="18px"
-              onClick={handleOpenWalletModal}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Wallet
-            </Text>
-          </Flex>
-
-          <Flex
-            bg="#A210C6"
-            w="15vw"
-            p={3}
-            borderRadius="md"
-            alignItems="center"
-            marginTop="20px"
-            marginLeft="28px"
-          >
-            <Image
-              marginLeft="13px"
-              w="20px"
-              h="20px"
-              src={serviceIcon}
-              alt="Help"
-            />
-            <Text
-              marginLeft="15px"
-              color="white"
-              fontSize="18px"
-              onClick={handleOpenHelpModal}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "" }}
-            >
-              Service
-            </Text>
-          </Flex>
-
-          <Flex
-            alignItems="center"
-            marginTop="20px"
-            w="15vw"
-            p={3}
-            borderRadius="md"
-          >
-            <Image
-              marginLeft="26px"
-              w="20px"
-              fontSize="24px"
-              h="20px"
-              src={SettingsIcon}
-              alt="Settings"
-            />
-            <Text
-              marginLeft="15px"
-              color="black"
-              fontSize="18px"
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "" }}
-              onClick={handleOpenSettingsModal}
-            >
-              Settings
-            </Text>
-          </Flex>
-
-          <Flex alignItems="center" marginTop="80px" marginLeft="-55px">
-            <Image
-              marginLeft="15px"
-              w="20px"
-              h="20px"
-              src={LogoutIcon}
-              alt="Logout"
-            />
-            <Text
-              onClick={handleOpenLogoutModal}
-              fontSize="18px"
-              marginLeft="15px"
-              color="#A210C6"
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Logout
-            </Text>
-          </Flex>
-        </VStack>
-        <Box
-          borderRight="2px solid #A210C6"
-          height="113%"
-          marginX={3}
-          marginTop="-615px"
-        />
-      </Box>
-      <Box
-        position="fixed"
-        top="0"
-        left="25%"
-        width="85%"
-        height="100%"
-        backgroundColor="white"
-        zIndex="1000"
-      >
-        <Flex>
-          <Text
-            fontSize="36px"
-            fontFamily="heading"
-            color="#A210C6"
-            marginLeft="30px"
-            marginTop="30px"
-          >
-            Services
-          </Text>
-          <Flex
-            marginLeft="650px"
-            style={{
-              cursor: "pointer",
-            }}
-            _hover={{ color: "#A210C6" }}
-          >
-            <Box marginTop="30px">
-              <Image
-                src={NotificationIcon}
-                alt="Notificatio icon"
-                h="26px"
-                w="30px"
-                marginBottom="10px"
-              />
-            </Box>
-
-            <Box marginLeft="10px" marginTop="30px">
-              {user?.image ? (
-                <Link onClick={handleOpenUserDetailsModal}>
-                  <Image
-                    borderRadius="100px"
-                    h="29px"
-                    w="30px"
-                    src={user?.image}
-                    alt="User Image"
-                  />
-                </Link>
-              ) : (
-                <Link onClick={handleOpenUserDetailsModal}>
-                  <Image
-                    src={userImageIcon}
-                    alt="User Image Icon"
-                    boxSize="50px"
-                    marginBottom="2%"
-                    h="19px"
-                    w="20px"
-                    borderRadius="100%"
-                  />
-                </Link>
-              )}
-            </Box>
-          </Flex>
-        </Flex>
+      <Flex overflow="hidden" height="100vh" w="100vw">
+        <SideBar />
         <Box w="70vw" h="80vh">
+          <NavBar />
           <Flex>
             <Box>
               <Text fontSize="18px" marginLeft="30px" marginTop="5px">
@@ -690,22 +464,22 @@ const CustomizeServicePage = () => {
               </VStack>
             )}
           </Box>
-        </Box>
-        <Box marginLeft="905px" marginTop="-50px">
-          <Image
-            onClick={help}
-            src={HelppIcon}
-            alt="Logo"
-            w="70px"
-            h="70px"
-            style={{
-              cursor: "pointer",
-              animation: "zoomInOut 2s infinite alternate",
-            }}
-          />
 
-          <style>
-            {`
+          <Box marginLeft="905px" marginTop="-110px">
+            <Image
+              onClick={help}
+              src={HelppIcon}
+              alt="Logo"
+              w="70px"
+              h="70px"
+              style={{
+                cursor: "pointer",
+                animation: "zoomInOut 2s infinite alternate",
+              }}
+            />
+
+            <style>
+              {`
           @keyframes zoomInOut {
             0% {
               transform: scale(1);
@@ -715,9 +489,11 @@ const CustomizeServicePage = () => {
             }
           }
         `}
-          </style>
+            </style>
+          </Box>
         </Box>
-      </Box>
+        <Box />
+      </Flex>
       <UserDetailsModal
         isOpen={showUserDetailsModal}
         onClose={handleCloseUserDetailsModal}
