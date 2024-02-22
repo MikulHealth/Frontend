@@ -85,9 +85,6 @@ export default function NavBar() {
     "/change-password": "Settings",
     "/notification-settings": "Settings",
     "/help": "Help",
-    "/pending-appointments": "Appointments",
-    "/active-appointments": "Appointments",
-    "/completed-appointments": "Appointments",
   };
 
   const pageTitle = pageTitles[location.pathname] || "Unknown Page";

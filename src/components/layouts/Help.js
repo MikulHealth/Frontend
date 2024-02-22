@@ -8,7 +8,7 @@ export default function Help() {
   };
   const navigate = useNavigate();
   return (
-    <Box marginTop="80px" marginLeft="180px">
+    <Box marginTop="150px" marginLeft="180px">
       <Image
         onClick={help}
         src={HelppIcon}

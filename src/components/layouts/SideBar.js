@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import LogoutModal from "../sections/LogoutModal";
+import NotificationIcon from "../../assets/notification.svg";
+import Wallet from "../../assets/WalletWhite.svg";
+import HomeIcon from "../../assets/HomeBlack.svg";
+import SettingsIcon from "../../assets/SettingsIcon.svg";
+import LogoutIcon from "../../assets/Logout.svg";
+import AppointmentsIcon from "../../assets/AppointmentIcon.svg";
 import {
   AiOutlineHome,
   AiOutlineCalendar,
@@ -168,21 +174,37 @@ export default function SideBar() {
           </NavLink>
        
           <NavLink to="/settings" style={listItemStyle}>
-            <Flex
-              color={location.pathname === "/settings" ? "#A210C6" : ""}
-              textDecoration={
-                location.pathname === "/settings" ? "underline" : ""
-              }
-              alignItems="center"
-            >
+          <Flex alignItems="center">
               <AiOutlineSetting style={iconStyle} />
-              <Text marginLeft="5px">Settings</Text>
+              <Text
+                marginLeft="5px"
+                textDecoration={
+                  location.pathname === "/settings" ||
+                  location.pathname === "/edit-profile" ||
+                  location.pathname === "/change-password" ||
+                  location.pathname === "/notification-settings" ||
+                  location.pathname === "/help"
+                    ? "underline"
+                    : ""
+                }
+                color={
+                  location.pathname === "/settings" ||
+                  location.pathname === "/edit-profile" ||
+                  location.pathname === "/change-password" ||
+                  location.pathname === "/notification-settings" ||
+                  location.pathname === "/help"
+                    ? "#A210C6"
+                    : ""
+                }
+              >
+                Settings
+              </Text>
             </Flex>
           </NavLink>
         </Flex>
         <Box>
           <NavLink onClick={handleOpenLogoutModal} style={listItemStyle}>
-            <Flex alignItems="center">
+            <Flex color="#A210C6" alignItems="center">
               <AiOutlineLogout style={iconStyle} />
               <Text
                 textDecoration={

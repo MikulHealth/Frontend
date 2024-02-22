@@ -70,10 +70,8 @@ const AppointmentPage = () => {
     <ChakraProvider theme={customTheme}>
       <Flex overflow="hidden" height="100vh" w="100vw">
         <SideBar />
-
         <VStack w="75%" h="100vh">
           <NavBar />
-
           <Box
             marginLeft="-10"
             marginTop="10px"
@@ -108,19 +106,20 @@ const AppointmentPage = () => {
             h="30vh"
             borderRadius="20px"
           >
-            <Box marginLeft="-30px" color="white">
+            <VStack color="white">
+
               <Text
                 fontSize="20px"
                 fontFamily="heading"
                 marginTop="15px"
-                marginLeft="-60px"
+                marginLeft="-98px"
               >
                 Hello {user?.firstName},
               </Text>
               <Text
                 fontFamily="body"
                 fontSize="15px"
-                marginLeft="83px"
+                marginLeft="43px"
                 marginTop="5px"
               >
                 Would you like to book an appointment
@@ -129,7 +128,7 @@ const AppointmentPage = () => {
                 fontFamily="body"
                 fontSize="15px"
                 marginTop="2px"
-                marginLeft="6px"
+                marginLeft="-36px"
               >
                 for yourself or a loved one?
               </Text>
@@ -139,14 +138,14 @@ const AppointmentPage = () => {
                 bg="white"
                 color="#A210C6"
                 fontFamily="body"
-                marginTop="30px"
+                marginTop="10px"
                 _hover={{ color: "" }}
-                marginLeft="-20px"
+                marginLeft="-40px"
                 borderRadius="100px"
               >
                 Book appointment
               </Button>
-            </Box>
+            </VStack>
             <Box>
               <Image
                 src={familyIcon}
