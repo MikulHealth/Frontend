@@ -1,4 +1,3 @@
-import { List, ListIcon, ListItem } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import LogoutModal from "../sections/LogoutModal";
@@ -20,10 +19,12 @@ import {
   Spacer,
   Box,
   Text,
+  useToast,
   Flex,
   extendTheme,
   Image,
 } from "@chakra-ui/react";
+import { LockIcon } from "@chakra-ui/icons";
 
 const customTheme = extendTheme({
   components: {
@@ -45,10 +46,21 @@ export default function SideBar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const toast = useToast();
+
   const handleConfirmLogout = () => {
     setShowLogoutModal(false);
     localStorage.removeItem("token");
     localStorage.removeItem("phoneNumber");
+    toast({
+      title: "Logout successful",
+      description: "",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+
+      icon: <LockIcon />,
+    });
     navigate("/");
   };
   const handleOpenLogoutModal = () => {
@@ -59,16 +71,30 @@ export default function SideBar() {
     window.location.reload();
   };
 
+  const iconStyle = {
+    fontSize: "30px",
+    marginRight: "10px",
+  };
+
+  const listItemStyle = {
+    fontSize: "24px",
+    marginBottom: "30px",
+  };
+
   return (
-    <Flex theme={customTheme} width="25%" as="sidebar" p="10px" h="100vh">
-      <List
-        marginLeft="-10px"
-        marginTop="10px"
-        fontSize="24px"
-        spacing={10}
-        paddingLeft={0}
+    <Flex justifyContent="space-between">
+      <Flex
+        theme={customTheme}
+        width="25%"
+        as="sidebar"
+        p="10px"
+        h="100vh"
+        flexDirection="column"
+        justifyContent="space-between"
+        paddingLeft="70px"
+        spacing={4}
       >
-        <ListItem marginLeft="50px" w="100%">
+        <Flex flexDirection="column">
           <Image
             src={logo}
             alt="Logo"
@@ -81,118 +107,106 @@ export default function SideBar() {
             }}
             _hover={{ color: "" }}
           />
-        </ListItem>
-
-        <ListItem
-          marginLeft="-5px"
-          color={location.pathname === "/dashboard" ? "#A210C6" : ""}
-          textDecoration={location.pathname === "/dashboard" ? "underline" : ""}
-        >
-          <NavLink to="/dashboard">
-            <ListIcon as={AiOutlineHome} />
-            Home
+          <NavLink  to="/dashboard" style={listItemStyle}>
+            <Flex
+              color={location.pathname === "/dashboard" ? "#A210C6" : ""}
+              textDecoration={
+                location.pathname === "/dashboard" ? "underline" : ""
+              }
+              alignItems="center"
+            >
+              <AiOutlineHome style={iconStyle} />
+              <Text marginLeft="5px">Home</Text>
+            </Flex>
           </NavLink>
-        </ListItem>
-
-        <ListItem
-          marginLeft="76px"
-          color={location.pathname === "/appointment" ? "#A210C6" : ""}
-          textDecoration={
-            location.pathname === "/appointment" ? "underline" : ""
-          }
-        >
-          <NavLink to="/appointment">
-            <ListIcon as={AiOutlineCalendar} />
-            Appointments
+         
+          <NavLink to="/appointment" style={listItemStyle}>
+            <Flex
+              color={location.pathname === "/appointment" ? "#A210C6" : ""}
+              textDecoration={
+                location.pathname === "/appointment" ? "underline" : ""
+              }
+              alignItems="center"
+            >
+              <AiOutlineCalendar style={iconStyle} />
+              <Text marginLeft="5px">Appointments</Text>
+            </Flex>
           </NavLink>
-        </ListItem>
-
-        <ListItem
-          marginLeft="-5px"
-          color={location.pathname === "/wallet" ? "#A210C6" : ""}
-          textDecoration={location.pathname === "/wallet" ? "underline" : ""}
-        >
-          <NavLink to="/wallet">
-            <ListIcon as={AiOutlineWallet} />
-            Wallet
+        
+          <NavLink to="/wallet" style={listItemStyle}>
+            <Flex
+              color={location.pathname === "/wallet" ? "#A210C6" : ""}
+              textDecoration={
+                location.pathname === "/wallet" ? "underline" : ""
+              }
+              alignItems="center"
+            >
+              <AiOutlineWallet style={iconStyle} />
+              <Text marginLeft="5px">Wallet</Text>
+            </Flex>
           </NavLink>
-        </ListItem>
-
-        <ListItem
-          marginLeft="16px"
-          color={
-            location.pathname === "/services" ||
-            location.pathname === "/customize-service"
-              ? "#A210C6"
-              : ""
-          }
-          textDecoration={
-            location.pathname === "/services" ||
-            location.pathname === "/customize-service"
-              ? "underline"
-              : ""
-          }
-        >
-          <NavLink to="/services">
-            <ListIcon as={AiOutlineMedicineBox} />
-            Services
+        
+          <NavLink to="/services" style={listItemStyle}>
+            <Flex
+              color={
+                location.pathname === "/services" ||
+                location.pathname === "/customize-service"
+                  ? "#A210C6"
+                  : ""
+              }
+              textDecoration={
+                location.pathname === "/services" ||
+                location.pathname === "/customize-service"
+                  ? "underline"
+                  : ""
+              }
+              alignItems="center"
+            >
+              <AiOutlineMedicineBox style={iconStyle} />
+              <Text marginLeft="5px">Services</Text>
+            </Flex>
           </NavLink>
-        </ListItem>
-
-        <ListItem
-          marginLeft="15px"
-          color={
-            location.pathname === "/settings" ||
-            location.pathname === "/edit-profile" ||
-            location.pathname === "/change-password" ||
-            location.pathname === "/notification-settings" ||
-            location.pathname === "/help"
-              ? "#A210C6"
-              : ""
-          }
-          textDecoration={
-            location.pathname === "/settings" ||
-            location.pathname === "/edit-profile" ||
-            location.pathname === "/change-password" ||
-            location.pathname === "/notification-settings" ||
-            location.pathname === "/help"
-              ? "underline"
-              : ""
-          }
-        >
-          <NavLink to="/settings">
-            <ListIcon as={AiOutlineSetting} />
-            Settings
+       
+          <NavLink to="/settings" style={listItemStyle}>
+            <Flex
+              color={location.pathname === "/settings" ? "#A210C6" : ""}
+              textDecoration={
+                location.pathname === "/settings" ? "underline" : ""
+              }
+              alignItems="center"
+            >
+              <AiOutlineSetting style={iconStyle} />
+              <Text marginLeft="5px">Settings</Text>
+            </Flex>
           </NavLink>
-        </ListItem>
-
-        <Spacer />
-
-        <ListItem
-          color="#A210C6"
-          onClick={handleOpenLogoutModal}
-          marginLeft="10px"
-          style={{
-            marginTop: "100px",
-          }}
-          textDecoration={location.pathname === "/logout" ? "underline" : ""}
-        >
-          <NavLink>
-            <ListIcon as={AiOutlineLogout} />
-            Logout
+        </Flex>
+        <Box>
+          <NavLink onClick={handleOpenLogoutModal} style={listItemStyle}>
+            <Flex alignItems="center">
+              <AiOutlineLogout style={iconStyle} />
+              <Text
+                textDecoration={
+                  location.pathname === "/logout" ? "underline" : ""
+                }
+                marginLeft="5px"
+              >
+                Logout
+              </Text>
+            </Flex>
           </NavLink>
-        </ListItem>
-      </List>
+        </Box>
+
+        <LogoutModal
+          isOpen={showLogoutModal}
+          onClose={() => setShowLogoutModal(false)}
+          onConfirm={handleConfirmLogout}
+        />
+      </Flex>
       <Box
         borderRight="2px solid #A210C6"
         height="100%"
         marginX={3}
-        // marginTop="-5px"
-      />
-      <LogoutModal
-        isOpen={showLogoutModal}
-        onClose={() => setShowLogoutModal(false)}
-        onConfirm={handleConfirmLogout}
+       
       />
     </Flex>
   );

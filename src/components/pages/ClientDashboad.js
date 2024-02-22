@@ -3,10 +3,10 @@ import { GetCurrentUser } from "../../apiCalls/UserApis";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SetUser } from "../../redux/userSlice";
-import familyIcon from "../../assets/family.svg";
 import BookAppointmentModal from "../sections/BookAppointment";
 import MatchedAppointmentsModal from "../sections/MatchedAppointmentsModal";
 import PayForAppointmentModal from "../sections/PayForAppointment";
+import Help from "../layouts/Help";
 import {
   Box,
   Button,
@@ -20,24 +20,9 @@ import {
   Skeleton,
 } from "@chakra-ui/react";
 import AOS from "aos";
-import "aos/dist/aos.css";
-import logo from "../../assets/LogoColoured.svg";
-import HelppIcon from "../../assets/HelppIcon.svg";
-import serviceIcon from "../../assets/ServiceIcon.svg";
-import Wallet from "../../assets/Wallet.svg";
-import Help from "../../assets/Help.svg";
-import SettingsIcon from "../../assets/SettingsIcon.svg";
-import LogoutIcon from "../../assets/Logout.svg";
-import AppointmentsIcon from "../../assets/AppointmentIcon.svg";
-import HomeIcon from "../../assets/HomeWhite.svg";
-import userImageIcon from "../../assets/userImage.svg";
-import NotificationIcon from "../../assets/notification.svg";
 import "../../styles/pages/LandingPage.css";
 import BeneficiariesModal from "../sections/Beneficiaries";
-import UserDetailsModal from "../sections/UserDetails";
 import ServicesModal from "../sections/ServicePageModal";
-import { Link } from "react-router-dom";
-import LogoutModal from "../sections/LogoutModal";
 import LoadingSpinner from "../../utils/Spiner";
 import NavBar from "../layouts/NavBar";
 import SideBar from "../layouts/SideBar";
@@ -495,7 +480,6 @@ const ClientDash = () => {
                           fontSize: "14px",
                         }}
                         _hover={{ color: "" }}
-                        onClick={PendingAppointmentPage}
                       >
                         Pending appointments: {pendingAppointments}
                       </Text>
@@ -509,7 +493,6 @@ const ClientDash = () => {
                           fontSize: "14px",
                         }}
                         _hover={{ color: "" }}
-                        onClick={handleOpenActiveAppointmentsModal}
                       >
                         Active appointments: {activeAppointments}
                       </Text>
@@ -569,32 +552,7 @@ const ClientDash = () => {
                     Read more
                   </Text>
                 </Box> */}
-              </Box>
-              <Box marginLeft="140px" marginTop="126px">
-                <Image
-                  onClick={help}
-                  src={HelppIcon}
-                  alt="Logo"
-                  w="70px"
-                  h="70px"
-                  style={{
-                    cursor: "pointer",
-                    animation: "zoomInOut 2s infinite alternate",
-                  }}
-                />
-
-                <style>
-                  {`
-          @keyframes zoomInOut {
-            0% {
-              transform: scale(1);
-            }
-            100% {
-              transform: scale(1.2);
-            }
-          }
-        `}
-                </style>
+                <Help  />
               </Box>
             </Box>
           </Flex>
@@ -604,11 +562,7 @@ const ClientDash = () => {
         isOpen={isBeneficiariesModalOpen}
         onClose={() => setBeneficiariesModalOpen(false)}
       />
-      <UserDetailsModal
-        isOpen={showUserDetailsModal}
-        onClose={handleCloseUserDetailsModal}
-        defaultImage={userImageIcon}
-      />
+
       <BookAppointmentModal
         isOpen={showAppointmentModal}
         onClose={handleCloseAppointmentModal}

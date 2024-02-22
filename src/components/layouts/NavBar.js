@@ -49,28 +49,28 @@ export default function NavBar() {
     setShowUserDetailsModal(false);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (localStorage.getItem("token")) {
-        try {
-          const response = await GetCurrentUser();
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (localStorage.getItem("token")) {
+  //       try {
+  //         const response = await GetCurrentUser();
 
-          if (response.success) {
-            dispatch(SetUser(response.data));
-          } else {
-            console.error("API request failed:", response.error);
-          }
-        } catch (error) {
-          console.error("Error in GetCurrentUser API:", error);
-        } finally {
-        }
-      } else {
-        navigate("/login");
-      }
-    };
+  //         if (response.success) {
+  //           dispatch(SetUser(response.data));
+  //         } else {
+  //           console.error("API request failed:", response.error);
+  //         }
+  //       } catch (error) {
+  //         console.error("Error in GetCurrentUser API:", error);
+  //       } finally {
+  //       }
+  //     } else {
+  //       navigate("/login");
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
  
   const pageTitles = {
@@ -85,6 +85,9 @@ export default function NavBar() {
     "/change-password": "Settings",
     "/notification-settings": "Settings",
     "/help": "Help",
+    "/pending-appointments": "Appointments",
+    "/active-appointments": "Appointments",
+    "/completed-appointments": "Appointments",
   };
 
   const pageTitle = pageTitles[location.pathname] || "Unknown Page";
@@ -103,17 +106,22 @@ export default function NavBar() {
       <Box>
         {isDashboard ? (
           <>
-            <Heading fontSize="36px" color="#A210C6">Hello {user?.firstName},</Heading>
+          <Flex>
+          <Heading fontSize="36px" color="#A210C6">Hello {user?.firstName},</Heading>
             <Text
               style={{
                 fontStyle: "italic",
               }}
-              marginLeft="-52px"
+              marginLeft="5px"
               fontFamily="Montserrat, sans-serif"
               fontSize="16px"
+              marginTop="18px"
+              // fontWeight="bold"
             >
               How are you doing today?
             </Text>
+          </Flex>
+     
           </>
         ) : (
           <Heading color="#A210C6">{pageTitle}</Heading>
