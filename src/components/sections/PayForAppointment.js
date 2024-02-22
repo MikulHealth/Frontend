@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { CheckIcon, WarningIcon } from "@chakra-ui/icons";
 import {
   Modal,
   ModalOverlay,
@@ -41,7 +42,10 @@ const PayForAppointmentModal = ({ isOpen, onClose }) => {
     <Modal theme={customTheme} isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Attention!</ModalHeader>
+        <ModalHeader>
+          <WarningIcon w={10} h={10} color="yellow.500" />
+        </ModalHeader>
+
         <ModalBody>
           <Text>
             {" "}
@@ -50,7 +54,13 @@ const PayForAppointmentModal = ({ isOpen, onClose }) => {
           </Text>
         </ModalBody>
         <ModalFooter>
-          <Button bg="#A210C6" color="white" mr={3} onClick={handlePayment}>
+          <Button
+            leftIcon={<CheckIcon />}
+            bg="#A210C6"
+            color="white"
+            mr={3}
+            onClick={handlePayment}
+          >
             Pay for appointment
           </Button>
         </ModalFooter>

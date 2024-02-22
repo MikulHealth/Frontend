@@ -20,7 +20,7 @@ import {
   TabPanel,
   TabPanels,
 } from "@chakra-ui/react";
-
+import {CheckIcon} from '@chakra-ui/icons'
 import familyIcon from "../../assets/family.svg";
 import SearchAppointmentsModal from "../sections/SearchAppointmentByDate";
 import SideBar from "../layouts/SideBar";
@@ -142,6 +142,7 @@ const AppointmentPage = () => {
                 _hover={{ color: "" }}
                 marginLeft="-40px"
                 borderRadius="100px"
+                leftIcon={<CheckIcon />} 
               >
                 Book appointment
               </Button>

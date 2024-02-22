@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { GetCurrentUser, UpdateCustomer } from "../../apiCalls/UserApis";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { SetUser } from "../../redux/userSlice";
-import DatePicker from "react-datepicker";
+
 import "react-datepicker/dist/react-datepicker.css";
-import RightArrow from "../../assets/RightArrow.svg";
-import Help from "../../assets/Help.svg";
+
 import BookAppointmentModal from "../sections/BookAppointment";
 import axios from "axios";
-import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from "@chakra-ui/icons";
+import { CheckIcon, AddIcon, DeleteIcon, SearchIcon } from "@chakra-ui/icons";
 import {
   ChakraProvider,
   VStack,
@@ -20,33 +18,19 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalFooter,
-  Progress,
   Button,
   useToast,
   Image,
   Box,
   Text,
   Flex,
-  Link,
   Divider,
   extendTheme,
-  FormControl,
-  FormLabel,
 } from "@chakra-ui/react";
-import userImageIcon from "../../assets/userImage.svg";
-import NotificationIcon from "../../assets/notification.svg";
-import familyIcon from "../../assets/family.svg";
+
 import UserDetailsModal from "../sections/UserDetails";
 import LoadingSpinner from "../../utils/Spiner";
-import Wallet from "../../assets/Wallet.svg";
-import logo from "../../assets/LogoColoured.svg";
-import SettingsIcon from "../../assets/SettingsIcon.svg";
-import LogoutIcon from "../../assets/Logout.svg";
-import AppointmentsIcon from "../../assets/AppointmentIcon.svg";
-import HomeIcon from "../../assets/HomeBlack.svg";
 import HelppIcon from "../../assets/HelppIcon.svg";
-import LogoutModal from "../sections/LogoutModal";
-import serviceIcon from "../../assets/WhiteServiceIcon.svg";
 import CustomizeServiceModal from "../sections/CustomizeServiceModal";
 import SideBar from "../layouts/SideBar";
 import NavBar from "../layouts/NavBar";
@@ -69,10 +53,7 @@ const customTheme = extendTheme({
 
 const CustomizeServicePage = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const toast = useToast();
-  const { user } = useSelector((state) => state.userReducer);
-  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [customizedServices, setCustomizedServices] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -81,26 +62,8 @@ const CustomizeServicePage = () => {
   const [deleteServiceId, setDeleteServiceId] = useState(null);
   const [showCustomizeModal, setShowCustomizeModal] = useState(false);
 
-  const handleOpenUserDetailsModal = () => {
-    setShowUserDetailsModal(true);
-  };
-
-  const handleCloseUserDetailsModal = () => {
-    setShowUserDetailsModal(false);
-  };
-
-  const handleOpenHelpModal = () => {};
-
-  const handleOpenWalletModal = () => {
-    navigate("/wallet");
-  };
-
   const help = () => {
     navigate("/help");
-  };
-
-  const handleOpenSettingsModal = () => {
-    navigate("/settings");
   };
 
   const handlebackToService = () => {
@@ -109,29 +72,6 @@ const CustomizeServicePage = () => {
 
   const handleOpenLogoutModal = () => {
     setShowLogoutModal(true);
-  };
-
-  const handleConfirmLogout = () => {
-    // Close the logout confirmation modal
-    setShowLogoutModal(false);
-
-    // Perform the actual logout
-    localStorage.removeItem("token");
-    localStorage.removeItem("phoneNumber");
-    localStorage.removeItem("orderId");
-    navigate("/");
-  };
-
-  const handleOpenDashboard = () => {
-    navigate("/dashboard");
-  };
-
-  // const handleOpenCustomizeModal = () => {
-  //   navigate("/dashboard");
-  // };
-
-  const handleOpenAppointmentsModal = () => {
-    navigate("/appointment");
   };
 
   const handleOpenAppointmentModal = () => {
@@ -424,7 +364,7 @@ const CustomizeServicePage = () => {
                       <Box marginLeft="-15px" marginTop="20px">
                         <Button
                           fontSize="16px"
-                          // bg="#A210C6"
+                          leftIcon={<CheckIcon />}
                           color="#A210C6"
                           onClick={handleOpenAppointmentModal}
                           style={{
@@ -438,7 +378,7 @@ const CustomizeServicePage = () => {
                         <Button
                           marginLeft="120px"
                           fontSize="16px"
-                          // bg="gray"
+                          leftIcon={<DeleteIcon />}
                           color="red"
                           onClick={() => handleDeleteService(service.id)}
                           style={{
@@ -457,6 +397,7 @@ const CustomizeServicePage = () => {
                   color="green"
                   marginTop="20px"
                   marginBottom="50px"
+                  leftIcon={<AddIcon />}
                   onClick={handleOpenCustomizePlanFormModal}
                 >
                   Add another plan
@@ -494,15 +435,7 @@ const CustomizeServicePage = () => {
         </Box>
         <Box />
       </Flex>
-      <UserDetailsModal
-        isOpen={showUserDetailsModal}
-        onClose={handleCloseUserDetailsModal}
-      />
-      <LogoutModal
-        isOpen={showLogoutModal}
-        onClose={() => setShowLogoutModal(false)}
-        onConfirm={handleConfirmLogout}
-      />{" "}
+
       {confirmationModalOpen && (
         <Modal
           isOpen={confirmationModalOpen}

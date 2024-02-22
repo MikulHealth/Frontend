@@ -4,25 +4,16 @@ import LogoutModal from "../sections/LogoutModal";
 import NotificationIcon from "../../assets/notification.svg";
 import Wallet from "../../assets/WalletWhite.svg";
 import HomeIcon from "../../assets/HomeBlack.svg";
-import SettingsIcon from "../../assets/SettingsIcon.svg";
-import LogoutIcon from "../../assets/Logout.svg";
-import AppointmentsIcon from "../../assets/AppointmentIcon.svg";
 import {
-  AiOutlineHome,
-  AiOutlineCalendar,
-  AiOutlineWallet,
-  AiOutlineTool,
-  AiOutlineSetting,
-  AiOutlineLogout,
-} from "react-icons/ai";
-import { FaFirstAid } from "react-icons/fa";
-import logo from "../../assets/LogoColoured.svg";
-import { AiOutlineMedicineBox } from "react-icons/ai";
+  SettingsIcon,
+  LockIcon,
+  PlusSquareIcon,
+  CalendarIcon,
+  EmailIcon,
+  HamburgerIcon,
+} from "@chakra-ui/icons";
+import logo from "../../assets/NewLogo.svg";
 import {
-  Avatar,
-  HStack,
-  Heading,
-  Spacer,
   Box,
   Text,
   useToast,
@@ -30,7 +21,6 @@ import {
   extendTheme,
   Image,
 } from "@chakra-ui/react";
-import { LockIcon } from "@chakra-ui/icons";
 
 const customTheme = extendTheme({
   components: {
@@ -91,7 +81,7 @@ export default function SideBar() {
     <Flex justifyContent="space-between">
       <Flex
         theme={customTheme}
-        width="25%"
+        width="20%"
         as="sidebar"
         p="10px"
         h="100vh"
@@ -113,7 +103,7 @@ export default function SideBar() {
             }}
             _hover={{ color: "" }}
           />
-          <NavLink  to="/dashboard" style={listItemStyle}>
+          <NavLink to="/dashboard" style={listItemStyle}>
             <Flex
               color={location.pathname === "/dashboard" ? "#A210C6" : ""}
               textDecoration={
@@ -121,11 +111,11 @@ export default function SideBar() {
               }
               alignItems="center"
             >
-              <AiOutlineHome style={iconStyle} />
+              <HamburgerIcon style={iconStyle} />
               <Text marginLeft="5px">Home</Text>
             </Flex>
           </NavLink>
-         
+
           <NavLink to="/appointment" style={listItemStyle}>
             <Flex
               color={location.pathname === "/appointment" ? "#A210C6" : ""}
@@ -134,11 +124,11 @@ export default function SideBar() {
               }
               alignItems="center"
             >
-              <AiOutlineCalendar style={iconStyle} />
+              <CalendarIcon style={iconStyle} />
               <Text marginLeft="5px">Appointments</Text>
             </Flex>
           </NavLink>
-        
+
           <NavLink to="/wallet" style={listItemStyle}>
             <Flex
               color={location.pathname === "/wallet" ? "#A210C6" : ""}
@@ -147,11 +137,11 @@ export default function SideBar() {
               }
               alignItems="center"
             >
-              <AiOutlineWallet style={iconStyle} />
+              <EmailIcon style={iconStyle} />
               <Text marginLeft="5px">Wallet</Text>
             </Flex>
           </NavLink>
-        
+
           <NavLink to="/services" style={listItemStyle}>
             <Flex
               color={
@@ -168,15 +158,14 @@ export default function SideBar() {
               }
               alignItems="center"
             >
-              <AiOutlineMedicineBox style={iconStyle} />
+              <PlusSquareIcon style={iconStyle} />
               <Text marginLeft="5px">Services</Text>
             </Flex>
           </NavLink>
-       
+
           <NavLink to="/settings" style={listItemStyle}>
-          <Flex alignItems="center">
-              <AiOutlineSetting style={iconStyle} />
-              <Text
+            <Flex >
+              <Flex
                 marginLeft="5px"
                 textDecoration={
                   location.pathname === "/settings" ||
@@ -197,15 +186,16 @@ export default function SideBar() {
                     : ""
                 }
               >
-                Settings
-              </Text>
+                <SettingsIcon style={iconStyle} />
+                <Text>Settings</Text>
+              </Flex>
             </Flex>
           </NavLink>
         </Flex>
         <Box>
           <NavLink onClick={handleOpenLogoutModal} style={listItemStyle}>
-            <Flex color="#A210C6" alignItems="center">
-              <AiOutlineLogout style={iconStyle} />
+            <Flex color="red.500" >
+              <LockIcon style={iconStyle} />
               <Text
                 textDecoration={
                   location.pathname === "/logout" ? "underline" : ""
@@ -224,12 +214,7 @@ export default function SideBar() {
           onConfirm={handleConfirmLogout}
         />
       </Flex>
-      <Box
-        borderRight="2px solid #A210C6"
-        height="100%"
-        marginX={3}
-       
-      />
+      <Box borderRight="2px solid #A210C6" height="100%" marginX={3} />
     </Flex>
   );
 }

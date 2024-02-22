@@ -20,7 +20,7 @@ import {
 import axios from "axios";
 import AddBeneficiaryForm from "./AddBeneficiaryFom";
 import BookBeneficiaryAppointmentModal from "./BeneficiaryAppForm";
-
+import {AddIcon} from '@chakra-ui/icons'
 const BeneficiariesModal = ({ isOpen, onClose }) => {
   const [beneficiaries, setBeneficiaries] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -286,6 +286,7 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
               onClick={handleOpenAddBeneficiaryForm}
               color="white"
               bg="#A210C6"
+              leftIcon={<AddIcon />} 
             >
               Add Beneficiary
             </Button>

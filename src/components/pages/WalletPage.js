@@ -426,6 +426,7 @@ const WalletPage = () => {
             </Box>
 
             <Box>
+              <VStack>
               <Text
                 fontSize="28px"
                 fontFamily="heading"
@@ -435,6 +436,8 @@ const WalletPage = () => {
               >
                 Recent activity
               </Text>
+              </VStack>
+              
               <Flex marginTop="10px">
                 <Text
                   style={{

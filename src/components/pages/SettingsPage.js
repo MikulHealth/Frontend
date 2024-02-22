@@ -5,27 +5,10 @@ import NavBar from "../layouts/NavBar";
 import {
   ChakraProvider,
   VStack,
-  Input,
-  Button,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  useToast,
   Image,
   Box,
-  Text,
   Flex,
-  Link,
-  Divider,
-  Select,
-  InputGroup,
-  InputLeftAddon,
-  FormControl,
   extendTheme,
-  FormLabel,
 } from "@chakra-ui/react";
 
 import SettingsSideBar from "../layouts/SettingsSideBar";

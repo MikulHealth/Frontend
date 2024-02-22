@@ -3,6 +3,7 @@ import LoadingSpinner from "../../utils/Spiner";
 import { useSelector } from "react-redux";
 import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
+import {EditIcon, CheckIcon} from '@chakra-ui/icons'
 import EditPendingAppointmentModal from "../sections/EditPendingAppointmentModal";
 import {
   VStack,
@@ -495,6 +496,7 @@ export default function PendingApp() {
                   marginBottom="10px"
                   color="white"
                   _hover={{ color: "" }}
+                  leftIcon={<EditIcon />} 
                   onClick={handleEditAppointment}
                 >
                   Update appointment details
@@ -509,6 +511,7 @@ export default function PendingApp() {
                   color="white"
                   _hover={{ color: "" }}
                   onClick={handlePayment}
+                  leftIcon={<CheckIcon />} 
                 >
                   Pay for appointment
                 </Button>

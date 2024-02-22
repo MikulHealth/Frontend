@@ -7,6 +7,7 @@ import BookAppointmentModal from "../sections/BookAppointment";
 import MatchedAppointmentsModal from "../sections/MatchedAppointmentsModal";
 import PayForAppointmentModal from "../sections/PayForAppointment";
 import Help from "../layouts/Help";
+import {ExternalLinkIcon} from '@chakra-ui/icons'
 import {
   Box,
   Button,
@@ -197,7 +198,7 @@ const ClientDash = () => {
               >
                 {" "}
                 <Flex>
-                  <VStack marginLeft="10px" paddingTop="5px">
+                  <VStack marginLeft="20px" paddingTop="5px">
                     <Text
                       fontSize="14px"
                       fontFamily="body"
@@ -218,12 +219,13 @@ const ClientDash = () => {
                       marginTop="20px"
                       onClick={handleOpenWalletModal}
                       bg="white"
+                      leftIcon={<ExternalLinkIcon />} 
                     >
                       Open wallet
                     </Button>
                   </VStack>
                 </Flex>
-                <Flex marginLeft="10px" marginTop="30px">
+                <Flex marginLeft="20px" marginTop="30px">
                   <VStack color="white">
                     <Text marginLeft="-130px" fontSize="12px">
                       Wallet ID:
