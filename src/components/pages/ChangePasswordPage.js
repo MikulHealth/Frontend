@@ -48,6 +48,7 @@ import PasswordIcon from "../../assets/PasswordIconColored.svg";
 import HelppIcon from "../../assets/HelppIcon.svg";
 import NotificationIconn from "../../assets/Notification.Icon.svg";
 import Bar from "../../assets/ColoredBar.svg";
+import SettingsSideBar from "../layouts/SettingsSideBar";
 
 const customTheme = extendTheme({
   components: {
@@ -282,197 +283,45 @@ const ChangePasswordPage = () => {
 
   return (
     <ChakraProvider theme={customTheme}>
-       <Flex overflow="hidden" height="100vh" w="100vw">
+      <Flex overflow="hidden" height="100vh" w="100vw">
         <SideBar />
         <Box w="75%" h="100vh">
           <NavBar />
-       
-        <Flex>
-          <Box width="30%" p={3} h="80vh">
-            <Text fontFamily="heading" marginLeft="-160px" fontSize="24px">
-              Account
-            </Text>
 
-            <Box>
-              <Flex
-                marginTop="25px"
-                style={{
-                  cursor: "pointer",
-                }}
-                _hover={{ color: "#A210C6" }}
-                onClick={handleOpenEditProfileDashboard}
-              >
-                <Image
-                  src={ProfileIcon}
-                  alt="Profile Icon"
-                  boxSize="50px"
-                  marginBottom="2%"
-                  h="50px"
-                  w="50px"
-                  borderRadius="10%"
-                />
-                <Text fontSize="20px" marginLeft="5px" marginTop="10px">
-                  Profile
-                </Text>
-                <Image
-                  marginLeft="135px"
-                  marginTop="20px"
-                  w="10px"
-                  h="15px"
-                  src={RightArrow}
-                  alt="right arrow"
-                />
-              </Flex>
-              <Divider my={1} borderColor="black.500" />
-            </Box>
-            <Box>
+          <Flex>
+          <SettingsSideBar/>
+            <Box
+              marginTop="30px"
+              className="change-password"
+              marginLeft="50px"
+              width="35%"
+              p={3}
+              h="80vh"
+            >
               {" "}
-              <Flex
-                marginTop="25px"
-                style={{
-                  cursor: "pointer",
-                }}
-                _hover={{ color: "#A210C6" }}
-                marginLeft="-25px"
-              >
-                {" "}
-                <Image
-                  src={Bar}
-                  alt="Profile Icon"
-                  boxSize="50px"
-                  marginBottom="2%"
-                  h="50px"
-                  w="50px"
-                  borderRadius="10%"
-                />
-                <Image
-                  src={PasswordIcon}
-                  alt="Password Icon"
-                  marginLeft="-20px"
-                  boxSize="50px"
-                  marginBottom="2%"
-                  h="50px"
-                  w="50px"
-                  borderRadius="10%"
-                />
-                <Text
-                  color="#A210C6"
-                  fontSize="20px"
-                  marginLeft="5px"
-                  marginTop="10px"
-                >
+              <VStack spacing={3} align="center">
+                <Text fontFamily="heading" fontSize="20px">
                   Change password
                 </Text>
-                <Image
-                  marginLeft="35px"
-                  marginTop="20px"
-                  w="10px"
-                  h="15px"
-                  src={RightArrow}
-                  alt="right arrow"
-                />
-              </Flex>
-              <Divider my={1} borderColor="black.500" />{" "}
-            </Box>
-            <Box>
-              {" "}
-              <Flex
-                marginTop="25px"
-                style={{
-                  cursor: "pointer",
-                }}
-                _hover={{ color: "#A210C6" }}
-                onClick={handleOpenNotificationssModal}
-              >
-                <Image
-                  src={NotificationIconn}
-                  alt="Notification Icon"
-                  boxSize="50px"
-                  marginBottom="2%"
-                  h="50px"
-                  w="50px"
-                  borderRadius="10%"
-                />
-                <Text fontSize="20px" marginLeft="5px" marginTop="10px">
-                  Notification Settings
-                </Text>
-                <Image
-                  marginLeft="10px"
-                  marginTop="20px"
-                  w="10px"
-                  h="15px"
-                  src={RightArrow}
-                  alt="right arrow"
-                />
-              </Flex>
-              <Divider my={1} borderColor="black.500" />{" "}
-            </Box>
-            <Box>
-              {" "}
-              <Flex
-                marginTop="25px"
-                style={{
-                  cursor: "pointer",
-                }}
-                _hover={{ color: "#A210C6" }}
-                onClick={help}
-              >
-                <Image
-                  src={Help}
-                  alt="Notification Icon"
-                  boxSize="50px"
-                  marginBottom="2%"
-                  h="50px"
-                  w="50px"
-                  borderRadius="10%"
-                />
-                <Text fontSize="20px" marginLeft="5px" marginTop="10px">
-                  Help
-                </Text>
-                <Image
-                  marginLeft="145px"
-                  marginTop="20px"
-                  w="10px"
-                  h="15px"
-                  src={RightArrow}
-                  alt="right arrow"
-                />
-              </Flex>
-              <Divider my={1} borderColor="black.500" />{" "}
-            </Box>
-          </Box>
-          <Box
-            marginTop="30px"
-            className="change-password"
-            marginLeft="50px"
-            width="35%"
-            p={3}
-            h="80vh"
-          >
-            {" "}
-            <VStack spacing={3} align="center">
-              <Text fontFamily="heading" fontSize="20px">
-                Change password
-              </Text>
-              <FormControl>
-                <FormLabel>Old Password</FormLabel>
-                <InputGroup>
-                  <Input
-                    type={showOldPassword ? "text" : "password"}
-                    value={oldPassword}
-                    onChange={handleOldPasswordChange}
-                    borderColor="black"
-                    _hover={{ color: "" }}
-                  />
-
-                  <InputRightElement width="4.5rem">
-                    <IconButton
-                      h="1.75rem"
-                      size="sm"
-                      onClick={handleToggleOldPassword}
-                      icon={showConfirmPassword ? <HiEyeOff /> : <HiEye />}
+                <FormControl>
+                  <FormLabel>Old Password</FormLabel>
+                  <InputGroup>
+                    <Input
+                      type={showOldPassword ? "text" : "password"}
+                      value={oldPassword}
+                      onChange={handleOldPasswordChange}
+                      borderColor="black"
+                      _hover={{ color: "" }}
                     />
-                    {/* <Button
+
+                    <InputRightElement width="4.5rem">
+                      <IconButton
+                        h="1.75rem"
+                        size="sm"
+                        onClick={handleToggleOldPassword}
+                        icon={showConfirmPassword ? <HiEyeOff /> : <HiEye />}
+                      />
+                      {/* <Button
                       h="1.75rem"
                       size="sm"
                       onClick={handleToggleOldPassword}
@@ -481,59 +330,59 @@ const ChangePasswordPage = () => {
                     >
                       {showOldPassword ? "Hide" : "Show"}
                     </Button> */}
-                  </InputRightElement>
-                </InputGroup>
-              </FormControl>
+                    </InputRightElement>
+                  </InputGroup>
+                </FormControl>
 
-              <FormControl>
-                <FormLabel>New Password</FormLabel>
-                <InputGroup>
-                  <Input
-                    type={showNewPassword ? "text" : "password"}
-                    value={newPassword}
-                    onChange={handleNewPasswordChange}
-                    borderColor="black"
-                    _hover={{ color: "" }}
-                  />
-                  <InputRightElement width="4.5rem">
-                    <IconButton
-                      h="1.75rem"
-                      size="sm"
-                      onClick={handleToggleNewPassword}
-                      icon={showConfirmPassword ? <HiEyeOff /> : <HiEye />}
+                <FormControl>
+                  <FormLabel>New Password</FormLabel>
+                  <InputGroup>
+                    <Input
+                      type={showNewPassword ? "text" : "password"}
+                      value={newPassword}
+                      onChange={handleNewPasswordChange}
+                      borderColor="black"
+                      _hover={{ color: "" }}
                     />
-                  </InputRightElement>
-                </InputGroup>
-              </FormControl>
+                    <InputRightElement width="4.5rem">
+                      <IconButton
+                        h="1.75rem"
+                        size="sm"
+                        onClick={handleToggleNewPassword}
+                        icon={showConfirmPassword ? <HiEyeOff /> : <HiEye />}
+                      />
+                    </InputRightElement>
+                  </InputGroup>
+                </FormControl>
 
-              <FormControl>
-                <FormLabel>Confirm New Password</FormLabel>
-                <InputGroup>
-                  <Input
-                    type={showConfirmPassword ? "text" : "password"}
-                    value={confirmPassword}
-                    onChange={handleConfirmPasswordChange}
-                    borderColor="black"
-                    _hover={{ color: "" }}
-                  />
-                  <InputRightElement width="4.5rem">
-                    <IconButton
-                      h="1.75rem"
-                      size="sm"
-                      onClick={handleToggleConfirmPassword}
-                      icon={showConfirmPassword ? <HiEyeOff /> : <HiEye />}
+                <FormControl>
+                  <FormLabel>Confirm New Password</FormLabel>
+                  <InputGroup>
+                    <Input
+                      type={showConfirmPassword ? "text" : "password"}
+                      value={confirmPassword}
+                      onChange={handleConfirmPasswordChange}
+                      borderColor="black"
+                      _hover={{ color: "" }}
                     />
-                  </InputRightElement>
-                </InputGroup>
-              </FormControl>
+                    <InputRightElement width="4.5rem">
+                      <IconButton
+                        h="1.75rem"
+                        size="sm"
+                        onClick={handleToggleConfirmPassword}
+                        icon={showConfirmPassword ? <HiEyeOff /> : <HiEye />}
+                      />
+                    </InputRightElement>
+                  </InputGroup>
+                </FormControl>
 
-              <Button color="white" bg="#A210C6" onClick={handleSaveChanges}>
-                Save Changes
-              </Button>
-            </VStack>
-          </Box>
-        </Flex>
-      </Box>
+                <Button color="white" bg="#A210C6" onClick={handleSaveChanges}>
+                  Save Changes
+                </Button>
+              </VStack>
+            </Box>
+          </Flex>
+        </Box>
       </Flex>
     </ChakraProvider>
   );

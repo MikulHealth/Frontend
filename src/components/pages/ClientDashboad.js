@@ -18,6 +18,8 @@ import {
   Text,
   useToast,
   Skeleton,
+  Grid, 
+  GridItem,
 } from "@chakra-ui/react";
 import AOS from "aos";
 import "../../styles/pages/LandingPage.css";
