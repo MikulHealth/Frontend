@@ -32,7 +32,7 @@ export default function SettingsSideBar() {
     <Flex>
       <Box  p={3}>
         <VStack>
-          <Text fontFamily="heading" fontSize="24px">
+          <Text marginLeft="-150px" fontFamily="heading" fontSize="24px">
             Account
           </Text>
           <Flex flexDirection="column">

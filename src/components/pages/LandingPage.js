@@ -230,7 +230,7 @@ const LandingPage = () => {
                   <span style={{ color: "#A210C6" }}>Healthcare</span> that you{" "}
                   <Text
                     marginTop="-10px"
-                    marginLeft="-125px"
+                    textAlign="left"
                     fontSize="6xl"
                     fontWeight="bold"
                     fontFamily="body"
@@ -239,7 +239,7 @@ const LandingPage = () => {
                   </Text>
                   <Text
                     marginTop="-10px"
-                    marginLeft="-300px"
+                    textAlign="left"
                     fontSize="6xl"
                     fontWeight="bold"
                     fontFamily="body"
@@ -249,7 +249,7 @@ const LandingPage = () => {
                 </Text>
                 <Text
                   marginTop="10px"
-                  marginLeft="-160px"
+                  textAlign="left"
                   fontWeight="bold"
                   fontFamily="body"
                   fontSize="20px"
@@ -264,7 +264,8 @@ const LandingPage = () => {
                 <Button
                   bg="#A210C6"
                   color="white"
-                  marginLeft="-160px"
+                  borderRadius="100px"
+                  marginLeft="-450px"
                   //  onMouseOver={handleMouseOver}
                   //  onMouseOut={handleMouseOut}
                   onClick={onOpen}
@@ -410,23 +411,36 @@ const LandingPage = () => {
               </Box>
               <Box>
                 <Box h="150px" />
-                <Box>
+                <Box marginLeft="50px">
                   <Text
                     fontSize="6xl"
                     fontWeight="bold"
                     fontFamily="body"
                     color="white"
+                    textAlign="left"
                   >
                     Join the Future of Healthcare
                   </Text>
-                  <Text fontSize="20px" color="white" fontFamily="Montserrat">
+                  <Text
+                    textAlign="left"
+                    fontSize="20px"
+                    color="white"
+                    fontFamily="Montserrat"
+                  >
                     Empower healthcare innovation and <br />
                     shape the future of Healthcare delivery <br />
                     with Mikul Health
                   </Text>
                   <Box h="25px" />
                   <ChakraLink href="/join" color="#A210C6">
-                    <Button bg="white">Join us</Button>
+                    <Button
+                      w="10vw"
+                      borderRadius="100px"
+                      marginLeft="-585px"
+                      bg="white"
+                    >
+                      Join us
+                    </Button>
                   </ChakraLink>
                 </Box>
               </Box>
@@ -723,7 +737,10 @@ const LandingPage = () => {
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel className="custom-accordion-panel">
+                  <AccordionPanel
+                    textAlign="justify"
+                    className="custom-accordion-panel"
+                  >
                     Upon a successful registeration, you can request and get
                     matched to a medic to recieve care by booking any of the
                     services we offer from your dashboard.
@@ -746,7 +763,7 @@ const LandingPage = () => {
                   </h2>
                   <AccordionPanel
                     className="custom-accordion-panel"
-                    style={{ whiteSpace: "pre-line" }}
+                    textAlign="justify"
                   >
                     To ensure you are safe while you receive care from any
                     Mikul&nbsp;Health care provider, we make sure our caregivers
@@ -770,7 +787,10 @@ const LandingPage = () => {
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel className="custom-accordion-panel">
+                  <AccordionPanel
+                    textAlign="justify"
+                    className="custom-accordion-panel"
+                  >
                     Yes you can have a replacement when asigned a caregiver that
                     you do not like. We can provide a replace within 72 hours
                     upon your request for a replacement.
@@ -791,7 +811,10 @@ const LandingPage = () => {
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel className="custom-accordion-panel">
+                  <AccordionPanel
+                    textAlign="justify"
+                    className="custom-accordion-panel"
+                  >
                     Upon booking and making payment for the choosen service, you
                     would receive care within 48 hours.
                   </AccordionPanel>
@@ -811,7 +834,10 @@ const LandingPage = () => {
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel className="custom-accordion-panel">
+                  <AccordionPanel
+                    textAlign="justify"
+                    className="custom-accordion-panel"
+                  >
                     Yes, aside our standadized service plans. We also have
                     provision for customizing a service plan that would best
                     suit you or your loved according to the peculiarity of the
@@ -833,7 +859,10 @@ const LandingPage = () => {
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel className="custom-accordion-panel">
+                  <AccordionPanel
+                    textAlign="justify"
+                    className="custom-accordion-panel"
+                  >
                     <Text>
                       We work with Registred Nurses and Medical Docters who are
                       acreditated and certified with valid licenses and a proven
@@ -962,6 +991,7 @@ const LandingPage = () => {
             <Text
               fontFamily="Montserrat"
               color="white"
+              textAlign="left"
               fontSize="20px"
               marginTop="40px"
             >

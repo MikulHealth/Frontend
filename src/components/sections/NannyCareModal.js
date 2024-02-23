@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { CheckIcon } from "@chakra-ui/icons";
 import {
   Modal,
   ModalOverlay,
@@ -10,25 +11,39 @@ import {
   Flex,
   ModalCloseButton,
   Text,
+  Button,
   Tooltip,
 } from "@chakra-ui/react";
-
+import BookAppointmentModal from "../sections/BookAppointment";
 const NannyCareModal = ({ isOpen, onClose }) => {
+  const [showAppointmentModal, setShowAppointmentModal] = useState(false);
+
+  const handleCloseAppointmentModal = () => {
+    setShowAppointmentModal(false);
+  };
+
+  const handleOpenAppointmentModal = () => {
+    setShowAppointmentModal(true);
+  };
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="4xl">
+    <Modal isOpen={isOpen} onClose={onClose} size="6xl">
       <ModalOverlay />
       <ModalContent marginTop="30px">
-        <ModalHeader>NANNY SERVICE</ModalHeader>
+        <ModalHeader textAlign="center">NANNY SERVICES</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-        <Text fontWeight="bold" marginLeft="360px" color="#A210C6">
-           MONTHLY PLAN
+          <Text textAlign="center" fontWeight="bold" color="#A210C6">
+            PREMIUM CHILD CARE SERVICES
           </Text>
-          <Text fontWeight="bold" marginLeft="260px" color="#A210C6">
-            MIKUL HEALTH NANNY CARE SERVICE
-          </Text>
-          <Text fontWeight="bold" marginLeft="220px" color="#A210C6">
-            EXCLUSIVELY PROVIDED BY A PROFESSIONAL NANNY.
+
+          <Text
+            fontSize="16"
+            fontStyle="italic"
+            fontWeight="bold"
+            textAlign="center"
+            color="#A210C6"
+          >
+            Exclusively provided by a professional nanny
           </Text>
           <Flex
             marginBottom="30px"
@@ -36,10 +51,8 @@ const NannyCareModal = ({ isOpen, onClose }) => {
             marginLeft="8px"
             alignItems="center"
           >
-             <Tooltip borderRadius="100px" bg="#A210C6" label="Click on the box to book" aria-label="8 hours tooltip">
-           
             <Box
-            className="8hrs-box"
+              className="8hrs-box"
               borderColor="#A210C6"
               borderRadius="10px"
               style={{
@@ -47,7 +60,7 @@ const NannyCareModal = ({ isOpen, onClose }) => {
                 boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
                 transition: "transform 0.3s ease-in-out",
               }}
-              w="35vw"
+              w="40vw"
               h="60vh"
               _hover={{
                 transform: "translateY(-10px)",
@@ -57,10 +70,10 @@ const NannyCareModal = ({ isOpen, onClose }) => {
                 color="#A210C6"
                 fontWeight="bold"
                 marginTop="40px"
-                marginLeft="20px"
+                textAlign="center"
                 fontSize="18px"
               >
-                8 Hours Daily 5 Days in a Week for a Month
+                8 Hours Daily (5 days a week for a month)
               </Text>
               <Divider my={1} borderColor="black.500" />
               <Text ml="15px" fontSize="16px" mt="5px">
@@ -78,26 +91,47 @@ const NannyCareModal = ({ isOpen, onClose }) => {
                   <Text>- Household chores related to children</Text>
                 </Box>
               </Flex>
-              <Flex>
+              <Box>
                 <Divider my={1} borderColor="black.500" />
-                <Text
-                  color="#A210C6"
-                  fontWeight="bold"
-                  marginTop="10px"
-                  marginLeft="-340px"
-                  fontSize="24px"
-                >
-                  ₦70,000
-                </Text>
-                <Text marginTop="18px" marginLeft="5px">
-                  excluding pre-nanny test
-                </Text>
-              </Flex>
+                <Flex justifyContent="space-between">
+                  <Flex>
+                    <Text
+                      color="#A210C6"
+                      fontWeight="bold"
+                      marginTop="10px"
+                      marginLeft="20px"
+                      fontSize="24px"
+                    >
+                      ₦70,000
+                    </Text>
+                    <Text marginLeft="5px" marginTop="16px" color="#A210C6">
+                      (excluding pre-nanny test)
+                    </Text>
+                  </Flex>
+
+                  <Button
+                    marginTop="10px"
+                    borderRadius="100px"
+                    fontSize="16px"
+                    bg="#A210C6"
+                    marginRight="20px"
+                    leftIcon={<CheckIcon />}
+                    color="white"
+                    onClick={handleOpenAppointmentModal}
+                    style={{
+                      fontStyle: "italic",
+                      cursor: "pointer",
+                    }}
+                    _hover={{ color: "" }}
+                  >
+                    Book plan
+                  </Button>
+                </Flex>
+              </Box>
             </Box>
-            </Tooltip>
-            <Tooltip borderRadius="100px" bg="#A210C6" label="Click on the box to book " aria-label="24hrs hours tooltip">
+
             <Box
-            className="24hrs-box"
+              className="24hrs-box"
               style={{
                 cursor: "pointer",
                 boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
@@ -107,20 +141,20 @@ const NannyCareModal = ({ isOpen, onClose }) => {
               borderRadius="10px"
               marginLeft="30px"
               bg="#A210C6"
-              w="35vw"
+              w="40vw"
               h="60vh"
               _hover={{
                 transform: "translateY(-10px)",
               }}
             >
-            <Text
-                 color="white"
+              <Text
+                color="white"
                 fontWeight="bold"
                 marginTop="40px"
-                marginLeft="50px"
+                textAlign="center"
                 fontSize="18px"
               >
-                24 Hours Daily 30 Days in a Month
+                24 Hours Daily (30 days in a month)
               </Text>
               <Divider my={1} borderColor="white" />
               <Text color="white" ml="15px" fontSize="16px" mt="5px">
@@ -129,7 +163,7 @@ const NannyCareModal = ({ isOpen, onClose }) => {
               </Text>
               <Flex mt="15px" direction="column">
                 <Box color="white" ml="20px" fontSize="16px">
-                <Text>- Babysitting</Text>
+                  <Text>- Babysitting</Text>
                   <Text>- Feeding and meal preparation</Text>
                   <Text>- Bathing and grooming</Text>
                   <Text>- Playtime and educational activities</Text>
@@ -138,26 +172,52 @@ const NannyCareModal = ({ isOpen, onClose }) => {
                   <Text>- Household chores related to children</Text>
                 </Box>
               </Flex>
-              <Flex>
+              <Box>
                 <Divider my={1} borderColor="white" />
-                <Text
-                  color="white"
-                  fontWeight="bold"
-                  marginTop="10px"
-                  marginLeft="-340px"
-                  fontSize="24px"
-                >
-                  ₦90,000
-                </Text>
-                <Text  color="white" marginTop="18px" marginLeft="5px">
-                  excluding pre-nanny test
-                </Text>
-              </Flex>
+
+                <Flex justifyContent="space-between">
+                  <Flex>
+                    <Text
+                      color="white"
+                      fontWeight="bold"
+                      marginTop="10px"
+                      marginLeft="20px"
+                      fontSize="24px"
+                    >
+                      ₦90,000
+                    </Text>
+                    <Text marginLeft="5px" marginTop="16px" color="white">
+                      (excluding pre-nanny test)
+                    </Text>
+                  </Flex>
+
+                  <Button
+                    marginTop="10px"
+                    borderRadius="100px"
+                    fontSize="16px"
+                    bg="white"
+                    marginRight="20px"
+                    leftIcon={<CheckIcon />}
+                    color="#A210C6"
+                    onClick={handleOpenAppointmentModal}
+                    style={{
+                      fontStyle: "italic",
+                      cursor: "pointer",
+                    }}
+                    _hover={{ color: "#A210C6" }}
+                  >
+                    Book plan
+                  </Button>
+                </Flex>
+              </Box>
             </Box>
-            </Tooltip>
           </Flex>
         </ModalBody>
       </ModalContent>
+      <BookAppointmentModal
+        isOpen={showAppointmentModal}
+        onClose={handleCloseAppointmentModal}
+      />
     </Modal>
   );
 };

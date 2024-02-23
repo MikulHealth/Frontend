@@ -170,7 +170,7 @@ const LandingPage = () => {
               <Text
                 fontSize="28px"
                 fontWeight="bold"
-                textAlign="center"
+                textAlign="left"
                 color="#A210C6"
                 paddingTop="70px"
                 data-aos="fade-left"
@@ -181,7 +181,7 @@ const LandingPage = () => {
               <Text
                 fontSize="64px"
                 fontWeight="bold"
-                textAlign="center"
+                textAlign="left"
                 color="#A210C6"
                 marginLeft="5px"
                 paddingTop="10px"
@@ -191,7 +191,7 @@ const LandingPage = () => {
               </Text>
               <Text
                 fontSize="16px"
-                textAlign="center"
+                textAlign="left"
                 color="#A210C6"
                 marginLeft="5px"
                 paddingTop="10px"
@@ -286,7 +286,7 @@ const LandingPage = () => {
               >
                 Address
               </Text>
-              <Text marginLeft="80px" fontSize="28px">
+              <Text  textAlign="left" marginLeft="80px" fontSize="28px">
                 Polystar Building, 4th Floor,<br></br>
                 2nd Roundabout, <br></br>
                 Lekki Phase 1, Lagos State, <br></br>
@@ -307,11 +307,12 @@ const LandingPage = () => {
                 fontFamily="body"
                 color="white"
                 marginTop="-50px"
-                marginLeft="-180px"
+                marginLeft="10px"
+                textAlign="left"
               >
                 Email
               </Text>
-              <Text fontSize="22px" marginLeft="-20px">
+              <Text fontSize="22px"  textAlign="left">
                 support@mikulhealth.com
               </Text>
               <Box marginTop="10px">
@@ -327,10 +328,11 @@ const LandingPage = () => {
                   fontFamily="body"
                   color="white"
                   marginTop="-50px"
+                  marginLeft="-150px"
                 >
                   Phone/WhatsApp
                 </Text>
-                <Text fontSize="22px" marginLeft="-110px">
+                <Text fontSize="22px" textAlign="left">
                   +2349160596636
                 </Text>
               </Box>

@@ -20,7 +20,7 @@ import {
   TabPanel,
   TabPanels,
 } from "@chakra-ui/react";
-import {CheckIcon} from '@chakra-ui/icons'
+import { CheckIcon } from "@chakra-ui/icons";
 import familyIcon from "../../assets/family.svg";
 import SearchAppointmentsModal from "../sections/SearchAppointmentByDate";
 import SideBar from "../layouts/SideBar";
@@ -68,10 +68,10 @@ const AppointmentPage = () => {
 
   return (
     <ChakraProvider theme={customTheme}>
-      <Flex overflow="hidden" height="100vh" w="100vw">
+      <NavBar />
+      <Flex position="fixed" height="100vh" w="100vw">
         <SideBar />
         <VStack w="75%" h="100vh">
-          <NavBar />
           <Box
             marginLeft="-10"
             marginTop="10px"
@@ -107,7 +107,6 @@ const AppointmentPage = () => {
             borderRadius="20px"
           >
             <VStack color="white">
-
               <Text
                 fontSize="20px"
                 fontFamily="heading"
@@ -142,7 +141,7 @@ const AppointmentPage = () => {
                 _hover={{ color: "" }}
                 marginLeft="-40px"
                 borderRadius="100px"
-                leftIcon={<CheckIcon />} 
+                leftIcon={<CheckIcon />}
               >
                 Book appointment
               </Button>

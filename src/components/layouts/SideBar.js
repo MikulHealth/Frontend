@@ -12,13 +12,14 @@ import {
   EmailIcon,
   HamburgerIcon,
 } from "@chakra-ui/icons";
-import logo from "../../assets/NewLogo.svg";
+import logo from "../../assets/Secondary logo.svg";
 import {
   Box,
   Text,
   useToast,
   Flex,
   extendTheme,
+  Icon,
   Image,
 } from "@chakra-ui/react";
 
@@ -68,12 +69,19 @@ export default function SideBar() {
   };
 
   const iconStyle = {
-    fontSize: "30px",
     marginRight: "10px",
+    height: "24px",
+    width: "24px",
+  };
+
+  const listTextStyle = {
+    marginTop: "5px",
+    marginLeft: "5px",
   };
 
   const listItemStyle = {
-    fontSize: "24px",
+    fontStyle: "body",
+    fontSize: "16px",
     marginBottom: "30px",
   };
 
@@ -84,25 +92,29 @@ export default function SideBar() {
         width="20%"
         as="sidebar"
         p="10px"
-        h="100vh"
+        h="80%"
         flexDirection="column"
         justifyContent="space-between"
         paddingLeft="70px"
-        spacing={4}
+        spacing={3}
       >
-        <Flex flexDirection="column">
-          <Image
+        {/* <Box marginBottom="-120px"> */}
+        {/* <img  src={require("../../assets/Secondary logo.svg")} alt="logo" /> */}
+
+        {/* <Image
             src={logo}
             alt="Logo"
-            w="250px"
-            h="70px"
-            marginBottom="50px"
+            w="200px"
+            h="58px"
             onClick={reloadPage}
             style={{
               cursor: "pointer",
             }}
             _hover={{ color: "" }}
-          />
+          /> */}
+        {/* </Box> */}
+
+        <Flex marginTop="40px" flexDirection="column">
           <NavLink to="/dashboard" style={listItemStyle}>
             <Flex
               color={location.pathname === "/dashboard" ? "#A210C6" : ""}
@@ -112,7 +124,7 @@ export default function SideBar() {
               alignItems="center"
             >
               <HamburgerIcon style={iconStyle} />
-              <Text marginLeft="5px">Home</Text>
+              <Text style={listTextStyle}>Home</Text>
             </Flex>
           </NavLink>
 
@@ -125,7 +137,7 @@ export default function SideBar() {
               alignItems="center"
             >
               <CalendarIcon style={iconStyle} />
-              <Text marginLeft="5px">Appointments</Text>
+              <Text style={listTextStyle}>Appointments</Text>
             </Flex>
           </NavLink>
 
@@ -137,8 +149,8 @@ export default function SideBar() {
               }
               alignItems="center"
             >
-              <EmailIcon style={iconStyle} />
-              <Text marginLeft="5px">Wallet</Text>
+              <Icon as={Wallet} style={iconStyle} />
+              <Text style={listTextStyle}>Wallet</Text>
             </Flex>
           </NavLink>
 
@@ -159,44 +171,44 @@ export default function SideBar() {
               alignItems="center"
             >
               <PlusSquareIcon style={iconStyle} />
-              <Text marginLeft="5px">Services</Text>
+              <Text style={listTextStyle}>Services</Text>
             </Flex>
           </NavLink>
 
           <NavLink to="/settings" style={listItemStyle}>
-            <Flex >
-              <Flex
-                marginLeft="5px"
-                textDecoration={
-                  location.pathname === "/settings" ||
-                  location.pathname === "/edit-profile" ||
-                  location.pathname === "/change-password" ||
-                  location.pathname === "/notification-settings" ||
-                  location.pathname === "/help"
-                    ? "underline"
-                    : ""
-                }
-                color={
-                  location.pathname === "/settings" ||
-                  location.pathname === "/edit-profile" ||
-                  location.pathname === "/change-password" ||
-                  location.pathname === "/notification-settings" ||
-                  location.pathname === "/help"
-                    ? "#A210C6"
-                    : ""
-                }
-              >
-                <SettingsIcon style={iconStyle} />
-                <Text>Settings</Text>
-              </Flex>
+            <Flex
+              style={listTextStyle}
+              marginLeft="5px"
+              textDecoration={
+                location.pathname === "/settings" ||
+                location.pathname === "/edit-profile" ||
+                location.pathname === "/change-password" ||
+                location.pathname === "/notification-settings" ||
+                location.pathname === "/help"
+                  ? "underline"
+                  : ""
+              }
+              color={
+                location.pathname === "/settings" ||
+                location.pathname === "/edit-profile" ||
+                location.pathname === "/change-password" ||
+                location.pathname === "/notification-settings" ||
+                location.pathname === "/help"
+                  ? "#A210C6"
+                  : ""
+              }
+            >
+              <SettingsIcon marginLeft="-5px" style={iconStyle} />
+              <Text style={listTextStyle}>Settings</Text>
             </Flex>
           </NavLink>
         </Flex>
-        <Box>
+        <Box marginTop="20px">
           <NavLink onClick={handleOpenLogoutModal} style={listItemStyle}>
-            <Flex color="red.500" >
+            <Flex color="red.500">
               <LockIcon style={iconStyle} />
               <Text
+                style={listTextStyle}
                 textDecoration={
                   location.pathname === "/logout" ? "underline" : ""
                 }

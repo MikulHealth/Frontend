@@ -32,11 +32,12 @@ const customTheme = extendTheme({
 const SettingsPage = () => {
   return (
     <ChakraProvider theme={customTheme}>
-      <Flex overflow="hidden" height="100vh" w="100vw">
+        <NavBar />
+      <Flex position="fixed" height="100vh" w="100vw">
         <SideBar />
         <VStack w="75%" h="100vh">
-          <NavBar />
-          <Flex marginTop="-7px" marginLeft="-200px">
+        
+          <Flex  marginLeft="-208px">
             <SettingsSideBar />
             <Box marginLeft="70px" marginTop="20px">
               <Image

@@ -198,10 +198,10 @@ const CustomizeServicePage = () => {
 
   return (
     <ChakraProvider theme={customTheme}>
-      <Flex overflow="hidden" height="100vh" w="100vw">
+      <NavBar />
+      <Flex position="fixed" height="100vh" w="100vw">
         <SideBar />
         <Box w="70vw" h="80vh">
-          <NavBar />
           <Flex>
             <Box>
               <Text fontSize="18px" marginLeft="30px" marginTop="5px">

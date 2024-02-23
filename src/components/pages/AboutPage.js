@@ -32,7 +32,7 @@ import FBIcon from "../../assets/FaceBookIcon.svg";
 import IGIcon from "../../assets/InstagramIcon.svg";
 import WHIcon from "../../assets/WAIcon.svg";
 import AbtPic from "../../assets/AboutPic.svg";
-import Wallet from "../../assets/Wallet.svg";
+import Wallet from "../../assets/WalletWhite.svg";
 import Eye from "../../assets/Eye.svg";
 import Persona from "../../assets/Pesona.svg";
 import Safety from "../../assets/Safety.svg";
@@ -203,7 +203,7 @@ const LandingPage = () => {
             >
               WHY USE MIKUL HEALTH?
             </Text>
-            <Text fontSize="60px" fontFamily="body" color="balck">
+            <Text textAlign="left" fontSize="60px" fontFamily="body" color="black">
               With Mikul Health, <br></br>
               your are assured of
             </Text>
@@ -444,7 +444,7 @@ const LandingPage = () => {
           </Box>
           <Box h="20px" />
           <Box display="flex">
-            <Box w="70px" />
+          
             <Box
               bg="white"
               justifyContent="center"
@@ -464,10 +464,9 @@ const LandingPage = () => {
                 <Image src={Michael} alt="Logo" w="462px" h="422px" />
               </Box>
 
-              <Box h="5" />
+           
             </Box>
-            <Box w="10" />
-
+           
             <Box
               justifyContent="center"
               alignItems="center"
@@ -476,19 +475,19 @@ const LandingPage = () => {
               flexDirection="row"
               w="656px"
               h="275px"
-              marginLeft="-70px"
+              
               marginTop="50px"
               data-aos="fade-right"
               data-aos-duration="10000"
             >
-              <Box h="5" />
-              <Text fontSize="xl" fontWeight="bold" textAlign="center">
+           
+              <Text fontSize="xl" fontWeight="bold" textAlign="left">
                 Michael Joshua. Co-founder, CEO
               </Text>
               <Text
-                textAlign="center"
+                textAlign="left"
                 marginTop="10px"
-                fontSize="22px"
+                fontSize="20px"
                 fontFamily="Montserrat"
               >
                 Software Engineer & a licensed nurse in Nigeria with<br></br>
@@ -517,13 +516,13 @@ const LandingPage = () => {
             <Text
               fontSize="xl"
               fontWeight="bold"
-              textAlign="center"
+              textAlign="left"
               marginLeft="5px"
             >
               Jim Ofodum. Co-founde, Growth
             </Text>
             <Text
-              textAlign="center"
+              textAlign="left"
               marginTop="10px"
               fontSize="22px"
               fontFamily="Montserrat"
@@ -599,12 +598,12 @@ const LandingPage = () => {
             data-aos="fade-right"
             data-aos-duration="10000"
           >
-            <Box h="5" />
-            <Text fontSize="xl" fontWeight="bold" textAlign="center">
+           <Box marginLeft="50px">
+           <Text fontSize="xl" fontWeight="bold" textAlign="left">
               Dr. Hafsat Jijiwa. Medical Director.
             </Text>
             <Text
-              textAlign="center"
+              textAlign="left"
               marginTop="10px"
               fontSize="22px"
               fontFamily="Montserrat"
@@ -617,6 +616,8 @@ const LandingPage = () => {
               companies in the U.S and is also <br></br>
               passionate about public health.
             </Text>
+           </Box>
+           
           </Box>
         </Box>
 
@@ -635,13 +636,13 @@ const LandingPage = () => {
             <Text
               fontSize="xl"
               fontWeight="bold"
-              textAlign="center"
+              textAlign="left"
               marginLeft="5px"
             >
               Dr. Sylvia Onoabhagbe. Product Designer
             </Text>
             <Text
-              textAlign="center"
+              textAlign="left"
               marginTop="10px"
               fontSize="22px"
               fontFamily="Montserrat"
@@ -856,6 +857,7 @@ const LandingPage = () => {
               color="white"
               fontSize="20px"
               marginTop="40px"
+              textAlign="left"
             >
               We leverage technological <br></br>
               advancement to provide care<br></br>

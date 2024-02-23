@@ -24,6 +24,7 @@ import {
   ModalCloseButton,
   ModalBody,
   useToast,
+  Avatar,
   Image,
   Box,
   Text,
@@ -294,10 +295,11 @@ const EdithProfilePage = () => {
 
   return (
     <ChakraProvider theme={customTheme}>
-      <Flex overflow="hidden" height="100vh" w="100vw">
+        <NavBar />
+        <Flex position="fixed" height="100vh" w="100vw">
         <SideBar />
         <Box w="75%" h="100vh">
-          <NavBar />
+        
           <Flex>
             <SettingsSideBar />
             <Box marginLeft="420px" width="10%" p={3} h="80vh">
@@ -331,12 +333,11 @@ const EdithProfilePage = () => {
                     <Flex
                       border="1px solid black"
                       borderRadius="6px"
-                      marginLeft="-5px"
                       paddingTop="10px"
                       h="7vh"
                       w="30vw"
                     >
-                      <Box marginRight="15px"></Box>
+                      <Box marginRight="10px"></Box>
                       <DatePicker
                         selected={
                           selectedDate ||
@@ -424,30 +425,19 @@ const EdithProfilePage = () => {
                 bg="white"
                 boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
               >
-                {" "}
-                <Box marginLeft="25px" marginTop="10px">
-                  {formData.image ? (
-                    <Image
-                      borderRadius="5px"
-                      h="100px"
-                      w="100px"
-                      src={formData.image}
-                      alt="User Image"
-                    />
-                  ) : (
-                    <Image
-                      src={userImageIcon}
-                      alt="User Image Icon"
-                      boxSize="50px"
-                      marginBottom="2%"
-                      h="100px"
-                      w="100px"
-                      borderRadius="100%"
-                    />
-                  )}
-                </Box>
+                <Avatar
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  h="120px"
+                  w="100px"
+                  src={formData?.image}
+                  name={formData?.firstName}
+                  bg="#A210C6"
+                ></Avatar>
+
                 <Input
-                  marginTop="40px"
+                  marginTop="30px"
                   marginBottom="20px"
                   id="fileInput"
                   name="image"

@@ -8,6 +8,8 @@ import {
   Flex,
   extendTheme,
   Image,
+  Divider,
+  VStack,
 } from "@chakra-ui/react";
 import { BellIcon } from "@chakra-ui/icons";
 import React, { useState, useEffect } from "react";
@@ -17,7 +19,7 @@ import { SetUser } from "../../redux/userSlice";
 import { GetCurrentUser } from "../../apiCalls/UserApis";
 import UserDetailsModal from "../sections/UserDetails";
 import NotificationIcon from "../../assets/notification.svg";
-
+import logo from "../../assets/Secondary logo.svg";
 const customTheme = extendTheme({
   components: {
     Link: {
@@ -72,7 +74,6 @@ export default function NavBar() {
   //   fetchData();
   // }, []);
 
- 
   const pageTitles = {
     "/dashboard": "Dashboard",
     "/appointment": "Appointments",
@@ -81,7 +82,7 @@ export default function NavBar() {
     "/settings": "Settings",
     "/logout": "Logout",
     "/customize-service": "Customize Service",
-    "/edit-profile":"Settings",
+    "/edit-profile": "Settings",
     "/change-password": "Settings",
     "/notification-settings": "Settings",
     "/help": "Help",
@@ -92,66 +93,113 @@ export default function NavBar() {
   const isDashboard = location.pathname === "/dashboard";
 
   return (
-    <Flex
-      fontFamily="Gill Sans MT, sans-serif"
-      marginTop="15px"
-      as="h4"
-      p="10px"
-      width={{ base: "100%" }}
-      alignItems="center"
+    <VStack
+      position="sticky"
+      top="0"
+      zIndex="1000"
+      borderBottom="2px solid #A210C6"
+      h="20%"
     >
-      <Box>
-        {isDashboard ? (
-          <>
-          <Flex>
-          <Heading fontSize="36px" color="#A210C6">Hello {user?.firstName},</Heading>
-            <Text
-              style={{
-                fontStyle: "italic",
-              }}
-              marginLeft="5px"
-              fontFamily="Montserrat, sans-serif"
-              fontSize="16px"
-              marginTop="18px"
-              // fontWeight="bold"
-            >
-              How are you doing today?
-            </Text>
-          </Flex>
-     
-          </>
-        ) : (
-          <Heading color="#A210C6">{pageTitle}</Heading>
-        )}
-      </Box>
-      <Spacer />
-      <HStack spacing="20px" marginRight="30px">
-        <Box>
-          <Image
-            src={NotificationIcon}
-            alt="Notification icon"
-            h="40px"
-            w="30px"
-            style={{
-              cursor: "pointer",
-            }}
-          />
-        </Box>
-        <Avatar
+      <Flex
+        overflow="hidden"
+        fontFamily="Gill Sans MT, sans-serif"
+        marginTop="15px"
+        as="h4"
+        p="10px"
+        width={{ base: "100%" }}
+        alignItems="center"
+      >
+        <Image
+          marginLeft="20px"
+          src={logo}
+          alt="Logo"
+          w="200px"
+          h="58px"
+          // onClick={reloadPage}
           style={{
             cursor: "pointer",
           }}
-          onClick={handleOpenUserDetailsModal}
-          src={user?.image}
-          name={user?.firstName}
-          bg="#A210C6"
-        ></Avatar>
-        <Box></Box>
-      </HStack>
-      <UserDetailsModal
-        isOpen={showUserDetailsModal}
-        onClose={handleCloseUserDetailsModal}
-      />
-    </Flex>
+          _hover={{ color: "" }}
+        />
+        <Box>
+          {isDashboard ? (
+            <>
+              <Flex marginLeft="30px">
+                <Heading fontSize="24px" color="#A210C6" fontWeight="bold">
+                  Hello {user?.firstName},
+                </Heading>
+                <Text
+                  style={{
+                    fontStyle: "italic",
+                  }}
+                  marginLeft="5px"
+                  fontFamily="Montserrat, sans-serif"
+                  fontSize="16px"
+                  marginTop="5px"
+                  // fontWeight="bold"
+                >
+                  How are you doing today?
+                </Text>
+              </Flex>
+            </>
+          ) : (
+            <Heading
+              marginLeft="30px"
+              fontSize="24px"
+              color="#A210C6"
+              fontWeight="bold"
+            >
+              {pageTitle}
+            </Heading>
+          )}
+        </Box>
+        <Spacer />
+        <HStack spacing="20px" marginRight="30px">
+          <Box
+            style={{
+              cursor: "pointer",
+              borderRadius: "100%",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <Image
+              h="30px"
+              w="30px"
+              style={{
+                cursor: "pointer",
+              }}
+              src={NotificationIcon}
+              alt="Notification icon"
+            />
+          </Box>
+          <Box
+            style={{
+              cursor: "pointer",
+              borderRadius: "100%",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <Avatar
+              style={{
+                cursor: "pointer",
+              }}
+              h="30px"
+              w="30px"
+              onClick={handleOpenUserDetailsModal}
+              src={user?.image}
+              name={user?.firstName}
+              bg="#A210C6"
+            ></Avatar>
+          </Box>
+        </HStack>
+
+        <UserDetailsModal
+          isOpen={showUserDetailsModal}
+          onClose={handleCloseUserDetailsModal}
+        />
+      </Flex>
+      {/* <Box borderBottom="2px solid #A210C6" w="100%" marginX={3} /> */}
+      {/* <Divider my={2} borderColor="#A210C6" /> */}
+    </VStack>
   );
 }

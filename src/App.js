@@ -29,6 +29,7 @@ import CreditPage from "./components/pages/CreditWalletPage";
 import DebitPage from "./components/pages/DebitWalletPage";
 import CustomizeServicePage from "./components/pages/CustomizeServicePage";
 import RootLayout from "./components/layouts/RootLayout";
+import BookButton from "./components/layouts/BookButton";
 
 
 function App() {
@@ -71,6 +72,7 @@ function App() {
           <Route path="/debit" element={<DebitPage />} />
           <Route path="/customize-service" element={<CustomizeServicePage />} />
           <Route path="/root" element={<RootLayout />} />
+          <Route path="/book" element={<BookButton />} />
         </Routes>
       </BrowserRouter>
     </div>

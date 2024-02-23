@@ -7,7 +7,7 @@ import BookAppointmentModal from "../sections/BookAppointment";
 import MatchedAppointmentsModal from "../sections/MatchedAppointmentsModal";
 import PayForAppointmentModal from "../sections/PayForAppointment";
 import Help from "../layouts/Help";
-import {ExternalLinkIcon} from '@chakra-ui/icons'
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -19,7 +19,7 @@ import {
   Text,
   useToast,
   Skeleton,
-  Grid, 
+  Grid,
   GridItem,
 } from "@chakra-ui/react";
 import AOS from "aos";
@@ -180,12 +180,11 @@ const ClientDash = () => {
   };
 
   return (
-    <ChakraProvider theme={customTheme}>
-      <Flex overflowY="scroll" height="100vh" w="100vw">
+    <ChakraProvider theme={customTheme}  overflow="hidden">
+      <NavBar />
+      <Flex position="fixed" height="100vh" w="100vw">
         <SideBar />
-
-        <VStack w="75%" h="100vh">
-          <NavBar />
+        <VStack  w="75%" h="100vh">
           <Flex>
             <Box>
               <Box
@@ -219,7 +218,7 @@ const ClientDash = () => {
                       marginTop="20px"
                       onClick={handleOpenWalletModal}
                       bg="white"
-                      leftIcon={<ExternalLinkIcon />} 
+                      leftIcon={<ExternalLinkIcon />}
                     >
                       Open wallet
                     </Button>
@@ -434,18 +433,15 @@ const ClientDash = () => {
               >
                 <VStack>
                   <Text
-                    fontSize="20px"
+                    fontSize="16px"
                     fontFamily="body"
+                    fontWeight="bold"
                     marginTop="20px"
-                    marginLeft="-15px"
+                    textAlign="center"
                   >
                     My Appointments
                   </Text>
-                  <Flex
-                    flexDirection="column"
-                   
-                    marginTop="7px"
-                  >
+                  <Flex flexDirection="column" marginTop="7px">
                     <Text
                       style={{
                         cursor: "pointer",

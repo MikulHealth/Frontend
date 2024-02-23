@@ -283,13 +283,12 @@ const ChangePasswordPage = () => {
 
   return (
     <ChakraProvider theme={customTheme}>
-      <Flex overflow="hidden" height="100vh" w="100vw">
+      <NavBar />
+      <Flex position="fixed" height="100vh" w="100vw">
         <SideBar />
         <Box w="75%" h="100vh">
-          <NavBar />
-
           <Flex>
-          <SettingsSideBar/>
+            <SettingsSideBar />
             <Box
               marginTop="30px"
               className="change-password"

@@ -337,96 +337,95 @@ const WalletPage = () => {
 
   return (
     <ChakraProvider theme={customTheme}>
-      <Flex>
+      <NavBar />
+      <Flex position="fixed">
         <SideBar />
-        <VStack w="75%" h="100vh">
-          <NavBar />
-          <Box>
-            <Box
-              marginTop="30px"
-              border="1px solid gray"
-              borderRadius="md"
-              padding="3px"
-              w="70vw"
-              h="6vh"
-            >
-              <Flex marginLeft="10px" marginTop="5px">
-                <SearchIcon boxSize={4} marginRight="10px" marginTop="5px" />
-                <Text
-                  fontSize="16px"
-                  fontFamily="body"
-                  style={{
-                    marginLeft: "5px",
-                    marginTop: "1px",
-                    fontStyle: "italic",
-                    cursor: "pointer",
-                  }}
-                  _hover={{ color: "#A210C6" }}
-                  // onClick={handleOpenSearchAppointmentsModal}
+        <VStack h="100vh">
+          <Box
+            marginTop="10px"
+            border="1px solid gray"
+            borderRadius="md"
+            padding="3px"
+            w="70vw"
+            h="6vh"
+          >
+            <Flex marginLeft="10px">
+              <SearchIcon boxSize={4} marginRight="10px" marginTop="5px" />
+              <Text
+                fontSize="16px"
+                fontFamily="body"
+                style={{
+                  marginLeft: "5px",
+                  marginTop: "1px",
+                  fontStyle: "italic",
+                  cursor: "pointer",
+                }}
+                _hover={{ color: "#A210C6" }}
+                // onClick={handleOpenSearchAppointmentsModal}
+              >
+                Search transaction by date
+              </Text>
+            </Flex>
+          </Box>
+          <Box
+            marginTop="10px"
+            bg="#A210C6"
+            w="70vw"
+            h="25vh"
+            borderRadius="20px"
+            display="flex"
+          >
+            <VStack>
+              <Flex marginTop="15px" marginLeft="30">
+                <VStack color="white">
+                  <Text fontSize="16px" fontFamily="body">
+                    Mikul health wallet
+                  </Text>
+                  <Text marginLeft="-58px" fontSize="24px">
+                    ₦ {balance.toFixed(2)}
+                  </Text>
+                </VStack>
+
+                <Button
+                  borderRadius="15px"
+                  color="#A210C6"
+                  marginLeft="650px"
+                  onClick={handleOpenFundWalletModal}
+                  bg="white"
+                  _hover={{ color: "" }}
                 >
-                  Search transaction by date
-                </Text>
+                  Fund wallet
+                </Button>
               </Flex>
-            </Box>
-            <Box
-              marginTop="10px"
-              bg="#A210C6"
-              w="70vw"
-              h="25vh"
-              borderRadius="20px"
-              display="flex"
-            >
-              <VStack>
-                <Flex marginTop="15px" marginLeft="30">
-                  <VStack color="white">
-                    <Text fontSize="16px" fontFamily="body">
-                      Mikul health wallet
-                    </Text>
-                    <Text marginLeft="-58px" fontSize="24px">
-                      ₦ {balance.toFixed(2)}
+              <Flex marginLeft="15px" marginTop="10px">
+                <VStack color="white">
+                  <Text marginLeft="-110px" fontSize="16px">
+                    Wallet ID:
+                  </Text>
+                  <Text fontFamily="body" fontSize="16px">
+                    Wema Bank 0124536789
+                  </Text>
+                </VStack>
+                <Flex marginLeft="480px">
+                  <VStack w="8vw" color="white">
+                    <Text fontSize="14px">Total funded</Text>
+                    <Text marginLeft="-20px" color="white" fontSize="12px">
+                      ₦{balance.toFixed(2)}
                     </Text>
                   </VStack>
-
-                  <Button
-                    borderRadius="15px"
-                    color="#A210C6"
-                    marginLeft="650px"
-                    onClick={handleOpenFundWalletModal}
-                    bg="white"
-                    _hover={{ color: "" }}
-                  >
-                    Fund wallet
-                  </Button>
-                </Flex>
-                <Flex marginLeft="15px" marginTop="10px">
-                  <VStack color="white">
-                    <Text marginLeft="-110px" fontSize="16px">
-                      Wallet ID:
-                    </Text>
-                    <Text  fontFamily="body" fontSize="16px">
-                      Wema Bank 0124536789
+                  <VStack w="8vw" color="white" marginLeft="10px">
+                    <Text fontSize="14px">Total spent</Text>
+                    <Text marginLeft="-20px" color="white" fontSize="12px">
+                      ₦{balance.toFixed(2)}
                     </Text>
                   </VStack>
-                  <Flex marginLeft="480px">
-                    <VStack w="8vw" color="white">
-                      <Text fontSize="14px">Total funded</Text>
-                      <Text marginLeft="-20px" color="white" fontSize="12px">
-                        ₦{balance.toFixed(2)}
-                      </Text>
-                    </VStack>
-                    <VStack w="8vw" color="white" marginLeft="10px">
-                      <Text fontSize="14px">Total spent</Text>
-                      <Text marginLeft="-20px" color="white" fontSize="12px">
-                        ₦{balance.toFixed(2)}
-                      </Text>
-                    </VStack>
-                  </Flex>
                 </Flex>
-              </VStack>
-            </Box>
+              </Flex>
+            </VStack>
+          </Box>
 
-            <Box>
-              <VStack>
+          <Box>
+            <VStack>
               <Text
                 fontSize="28px"
                 fontFamily="heading"
@@ -436,64 +435,64 @@ const WalletPage = () => {
               >
                 Recent activity
               </Text>
-              </VStack>
-              
-              <Flex marginTop="10px">
-                <Text
-                  style={{
-                    cursor: "pointer",
-                    textDecoration: "underline",
-                    textDecorationThickness: "5px",
-                  }}
-                  _hover={{ color: "#A210C6" }}
-                  marginLeft="15px"
-                >
-                  All
-                </Text>{" "}
-                <Text
-                  style={{
-                    cursor: "pointer",
-                  }}
-                  _hover={{ color: "#A210C6" }}
-                  marginLeft="50px"
-                  onClick={openCreditpage}
-                >
-                  Credit
-                </Text>{" "}
-                <Text
-                  style={{
-                    cursor: "pointer",
-                  }}
-                  _hover={{ color: "#A210C6" }}
-                  marginLeft="50px"
-                  onClick={openDebitpage}
-                >
-                  Debit
-                </Text>
-              </Flex>
-              <Divider
-                marginTop="-10%"
-                marginLeft="2%"
-                my={4}
-                borderColor="gray.500"
-                width="60%"
-              />
-            </Box>
-            <Box marginLeft="900px" marginTop="120px">
-              <Image
-                onClick={help}
-                src={HelppIcon}
-                alt="Logo"
-                w="70px"
-                h="70px"
+            </VStack>
+
+            <Flex marginLeft="-70px" marginTop="10px">
+              <Text
                 style={{
                   cursor: "pointer",
-                  animation: "zoomInOut 2s infinite alternate",
+                  textDecoration: "underline",
+                  textDecorationThickness: "5px",
                 }}
-              />
+                _hover={{ color: "#A210C6" }}
+                marginLeft="15px"
+              >
+                All
+              </Text>{" "}
+              <Text
+                style={{
+                  cursor: "pointer",
+                }}
+                _hover={{ color: "#A210C6" }}
+                marginLeft="50px"
+                onClick={openCreditpage}
+              >
+                Credit
+              </Text>{" "}
+              <Text
+                style={{
+                  cursor: "pointer",
+                }}
+                _hover={{ color: "#A210C6" }}
+                marginLeft="50px"
+                onClick={openDebitpage}
+              >
+                Debit
+              </Text>
+            </Flex>
+            <Divider
+              marginTop="-10%"
+              marginLeft="2%"
+              my={4}
+              borderColor="gray.500"
+              width="60%"
+            />
+          </Box>
+          <Box marginLeft="900px" marginTop="120px">
+            <Image
+              onClick={help}
+              src={HelppIcon}
+              alt="Logo"
+              w="70px"
+              h="70px"
+              style={{
+                cursor: "pointer",
+                animation: "zoomInOut 2s infinite alternate",
+              }}
+            />
 
-              <style>
-                {`
+            <style>
+              {`
           @keyframes zoomInOut {
             0% {
               transform: scale(1);
@@ -503,8 +502,7 @@ const WalletPage = () => {
             }
           }
         `}
-              </style>
-            </Box>
+            </style>
           </Box>
         </VStack>
 

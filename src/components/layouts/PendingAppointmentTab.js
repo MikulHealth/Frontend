@@ -504,7 +504,7 @@ export default function PendingApp() {
               </Box>
               {!selectedAppointment.paid && (
                 <Button
-                  marginLeft="320px"
+                  marginLeft="330px"
                   bg="#A210C6"
                   marginTop="10px"
                   marginBottom="10px"

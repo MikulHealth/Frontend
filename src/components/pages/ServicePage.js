@@ -20,7 +20,7 @@ import {
 import SideBar from "../layouts/SideBar";
 import NavBar from "../layouts/NavBar";
 import HelppIcon from "../../assets/HelppIcon.svg";
-
+import Chevron from "../../assets/ChevronDown.svg";
 const customTheme = extendTheme({
   components: {
     Link: {
@@ -75,12 +75,12 @@ const ServicePage = () => {
 
   return (
     <ChakraProvider theme={customTheme}>
-      <Flex overflow="hidden" height="100vh" w="100vw">
+        <NavBar />
+      <Flex position="fixed" height="100vh" w="100vw">
         <SideBar />
 
         <VStack w="75%" h="100vh">
-          <NavBar />
-
+        
           <Box marginLeft="-120px" marginTop="15px">
             {services.map((service, index) => (
               <Box
@@ -102,13 +102,14 @@ const ServicePage = () => {
                   <Box marginLeft="30px" marginTop="15px">
                     <Text fontSize="20px">{service.title}</Text>
                   </Box>
-                  <ChevronRightIcon 
+                  <Image
+                    src={Chevron}
                     marginLeft="820px"
                     marginTop="15px"
                     w="30px"
                     h="30px"
-                    color="#A210C6" 
-                    position="absolute" 
+                    color="#A210C6"
+                    position="absolute"
                   />
                 </Flex>
               </Box>
@@ -131,13 +132,14 @@ const ServicePage = () => {
                   <Box marginLeft="30px" marginTop="15px">
                     <Text fontSize="20px">Customize service</Text>
                   </Box>
-                  <ChevronRightIcon 
+                  <Image
+                    src={Chevron}
                     marginLeft="820px"
                     marginTop="15px"
                     w="30px"
                     h="30px"
                     color="#A210C6"
-                    position="absolute" 
+                    position="absolute"
                   />
                 </Flex>
               </Box>
