@@ -34,7 +34,7 @@ import HelppIcon from "../../assets/HelppIcon.svg";
 import CustomizeServiceModal from "../sections/CustomizeServiceModal";
 import SideBar from "../authLayouts/SideBar";
 import NavBar from "../authLayouts/NavBar";
-
+import LeftSideBar from "../authLayouts/LeftSideBar";
 const customTheme = extendTheme({
   components: {
     Link: {
@@ -198,10 +198,12 @@ const CustomizeServicePage = () => {
 
   return (
     <ChakraProvider theme={customTheme}>
-      <NavBar />
-      <Flex position="fixed" height="100vh" w="100vw">
-        <SideBar />
-        <Box w="70vw" h="80vh">
+      <LeftSideBar />
+      <VStack height="100vh" w="100vw">
+        <VStack marginTop="30px">
+          <NavBar />
+        </VStack>
+        <Box marginLeft="200px" w="70vw" h="80vh">
           <Flex>
             <Box>
               <Text fontSize="18px" marginLeft="30px" marginTop="5px">
@@ -434,7 +436,7 @@ const CustomizeServicePage = () => {
           </Box>
         </Box>
         <Box />
-      </Flex>
+      </VStack>
 
       {confirmationModalOpen && (
         <Modal

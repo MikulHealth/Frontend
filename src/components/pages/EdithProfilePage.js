@@ -2,16 +2,11 @@ import React, { useState, useEffect } from "react";
 import { GetCurrentUser, UpdateCustomer } from "../../apiCalls/UserApis";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { SetUser } from "../../redux/userSlice";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import RightArrow from "../../assets/RightArrow.svg";
-import Help from "../../assets/Help.svg";
-import Bar from "../../assets/ColoredBar.svg";
 import DateIcon from "../../assets/DateIcon.svg";
-import SideBar from "../authLayouts/SideBar";
 import NavBar from "../authLayouts/NavBar";
-import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from "@chakra-ui/icons";
+import LeftSideBar from "../authLayouts/LeftSideBar";
 import {
   ChakraProvider,
   VStack,
@@ -31,32 +26,12 @@ import {
   Flex,
   Link,
   Divider,
-  Select,
-  InputGroup,
-  InputLeftAddon,
   FormControl,
   extendTheme,
   FormLabel,
 } from "@chakra-ui/react";
-import userImageIcon from "../../assets/userImage.svg";
-import NotificationIcon from "../../assets/notification.svg";
-import familyIcon from "../../assets/family.svg";
-import UserDetailsModal from "../sections/UserDetails";
 import LoadingSpinner from "../../utils/Spiner";
-import Wallet from "../../assets/Wallet.svg";
-import logo from "../../assets/LogoColoured.svg";
-import SettingsIcon from "../../assets/SettingsIconWhite.svg";
-import LogoutIcon from "../../assets/Logout.svg";
-import AppointmentsIcon from "../../assets/AppointmentIcon.svg";
-import HomeIcon from "../../assets/HomeBlack.svg";
-import ProfileIcon from "../../assets/ProfileIcone.svg";
-import ProfileIconWhite from "../../assets/ProfileIconWh.svg";
-import PasswordIcon from "../../assets/PasswordIcon.svg";
-import LogoutModal from "../sections/LogoutModal";
-import ColorArrowIcon from "../../assets/RightArrowColor.svg";
-import NotificationIconn from "../../assets/Notification.Icon.svg";
 import UpdatePhoneNumber from "../sections/UpdatePhoneNumber";
-import serviceIcon from "../../assets/ServiceIcon.svg";
 import SettingsSideBar from "../authLayouts/SettingsSideBar";
 
 const customTheme = extendTheme({
@@ -80,13 +55,9 @@ const EdithProfilePage = () => {
   const dispatch = useDispatch();
   const toast = useToast();
   const { user } = useSelector((state) => state.userReducer);
-  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
-  const [showWalletModal, setShowWalletModal] = useState(false);
   const [isPhoneModalOpen, setPhoneModalOpen] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [image, setPic] = useState();
   const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
@@ -144,61 +115,6 @@ const EdithProfilePage = () => {
 
   const handleCloseConfirmationModal = () => {
     setConfirmationModalOpen(false);
-  };
-
-  const handleOpenUserDetailsModal = () => {
-    setShowUserDetailsModal(true);
-  };
-
-  const handleOpenHelpModal = () => {};
-
-  const handleOpenWalletModal = () => {
-    navigate("/wallet");
-  };
-
-  const handleOpenLogoutModal = () => {
-    setShowLogoutModal(true);
-  };
-
-  const handleConfirmLogout = () => {
-    setShowLogoutModal(false);
-
-    localStorage.removeItem("token");
-    localStorage.removeItem("phoneNumber");
-    localStorage.removeItem("orderId");
-    navigate("/");
-  };
-
-  const handleOpenDashboard = () => {
-    navigate("/dashboard");
-  };
-
-  const handleOpenAppointmentsModal = () => {
-    navigate("/appointment");
-  };
-
-  const handleOpenSettingsModal = () => {
-    navigate("/settings");
-  };
-
-  const handleChangePassowrdModal = () => {
-    navigate("/change-password");
-  };
-
-  const handleOpenNotificationssModal = () => {
-    navigate("/notification-settings");
-  };
-
-  const help = () => {
-    navigate("/help");
-  };
-
-  const Services = () => {
-    navigate("/services");
-  };
-
-  const handleCloseUserDetailsModal = () => {
-    setShowUserDetailsModal(false);
   };
 
   const handlePhoneModalOpen = () => {
@@ -295,16 +211,20 @@ const EdithProfilePage = () => {
 
   return (
     <ChakraProvider theme={customTheme}>
-        <NavBar />
-        <Flex position="fixed" height="100vh" w="100vw">
-        <SideBar />
-        <Box w="75%" h="100vh">
-        
+      <LeftSideBar />
+      <VStack w="80%" h="100vh">
+        <Box marginLeft="510px" marginTop="8px">
+          <NavBar />
           <Flex>
             <SettingsSideBar />
             <Box marginLeft="420px" width="10%" p={3} h="80vh">
               <Box className="edit-profile">
-                <VStack width="30vw" marginLeft="-400px" spacing={-10}>
+                <VStack
+                  marginTop="-10px"
+                  width="30vw"
+                  marginLeft="-400px"
+                  spacing={-10}
+                >
                   <Text fontSize="20px">Edit profile</Text>
                   <FormControl>
                     <FormLabel fontSize="16px">First Name</FormLabel>
@@ -488,7 +408,7 @@ const EdithProfilePage = () => {
             </Box>
           </Flex>
         </Box>
-      </Flex>
+      </VStack>
 
       <Modal
         isOpen={isConfirmationModalOpen}
@@ -524,15 +444,7 @@ const EdithProfilePage = () => {
         isOpen={isPhoneModalOpen}
         onClose={handlePhoneModalClose}
       />
-      <UserDetailsModal
-        isOpen={showUserDetailsModal}
-        onClose={handleCloseUserDetailsModal}
-      />
-      <LogoutModal
-        isOpen={showLogoutModal}
-        onClose={() => setShowLogoutModal(false)}
-        onConfirm={handleConfirmLogout}
-      />
+      <VStack />
     </ChakraProvider>
   );
 };

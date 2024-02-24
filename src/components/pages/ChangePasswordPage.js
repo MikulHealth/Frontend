@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { GetCurrentUser, UpdateCustomer } from "../../apiCalls/UserApis";
+import LeftSideBar from "../authLayouts/LeftSideBar";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { SetUser } from "../../redux/userSlice";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import RightArrow from "../../assets/RightArrow.svg";
-import Help from "../../assets/Help.svg";
-import serviceIcon from "../../assets/ServiceIcon.svg";
-import SideBar from "../authLayouts/SideBar";
 import NavBar from "../authLayouts/NavBar";
-import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from "@chakra-ui/icons";
+import "react-datepicker/dist/react-datepicker.css";
 import {
   ChakraProvider,
   VStack,
@@ -31,23 +24,6 @@ import {
   extendTheme,
 } from "@chakra-ui/react";
 import { HiEye, HiEyeOff } from "react-icons/hi";
-import userImageIcon from "../../assets/userImage.svg";
-import NotificationIcon from "../../assets/notification.svg";
-import familyIcon from "../../assets/family.svg";
-import UserDetailsModal from "../sections/UserDetails";
-import LoadingSpinner from "../../utils/Spiner";
-import Wallet from "../../assets/Wallet.svg";
-import logo from "../../assets/LogoColoured.svg";
-import SettingsIcon from "../../assets/SettingsIconWhite.svg";
-import LogoutIcon from "../../assets/Logout.svg";
-import AppointmentsIcon from "../../assets/AppointmentIcon.svg";
-import HomeIcon from "../../assets/HomeBlack.svg";
-import ProfileIcon from "../../assets/ProfileIcone.svg";
-import LogoutModal from "../sections/LogoutModal";
-import PasswordIcon from "../../assets/PasswordIconColored.svg";
-import HelppIcon from "../../assets/HelppIcon.svg";
-import NotificationIconn from "../../assets/Notification.Icon.svg";
-import Bar from "../../assets/ColoredBar.svg";
 import SettingsSideBar from "../authLayouts/SettingsSideBar";
 
 const customTheme = extendTheme({
@@ -68,19 +44,10 @@ const customTheme = extendTheme({
 
 const ChangePasswordPage = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const toast = useToast();
-  const { user } = useSelector((state) => state.userReducer);
-  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
-  const [showWalletModal, setShowWalletModal] = useState(false);
-
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -107,70 +74,6 @@ const ChangePasswordPage = () => {
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
-  };
-
-  const handleOpenUserDetailsModal = () => {
-    setShowUserDetailsModal(true);
-  };
-
-  const handleCloseUserDetailsModal = () => {
-    setShowUserDetailsModal(false);
-  };
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
-  const handleOpenHelpModal = () => {};
-
-  const handleOpenWalletModal = () => {
-    navigate("/wallet");
-  };
-
-  const Services = () => {
-    navigate("/services");
-  };
-
-  const handleOpenLogoutModal = () => {
-    setShowLogoutModal(true);
-  };
-
-  const handleConfirmLogout = () => {
-    // Close the logout confirmation modal
-    setShowLogoutModal(false);
-
-    // Perform the actual logout
-    localStorage.removeItem("token");
-    localStorage.removeItem("phoneNumber");
-    localStorage.removeItem("orderId");
-    navigate("/");
-  };
-
-  const handleOpenDashboard = () => {
-    navigate("/dashboard");
-  };
-  const handleOpenSettingsModal = () => {
-    navigate("/settings");
-  };
-
-  const handleOpenEditProfileDashboard = () => {
-    navigate("/edit-profile");
-  };
-
-  const handleChangePassowrdModal = () => {
-    navigate("/change-password");
-  };
-
-  const handleOpenAppointmentsModal = () => {
-    navigate("/appointment");
-  };
-
-  const handleOpenNotificationssModal = () => {
-    navigate("/notification-settings");
-  };
-
-  const help = () => {
-    navigate("/help");
   };
 
   const validate = (values) => {
@@ -283,22 +186,22 @@ const ChangePasswordPage = () => {
 
   return (
     <ChakraProvider theme={customTheme}>
-      <NavBar />
-      <Flex position="fixed" height="100vh" w="100vw">
-        <SideBar />
-        <Box w="75%" h="100vh">
+      <LeftSideBar />
+      <VStack marginLeft="-70px" w="80%" h="100vh">
+        <Box marginTop="4px" marginLeft="270px">
+          <NavBar />
           <Flex>
             <SettingsSideBar />
             <Box
               marginTop="30px"
               className="change-password"
               marginLeft="50px"
-              width="35%"
+              width="80%"
               p={3}
               h="80vh"
             >
               {" "}
-              <VStack spacing={3} align="center">
+              <VStack marginLeft="50px" spacing={3} align="center">
                 <Text fontFamily="heading" fontSize="20px">
                   Change password
                 </Text>
@@ -382,7 +285,7 @@ const ChangePasswordPage = () => {
             </Box>
           </Flex>
         </Box>
-      </Flex>
+      </VStack>
     </ChakraProvider>
   );
 };

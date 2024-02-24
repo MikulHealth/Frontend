@@ -165,7 +165,7 @@ const LeftSideBar = () => {
                     : ""
                 }
               >
-                <Image src={SettingsIcon} alt="settings" style={iconStyle} />
+                <Image marginLeft="-5px" src={SettingsIcon} alt="settings" style={iconStyle} />
                 <Text style={listTextStyle}>Settings</Text>
               </Flex>
             </NavLink>

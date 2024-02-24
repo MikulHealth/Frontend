@@ -90,7 +90,6 @@ export default function NavBar() {
   };
 
   const pageTitle = pageTitles[location.pathname] || "Unknown Page";
-
   const isDashboard = location.pathname === "/dashboard";
 
   return (

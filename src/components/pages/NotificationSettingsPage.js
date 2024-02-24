@@ -51,7 +51,7 @@ import Bar from "../../assets/ColoredBar.svg";
 import SearchAppointmentsModal from "../sections/SearchAppointmentByDate";
 import serviceIcon from "../../assets/ServiceIcon.svg";
 import SettingsSideBar from "../authLayouts/SettingsSideBar";
-
+import LeftSideBar from "../authLayouts/LeftSideBar";
 const customTheme = extendTheme({
   components: {
     Link: {
@@ -183,9 +183,9 @@ const NotificationSettingsPage = () => {
 
   return (
     <ChakraProvider theme={customTheme}>
-      <NavBar />
-      <Flex position="fixed" height="100vh" w="100vw">
-        <SideBar />
+      <LeftSideBar />
+      <VStack marginLeft="80px" height="100vh" w="100vw">
+        <NavBar />
         <Box w="75%" h="100vh">
           <Flex>
             <SettingsSideBar />
@@ -287,7 +287,7 @@ const NotificationSettingsPage = () => {
             </Box>
           </Flex>
         </Box>
-      </Flex>
+      </VStack>
     </ChakraProvider>
   );
 };

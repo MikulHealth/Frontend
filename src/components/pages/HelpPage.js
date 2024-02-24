@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { GetCurrentUser, UpdateCustomer } from "../../apiCalls/UserApis";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { SetUser } from "../../redux/userSlice";
-import DatePicker from "react-datepicker";
+
 import "react-datepicker/dist/react-datepicker.css";
-import RightArrow from "../../assets/RightArrow.svg";
-import Help from "../../assets/Help.svg";
+
 import WhatsAppIcon from "../../assets/WhatsApp.svg";
-import SideBar from "../authLayouts/SideBar";
+import LeftSideBar from "../authLayouts/LeftSideBar";
 import NavBar from "../authLayouts/NavBar";
-import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from "@chakra-ui/icons";
+
 import {
   ChakraProvider,
   VStack,
@@ -32,20 +30,7 @@ import {
   FormLabel,
   extendTheme,
 } from "@chakra-ui/react";
-import userImageIcon from "../../assets/userImage.svg";
-import NotificationIcon from "../../assets/notification.svg";
-import familyIcon from "../../assets/family.svg";
-import UserDetailsModal from "../sections/UserDetails";
-import LoadingSpinner from "../../utils/Spiner";
-import Wallet from "../../assets/Wallet.svg";
-import logo from "../../assets/LogoColoured.svg";
-import SettingsIcon from "../../assets/SettingsIcon.svg";
-import LogoutIcon from "../../assets/Logout.svg";
-import AppointmentsIcon from "../../assets/AppointmentIcon.svg";
-import HomeIcon from "../../assets/HomeBlack.svg";
-import LogoutModal from "../sections/LogoutModal";
-import serviceIcon from "../../assets/ServiceIcon.svg";
-import SearchAppointmentsModal from "../sections/SearchAppointmentByDate";
+
 import SettingsSideBar from "../authLayouts/SettingsSideBar";
 
 const customTheme = extendTheme({
@@ -65,70 +50,11 @@ const customTheme = extendTheme({
 });
 
 const HelpPage = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const toast = useToast();
-  const { user } = useSelector((state) => state.userReducer);
-  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
-  const [showWalletModal, setShowWalletModal] = useState(false);
-
-  const handleOpenUserDetailsModal = () => {
-    setShowUserDetailsModal(true);
-  };
-
-  const handleCloseUserDetailsModal = () => {
-    setShowUserDetailsModal(false);
-  };
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
-  const handleOpenHelpModal = () => {};
-
-  const handleOpenWalletModal = () => {
-    navigate("/wallet");
-  };
-
-  const handleOpenSettingsModal = () => {
-    navigate("/settings");
-  };
-
-  const handleOpenLogoutModal = () => {
-    setShowLogoutModal(true);
-  };
-
-  const handleConfirmLogout = () => {
-    // Close the logout confirmation modal
-    setShowLogoutModal(false);
-
-    // Perform the actual logout
-    localStorage.removeItem("token");
-    localStorage.removeItem("phoneNumber");
-    localStorage.removeItem("orderId");
-    navigate("/");
-  };
-
-  const handleOpenDashboard = () => {
-    navigate("/dashboard");
-  };
-
-  const handleOpenAppointmentsModal = () => {
-    navigate("/appointment");
-  };
-
-  const Services = () => {
-    navigate("/services");
-  };
-
   return (
     <ChakraProvider theme={customTheme}>
-      <NavBar />
-      <Flex position="fixed" height="100vh" w="100vw">
-        <SideBar />
+      <LeftSideBar />
+      <VStack marginLeft="80px" height="100vh" w="100vw">
+        <NavBar />
         <Box w="75%" h="100vh">
           <SettingsSideBar />
           <Flex>
@@ -331,7 +257,7 @@ const HelpPage = () => {
             </VStack>
           </Flex>
         </Box>
-      </Flex>
+      </VStack>
     </ChakraProvider>
   );
 };
