@@ -9,6 +9,7 @@ import {
   extendTheme,
   Image,
   Divider,
+  ChakraProvider,
   VStack,
 } from "@chakra-ui/react";
 import { BellIcon } from "@chakra-ui/icons";
@@ -93,35 +94,18 @@ export default function NavBar() {
   const isDashboard = location.pathname === "/dashboard";
 
   return (
-    <VStack
-      position="sticky"
-      top="0"
-      zIndex="1000"
-      borderBottom="2px solid #A210C6"
-      h="20%"
-    >
+    <ChakraProvider theme={customTheme}>
       <Flex
+        h="20%"
         overflow="hidden"
         fontFamily="Gill Sans MT, sans-serif"
-        marginTop="15px"
         as="h4"
         p="10px"
         width={{ base: "100%" }}
         alignItems="center"
+        marginTop="-10px"
       >
-        <Image
-          marginLeft="20px"
-          src={logo}
-          alt="Logo"
-          w="200px"
-          h="58px"
-          // onClick={reloadPage}
-          style={{
-            cursor: "pointer",
-          }}
-          _hover={{ color: "" }}
-        />
-        <Box>
+        <Box marginLeft="20px">
           {isDashboard ? (
             <>
               <Flex marginLeft="30px">
@@ -144,7 +128,7 @@ export default function NavBar() {
             </>
           ) : (
             <Heading
-              marginLeft="30px"
+              marginLeft="-30px"
               fontSize="24px"
               color="#A210C6"
               fontWeight="bold"
@@ -200,6 +184,6 @@ export default function NavBar() {
       </Flex>
       {/* <Box borderBottom="2px solid #A210C6" w="100%" marginX={3} /> */}
       {/* <Divider my={2} borderColor="#A210C6" /> */}
-    </VStack>
+      </ChakraProvider>
   );
 }

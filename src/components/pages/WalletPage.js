@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { GetCurrentUser, UpdateCustomer } from "../../apiCalls/UserApis";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { SetUser } from "../../redux/userSlice";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import CanceledAppointmentsModal from "../sections/CanceledAppointments";
-import Help from "../../assets/Help.svg";
-import HelppIcon from "../../assets/HelppIcon.svg";
-import LogoutModal from "../sections/LogoutModal";
-import serviceIcon from "../../assets/ServiceIcon.svg";
+import Help from "../authLayouts/Help";
+import LeftSideBar from "../authLayouts/LeftSideBar";
+import { useDispatch, useSelector } from "react-redux";
 import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from "@chakra-ui/icons";
 import {
   ChakraProvider,
@@ -33,20 +28,9 @@ import {
   Divider,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import userImageIcon from "../../assets/userImage.svg";
-import NotificationIcon from "../../assets/notification.svg";
-import UserDetailsModal from "../sections/UserDetails";
-import logo from "../../assets/LogoColoured.svg";
-import SettingsIcon from "../../assets/SettingsIcon.svg";
-import LogoutIcon from "../../assets/Logout.svg";
-import AppointmentsIcon from "../../assets/AppointmentIcon.svg";
-import HomeIcon from "../../assets/HomeBlack.svg";
 import Transfer from "../../assets/TransferPayment.svg";
 import Online from "../../assets/OnlinePayment.svg";
 import RightArrow from "../../assets/RightArrow.svg";
-import Wallet from "../../assets/WalletWhite.svg";
-import LoadingSpinner from "../../utils/Spiner";
-import SideBar from "../authLayouts/SideBar";
 import NavBar from "../authLayouts/NavBar";
 
 const customTheme = extendTheme({
@@ -262,8 +246,6 @@ const WalletPage = () => {
   const toast = useToast();
   const balance = 0.0;
   const { user } = useSelector((state) => state.userReducer);
-  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const handleOpenFundWalletModal = () => {
     setShowFundWalletModal(true);
@@ -285,37 +267,6 @@ const WalletPage = () => {
     setShowOnlinePaymentModal(true);
   };
 
-  const handleOpenLogoutModal = () => {
-    setShowLogoutModal(true);
-  };
-
-  const handleConfirmLogout = () => {
-    setShowLogoutModal(false);
-    localStorage.removeItem("token");
-    localStorage.removeItem("phoneNumber");
-    localStorage.removeItem("orderId");
-    navigate("/");
-  };
-
-  const handleOpenDashboard = () => {
-    navigate("/dashboard");
-  };
-  const handleOpenSettingsModal = () => {
-    navigate("/settings");
-  };
-
-  const handleOpenAppointmentsModal = () => {
-    navigate("/appointment");
-  };
-
-  const help = () => {
-    navigate("/help");
-  };
-
-  const Services = () => {
-    navigate("/services");
-  };
-
   const openCreditpage = () => {
     navigate("/credit");
   };
@@ -327,20 +278,13 @@ const WalletPage = () => {
     setShowOnlinePaymentModal(false);
   };
 
-  const handleOpenUserDetailsModal = () => {
-    setShowUserDetailsModal(true);
-  };
-
-  const handleCloseUserDetailsModal = () => {
-    setShowUserDetailsModal(false);
-  };
-
   return (
     <ChakraProvider theme={customTheme}>
-      <NavBar />
-      <Flex position="fixed">
-        <SideBar />
-        <VStack h="100vh">
+      <LeftSideBar />
+      <VStack marginLeft="210px" w="80%" h="100vh">
+        <VStack marginTop="40px">
+          <NavBar />
+          <VStack>
           <Box
             marginTop="10px"
             border="1px solid gray"
@@ -478,38 +422,8 @@ const WalletPage = () => {
               width="60%"
             />
           </Box>
-          <Box marginLeft="900px" marginTop="120px">
-            <Image
-              onClick={help}
-              src={HelppIcon}
-              alt="Logo"
-              w="70px"
-              h="70px"
-              style={{
-                cursor: "pointer",
-                animation: "zoomInOut 2s infinite alternate",
-              }}
-            />
-
-            <style>
-              {`
-          @keyframes zoomInOut {
-            0% {
-              transform: scale(1);
-            }
-            100% {
-              transform: scale(1.2);
-            }
-          }
-        `}
-            </style>
-          </Box>
+       {/* <Help/> */}
         </VStack>
-
-        <UserDetailsModal
-          isOpen={showUserDetailsModal}
-          onClose={handleCloseUserDetailsModal}
-        />
         <FundWalletModal
           isOpen={showFundWalletModal}
           onClose={handleCloseFundWalletModal}
@@ -525,16 +439,13 @@ const WalletPage = () => {
             accountNumber: "0123456789",
           }}
         />
-        <LogoutModal
-          isOpen={showLogoutModal}
-          onClose={() => setShowLogoutModal(false)}
-          onConfirm={handleConfirmLogout}
-        />
+ 
         <OnlinePaymentModal
           isOpen={showOnlinePaymentModal}
           onClose={handleCloseOnlinePaymentModal}
         />
-      </Flex>
+      </VStack>
+      </VStack>
     </ChakraProvider>
   );
 };

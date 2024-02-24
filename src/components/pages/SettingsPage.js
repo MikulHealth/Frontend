@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
-import SideBar from "../authLayouts/SideBar";
+import LeftSideBar from "../authLayouts/LeftSideBar";
 import NavBar from "../authLayouts/NavBar";
 import {
   ChakraProvider,
@@ -32,26 +32,24 @@ const customTheme = extendTheme({
 const SettingsPage = () => {
   return (
     <ChakraProvider theme={customTheme}>
-        <NavBar />
-      <Flex position="fixed" height="100vh" w="100vw">
-        <SideBar />
-        <VStack w="75%" h="100vh">
-        
-          <Flex  marginLeft="-208px">
+      <LeftSideBar />
+      <VStack marginLeft="-70px" w="80%" h="100vh">
+        <Box marginLeft="330px" marginTop="15px">
+          <NavBar />
+          <Flex>
             <SettingsSideBar />
-            <Box marginLeft="70px" marginTop="20px">
+            <Box marginTop="20px">
               <Image
                 src={BigSettingsIcon}
                 alt="Settings Icon"
                 boxSize="50px"
-                // marginBottom="2%"
                 h="456px"
                 w="488px"
               />
             </Box>
           </Flex>
-        </VStack>
-      </Flex>
+        </Box>
+      </VStack>
     </ChakraProvider>
   );
 };

@@ -4,6 +4,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 import BookAppointmentModal from "../sections/BookAppointment";
 import { SearchIcon } from "@chakra-ui/icons";
+import LeftSideBar from "../authLayouts/LeftSideBar";
 import {
   ChakraProvider,
   VStack,
@@ -68,137 +69,139 @@ const AppointmentPage = () => {
 
   return (
     <ChakraProvider theme={customTheme}>
-      <NavBar />
-      <Flex position="fixed" height="100vh" w="100vw">
-        <SideBar />
-        <VStack w="75%" h="100vh">
-          <Box
-            marginLeft="-10"
-            marginTop="10px"
-            border="1px solid gray"
-            borderRadius="md"
-            padding="3px"
-            w="70vw"
-          >
-            <Flex marginLeft="10px">
-              <SearchIcon boxSize={4} marginRight="10px" marginTop="5px" />
-              <Text
-                fontSize="16px"
-                fontFamily="body"
-                style={{
-                  marginLeft: "5px",
-                  marginTop: "2px",
-                  fontStyle: "italic",
-                  cursor: "pointer",
-                }}
-                _hover={{ color: "#A210C6" }}
-                onClick={handleOpenSearchAppointmentsModal}
-              >
-                Search Appointment by date
-              </Text>
-            </Flex>
-          </Box>
-          <Flex
-            marginTop="20px"
-            marginLeft="-10"
-            bg="#A210C6"
-            w="70vw"
-            h="30vh"
-            borderRadius="20px"
-          >
-            <VStack color="white">
-              <Text
-                fontSize="20px"
-                fontFamily="heading"
-                marginTop="15px"
-                marginLeft="-98px"
-              >
-                Hello {user?.firstName},
-              </Text>
-              <Text
-                fontFamily="body"
-                fontSize="15px"
-                marginLeft="43px"
-                marginTop="5px"
-              >
-                Would you like to book an appointment
-              </Text>
-              <Text
-                fontFamily="body"
-                fontSize="15px"
-                marginTop="2px"
-                marginLeft="-36px"
-              >
-                for yourself or a loved one?
-              </Text>
-
-              <Button
-                onClick={handleOpenAppointmentModal}
-                bg="white"
-                color="#A210C6"
-                fontFamily="body"
-                marginTop="10px"
-                _hover={{ color: "" }}
-                marginLeft="-40px"
-                borderRadius="100px"
-                leftIcon={<CheckIcon />}
-              >
-                Book appointment
-              </Button>
-            </VStack>
-            <Box>
-              <Image
-                src={familyIcon}
-                alt="family icon"
-                h="150px"
-                w="150px"
-                marginTop="20px"
-                marginBottom="10px"
-                marginLeft="400px"
-              />
+      <LeftSideBar />
+      <VStack marginLeft="225px" w="80%" h="100vh">
+        <VStack marginTop="40px">
+          <NavBar />
+          <VStack>
+            <Box
+              marginLeft="-10"
+              marginTop="10px"
+              border="1px solid gray"
+              borderRadius="md"
+              padding="3px"
+              w="70vw"
+            >
+              <Flex marginLeft="10px">
+                <SearchIcon boxSize={4} marginRight="10px" marginTop="5px" />
+                <Text
+                  fontSize="16px"
+                  fontFamily="body"
+                  style={{
+                    marginLeft: "5px",
+                    marginTop: "2px",
+                    fontStyle: "italic",
+                    cursor: "pointer",
+                  }}
+                  _hover={{ color: "#A210C6" }}
+                  onClick={handleOpenSearchAppointmentsModal}
+                >
+                  Search Appointment by date
+                </Text>
+              </Flex>
             </Box>
-          </Flex>
+            <Flex
+              marginTop="20px"
+              marginLeft="-10"
+              bg="#A210C6"
+              w="70vw"
+              h="30vh"
+              borderRadius="20px"
+            >
+              <VStack color="white">
+                <Text
+                  fontSize="20px"
+                  fontFamily="heading"
+                  marginTop="15px"
+                  marginLeft="-98px"
+                >
+                  Hello {user?.firstName},
+                </Text>
+                <Text
+                  fontFamily="body"
+                  fontSize="15px"
+                  marginLeft="43px"
+                  marginTop="5px"
+                >
+                  Would you like to book an appointment
+                </Text>
+                <Text
+                  fontFamily="body"
+                  fontSize="15px"
+                  marginTop="2px"
+                  marginLeft="-36px"
+                >
+                  for yourself or a loved one?
+                </Text>
 
-          <Box marginLeft="-350px" className="appointment-tabs">
-            <VStack>
-              <Tabs colorScheme="purple.100" mt="40px">
-                <TabList justifyContent="space-between">
-                  <Tab>All</Tab>
+                <Button
+                  onClick={handleOpenAppointmentModal}
+                  bg="white"
+                  color="#A210C6"
+                  fontFamily="body"
+                  marginTop="10px"
+                  _hover={{ color: "" }}
+                  marginLeft="-40px"
+                  borderRadius="100px"
+                  leftIcon={<CheckIcon />}
+                >
+                  Book appointment
+                </Button>
+              </VStack>
+              <Box>
+                <Image
+                  src={familyIcon}
+                  alt="family icon"
+                  h="150px"
+                  w="150px"
+                  marginTop="20px"
+                  marginBottom="10px"
+                  marginLeft="400px"
+                />
+              </Box>
+            </Flex>
 
-                  <Tab>Pending</Tab>
+            <Flex marginTop="-20px" justifyContent="space-between" marginLeft="-100px" className="appointment-tabs">
+              <VStack>
+                <Tabs colorScheme="purple.100" mt="40px">
+                  <TabList justifyContent="space-between">
+                    <Tab>All</Tab>
 
-                  <Tab>Active</Tab>
+                    <Tab>Pending</Tab>
 
-                  <Tab>Completed</Tab>
-                </TabList>
-                <TabPanels marginLeft="-30px">
-                  <TabPanel>
-                    <AppointmentTab />
-                  </TabPanel>
-                  <TabPanel>
-                    <PendingApp />
-                  </TabPanel>
-                  <TabPanel>
-                    <PendingApp />
-                  </TabPanel>
-                  <TabPanel>
-                    <PendingApp />
-                  </TabPanel>
-                </TabPanels>
-              </Tabs>
-            </VStack>
-            <Help />
-          </Box>
-          <BookAppointmentModal
-            isOpen={showAppointmentModal}
-            onClose={handleCloseAppointmentModal}
-          />
-          <SearchAppointmentsModal
-            isOpen={showSearchAppointmentsModal}
-            onClose={handleCloseSearchAppointmentsModal}
-          />
+                    <Tab>Active</Tab>
+
+                    <Tab>Completed</Tab>
+                  </TabList>
+                  <TabPanels marginLeft="-30px">
+                    <TabPanel>
+                      <AppointmentTab />
+                    </TabPanel>
+                    <TabPanel>
+                      <PendingApp />
+                    </TabPanel>
+                    <TabPanel>
+                      <PendingApp />
+                    </TabPanel>
+                    <TabPanel>
+                      <PendingApp />
+                    </TabPanel>
+                  </TabPanels>
+                </Tabs>
+              </VStack>
+              <Help />
+            </Flex>
+            <BookAppointmentModal
+              isOpen={showAppointmentModal}
+              onClose={handleCloseAppointmentModal}
+            />
+            <SearchAppointmentsModal
+              isOpen={showSearchAppointmentsModal}
+              onClose={handleCloseSearchAppointmentsModal}
+            />
+          </VStack>
         </VStack>
-      </Flex>
+      </VStack>
     </ChakraProvider>
   );
 };

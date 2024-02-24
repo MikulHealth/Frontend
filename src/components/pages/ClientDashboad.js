@@ -29,7 +29,8 @@ import ServicesModal from "../sections/ServicePageModal";
 import LoadingSpinner from "../../utils/Spiner";
 import NavBar from "../authLayouts/NavBar";
 import SideBar from "../authLayouts/SideBar";
-
+import LeftBar from "../authLayouts/LeftBar";
+import LeftSideBar from "../authLayouts/LeftSideBar";
 const customTheme = extendTheme({
   components: {
     Link: {
@@ -180,303 +181,300 @@ const ClientDash = () => {
   };
 
   return (
-    <ChakraProvider theme={customTheme}  overflow="hidden">
-      <NavBar />
-      <Flex position="fixed" height="100vh" w="100vw">
-        <SideBar />
-        <VStack  w="75%" h="100vh">
-          <Flex>
-            <Box>
-              <Box
-                marginTop="50px"
-                bg="#A210C6"
-                w="50vw"
-                h="25vh"
-                borderRadius="20px"
-                marginBottom="30px"
-              >
-                {" "}
-                <Flex>
-                  <VStack marginLeft="20px" paddingTop="5px">
-                    <Text
-                      fontSize="14px"
-                      fontFamily="body"
-                      color="white"
-                      marginTop="20px"
-                    >
-                      Mikul Health Savings Account
-                    </Text>
-                    <Text color="white" fontSize="12px" marginLeft="-80%">
+    <ChakraProvider theme={customTheme} overflow="hidden">
+      <LeftSideBar />
+      <VStack marginLeft="225px" w="80%" h="100vh">
+        <NavBar />
+        <Flex >
+          <Box>
+            <Box
+              bg="#A210C6"
+              w="50vw"
+              h="25vh"
+              borderRadius="20px"
+              marginBottom="30px"
+            >
+              {" "}
+              <Flex>
+                <VStack marginLeft="20px" paddingTop="5px">
+                  <Text
+                    fontSize="14px"
+                    fontFamily="body"
+                    color="white"
+                    marginTop="20px"
+                  >
+                    Mikul Health Savings Account
+                  </Text>
+                  <Text color="white" fontSize="12px" marginLeft="-80%">
+                    ₦{balance.toFixed(2)}
+                  </Text>
+                </VStack>
+                <VStack>
+                  <Button
+                    borderRadius="15px"
+                    color="#A210C6"
+                    marginLeft="300px"
+                    marginTop="20px"
+                    onClick={handleOpenWalletModal}
+                    bg="white"
+                    leftIcon={<ExternalLinkIcon />}
+                  >
+                    Open wallet
+                  </Button>
+                </VStack>
+              </Flex>
+              <Flex marginLeft="20px" marginTop="30px">
+                <VStack color="white">
+                  <Text marginLeft="-130px" fontSize="12px">
+                    Wallet ID:
+                  </Text>
+                  <Text fontSize="16px">Wema Bank 0124536789</Text>
+                </VStack>
+                <Flex marginLeft="250px">
+                  <VStack color="white">
+                    <Text fontSize="14px">Total funded</Text>
+                    <Text color="white" fontSize="12px" marginLeft="-44px">
                       ₦{balance.toFixed(2)}
                     </Text>
                   </VStack>
-                  <VStack>
-                    <Button
-                      borderRadius="15px"
-                      color="#A210C6"
-                      marginLeft="300px"
-                      marginTop="20px"
-                      onClick={handleOpenWalletModal}
-                      bg="white"
-                      leftIcon={<ExternalLinkIcon />}
-                    >
-                      Open wallet
-                    </Button>
+                  <VStack color="white" marginLeft="50px">
+                    <Text fontSize="14px">Total spent</Text>
+                    <Text color="white" fontSize="12px" marginLeft="-34px">
+                      ₦{balance.toFixed(2)}
+                    </Text>
                   </VStack>
                 </Flex>
-                <Flex marginLeft="20px" marginTop="30px">
-                  <VStack color="white">
-                    <Text marginLeft="-130px" fontSize="12px">
-                      Wallet ID:
-                    </Text>
-                    <Text fontSize="16px">Wema Bank 0124536789</Text>
-                  </VStack>
-                  <Flex marginLeft="250px">
-                    <VStack color="white">
-                      <Text fontSize="14px">Total funded</Text>
-                      <Text color="white" fontSize="12px" marginLeft="-44px">
-                        ₦{balance.toFixed(2)}
-                      </Text>
-                    </VStack>
-                    <VStack color="white" marginLeft="50px">
-                      <Text fontSize="14px">Total spent</Text>
-                      <Text color="white" fontSize="12px" marginLeft="-34px">
-                        ₦{balance.toFixed(2)}
-                      </Text>
-                    </VStack>
-                  </Flex>
-                </Flex>
-              </Box>
-
-              <Box marginTop="-5px">
-                <Flex>
-                  <Box
-                    style={{
-                      // boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
-                      transition: "transform 0.3s ease-in-out",
-                    }}
-                    bg="#ECCFF4"
-                    w="24.5vw"
-                    h="20vh"
-                    borderRadius="10px"
-                    _hover={{
-                      transform: "translateY(-10px)",
-                    }}
-                  >
-                    <VStack marginTop="10px">
-                      <Text
-                        marginLeft="-160px"
-                        fontSize="20px"
-                        fontFamily="heading"
-                        color="black"
-                      >
-                        Book Appointment
-                      </Text>
-                      <Text marginLeft="-120px" fontSize="16px">
-                        Schedule your appointment
-                      </Text>
-                    </VStack>
-                    <Text
-                      fontSize="16px"
-                      style={{
-                        marginLeft: "130px",
-                        marginTop: "30px",
-                        fontStyle: "italic",
-                        cursor: "pointer",
-                      }}
-                      color="#A210C6"
-                      onClick={handleOpenAppointmentModal}
-                      _hover={{ color: "#A210C6" }}
-                    >
-                      Book now
-                    </Text>
-                  </Box>
-                  <Box
-                    style={{
-                      // boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
-                      transition: "transform 0.3s ease-in-out",
-                    }}
-                    _hover={{
-                      transform: "translateY(-10px)",
-                    }}
-                    bg="#ECCFF4"
-                    w="24.5vw"
-                    h="20vh"
-                    marginLeft="10px"
-                    borderRadius="10px"
-                    onClick={handleBeneficiariesButtonClick}
-                  >
-                    <VStack marginTop="10px">
-                      <Text
-                        marginLeft="-205px"
-                        fontSize="20px"
-                        fontFamily="heading"
-                        color="black"
-                      >
-                        Beneficiaries
-                      </Text>
-                      <Text marginLeft="-110px" fontSize="16px">
-                        Your friends and loved ones
-                      </Text>
-                    </VStack>
-                    <Text
-                      fontSize="16px"
-                      style={{
-                        marginLeft: "130px",
-                        marginTop: "30px",
-                        fontStyle: "italic",
-                        cursor: "pointer",
-                      }}
-                      color="#A210C6"
-                      _hover={{ color: "#A210C6" }}
-                    >
-                      view all
-                    </Text>
-                  </Box>
-                </Flex>
-                <Flex marginTop="25px">
-                  <Box
-                    style={{
-                      // boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
-                      transition: "transform 0.3s ease-in-out",
-                    }}
-                    _hover={{
-                      transform: "translateY(-10px)",
-                    }}
-                    bg="#ECCFF4"
-                    w="24.5vw"
-                    h="20vh"
-                    borderRadius="10px"
-                  >
-                    <VStack marginTop="10px">
-                      <Text
-                        fontSize="20px"
-                        fontFamily="heading"
-                        color="black"
-                        marginLeft="-205px"
-                      >
-                        Our services
-                      </Text>
-                      <Text fontSize="16px" marginLeft="-85px">
-                        Explore a variety of our services
-                      </Text>
-                    </VStack>
-                    <NavLink to="/services">
-                      <Text
-                        fontSize="16px"
-                        style={{
-                          marginLeft: "130px",
-                          marginTop: "30px",
-                          fontStyle: "italic",
-                          cursor: "pointer",
-                        }}
-                        color="#A210C6"
-                        _hover={{ color: "#A210C6" }}
-                      >
-                        View services
-                      </Text>
-                    </NavLink>
-                  </Box>
-                  <Box
-                    style={{
-                      // boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
-                      transition: "transform 0.3s ease-in-out",
-                    }}
-                    _hover={{
-                      transform: "translateY(-10px)",
-                    }}
-                    bg="#ECCFF4"
-                    w="24.5vw"
-                    h="20vh"
-                    marginLeft="10px"
-                    borderRadius="10px"
-                  >
-                    <VStack marginTop="10px">
-                      <Text
-                        fontSize="20px"
-                        fontFamily="heading"
-                        color="black"
-                        marginLeft="-185px"
-                      >
-                        Medical Report
-                      </Text>
-                      <Text marginLeft="-100px" fontSize="16px">
-                        Access and view your reports
-                      </Text>
-                    </VStack>
-                    <Text
-                      fontSize="16px"
-                      style={{
-                        marginLeft: "130px",
-                        marginTop: "30px",
-                        fontStyle: "italic",
-                        cursor: "pointer",
-                      }}
-                      color="#A210C6"
-                      _hover={{ color: "#A210C6" }}
-                    >
-                      View reports
-                    </Text>
-                  </Box>
-                </Flex>
-              </Box>
+              </Flex>
             </Box>
 
-            <Box marginLeft="30px">
-              <Box
-                marginTop="50px"
-                color="white"
-                borderRadius="10px"
-                h="40vh"
-                w="20vw"
-                bg="#A210C6"
-              >
-                <VStack>
+            <Box marginTop="-5px">
+              <Flex>
+                <Box
+                  style={{
+                    // boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
+                    transition: "transform 0.3s ease-in-out",
+                  }}
+                  bg="#ECCFF4"
+                  w="24.5vw"
+                  h="20vh"
+                  borderRadius="10px"
+                  _hover={{
+                    transform: "translateY(-10px)",
+                  }}
+                >
+                  <VStack marginTop="10px">
+                    <Text
+                      marginLeft="-160px"
+                      fontSize="20px"
+                      fontFamily="heading"
+                      color="black"
+                    >
+                      Book Appointment
+                    </Text>
+                    <Text marginLeft="-120px" fontSize="16px">
+                      Schedule your appointment
+                    </Text>
+                  </VStack>
                   <Text
                     fontSize="16px"
-                    fontFamily="body"
-                    fontWeight="bold"
-                    marginTop="20px"
-                    textAlign="center"
+                    style={{
+                      marginLeft: "130px",
+                      marginTop: "30px",
+                      fontStyle: "italic",
+                      cursor: "pointer",
+                    }}
+                    color="#A210C6"
+                    onClick={handleOpenAppointmentModal}
+                    _hover={{ color: "#A210C6" }}
                   >
-                    My Appointments
+                    Book now
                   </Text>
-                  <Flex flexDirection="column" marginTop="7px">
+                </Box>
+                <Box
+                  style={{
+                    // boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
+                    transition: "transform 0.3s ease-in-out",
+                  }}
+                  _hover={{
+                    transform: "translateY(-10px)",
+                  }}
+                  bg="#ECCFF4"
+                  w="24.5vw"
+                  h="20vh"
+                  marginLeft="10px"
+                  borderRadius="10px"
+                  onClick={handleBeneficiariesButtonClick}
+                >
+                  <VStack marginTop="10px">
                     <Text
-                      style={{
-                        cursor: "pointer",
-                        fontSize: "14px",
-                      }}
-                      _hover={{ color: "" }}
+                      marginLeft="-205px"
+                      fontSize="20px"
+                      fontFamily="heading"
+                      color="black"
                     >
-                      Pending: {pendingAppointments}
+                      Beneficiaries
                     </Text>
+                    <Text marginLeft="-110px" fontSize="16px">
+                      Your friends and loved ones
+                    </Text>
+                  </VStack>
+                  <Text
+                    fontSize="16px"
+                    style={{
+                      marginLeft: "130px",
+                      marginTop: "30px",
+                      fontStyle: "italic",
+                      cursor: "pointer",
+                    }}
+                    color="#A210C6"
+                    _hover={{ color: "#A210C6" }}
+                  >
+                    view all
+                  </Text>
+                </Box>
+              </Flex>
+              <Flex marginTop="25px">
+                <Box
+                  style={{
+                    // boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
+                    transition: "transform 0.3s ease-in-out",
+                  }}
+                  _hover={{
+                    transform: "translateY(-10px)",
+                  }}
+                  bg="#ECCFF4"
+                  w="24.5vw"
+                  h="20vh"
+                  borderRadius="10px"
+                >
+                  <VStack marginTop="10px">
                     <Text
-                      marginTop="5px"
-                      marginLeft=""
-                      style={{
-                        cursor: "pointer",
-                        fontSize: "14px",
-                      }}
-                      _hover={{ color: "" }}
+                      fontSize="20px"
+                      fontFamily="heading"
+                      color="black"
+                      marginLeft="-205px"
                     >
-                      Active: {activeAppointments}
+                      Our services
                     </Text>
+                    <Text fontSize="16px" marginLeft="-85px">
+                      Explore a variety of our services
+                    </Text>
+                  </VStack>
+                  <NavLink to="/services">
                     <Text
-                      marginTop="5px"
+                      fontSize="16px"
                       style={{
+                        marginLeft: "130px",
+                        marginTop: "30px",
+                        fontStyle: "italic",
                         cursor: "pointer",
-                        fontSize: "14px",
                       }}
-                      _hover={{ color: "" }}
+                      color="#A210C6"
+                      _hover={{ color: "#A210C6" }}
                     >
-                      Completed: {completedAppointments}
+                      View services
                     </Text>
-                  </Flex>
-                </VStack>
-              </Box>
+                  </NavLink>
+                </Box>
+                <Box
+                  style={{
+                    // boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
+                    transition: "transform 0.3s ease-in-out",
+                  }}
+                  _hover={{
+                    transform: "translateY(-10px)",
+                  }}
+                  bg="#ECCFF4"
+                  w="24.5vw"
+                  h="20vh"
+                  marginLeft="10px"
+                  borderRadius="10px"
+                >
+                  <VStack marginTop="10px">
+                    <Text
+                      fontSize="20px"
+                      fontFamily="heading"
+                      color="black"
+                      marginLeft="-185px"
+                    >
+                      Medical Report
+                    </Text>
+                    <Text marginLeft="-100px" fontSize="16px">
+                      Access and view your reports
+                    </Text>
+                  </VStack>
+                  <Text
+                    fontSize="16px"
+                    style={{
+                      marginLeft: "130px",
+                      marginTop: "30px",
+                      fontStyle: "italic",
+                      cursor: "pointer",
+                    }}
+                    color="#A210C6"
+                    _hover={{ color: "#A210C6" }}
+                  >
+                    View reports
+                  </Text>
+                </Box>
+              </Flex>
+            </Box>
+          </Box>
 
-              {/* <Box marginTop="-28px" bg="#F6E4FC" borderRadius="10" h="30vh">
+          <Box marginLeft="30px">
+            <Box
+              color="white"
+              borderRadius="10px"
+              h="40vh"
+              w="20vw"
+              bg="#A210C6"
+            >
+              <VStack>
+                <Text
+                  fontSize="16px"
+                  fontFamily="body"
+                  fontWeight="bold"
+                  marginTop="20px"
+                  textAlign="center"
+                >
+                  My Appointments
+                </Text>
+                <Flex flexDirection="column" marginTop="7px">
+                  <Text
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "14px",
+                    }}
+                    _hover={{ color: "" }}
+                  >
+                    Pending: {pendingAppointments}
+                  </Text>
+                  <Text
+                    marginTop="5px"
+                    marginLeft=""
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "14px",
+                    }}
+                    _hover={{ color: "" }}
+                  >
+                    Active: {activeAppointments}
+                  </Text>
+                  <Text
+                    marginTop="5px"
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "14px",
+                    }}
+                    _hover={{ color: "" }}
+                  >
+                    Completed: {completedAppointments}
+                  </Text>
+                </Flex>
+              </VStack>
+            </Box>
+
+            {/* <Box marginTop="-28px" bg="#F6E4FC" borderRadius="10" h="30vh">
                   <Text
                     fontSize="20px"
                     fontFamily="body"
@@ -516,11 +514,11 @@ const ClientDash = () => {
                     Read more
                   </Text>
                 </Box> */}
-              <Help />
-            </Box>
-          </Flex>
-        </VStack>
-      </Flex>
+            <Help />
+          </Box>
+        </Flex>
+      </VStack>
+
       <BeneficiariesModal
         isOpen={isBeneficiariesModalOpen}
         onClose={() => setBeneficiariesModalOpen(false)}

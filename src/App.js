@@ -25,7 +25,7 @@ import ChangePasswordPage from "./components/pages/ChangePasswordPage"
 import NotificationSettingsPage from "./components/pages/NotificationSettingsPage";
 import HelpPage from "./components/pages/HelpPage";
 import ServicePage from "./components/pages/ServicePage";
-import CreditPage from "./components/pages/CreditWalletPage";
+import LeftSideBar from "./components/authLayouts/LeftSideBar";
 import DebitPage from "./components/pages/DebitWalletPage";
 import CustomizeServicePage from "./components/pages/CustomizeServicePage";
 import RootLayout from "./components/authLayouts/RootLayout";
@@ -68,7 +68,7 @@ function App() {
           <Route path="/notification-settings" element={<NotificationSettingsPage />} />
           <Route path="/help" element={<HelpPage />} />
           <Route path="/services" element={<ServicePage />} />
-          <Route path="/credit" element={<CreditPage />} />
+          <Route path="/credit" element={<LeftSideBar />} />
           <Route path="/debit" element={<DebitPage />} />
           <Route path="/customize-service" element={<CustomizeServicePage />} />
           <Route path="/root" element={<RootLayout />} />
