@@ -54,7 +54,6 @@ const customTheme = extendTheme({
 const CustomizeServicePage = () => {
   const navigate = useNavigate();
   const toast = useToast();
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [customizedServices, setCustomizedServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAppointmentModal, setShowAppointmentModal] = useState(false);
@@ -68,10 +67,6 @@ const CustomizeServicePage = () => {
 
   const handlebackToService = () => {
     navigate("/services");
-  };
-
-  const handleOpenLogoutModal = () => {
-    setShowLogoutModal(true);
   };
 
   const handleOpenAppointmentModal = () => {

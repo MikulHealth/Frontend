@@ -1,55 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { GetCurrentUser, UpdateCustomer } from "../../apiCalls/UserApis";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { SetUser } from "../../redux/userSlice";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import RightArrow from "../../assets/RightArrow.svg";
-import Help from "../../assets/Help.svg";
 import WebIcon from "../../assets/WebIcon.svg";
 import EmailIcon from "../../assets/EmailIcon.svg";
 import TextIcon from "../../assets/TextIcon.svg";
-import LogoutModal from "../sections/LogoutModal";
-import SideBar from "../authLayouts/SideBar";
 import NavBar from "../authLayouts/NavBar";
-import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from "@chakra-ui/icons";
 import {
   ChakraProvider,
   VStack,
-  Input,
-  Button,
   useToast,
   Image,
   Box,
   Text,
   Flex,
-  Link,
-  Divider,
   Switch,
-  FormControl,
   extendTheme,
-  FormLabel,
 } from "@chakra-ui/react";
-import userImageIcon from "../../assets/userImage.svg";
-import NotificationIcon from "../../assets/notification.svg";
-import familyIcon from "../../assets/family.svg";
-import UserDetailsModal from "../sections/UserDetails";
-import LoadingSpinner from "../../utils/Spiner";
-import Wallet from "../../assets/Wallet.svg";
-import logo from "../../assets/LogoColoured.svg";
-import SettingsIcon from "../../assets/SettingsIconWhite.svg";
-import LogoutIcon from "../../assets/Logout.svg";
-import AppointmentsIcon from "../../assets/AppointmentIcon.svg";
-import HomeIcon from "../../assets/HomeBlack.svg";
-import ProfileIcon from "../../assets/ProfileIcone.svg";
-import ProfileIconWhite from "../../assets/ProfileIconWh.svg";
-import PasswordIcon from "../../assets/PasswordIcon.svg";
-import HelppIcon from "../../assets/HelppIcon.svg";
-import NotificationIconn from "../../assets/ColoredNotificationIcon.svg";
-import Bar from "../../assets/ColoredBar.svg";
-import SearchAppointmentsModal from "../sections/SearchAppointmentByDate";
-import serviceIcon from "../../assets/ServiceIcon.svg";
 import SettingsSideBar from "../authLayouts/SettingsSideBar";
 import LeftSideBar from "../authLayouts/LeftSideBar";
 const customTheme = extendTheme({
@@ -70,15 +36,6 @@ const customTheme = extendTheme({
 
 const NotificationSettingsPage = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const toast = useToast();
-  const { user } = useSelector((state) => state.userReducer);
-  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
-  const [showWalletModal, setShowWalletModal] = useState(false);
-
   const [webAppNotification, setWebAppNotification] = useState(false);
   const [emailNotification, setEmailNotification] = useState(false);
   const [textNotification, setTextNotification] = useState(false);
@@ -120,66 +77,6 @@ const NotificationSettingsPage = () => {
     // setEmailNotification(notificationSettings.email);
     // setTextNotification(notificationSettings.text);
   }, []);
-
-  const handleOpenUserDetailsModal = () => {
-    setShowUserDetailsModal(true);
-  };
-
-  const handleCloseUserDetailsModal = () => {
-    setShowUserDetailsModal(false);
-  };
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
-  const handleOpenHelpModal = () => {};
-
-  const handleOpenWalletModal = () => {
-    navigate("/wallet");
-  };
-
-  const handleOpenLogoutModal = () => {
-    setShowLogoutModal(true);
-  };
-
-  const handleConfirmLogout = () => {
-    // Close the logout confirmation modal
-    setShowLogoutModal(false);
-
-    // Perform the actual logout
-    localStorage.removeItem("token");
-    localStorage.removeItem("phoneNumber");
-    localStorage.removeItem("orderId");
-    navigate("/");
-  };
-
-  const handleOpenDashboard = () => {
-    navigate("/dashboard");
-  };
-
-  const handleOpenEditProfileDashboard = () => {
-    navigate("/edit-profile");
-  };
-  const handleOpenSettingsModal = () => {
-    navigate("/settings");
-  };
-
-  const handleOpenAppointmentsModal = () => {
-    navigate("/appointment");
-  };
-
-  const handleChangePassowrdModal = () => {
-    navigate("/change-password");
-  };
-
-  const help = () => {
-    navigate("/help");
-  };
-
-  const Services = () => {
-    navigate("/services");
-  };
 
   return (
     <ChakraProvider theme={customTheme}>

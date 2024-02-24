@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import LeftSideBar from "../authLayouts/LeftSideBar";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../authLayouts/NavBar";
 import "react-datepicker/dist/react-datepicker.css";

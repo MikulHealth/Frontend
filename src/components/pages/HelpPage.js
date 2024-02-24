@@ -1,10 +1,5 @@
-import React, { useState, useEffect } from "react";
-
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-
+import React  from "react";
 import "react-datepicker/dist/react-datepicker.css";
-
 import WhatsAppIcon from "../../assets/WhatsApp.svg";
 import LeftSideBar from "../authLayouts/LeftSideBar";
 import NavBar from "../authLayouts/NavBar";
@@ -12,22 +7,15 @@ import NavBar from "../authLayouts/NavBar";
 import {
   ChakraProvider,
   VStack,
-  Input,
-  Button,
-  useToast,
   Image,
   Box,
   Text,
   Flex,
-  Link,
   Accordion,
   AccordionItem,
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
-  Divider,
-  FormControl,
-  FormLabel,
   extendTheme,
 } from "@chakra-ui/react";
 
