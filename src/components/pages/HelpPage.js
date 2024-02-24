@@ -8,8 +8,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import RightArrow from "../../assets/RightArrow.svg";
 import Help from "../../assets/Help.svg";
 import WhatsAppIcon from "../../assets/WhatsApp.svg";
-import SideBar from "../layouts/SideBar";
-import NavBar from "../layouts/NavBar";
+import SideBar from "../authLayouts/SideBar";
+import NavBar from "../authLayouts/NavBar";
 import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from "@chakra-ui/icons";
 import {
   ChakraProvider,
@@ -46,7 +46,7 @@ import HomeIcon from "../../assets/HomeBlack.svg";
 import LogoutModal from "../sections/LogoutModal";
 import serviceIcon from "../../assets/ServiceIcon.svg";
 import SearchAppointmentsModal from "../sections/SearchAppointmentByDate";
-import SettingsSideBar from "../layouts/SettingsSideBar";
+import SettingsSideBar from "../authLayouts/SettingsSideBar";
 
 const customTheme = extendTheme({
   components: {

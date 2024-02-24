@@ -46,8 +46,8 @@ import Online from "../../assets/OnlinePayment.svg";
 import RightArrow from "../../assets/RightArrow.svg";
 import Wallet from "../../assets/WalletWhite.svg";
 import LoadingSpinner from "../../utils/Spiner";
-import SideBar from "../layouts/SideBar";
-import NavBar from "../layouts/NavBar";
+import SideBar from "../authLayouts/SideBar";
+import NavBar from "../authLayouts/NavBar";
 
 const customTheme = extendTheme({
   components: {

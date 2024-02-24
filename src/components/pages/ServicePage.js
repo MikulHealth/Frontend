@@ -17,8 +17,8 @@ import {
   extendTheme,
 } from "@chakra-ui/react";
 
-import SideBar from "../layouts/SideBar";
-import NavBar from "../layouts/NavBar";
+import SideBar from "../authLayouts/SideBar";
+import NavBar from "../authLayouts/NavBar";
 import HelppIcon from "../../assets/HelppIcon.svg";
 import Chevron from "../../assets/ChevronDown.svg";
 const customTheme = extendTheme({

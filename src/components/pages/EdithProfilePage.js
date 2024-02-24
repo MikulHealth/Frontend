@@ -9,8 +9,8 @@ import RightArrow from "../../assets/RightArrow.svg";
 import Help from "../../assets/Help.svg";
 import Bar from "../../assets/ColoredBar.svg";
 import DateIcon from "../../assets/DateIcon.svg";
-import SideBar from "../layouts/SideBar";
-import NavBar from "../layouts/NavBar";
+import SideBar from "../authLayouts/SideBar";
+import NavBar from "../authLayouts/NavBar";
 import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from "@chakra-ui/icons";
 import {
   ChakraProvider,
@@ -57,7 +57,7 @@ import ColorArrowIcon from "../../assets/RightArrowColor.svg";
 import NotificationIconn from "../../assets/Notification.Icon.svg";
 import UpdatePhoneNumber from "../sections/UpdatePhoneNumber";
 import serviceIcon from "../../assets/ServiceIcon.svg";
-import SettingsSideBar from "../layouts/SettingsSideBar";
+import SettingsSideBar from "../authLayouts/SettingsSideBar";
 
 const customTheme = extendTheme({
   components: {

@@ -28,8 +28,8 @@ import ServicePage from "./components/pages/ServicePage";
 import CreditPage from "./components/pages/CreditWalletPage";
 import DebitPage from "./components/pages/DebitWalletPage";
 import CustomizeServicePage from "./components/pages/CustomizeServicePage";
-import RootLayout from "./components/layouts/RootLayout";
-import BookButton from "./components/layouts/BookButton";
+import RootLayout from "./components/authLayouts/RootLayout";
+import BookButton from "./components/authLayouts/BookButton";
 
 
 function App() {

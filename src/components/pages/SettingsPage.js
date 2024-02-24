@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
-import SideBar from "../layouts/SideBar";
-import NavBar from "../layouts/NavBar";
+import SideBar from "../authLayouts/SideBar";
+import NavBar from "../authLayouts/NavBar";
 import {
   ChakraProvider,
   VStack,
@@ -11,7 +11,7 @@ import {
   extendTheme,
 } from "@chakra-ui/react";
 
-import SettingsSideBar from "../layouts/SettingsSideBar";
+import SettingsSideBar from "../authLayouts/SettingsSideBar";
 import BigSettingsIcon from "../../assets/BigSettingsIcon.svg";
 const customTheme = extendTheme({
   components: {

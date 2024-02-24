@@ -23,11 +23,11 @@ import {
 import { CheckIcon } from "@chakra-ui/icons";
 import familyIcon from "../../assets/family.svg";
 import SearchAppointmentsModal from "../sections/SearchAppointmentByDate";
-import SideBar from "../layouts/SideBar";
-import NavBar from "../layouts/NavBar";
-import Help from "../layouts/Help";
-import AppointmentTab from "../layouts/AllAppointmentTab";
-import PendingApp from "../layouts/PendingAppointmentTab";
+import SideBar from "../authLayouts/SideBar";
+import NavBar from "../authLayouts/NavBar";
+import Help from "../authLayouts/Help";
+import AppointmentTab from "../authLayouts/AllAppointmentTab";
+import PendingApp from "../authLayouts/PendingAppointmentTab";
 
 const customTheme = extendTheme({
   components: {

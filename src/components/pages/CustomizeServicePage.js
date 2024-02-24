@@ -32,8 +32,8 @@ import UserDetailsModal from "../sections/UserDetails";
 import LoadingSpinner from "../../utils/Spiner";
 import HelppIcon from "../../assets/HelppIcon.svg";
 import CustomizeServiceModal from "../sections/CustomizeServiceModal";
-import SideBar from "../layouts/SideBar";
-import NavBar from "../layouts/NavBar";
+import SideBar from "../authLayouts/SideBar";
+import NavBar from "../authLayouts/NavBar";
 
 const customTheme = extendTheme({
   components: {

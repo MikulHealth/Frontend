@@ -6,7 +6,7 @@ import { SetUser } from "../../redux/userSlice";
 import BookAppointmentModal from "../sections/BookAppointment";
 import MatchedAppointmentsModal from "../sections/MatchedAppointmentsModal";
 import PayForAppointmentModal from "../sections/PayForAppointment";
-import Help from "../layouts/Help";
+import Help from "../authLayouts/Help";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -27,8 +27,8 @@ import "../../styles/pages/LandingPage.css";
 import BeneficiariesModal from "../sections/Beneficiaries";
 import ServicesModal from "../sections/ServicePageModal";
 import LoadingSpinner from "../../utils/Spiner";
-import NavBar from "../layouts/NavBar";
-import SideBar from "../layouts/SideBar";
+import NavBar from "../authLayouts/NavBar";
+import SideBar from "../authLayouts/SideBar";
 
 const customTheme = extendTheme({
   components: {

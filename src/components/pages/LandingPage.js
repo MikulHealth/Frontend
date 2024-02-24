@@ -260,7 +260,9 @@ const LandingPage = () => {
                   <br />
                   journey.
                 </Text>
-                <Box h="20px"></Box>
+                <Box h="20px">
+
+                </Box>
                 <Button
                   bg="#A210C6"
                   color="white"
@@ -421,26 +423,14 @@ const LandingPage = () => {
                   >
                     Join the Future of Healthcare
                   </Text>
-                  <Text
-                    textAlign="left"
-                    fontSize="20px"
-                    color="white"
-                    fontFamily="Montserrat"
-                  >
+                  <Text  textAlign="left" fontSize="20px" color="white" fontFamily="Montserrat">
                     Empower healthcare innovation and <br />
                     shape the future of Healthcare delivery <br />
                     with Mikul Health
                   </Text>
                   <Box h="25px" />
                   <ChakraLink href="/join" color="#A210C6">
-                    <Button
-                      w="10vw"
-                      borderRadius="100px"
-                      marginLeft="-585px"
-                      bg="white"
-                    >
-                      Join us
-                    </Button>
+                    <Button w="10vw" borderRadius="100px" marginLeft="-585px" bg="white">Join us</Button>
                   </ChakraLink>
                 </Box>
               </Box>
@@ -737,10 +727,7 @@ const LandingPage = () => {
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel
-                    textAlign="justify"
-                    className="custom-accordion-panel"
-                  >
+                  <AccordionPanel textAlign="justify" className="custom-accordion-panel">
                     Upon a successful registeration, you can request and get
                     matched to a medic to recieve care by booking any of the
                     services we offer from your dashboard.
@@ -787,10 +774,7 @@ const LandingPage = () => {
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel
-                    textAlign="justify"
-                    className="custom-accordion-panel"
-                  >
+                  <AccordionPanel textAlign="justify" className="custom-accordion-panel">
                     Yes you can have a replacement when asigned a caregiver that
                     you do not like. We can provide a replace within 72 hours
                     upon your request for a replacement.
@@ -811,10 +795,7 @@ const LandingPage = () => {
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel
-                    textAlign="justify"
-                    className="custom-accordion-panel"
-                  >
+                  <AccordionPanel textAlign="justify" className="custom-accordion-panel">
                     Upon booking and making payment for the choosen service, you
                     would receive care within 48 hours.
                   </AccordionPanel>
@@ -834,10 +815,7 @@ const LandingPage = () => {
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel
-                    textAlign="justify"
-                    className="custom-accordion-panel"
-                  >
+                  <AccordionPanel textAlign="justify" className="custom-accordion-panel">
                     Yes, aside our standadized service plans. We also have
                     provision for customizing a service plan that would best
                     suit you or your loved according to the peculiarity of the
@@ -859,10 +837,7 @@ const LandingPage = () => {
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel
-                    textAlign="justify"
-                    className="custom-accordion-panel"
-                  >
+                  <AccordionPanel textAlign="justify" className="custom-accordion-panel">
                     <Text>
                       We work with Registred Nurses and Medical Docters who are
                       acreditated and certified with valid licenses and a proven

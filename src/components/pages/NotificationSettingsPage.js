@@ -11,8 +11,8 @@ import WebIcon from "../../assets/WebIcon.svg";
 import EmailIcon from "../../assets/EmailIcon.svg";
 import TextIcon from "../../assets/TextIcon.svg";
 import LogoutModal from "../sections/LogoutModal";
-import SideBar from "../layouts/SideBar";
-import NavBar from "../layouts/NavBar";
+import SideBar from "../authLayouts/SideBar";
+import NavBar from "../authLayouts/NavBar";
 import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from "@chakra-ui/icons";
 import {
   ChakraProvider,
@@ -50,7 +50,7 @@ import NotificationIconn from "../../assets/ColoredNotificationIcon.svg";
 import Bar from "../../assets/ColoredBar.svg";
 import SearchAppointmentsModal from "../sections/SearchAppointmentByDate";
 import serviceIcon from "../../assets/ServiceIcon.svg";
-import SettingsSideBar from "../layouts/SettingsSideBar";
+import SettingsSideBar from "../authLayouts/SettingsSideBar";
 
 const customTheme = extendTheme({
   components: {
