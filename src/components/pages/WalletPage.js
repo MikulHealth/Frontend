@@ -247,12 +247,8 @@ const WalletPage = () => {
   const balance = 0.0;
   const { user } = useSelector((state) => state.userReducer);
 
-  const pageStyle = {
-    animation: "slideIn 0.5s ease-in-out",
-  };
-
   const settingsContainerStyle = {
-    animation: "slideInUp 0.5s ease-in-out",
+    animation: "slideInUp 0.9s ease-in-out",
   };
 
   const handleOpenFundWalletModal = () => {
@@ -287,7 +283,7 @@ const WalletPage = () => {
   };
 
   return (
-    <ChakraProvider style={pageStyle} theme={customTheme}>
+    <ChakraProvider theme={customTheme}>
       <LeftSideBar />
       <VStack
         style={settingsContainerStyle}

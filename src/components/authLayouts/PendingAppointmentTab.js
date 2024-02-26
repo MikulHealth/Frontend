@@ -198,7 +198,13 @@ export default function PendingApp() {
   };
 
   return (
-    <Box className="pending-appointment" overflow="scroll" w="45vw" h="28vh">
+    <Box
+      className="pending-appointment"
+      marginLeft="2%"
+      overflow="scroll"
+      w="45vw"
+      h="28vh"
+    >
       {loading ? (
         <LoadingSpinner />
       ) : pendingAppointments.length === 0 ? (

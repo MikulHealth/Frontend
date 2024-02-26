@@ -36,7 +36,7 @@ const SettingsPage = () => {
   };
 
   const settingsContainerStyle = {
-    animation: "slideInUp 0.5s ease-in-out",
+    animation: "slideInUp 0.9s ease-in-out",
   };
 
   return (
