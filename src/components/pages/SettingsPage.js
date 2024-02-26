@@ -13,6 +13,7 @@ import {
 
 import SettingsSideBar from "../authLayouts/SettingsSideBar";
 import BigSettingsIcon from "../../assets/BigSettingsIcon.svg";
+
 const customTheme = extendTheme({
   components: {
     Link: {
@@ -30,10 +31,18 @@ const customTheme = extendTheme({
 });
 
 const SettingsPage = () => {
+  const pageStyle = {
+    animation: "slideIn 0.5s ease-in-out",
+  };
+
+  const settingsContainerStyle = {
+    animation: "slideInUp 0.5s ease-in-out",
+  };
+
   return (
     <ChakraProvider theme={customTheme}>
       <LeftSideBar />
-      <VStack marginLeft="280px" w="70%" h="100vh">
+      <VStack style={settingsContainerStyle} position="fixed" marginLeft="280px" w="70%" h="100vh">
         <NavBar />
         <Flex marginTop="-30px" marginLeft="-250px">
           <SettingsSideBar />
@@ -51,4 +60,5 @@ const SettingsPage = () => {
     </ChakraProvider>
   );
 };
+
 export default SettingsPage;

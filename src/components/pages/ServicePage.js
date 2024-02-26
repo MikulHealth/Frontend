@@ -70,13 +70,26 @@ const ServicePage = () => {
     { title: "Recovery care", onClick: handleOpenRecoveryCareModal },
     { title: "Nanny services", onClick: handleOpenNannyCareModal },
     { title: "Short home visit", onClick: handleOpenShortCareModal },
-
   ];
+
+  const pageStyle = {
+    animation: "slideIn 0.5s ease-in-out",
+  };
+
+  const settingsContainerStyle = {
+    animation: "slideInUp 0.5s ease-in-out",
+  };
 
   return (
     <ChakraProvider theme={customTheme}>
       <LeftSideBar />
-      <VStack marginLeft="225px" w="80%" h="100vh">
+      <VStack
+        style={settingsContainerStyle}
+        marginLeft="225px"
+        position="fixed"
+        w="80%"
+        h="100vh"
+      >
         <VStack marginTop="40px">
           <NavBar />
           <VStack>

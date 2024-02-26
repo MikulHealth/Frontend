@@ -178,12 +178,22 @@ const ClientDash = () => {
     navigate("/wallet");
   };
 
+  const settingsContainerStyle = {
+    animation: "slideInUp 0.5s ease-in-out",
+  };
+
   return (
     <ChakraProvider theme={customTheme} overflow="hidden">
       <LeftSideBar />
-      <VStack marginLeft="225px" w="80%" h="100vh">
+      <VStack
+        style={settingsContainerStyle}
+        marginLeft="225px"
+        position="fixed"
+        w="80%"
+        h="100vh"
+      >
         <NavBar />
-        <Flex >
+        <Flex>
           <Box>
             <Box
               bg="#A210C6"
