@@ -85,6 +85,7 @@ const LeftSideBar = () => {
             <NavLink to="/dashboard" style={listItemStyle}>
               <Flex
                 color={location.pathname === "/dashboard" ? "#A210C6" : ""}
+                fontWeight={location.pathname === "/dashboard" ? "bold" : ""}
                 textDecoration={
                   location.pathname === "/dashboard" ? "underline" : ""
                 }
@@ -98,6 +99,7 @@ const LeftSideBar = () => {
             <NavLink to="/appointment" style={listItemStyle}>
               <Flex
                 color={location.pathname === "/appointment" ? "#A210C6" : ""}
+                fontWeight={location.pathname === "/appointment" ? "bold" : ""}
                 textDecoration={
                   location.pathname === "/appointment" ? "underline" : ""
                 }
@@ -111,6 +113,7 @@ const LeftSideBar = () => {
             <NavLink to="/wallet" style={listItemStyle}>
               <Flex
                 color={location.pathname === "/wallet" ? "#A210C6" : ""}
+                fontWeight={location.pathname === "/wallet" ? "bold" : ""}
                 textDecoration={
                   location.pathname === "/wallet" ? "underline" : ""
                 }
@@ -129,6 +132,13 @@ const LeftSideBar = () => {
                     ? "#A210C6"
                     : ""
                 }
+                fontWeight={
+                  location.pathname === "/services" ||
+                  location.pathname === "/customize-service"
+                    ? "bold"
+                    : ""
+                }
+                
                 textDecoration={
                   location.pathname === "/services" ||
                   location.pathname === "/customize-service"
@@ -153,6 +163,15 @@ const LeftSideBar = () => {
                   location.pathname === "/notification-settings" ||
                   location.pathname === "/help"
                     ? "underline"
+                    : ""
+                }
+                fontWeight={
+                  location.pathname === "/settings" ||
+                  location.pathname === "/edit-profile" ||
+                  location.pathname === "/change-password" ||
+                  location.pathname === "/notification-settings" ||
+                  location.pathname === "/help"
+                    ? "bold"
                     : ""
                 }
                 color={

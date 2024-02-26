@@ -194,11 +194,10 @@ const CustomizeServicePage = () => {
   return (
     <ChakraProvider theme={customTheme}>
       <LeftSideBar />
-      <VStack height="100vh" w="100vw">
-        <VStack marginTop="30px">
-          <NavBar />
-        </VStack>
-        <Box marginLeft="200px" w="70vw" h="80vh">
+      <VStack marginLeft="280px" height="100vh" w="70%">
+        <NavBar />
+
+        <Box w="70vw" h="80vh">
           <Flex>
             <Box>
               <Text fontSize="18px" marginLeft="30px" marginTop="5px">
@@ -403,7 +402,7 @@ const CustomizeServicePage = () => {
             )}
           </Box>
 
-          <Box marginLeft="905px" marginTop="-110px">
+          <Box marginLeft="910px" marginTop="-150px">
             <Image
               onClick={help}
               src={HelppIcon}

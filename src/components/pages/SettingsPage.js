@@ -33,24 +33,20 @@ const SettingsPage = () => {
   return (
     <ChakraProvider theme={customTheme}>
       <LeftSideBar />
-      <VStack marginLeft="200px" w="80%" h="100vh">
-        <VStack marginTop="40px" marginLeft="40px">
-          <NavBar />
-          <VStack>
-            <Flex marginLeft="-250px">
-              <SettingsSideBar />
-              <Box marginTop="20px">
-                <Image
-                  src={BigSettingsIcon}
-                  alt="Settings Icon"
-                  boxSize="50px"
-                  h="456px"
-                  w="488px"
-                />
-              </Box>
-            </Flex>
-          </VStack>
-        </VStack>
+      <VStack marginLeft="280px" w="70%" h="100vh">
+        <NavBar />
+        <Flex marginTop="-30px" marginLeft="-250px">
+          <SettingsSideBar />
+          <Box marginTop="20px">
+            <Image
+              src={BigSettingsIcon}
+              alt="Settings Icon"
+              boxSize="50px"
+              h="456px"
+              w="488px"
+            />
+          </Box>
+        </Flex>
       </VStack>
     </ChakraProvider>
   );

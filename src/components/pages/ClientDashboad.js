@@ -28,8 +28,6 @@ import BeneficiariesModal from "../sections/Beneficiaries";
 import ServicesModal from "../sections/ServicePageModal";
 import LoadingSpinner from "../../utils/Spiner";
 import NavBar from "../authLayouts/NavBar";
-import SideBar from "../authLayouts/SideBar";
-import LeftBar from "../authLayouts/LeftBar";
 import LeftSideBar from "../authLayouts/LeftSideBar";
 const customTheme = extendTheme({
   components: {

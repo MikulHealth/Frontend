@@ -186,43 +186,35 @@ const ChangePasswordPage = () => {
   return (
     <ChakraProvider theme={customTheme}>
       <LeftSideBar />
-      <VStack marginLeft="-70px" w="80%" h="100vh">
-        <Box marginTop="4px" marginLeft="270px">
-          <NavBar />
-          <Flex>
-            <SettingsSideBar />
-            <Box
-              marginTop="30px"
-              className="change-password"
-              marginLeft="50px"
-              width="80%"
-              p={3}
-              h="80vh"
-            >
-              {" "}
-              <VStack marginLeft="50px" spacing={3} align="center">
-                <Text fontFamily="heading" fontSize="20px">
-                  Change password
-                </Text>
-                <FormControl>
-                  <FormLabel>Old Password</FormLabel>
-                  <InputGroup>
-                    <Input
-                      type={showOldPassword ? "text" : "password"}
-                      value={oldPassword}
-                      onChange={handleOldPasswordChange}
-                      borderColor="black"
-                      _hover={{ color: "" }}
-                    />
+      <VStack position="fixed" marginLeft="280px" w="70%" h="100vh">
+        <NavBar />
+        <Flex marginTop="-30px" marginLeft="-294px">
+          <SettingsSideBar />
+          <Box className="change-password" p={3}>
+            {" "}
+            <VStack w="30vw" marginLeft="10px">
+              <Text fontFamily="heading" fontSize="20px">
+                Change password
+              </Text>
+              <FormControl>
+                <FormLabel>Old Password</FormLabel>
+                <InputGroup>
+                  <Input
+                    type={showOldPassword ? "text" : "password"}
+                    value={oldPassword}
+                    onChange={handleOldPasswordChange}
+                    borderColor="black"
+                    _hover={{ color: "" }}
+                  />
 
-                    <InputRightElement width="4.5rem">
-                      <IconButton
-                        h="1.75rem"
-                        size="sm"
-                        onClick={handleToggleOldPassword}
-                        icon={showConfirmPassword ? <HiEyeOff /> : <HiEye />}
-                      />
-                      {/* <Button
+                  <InputRightElement width="4.5rem">
+                    <IconButton
+                      h="1.75rem"
+                      size="sm"
+                      onClick={handleToggleOldPassword}
+                      icon={showConfirmPassword ? <HiEyeOff /> : <HiEye />}
+                    />
+                    {/* <Button
                       h="1.75rem"
                       size="sm"
                       onClick={handleToggleOldPassword}
@@ -231,59 +223,58 @@ const ChangePasswordPage = () => {
                     >
                       {showOldPassword ? "Hide" : "Show"}
                     </Button> */}
-                    </InputRightElement>
-                  </InputGroup>
-                </FormControl>
+                  </InputRightElement>
+                </InputGroup>
+              </FormControl>
 
-                <FormControl>
-                  <FormLabel>New Password</FormLabel>
-                  <InputGroup>
-                    <Input
-                      type={showNewPassword ? "text" : "password"}
-                      value={newPassword}
-                      onChange={handleNewPasswordChange}
-                      borderColor="black"
-                      _hover={{ color: "" }}
+              <FormControl>
+                <FormLabel>New Password</FormLabel>
+                <InputGroup>
+                  <Input
+                    type={showNewPassword ? "text" : "password"}
+                    value={newPassword}
+                    onChange={handleNewPasswordChange}
+                    borderColor="black"
+                    _hover={{ color: "" }}
+                  />
+                  <InputRightElement width="4.5rem">
+                    <IconButton
+                      h="1.75rem"
+                      size="sm"
+                      onClick={handleToggleNewPassword}
+                      icon={showConfirmPassword ? <HiEyeOff /> : <HiEye />}
                     />
-                    <InputRightElement width="4.5rem">
-                      <IconButton
-                        h="1.75rem"
-                        size="sm"
-                        onClick={handleToggleNewPassword}
-                        icon={showConfirmPassword ? <HiEyeOff /> : <HiEye />}
-                      />
-                    </InputRightElement>
-                  </InputGroup>
-                </FormControl>
+                  </InputRightElement>
+                </InputGroup>
+              </FormControl>
 
-                <FormControl>
-                  <FormLabel>Confirm New Password</FormLabel>
-                  <InputGroup>
-                    <Input
-                      type={showConfirmPassword ? "text" : "password"}
-                      value={confirmPassword}
-                      onChange={handleConfirmPasswordChange}
-                      borderColor="black"
-                      _hover={{ color: "" }}
+              <FormControl>
+                <FormLabel>Confirm New Password</FormLabel>
+                <InputGroup>
+                  <Input
+                    type={showConfirmPassword ? "text" : "password"}
+                    value={confirmPassword}
+                    onChange={handleConfirmPasswordChange}
+                    borderColor="black"
+                    _hover={{ color: "" }}
+                  />
+                  <InputRightElement width="4.5rem">
+                    <IconButton
+                      h="1.75rem"
+                      size="sm"
+                      onClick={handleToggleConfirmPassword}
+                      icon={showConfirmPassword ? <HiEyeOff /> : <HiEye />}
                     />
-                    <InputRightElement width="4.5rem">
-                      <IconButton
-                        h="1.75rem"
-                        size="sm"
-                        onClick={handleToggleConfirmPassword}
-                        icon={showConfirmPassword ? <HiEyeOff /> : <HiEye />}
-                      />
-                    </InputRightElement>
-                  </InputGroup>
-                </FormControl>
+                  </InputRightElement>
+                </InputGroup>
+              </FormControl>
 
-                <Button color="white" bg="#A210C6" onClick={handleSaveChanges}>
-                  Save Changes
-                </Button>
-              </VStack>
-            </Box>
-          </Flex>
-        </Box>
+              <Button color="white" bg="#A210C6" onClick={handleSaveChanges}>
+                Save Changes
+              </Button>
+            </VStack>
+          </Box>
+        </Flex>
       </VStack>
     </ChakraProvider>
   );

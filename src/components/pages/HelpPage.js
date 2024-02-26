@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import WhatsAppIcon from "../../assets/WhatsApp.svg";
 import LeftSideBar from "../authLayouts/LeftSideBar";
@@ -41,12 +41,12 @@ const HelpPage = () => {
   return (
     <ChakraProvider theme={customTheme}>
       <LeftSideBar />
-      <VStack marginLeft="80px" height="100vh" w="100vw">
+      <VStack marginLeft="279px" height="100vh" w="70vw">
         <NavBar />
-        <Box w="75%" h="100vh">
+        <Box marginTop="-30px">
           <SettingsSideBar />
           <Flex>
-            <VStack marginLeft="120px">
+            <VStack marginLeft="150px">
               <Box marginTop="-370px">
                 <Text fontFamily="body" color="#A210C6" fontSize="24px">
                   Frequently Asked Questions
@@ -190,7 +190,7 @@ const HelpPage = () => {
                 </Accordion>
               </Box>
             </VStack>
-            <VStack marginLeft="50px" marginTop="-370px">
+            <VStack marginLeft="50px" marginTop="-285px">
               <Box textAlign="left">
                 <Text color="#A210C6" fontSize="20px">
                   Contact us
