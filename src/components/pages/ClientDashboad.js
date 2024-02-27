@@ -25,9 +25,13 @@ import {
 import AOS from "aos";
 import "../../styles/pages/LandingPage.css";
 import BeneficiariesModal from "../sections/Beneficiaries";
-import ServicesModal from "../sections/ServicePageModal";
+import Tele from "../../assets/Telemed.svg";
 import LoadingSpinner from "../../utils/Spiner";
 import NavBar from "../authLayouts/NavBar";
+import Folder from "../../assets/istockphoto-1127693399-612x612.jpg";
+import BookIcon from "../../assets/Booking.jpg";
+import Beneficiary from "../../assets/postpartum.jpg";
+import Report from "../../assets/Laura.jpg";
 import LeftSideBar from "../authLayouts/LeftSideBar";
 const customTheme = extendTheme({
   components: {
@@ -187,7 +191,7 @@ const ClientDash = () => {
       <LeftSideBar />
       <VStack
         style={settingsContainerStyle}
-        marginLeft="225px"
+        marginLeft="250px"
         position="fixed"
         w="80%"
         h="100vh"
@@ -262,7 +266,7 @@ const ClientDash = () => {
                     // boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
                     transition: "transform 0.3s ease-in-out",
                   }}
-                  bg="#ECCFF4"
+                  bg="#DCFFEB"
                   w="24.5vw"
                   h="20vh"
                   borderRadius="10px"
@@ -270,28 +274,38 @@ const ClientDash = () => {
                     transform: "translateY(-10px)",
                   }}
                 >
-                  <VStack marginTop="10px">
-                    <Text
-                      marginLeft="-160px"
-                      fontSize="20px"
-                      fontFamily="heading"
-                      color="black"
-                    >
-                      Book Appointment
-                    </Text>
-                    <Text marginLeft="-120px" fontSize="16px">
-                      Schedule your appointment
-                    </Text>
-                  </VStack>
+                  <Flex>
+                    <Image
+                      margin="15px"
+                      src={BookIcon}
+                      w="60px"
+                      h="60px"
+                      borderRadius="100px"
+                    />
+                    <VStack marginTop="10px">
+                      <Text
+                        textAlign="left"
+                        fontSize="20px"
+                        fontFamily="heading"
+                        color="black"
+                      >
+                        Book Appointment
+                      </Text>
+                      <Text textAlign="left" fontSize="16px">
+                        Schedule your appointment
+                      </Text>
+                    </VStack>
+                  </Flex>
+
                   <Text
                     fontSize="16px"
+                    textAlign="center"
                     style={{
-                      marginLeft: "130px",
-                      marginTop: "30px",
+                      marginTop: "5px",
                       fontStyle: "italic",
                       cursor: "pointer",
                     }}
-                    color="#A210C6"
+                    color="#27AE60"
                     onClick={handleOpenAppointmentModal}
                     _hover={{ color: "#A210C6" }}
                   >
@@ -306,35 +320,45 @@ const ClientDash = () => {
                   _hover={{
                     transform: "translateY(-10px)",
                   }}
-                  bg="#ECCFF4"
+                  bg="#E7F6FF"
                   w="24.5vw"
                   h="20vh"
                   marginLeft="10px"
                   borderRadius="10px"
                   onClick={handleBeneficiariesButtonClick}
                 >
-                  <VStack marginTop="10px">
-                    <Text
-                      marginLeft="-205px"
-                      fontSize="20px"
-                      fontFamily="heading"
-                      color="black"
-                    >
-                      Beneficiaries
-                    </Text>
-                    <Text marginLeft="-110px" fontSize="16px">
-                      Your friends and loved ones
-                    </Text>
-                  </VStack>
+                  <Flex>
+                    <Image
+                      margin="15px"
+                      src={Beneficiary}
+                      w="60px"
+                      h="60px"
+                      borderRadius="100px"
+                    />
+                    <VStack marginTop="10px">
+                      <Text
+                        textAlign="left"
+                        fontSize="20px"
+                        fontFamily="heading"
+                        color="black"
+                      >
+                        Beneficiaries
+                      </Text>
+                      <Text textAlign="left" fontSize="16px">
+                        Your friends and loved ones
+                      </Text>
+                    </VStack>
+                  </Flex>
+
                   <Text
                     fontSize="16px"
+                    textAlign="center"
                     style={{
-                      marginLeft: "130px",
-                      marginTop: "30px",
+                      marginTop: "5px",
                       fontStyle: "italic",
                       cursor: "pointer",
                     }}
-                    color="#A210C6"
+                    color="#OD60D8"
                     _hover={{ color: "#A210C6" }}
                   >
                     view all
@@ -350,34 +374,44 @@ const ClientDash = () => {
                   _hover={{
                     transform: "translateY(-10px)",
                   }}
-                  bg="#ECCFF4"
+                  bg="#CCF0FE"
                   w="24.5vw"
                   h="20vh"
                   borderRadius="10px"
                 >
-                  <VStack marginTop="10px">
-                    <Text
-                      fontSize="20px"
-                      fontFamily="heading"
-                      color="black"
-                      marginLeft="-205px"
-                    >
-                      Our services
-                    </Text>
-                    <Text fontSize="16px" marginLeft="-85px">
-                      Explore a variety of our services
-                    </Text>
-                  </VStack>
+                  <Flex>
+                    <Image
+                      margin="15px"
+                      src={Folder}
+                      w="60px"
+                      h="60px"
+                      borderRadius="100px"
+                    />
+                    <VStack marginTop="10px">
+                      <Text
+                        fontSize="20px"
+                        fontFamily="heading"
+                        color="black"
+                        textAlign="left"
+                      >
+                        Our services
+                      </Text>
+                      <Text fontSize="16px" textAlign="left">
+                        Explore a variety of our services
+                      </Text>
+                    </VStack>
+                  </Flex>
+
                   <NavLink to="/services">
                     <Text
                       fontSize="16px"
+                      textAlign="center"
                       style={{
-                        marginLeft: "130px",
-                        marginTop: "30px",
+                        marginTop: "5px",
                         fontStyle: "italic",
                         cursor: "pointer",
                       }}
-                      color="#A210C6"
+                      color="#2295F2"
                       _hover={{ color: "#A210C6" }}
                     >
                       View services
@@ -392,34 +426,45 @@ const ClientDash = () => {
                   _hover={{
                     transform: "translateY(-10px)",
                   }}
-                  bg="#ECCFF4"
+                  bg="#F1ECFE"
                   w="24.5vw"
                   h="20vh"
                   marginLeft="10px"
                   borderRadius="10px"
                 >
-                  <VStack marginTop="10px">
-                    <Text
-                      fontSize="20px"
-                      fontFamily="heading"
-                      color="black"
-                      marginLeft="-185px"
-                    >
-                      Medical Report
-                    </Text>
-                    <Text marginLeft="-100px" fontSize="16px">
-                      Access and view your reports
-                    </Text>
-                  </VStack>
+                  <Flex>
+                  <Image
+                      margin="15px"
+                      src={Report}
+                      w="60px"
+                      h="60px"
+                      borderRadius="100px"
+                    />
+                    <VStack marginTop="10px">
+                      <Text
+                        fontSize="20px"
+                        fontFamily="heading"
+                        color="black"
+                        textAlign="left"
+                      >
+                        Medical Report
+                      </Text>
+                      <Text textAlign="left" fontSize="16px">
+                        Access and view your reports
+                      </Text>
+                    </VStack>
+                  
+                  </Flex>
+
                   <Text
                     fontSize="16px"
+                    textAlign="center"
                     style={{
-                      marginLeft: "130px",
-                      marginTop: "30px",
+                      marginTop: "5px",
                       fontStyle: "italic",
                       cursor: "pointer",
                     }}
-                    color="#A210C6"
+                    color="#753FF6"
                     _hover={{ color: "#A210C6" }}
                   >
                     View reports
@@ -482,48 +527,18 @@ const ClientDash = () => {
               </VStack>
             </Box>
 
-            {/* <Box marginTop="-28px" bg="#F6E4FC" borderRadius="10" h="30vh">
-                  <Text
-                    fontSize="20px"
-                    fontFamily="body"
-                    color="black"
-                    marginTop="40px"
-                    marginLeft="-75px"
-                  >
-                    Article title
-                  </Text>
-                  <Text
-                    style={{
-                      fontStyle: "italic",
-                    }}
-                  >
-                    Lorem Ipsum Dolor Sit Amet{" "}
-                  </Text>
-
-                  <Image
-                    src={familyIcon}
-                    alt="Nurse and Patient"
-                    w="150px"
-                    h="150px"
-                    marginLeft="70px"
-                    marginTop="20px"
-                  />
-                  <Text
-                    fontSize="18px"
-                    style={{
-                      marginLeft: "125px",
-                      marginTop: "15px",
-                      fontStyle: "italic",
-                      cursor: "pointer",
-                      color: "#A210C6",
-                    }}
-                    _hover={{ color: "#A210C6" }}
-                  >
-                    Read more
-                  </Text>
-                </Box> */}
-            <Help />
+            <Box align="center" bg="#F6E4FC" borderRadius="10" h="30vh">
+              <Image
+                src={Tele}
+                alt="Nurse and Patient"
+                w="150px"
+                h="150px"
+                marginTop="20px"
+                paddingTop="40px"
+              />
+            </Box>
           </Box>
+          <Help />
         </Flex>
       </VStack>
 

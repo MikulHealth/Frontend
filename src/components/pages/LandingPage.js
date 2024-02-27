@@ -148,14 +148,12 @@ const LandingPage = () => {
 
         <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
-          <ModalContent bg="gray">
+          <ModalContent alignItems="center" bg="gray">
             <ChakraLink fontStyle="italic" href="/login" color="#A210C6">
               <Button
                 marginTop="30px"
-                marginLeft="80px"
-                bg="gray"
-                color="black"
-                w="300px"
+                color="white"
+                bg="#A210C6"
                 border="1px solid white"
               >
                 Login
@@ -168,10 +166,8 @@ const LandingPage = () => {
             >
               <Button
                 marginTop="30px"
-                marginLeft="80px"
-                bg="gray"
-                color="black"
-                w="300px"
+                color="white"
+                bg="#A210C6"
                 border="1px solid white"
               >
                 Sign up
@@ -180,10 +176,8 @@ const LandingPage = () => {
             <ChakraLink fontStyle="italic" href="/join" color="#A210C6">
               <Button
                 marginTop="30px"
-                marginLeft="80px"
-                bg="gray"
-                color="black"
-                w="300px"
+                color="white"
+                bg="#A210C6"
                 border="1px solid white"
               >
                 Sign up as medic
@@ -191,61 +185,26 @@ const LandingPage = () => {
             </ChakraLink>
             <ModalCloseButton />
 
-            <ModalFooter>
-              <Button
-                marginTop="30px"
-                marginLeft="200px"
-                bg="black"
-                color="white"
-                mr={3}
-                onClick={onClose}
-              >
-                Close
-              </Button>
-            </ModalFooter>
+            <ModalFooter></ModalFooter>
           </ModalContent>
         </Modal>
 
-        <Box h="60px" />
         <Box>
-          {/* <Image
-            src={Shade}
-            alt="Logo"
-            marginTop="550px"
-            w="1759px"
-            h="219px"
-          />
-          <Image
-            src={Shade1}
-            alt="Logo"
-            marginTop="650px"
-            w="1759px"
-            h="219px"
-          /> */}
-          <Box display="flex">
+          <Box marginTop="50px" display="flex">
             <HStack spacing={8} alignItems="center">
               <Box w="25px" />
               <Box>
                 <Text fontSize="6xl" fontWeight="bold" fontFamily="body">
                   <span style={{ color: "#A210C6" }}>Healthcare</span> that you{" "}
-                  <Text
-                    marginTop="-10px"
-                    textAlign="left"
-                    fontSize="6xl"
-                    fontWeight="bold"
-                    fontFamily="body"
-                  >
-                    deserve at your
-                  </Text>
-                  <Text
-                    marginTop="-10px"
-                    textAlign="left"
-                    fontSize="6xl"
-                    fontWeight="bold"
-                    fontFamily="body"
-                  >
-                    fingertips
-                  </Text>
+                </Text>
+                <Text
+                  marginTop="-10px"
+                  textAlign="left"
+                  fontSize="4xl"
+                  fontWeight="bold"
+                  fontFamily="body"
+                >
+                  deserve at your fingertips
                 </Text>
                 <Text
                   marginTop="10px"
@@ -260,10 +219,9 @@ const LandingPage = () => {
                   <br />
                   journey.
                 </Text>
-                <Box h="20px">
 
-                </Box>
                 <Button
+                  marginTop="15px"
                   bg="#A210C6"
                   color="white"
                   borderRadius="100px"
@@ -277,8 +235,38 @@ const LandingPage = () => {
               </Box>
             </HStack>
             <Spacer />
-            <Box className="animate__animated animate__fadeIn animate__slow">
-              <Image src={MHNurse} alt="Logo" w="642px" h="710px" />
+
+            <style>
+              {`
+          @keyframes zoomInOut {
+            0% {
+              transform: scale(1);
+            }
+            50% {
+              transform: scale(1.2);
+            }
+            100% {
+              transform: scale(1);
+            }
+          }
+        `}
+            </style>
+            <Box
+              marginLeft="50px"
+              className="box"
+              data-aos="zoom-out"
+              data-aos-duration="10000"
+              h="500px"
+              w="520px"
+              animation="zoomInOut 8s infinite"
+              overflow="hidden"
+            >
+              <Image
+                // borderRadius="100px"
+                src={MHNurse}
+                alt="Logo"
+                style={{ width: "500px", height: "520px" }}
+              />
             </Box>
           </Box>
         </Box>
@@ -311,7 +299,7 @@ const LandingPage = () => {
               data-aos-duration="6000"
             >
               <Box marginLeft="40px">
-                <Image src={PostPaturm} alt="Logo" w="100px" h="30px" />
+                <Image src={PostPaturm} alt="Postpartum" w="100px" h="30px" />
               </Box>
 
               <Text fontSize="xl" fontWeight="bold" textAlign="center">
@@ -336,7 +324,7 @@ const LandingPage = () => {
               data-aos-duration="6000"
             >
               <Box marginLeft="50px">
-                <Image src={Elderly} alt="Logo" w="100px" h="30px" />
+                <Image src={Elderly} alt="elderly" w="100px" h="30px" />
               </Box>
 
               <Text fontSize="xl" fontWeight="bold" textAlign="center">
@@ -362,7 +350,7 @@ const LandingPage = () => {
               data-aos-duration="6000"
             >
               <Box marginLeft="60px">
-                <Image src={Recovery} alt="Logo" w="100px" h="30px" />
+                <Image src={Recovery} alt="recovery" w="100px" h="30px" />
               </Box>
 
               <Text fontSize="xl" fontWeight="bold" textAlign="center">
@@ -387,7 +375,7 @@ const LandingPage = () => {
               data-aos-duration="6000"
             >
               <Box marginLeft="50px">
-                <Image src={Online} alt="Logo" w="100px" h="30px" />
+                <Image src={Online} alt="online" w="100px" h="30px" />
               </Box>
 
               <Text fontSize="xl" fontWeight="bold" textAlign="center">
@@ -403,16 +391,41 @@ const LandingPage = () => {
           <Box h="60px" />
           <Box>
             <Box display="flex">
+              <style>
+                {`
+          @keyframes zoomInOut {
+            0% {
+              transform: scale(1);
+            }
+            50% {
+              transform: scale(1.2);
+            }
+            100% {
+              transform: scale(1);
+            }
+          }
+        `}
+              </style>
               <Box
                 marginLeft="70px"
                 className="box"
                 data-aos="zoom-out"
                 data-aos-duration="10000"
+                h="400px"
+                w="420px"
+                animation="zoomInOut 8s infinite"
+                overflow="hidden"
               >
-                <Image src={Doctor} alt="Logo" w="563px" h="652px" />
+                <Image
+                  borderRadius="100px"
+                  src={Doctor}
+                  alt="Logo"
+                  w="400px"
+                  h="420px"
+                />
               </Box>
               <Box>
-                <Box h="150px" />
+              
                 <Box marginLeft="50px">
                   <Text
                     fontSize="6xl"
@@ -423,14 +436,26 @@ const LandingPage = () => {
                   >
                     Join the Future of Healthcare
                   </Text>
-                  <Text  textAlign="left" fontSize="20px" color="white" fontFamily="Montserrat">
+                  <Text
+                    textAlign="left"
+                    fontSize="20px"
+                    color="white"
+                    fontFamily="Montserrat"
+                  >
                     Empower healthcare innovation and <br />
                     shape the future of Healthcare delivery <br />
                     with Mikul Health
                   </Text>
-                  <Box h="25px" />
+                  
                   <ChakraLink href="/join" color="#A210C6">
-                    <Button w="10vw" borderRadius="100px" marginLeft="-585px" bg="white">Join us</Button>
+                    <Button
+                      w="10vw"
+                      borderRadius="100px"
+                      marginLeft="-685px"
+                      bg="white"
+                    >
+                      Join us
+                    </Button>
                   </ChakraLink>
                 </Box>
               </Box>
@@ -727,7 +752,10 @@ const LandingPage = () => {
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel textAlign="justify" className="custom-accordion-panel">
+                  <AccordionPanel
+                    textAlign="justify"
+                    className="custom-accordion-panel"
+                  >
                     Upon a successful registeration, you can request and get
                     matched to a medic to recieve care by booking any of the
                     services we offer from your dashboard.
@@ -774,7 +802,10 @@ const LandingPage = () => {
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel textAlign="justify" className="custom-accordion-panel">
+                  <AccordionPanel
+                    textAlign="justify"
+                    className="custom-accordion-panel"
+                  >
                     Yes you can have a replacement when asigned a caregiver that
                     you do not like. We can provide a replace within 72 hours
                     upon your request for a replacement.
@@ -795,7 +826,10 @@ const LandingPage = () => {
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel textAlign="justify" className="custom-accordion-panel">
+                  <AccordionPanel
+                    textAlign="justify"
+                    className="custom-accordion-panel"
+                  >
                     Upon booking and making payment for the choosen service, you
                     would receive care within 48 hours.
                   </AccordionPanel>
@@ -815,7 +849,10 @@ const LandingPage = () => {
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel textAlign="justify" className="custom-accordion-panel">
+                  <AccordionPanel
+                    textAlign="justify"
+                    className="custom-accordion-panel"
+                  >
                     Yes, aside our standadized service plans. We also have
                     provision for customizing a service plan that would best
                     suit you or your loved according to the peculiarity of the
@@ -837,7 +874,10 @@ const LandingPage = () => {
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
-                  <AccordionPanel textAlign="justify" className="custom-accordion-panel">
+                  <AccordionPanel
+                    textAlign="justify"
+                    className="custom-accordion-panel"
+                  >
                     <Text>
                       We work with Registred Nurses and Medical Docters who are
                       acreditated and certified with valid licenses and a proven

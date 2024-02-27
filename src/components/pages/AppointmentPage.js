@@ -170,11 +170,11 @@ const AppointmentPage = () => {
         </Flex>
 
         <Flex
-          marginLeft="-60px"
+          marginLeft="-300px"
           justifyContent="space-between"
           className="appointment-tabs"
         >
-          <VStack>
+          <VStack >
             <Tabs colorScheme="purple.100" mt="40px">
               <TabList justifyContent="space-between">
                 <Tab>All</Tab>
@@ -185,7 +185,7 @@ const AppointmentPage = () => {
 
                 <Tab>Completed</Tab>
               </TabList>
-              <TabPanels marginLeft="-30px">
+              <TabPanels   marginLeft="-30px">
                 <TabPanel>
                   <AppointmentTab />
                 </TabPanel>
@@ -201,7 +201,7 @@ const AppointmentPage = () => {
               </TabPanels>
             </Tabs>
           </VStack>
-          <Help />
+          {/* <Help /> */}
         </Flex>
         <BookAppointmentModal
           isOpen={showAppointmentModal}

@@ -16,11 +16,16 @@ import {
   Flex,
   extendTheme,
 } from "@chakra-ui/react";
-
-import SideBar from "../authLayouts/SideBar";
+import PostPaturm from "../../assets/Postpatum.svg";
+import Elderly from "../../assets/ElderlyCare.svg";
+import Recovery from "../../assets/RecoveryCare.svg";
+import Online from "../../assets/OnlineConsult.svg";
+import Doctor from "../../assets/Doctor.svg";
+import Costom from "../../assets/CustomIcon.svg";
 import NavBar from "../authLayouts/NavBar";
 import HelppIcon from "../../assets/HelppIcon.svg";
 import Chevron from "../../assets/ChevronDown.svg";
+
 const customTheme = extendTheme({
   components: {
     Link: {
@@ -65,11 +70,31 @@ const ServicePage = () => {
   };
 
   const services = [
-    { title: "Elderly care", onClick: handleOpenElderlyCareModal },
-    { title: "Postpartum care", onClick: handleOpenPostpatumCareModal },
-    { title: "Recovery care", onClick: handleOpenRecoveryCareModal },
-    { title: "Nanny services", onClick: handleOpenNannyCareModal },
-    { title: "Short home visit", onClick: handleOpenShortCareModal },
+    {
+      title: "Elderly care",
+      icon: Elderly,
+      onClick: handleOpenElderlyCareModal,
+    },
+    {
+      title: "Postpartum care",
+      icon: PostPaturm,
+      onClick: handleOpenPostpatumCareModal,
+    },
+    {
+      title: "Recovery care",
+      icon: Recovery,
+      onClick: handleOpenRecoveryCareModal,
+    },
+    {
+      title: "Nanny services",
+      icon: PostPaturm,
+      onClick: handleOpenNannyCareModal,
+    },
+    {
+      title: "Short home visit",
+      icon: Online,
+      onClick: handleOpenShortCareModal,
+    },
   ];
 
   const settingsContainerStyle = {
@@ -107,12 +132,13 @@ const ServicePage = () => {
                   onClick={service.onClick}
                 >
                   <Flex>
-                    <Box marginLeft="30px" marginTop="15px">
+                    <Image margin="15px" src={service.icon} w="30px" h="30px" />
+                    <Box marginLeft="10px" marginTop="15px">
                       <Text fontSize="20px">{service.title}</Text>
                     </Box>
                     <Image
                       src={Chevron}
-                      marginLeft="820px"
+                      marginLeft="830px"
                       marginTop="15px"
                       w="30px"
                       h="30px"
@@ -137,12 +163,13 @@ const ServicePage = () => {
                   _hover={{ color: "#A210C6" }}
                 >
                   <Flex>
-                    <Box marginLeft="30px" marginTop="15px">
+                  <Image margin="15px" src={Costom} w="30px" h="30px" />
+                    <Box marginTop="15px">
                       <Text fontSize="20px">Customize service</Text>
                     </Box>
                     <Image
                       src={Chevron}
-                      marginLeft="820px"
+                      marginLeft="830px"
                       marginTop="15px"
                       w="30px"
                       h="30px"

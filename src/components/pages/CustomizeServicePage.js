@@ -191,10 +191,19 @@ const CustomizeServicePage = () => {
     setShowAppointmentModal(false);
   };
 
+  const settingsContainerStyle = {
+    animation: "slideInUp 0.9s ease-in-out",
+  };
+
   return (
     <ChakraProvider theme={customTheme}>
       <LeftSideBar />
-      <VStack marginLeft="280px" height="100vh" w="70%">
+      <VStack
+        style={settingsContainerStyle}
+        marginLeft="280px"
+        height="100vh"
+        w="70%"
+      >
         <NavBar />
 
         <Box w="70vw" h="80vh">
