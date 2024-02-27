@@ -104,8 +104,10 @@ const ClientDash = () => {
   }, []);
 
   const checkUnpaidAppointments = (appointments) => {
-    appointments.forEach((appointment) => {
+    appointments.forEach((appointmentData) => {
+      const appointment = appointmentData.appointment; 
       if (!appointment.paid) {
+        console.log("This is the un-paid appointment:", appointment);
         setPendingAppointment(appointment);
         setTimeout(() => {
           setShowPayAppointmentModal(true);
@@ -113,7 +115,7 @@ const ClientDash = () => {
       }
     });
   };
-
+  
   useEffect(() => {
     const fetchMatchedAppointments = async () => {
       try {
@@ -323,7 +325,8 @@ const ClientDash = () => {
                   </Flex>
 
                   <Text
-                    fontSize="16px"
+                    fontSize="14px"
+                    fontWeight="bold"
                     textAlign="center"
                     style={{
                       marginTop: "5px",
@@ -334,7 +337,7 @@ const ClientDash = () => {
                     onClick={handleOpenAppointmentModal}
                     _hover={{ color: "#A210C6" }}
                   >
-                    Book now
+                    book now
                   </Text>
                 </Box>
                 <Box
@@ -376,14 +379,15 @@ const ClientDash = () => {
                   </Flex>
 
                   <Text
-                    fontSize="16px"
+                    fontSize="14px"
                     textAlign="center"
+                    fontWeight="bold"
                     style={{
                       marginTop: "5px",
                       fontStyle: "italic",
                       cursor: "pointer",
                     }}
-                    color="#OD60D8"
+                    color="#2295F2"
                     _hover={{ color: "#A210C6" }}
                   >
                     view all
@@ -429,7 +433,8 @@ const ClientDash = () => {
 
                   <NavLink to="/services">
                     <Text
-                      fontSize="16px"
+                      fontSize="14px"
+                      fontWeight="bold"
                       textAlign="center"
                       style={{
                         marginTop: "5px",
@@ -439,7 +444,7 @@ const ClientDash = () => {
                       color="#2295F2"
                       _hover={{ color: "#A210C6" }}
                     >
-                      View services
+                      view services
                     </Text>
                   </NavLink>
                 </Box>
@@ -481,7 +486,8 @@ const ClientDash = () => {
                   </Flex>
 
                   <Text
-                    fontSize="16px"
+                    fontSize="14px"
+                    fontWeight="bold"
                     textAlign="center"
                     style={{
                       marginTop: "5px",
@@ -491,7 +497,7 @@ const ClientDash = () => {
                     color="#753FF6"
                     _hover={{ color: "#A210C6" }}
                   >
-                    View reports
+                    view reports
                   </Text>
                 </Box>
               </Flex>

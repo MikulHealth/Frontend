@@ -35,11 +35,12 @@ const PayForAppointmentModal = ({ isOpen, onClose, appointment }) => {
   const { user } = useSelector((state) => state.userReducer);
 
   const handlePayment = () => {
-    const costOfService = appointment.appointment.costOfService;
-    const appointmentId = appointment.appointment.id;
+    const costOfService = appointment.costOfService;
+    const appointmentId = appointment.id;
+    const beneficiary = appointment.recipientFirstname + " " + appointment.recipientLastname;
     console.log("ego", costOfService)
     console.log("idi", appointmentId)
-    navigate("/make-payment", { state: { costOfService, appointmentId } });
+    navigate("/make-payment", { state: { costOfService, appointmentId, beneficiary } });
   };
 
   return (

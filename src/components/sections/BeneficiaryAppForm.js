@@ -184,8 +184,9 @@ const BookBeneficiaryAppointmentModal = ({
         });
         const appointmentId = response.data.data.id;
         const costOfService = response.data.data.costOfService;
+        const beneficiary = response.data.data.recipientFirstName +" "+ response.data.data.recipientLastName
         setTimeout(() => {
-          navigate("/make-payment", { state: { costOfService, appointmentId } });
+          navigate("/make-payment", { state: { costOfService, appointmentId, beneficiary } });
         }, 1000);
       } else {
         setLoading(false);

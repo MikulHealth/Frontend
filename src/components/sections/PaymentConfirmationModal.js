@@ -49,7 +49,7 @@ const PaymentConfirmationPage = () => {
   const toast = useToast();
   const { user } = useSelector((state) => state.userReducer);
   const location = useLocation();
-  const { costOfService, appointmentId } = location.state;
+  const { costOfService, appointmentId, beneficiary } = location.state;
 
   const [paymentData, setPaymentData] = useState({
     email: user?.email || "",
@@ -127,8 +127,8 @@ const PaymentConfirmationPage = () => {
         });
 
         setTimeout(() => {}, 3000);
-        window.location.reload()
         navigate("/dashboard");
+        window.location.reload();
       } else {
         toast({
           title: "Verification failed",
@@ -150,8 +150,7 @@ const PaymentConfirmationPage = () => {
 
   const handleCancel = () => {
     navigate("/dashboard");
-    window.location.reload()
-   
+    window.location.reload();
   };
 
   return (
@@ -165,10 +164,11 @@ const PaymentConfirmationPage = () => {
           borderRadius="40px"
         >
           <Text
-            fontSize="32px"
+            fontSize="24px"
             fontFamily="body"
-            color="#A210C6"
+            color="black"
             paddingTop="15px"
+            marginBottom="5px"
           >
             Confirm Payment
           </Text>
@@ -182,10 +182,28 @@ const PaymentConfirmationPage = () => {
               w="40vw"
             >
               Hi {user?.firstName}, kindly pay the sum of{" "}
-              {formattedCost(costOfService)} to proceed with your booking.
-              <br></br> You would be matched with a caregiver within 48hrs
-              <br></br>upon a successful payment.
+              <Text
+                as="span"
+                textDecoration="underline"
+                color="#A210C6"
+              >
+                {formattedCost(costOfService)}
+              </Text>{" "}
+              to proceed with your booking for{" "}
+              <Text
+                as="span"
+                textDecoration="underline"
+                color="#A210C6"
+              >
+                {beneficiary}
+              </Text>
+              's care.
+              <br />
+              You would be matched with a caregiver within 48hrs
+              <br />
+              upon a successful payment.
             </Text>
+
             <FormControl isRequired>
               <Box marginLeft="20px" alignContent="center">
                 <Flex marginLeft="120px">

@@ -66,7 +66,8 @@ export default function PendingApp() {
   const handlePayment = (selectedAppointment) => {
     const appointmentId = selectedAppointment.id;
     const costOfService = selectedAppointment.costOfService;
-    navigate("/make-payment", { state: { costOfService, appointmentId } });
+    const beneficiary = selectedAppointment.recipientFirstname +" "+ selectedAppointment.recipientLastname;
+    navigate("/make-payment", { state: { costOfService, appointmentId, beneficiary } });
   };
 
   const handleEditAppointment = (id) => {
