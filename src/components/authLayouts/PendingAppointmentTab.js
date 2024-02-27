@@ -41,7 +41,6 @@ const customTheme = extendTheme({
   },
 });
 
-
 export default function PendingApp() {
   const navigate = useNavigate();
   const toast = useToast();
@@ -64,8 +63,10 @@ export default function PendingApp() {
     setConfirmationModalOpen(false);
   };
 
-  const handlePayment = () => {
-    navigate("/make-payment");
+  const handlePayment = (selectedAppointment) => {
+    const appointmentId = selectedAppointment.id;
+    const costOfService = selectedAppointment.costOfService;
+    navigate("/make-payment", { state: { costOfService, appointmentId } });
   };
 
   const handleEditAppointment = (id) => {
@@ -248,7 +249,12 @@ export default function PendingApp() {
           {pendingAppointments.map((appointment) => (
             <Box key={appointment.id}>
               <Flex>
-                <Text fontStyle="body" fontSize="16px" fontWeight="bold" color="black">
+                <Text
+                  fontStyle="body"
+                  fontSize="16px"
+                  fontWeight="bold"
+                  color="black"
+                >
                   Care beneficiary:
                 </Text>
                 <Text marginLeft="5px" color="black">
@@ -256,7 +262,12 @@ export default function PendingApp() {
                 </Text>
               </Flex>
               <Flex>
-                <Text fontStyle="body" fontSize="16px" fontWeight="bold" color="black">
+                <Text
+                  fontStyle="body"
+                  fontSize="16px"
+                  fontWeight="bold"
+                  color="black"
+                >
                   Booked on:
                 </Text>
                 <Text marginLeft="5px" color="black">
@@ -529,7 +540,11 @@ export default function PendingApp() {
                   marginBottom="10px"
                   color="white"
                   _hover={{ color: "" }}
-                  onClick={handlePayment}
+                  onClick={() =>
+                    handlePayment(
+                      selectedAppointment
+                    )
+                  }
                   leftIcon={<CheckIcon />}
                 >
                   Pay for appointment

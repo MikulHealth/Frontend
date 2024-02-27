@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { GetCurrentUser } from "../../apiCalls/UserApis";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -57,14 +58,13 @@ const ClientDash = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userReducer);
   const balance = 0.0;
-  const pendingAppointments = user?.numberOfPendingAppointments;
+  const noPendingAppointments = user?.numberOfPendingAppointments;
   const activeAppointments = user?.numberOfActiveAppointments;
   const completedAppointments = user?.numberOfCompletedAppointments;
-  const [showServicesModal, setShowServicesModal] = useState(false);
+  const [pendingAppointment, setPendingAppointment] = useState(null);
   const [showSkeleton, setShowSkeleton] = useState(true);
   const [apiMessage, setApiMessage] = useState("");
   const [showPayAppointmentModal, setShowPayAppointmentModal] = useState(false);
-
   const [matchedAppointments, setMatchedAppointments] = useState([]);
   const [showMatchedAppointmentsModal, setShowMatchedAppointmentsModal] =
     useState(false);
@@ -74,19 +74,44 @@ const ClientDash = () => {
   }, []);
 
   useEffect(() => {
-    // Call the function after 5 seconds
-    const timeoutId = setTimeout(checkPendingAppointment, 5000);
+    const fetchPendingData = async () => {
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        };
 
-    // Clear timeout on component unmount
-    return () => clearTimeout(timeoutId);
+        const response = await axios.get(
+          "http://localhost:8080/v1/appointment/pendingAppointments",
+          config
+        );
+
+        if (response.data.success) {
+          checkUnpaidAppointments(response.data.data);
+          console.log("This are pending appointments:", response.data.data);
+        } else {
+          console.error("Failed to fetch appointments");
+        }
+      } catch (error) {
+        console.error("Error fetching appointments:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPendingData();
   }, []);
 
-  const checkPendingAppointment = () => {
-    const appointmentId = localStorage.getItem("appointmentId");
-    if (appointmentId && user && user.appointmentPaid === false) {
-      // Display modal with the message
-      setShowPayAppointmentModal(true);
-    }
+  const checkUnpaidAppointments = (appointments) => {
+    appointments.forEach((appointment) => {
+      if (!appointment.paid) {
+        setPendingAppointment(appointment);
+        setTimeout(() => {
+          setShowPayAppointmentModal(true);
+        }, 3000);
+      }
+    });
   };
 
   useEffect(() => {
@@ -433,7 +458,7 @@ const ClientDash = () => {
                   borderRadius="10px"
                 >
                   <Flex>
-                  <Image
+                    <Image
                       margin="15px"
                       src={Report}
                       w="60px"
@@ -453,7 +478,6 @@ const ClientDash = () => {
                         Access and view your reports
                       </Text>
                     </VStack>
-                  
                   </Flex>
 
                   <Text
@@ -500,7 +524,7 @@ const ClientDash = () => {
                     }}
                     _hover={{ color: "" }}
                   >
-                    Pending: {pendingAppointments}
+                    Pending: {noPendingAppointments}
                   </Text>
                   <Text
                     marginTop="5px"
@@ -561,6 +585,7 @@ const ClientDash = () => {
       <PayForAppointmentModal
         isOpen={showPayAppointmentModal}
         onClose={() => setShowPayAppointmentModal(false)}
+        appointment={pendingAppointment}
       />
     </ChakraProvider>
   );

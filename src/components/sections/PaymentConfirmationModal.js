@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { GetCurrentUser } from "../../apiCalls/UserApis";
 import { Link } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
 import {
   Box,
   useToast,
@@ -43,21 +43,25 @@ const customTheme = extendTheme({
   },
 });
 
-const PaymentConfirmationModal = ({ isOpen, onClose }) => {
+const PaymentConfirmationPage = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const toast = useToast();
   const { user } = useSelector((state) => state.userReducer);
-  const storedPaymentData = localStorage.getItem("appointmentId");
-  const costOfService = localStorage.getItem("costOfService");
+  const location = useLocation();
+  const { costOfService, appointmentId } = location.state;
+
   const [paymentData, setPaymentData] = useState({
     email: user?.email || "",
     amount: costOfService,
-    reference: storedPaymentData,
+    reference: appointmentId,
     name: `${user?.firstName || ""} ${user?.lastName || ""}`,
     phone: user?.phoneNumber || "",
     publicKey: "pk_test_be79821835be2e8689484980b54a9785c8fa0778",
   });
+
+  console.log("cost ", costOfService);
+  console.log("ID ", appointmentId);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -80,7 +84,6 @@ const PaymentConfirmationModal = ({ isOpen, onClose }) => {
 
   const handlePaymentSuccess = (response) => {
     verifyPayment();
-    onClose();
   };
 
   const handlePaymentFailure = (error) => {
@@ -95,7 +98,6 @@ const PaymentConfirmationModal = ({ isOpen, onClose }) => {
   const verifyPayment = async () => {
     try {
       const token = localStorage.getItem("token");
-      const appointmentId = localStorage.getItem("appointmentId");
 
       const apiUrl = `http://localhost:8080/v1/payment/verify/${appointmentId}`;
 
@@ -114,8 +116,7 @@ const PaymentConfirmationModal = ({ isOpen, onClose }) => {
           status: "success",
           duration: 8000,
         });
-        localStorage.removeItem("costOfService");
-        console.log("Payment verified successfully", response.data.data);
+
         setPaymentData({
           email: "",
           amount: " ",
@@ -125,9 +126,8 @@ const PaymentConfirmationModal = ({ isOpen, onClose }) => {
           publicKey: " ",
         });
 
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        setTimeout(() => {}, 3000);
+        window.location.reload()
         navigate("/dashboard");
       } else {
         toast({
@@ -150,39 +150,16 @@ const PaymentConfirmationModal = ({ isOpen, onClose }) => {
 
   const handleCancel = () => {
     navigate("/dashboard");
+    window.location.reload()
+   
   };
 
   return (
     <ChakraProvider theme={customTheme}>
       <Box overflowY="scroll" height="100vh">
         <Box
-          bg="#A210C6"
-          p={3}
-          color="white"
-          position="sticky"
-          top="0"
-          zIndex="1000"
-          borderBottom="1px solid white"
-        >
-          <HStack spacing={10}>
-            <Box w="5px" />
-            <a href="/">
-              <Image src={logo} alt="Logo" w="100px" h="30px" />
-            </a>
-            <Spacer />
-            <Spacer />
-            <Spacer />
-            <Spacer />
-            <ChakraLink fontStyle="italic" href="/dashboard" color="#A210C6">
-              <Button color="#A210C6" bg="white">
-                Dashboad
-              </Button>
-            </ChakraLink>
-          </HStack>
-        </Box>
-        <Box
           marginLeft="350px"
-          marginTop="50px"
+          marginTop="100px"
           w="50vw"
           h="70vh"
           borderRadius="40px"
@@ -293,4 +270,4 @@ const PaymentConfirmationModal = ({ isOpen, onClose }) => {
   );
 };
 
-export default PaymentConfirmationModal;
+export default PaymentConfirmationPage;

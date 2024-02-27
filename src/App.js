@@ -17,7 +17,7 @@ import ClientDash from "./components/pages/ClientDashboad";
 import AppointmentPage from "./components/pages/AppointmentPage";
 import UserDetailsModal from "./components/sections/UserDetails";
 import VerifyOtpDash from "./components/sections/VerifyOTP";
-import PaymentConfirmationModal from "./components/sections/PaymentConfirmationModal";
+import PaymentConfirmationPage from "./components/sections/PaymentConfirmationModal";
 import WalletPage from "./components/pages/WalletPage";
 import SettingsPage from "./components/pages/SettingsPage";
 import EdithProfilePage from "./components/pages/EdithProfilePage";
@@ -59,7 +59,7 @@ function App() {
           <Route path="/dashboard" element={<ClientDash />}></Route>
           <Route path="/details" element={<UserDetailsModal />}></Route>
           <Route path="/verifyPhone" element={<VerifyOtpDash />}></Route>
-          <Route path="/make-payment" element={<PaymentConfirmationModal />} />
+          <Route path="/make-payment" element={<PaymentConfirmationPage />} />
           <Route path="/wallet" element={<WalletPage />} />
           <Route path="/appointment" element={<AppointmentPage />} />
           <Route path="/settings" element={<SettingsPage />} />

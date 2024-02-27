@@ -82,8 +82,10 @@ const BookBeneficiaryAppointmentModal = ({
       const selectedPlan = customizedPlans.find((plan) => plan.name === value);
 
       console.log("Selected Plan:", selectedPlan);
-    console.log("Cost of Service:", selectedPlan ? selectedPlan.costOfService : "N/A");
-    
+      console.log(
+        "Cost of Service:",
+        selectedPlan ? selectedPlan.costOfService : "N/A"
+      );
 
       // Set the shift and costOfService based on the selected plan
       if (selectedPlan) {
@@ -180,14 +182,10 @@ const BookBeneficiaryAppointmentModal = ({
           status: "success",
           duration: 6000,
         });
-        const id = response.data.data.id;
-        localStorage.setItem("appointmentId", id);
-        localStorage.setItem("costOfService", formPages.costOfService);
-        console.log("cost of service is ", formPages.costOfService)
-        console.log("caregiver of service is ", formPages.medicSpecialization)
-        console.log("shift of service is ", formPages.shift)
+        const appointmentId = response.data.data.id;
+        const costOfService = response.data.data.costOfService;
         setTimeout(() => {
-          navigate("/make-payment");
+          navigate("/make-payment", { state: { costOfService, appointmentId } });
         }, 1000);
       } else {
         setLoading(false);
@@ -289,9 +287,9 @@ const BookBeneficiaryAppointmentModal = ({
 
   const calculateServiceCost = () => {
     const { servicePlan, shift } = formPages;
-  
+
     let costOfService = 0;
-  
+
     switch (servicePlan) {
       case "Elderly care by a Licensed Nurse":
         costOfService = shift === "Day Shift (8hrs)" ? 18000000 : 22000000;
@@ -310,19 +308,23 @@ const BookBeneficiaryAppointmentModal = ({
         costOfService = 1500000;
         break;
       default:
-        const customPlan = customizedPlans.find((plan) => plan.name === servicePlan);
+        const customPlan = customizedPlans.find(
+          (plan) => plan.name === servicePlan
+        );
         if (customPlan) {
           // Adding two decimal places to costOfService for custom plans
-          costOfService = parseInt(customPlan.costOfService.replace(/[\.,]/g, ""));
+          costOfService = parseInt(
+            customPlan.costOfService.replace(/[\.,]/g, "")
+          );
         } else {
           costOfService = 0;
         }
         break;
     }
-  
+
     setFormPages({ ...formPages, costOfService });
   };
-  
+
   useEffect(() => {
     calculateServiceCost();
   }, [formPages.servicePlan, formPages.shift]);

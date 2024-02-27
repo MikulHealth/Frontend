@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { CheckIcon, WarningIcon } from "@chakra-ui/icons";
 import {
   Modal,
@@ -30,12 +30,16 @@ const customTheme = extendTheme({
   },
 });
 
-const PayForAppointmentModal = ({ isOpen, onClose }) => {
+const PayForAppointmentModal = ({ isOpen, onClose, appointment }) => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.userReducer);
 
   const handlePayment = () => {
-    navigate("/make-payment");
+    const costOfService = appointment.appointment.costOfService;
+    const appointmentId = appointment.appointment.id;
+    console.log("ego", costOfService)
+    console.log("idi", appointmentId)
+    navigate("/make-payment", { state: { costOfService, appointmentId } });
   };
 
   return (

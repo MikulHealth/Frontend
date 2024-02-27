@@ -53,7 +53,7 @@ import WhatsAppIcon from "../../assets/WhatsApp.svg";
 import FBIcon from "../../assets/FaceBookIcon.svg";
 import IGIcon from "../../assets/InstagramIcon.svg";
 import WHIcon from "../../assets/WAIcon.svg";
-import Shade from "../../assets/LandingShade.svg";
+import Papa from "../../assets/ElderlyPapa.svg";
 import Shade1 from "../../assets/landingShade1.svg";
 import "../../styles/pages/LandingPage.css";
 import AOS from "aos";
@@ -194,13 +194,18 @@ const LandingPage = () => {
             <HStack spacing={8} alignItems="center">
               <Box w="25px" />
               <Box>
-                <Text fontSize="6xl" fontWeight="bold" fontFamily="body">
+                <Text
+                  textAlign="left"
+                  fontSize="48px"
+                  fontWeight="bold"
+                  fontFamily="body"
+                >
                   <span style={{ color: "#A210C6" }}>Healthcare</span> that you{" "}
                 </Text>
                 <Text
                   marginTop="-10px"
                   textAlign="left"
-                  fontSize="4xl"
+                  fontSize="48px"
                   fontWeight="bold"
                   fontFamily="body"
                 >
@@ -272,7 +277,7 @@ const LandingPage = () => {
         </Box>
 
         <Box h="60px" />
-        <Box bg="#A210C6">
+        <Box borderRadius="10px" bg="#A210C6">
           <Box h="60px" />
           <Box>
             <Text
@@ -417,7 +422,7 @@ const LandingPage = () => {
                 overflow="hidden"
               >
                 <Image
-                  borderRadius="100px"
+                  // borderRadius="100px"
                   src={Doctor}
                   alt="Logo"
                   w="400px"
@@ -425,16 +430,24 @@ const LandingPage = () => {
                 />
               </Box>
               <Box>
-              
-                <Box marginLeft="50px">
+                <Box marginLeft="150px">
                   <Text
-                    fontSize="6xl"
+                    fontSize="48px"
                     fontWeight="bold"
                     fontFamily="body"
                     color="white"
                     textAlign="left"
                   >
-                    Join the Future of Healthcare
+                    Join the Future of
+                  </Text>
+                  <Text
+                    fontSize="48px"
+                    fontWeight="bold"
+                    fontFamily="body"
+                    color="white"
+                    textAlign="left"
+                  >
+                    Healthcare
                   </Text>
                   <Text
                     textAlign="left"
@@ -442,16 +455,16 @@ const LandingPage = () => {
                     color="white"
                     fontFamily="Montserrat"
                   >
-                    Empower healthcare innovation and <br />
-                    shape the future of Healthcare delivery <br />
-                    with Mikul Health
+                    Empower healthcare innovation and shape the future of <br />{" "}
+                    Healthcare delivery with Mikul Health
                   </Text>
-                  
+
                   <ChakraLink href="/join" color="#A210C6">
                     <Button
                       w="10vw"
                       borderRadius="100px"
-                      marginLeft="-685px"
+                      marginTop="20px"
+                      marginLeft="-310px"
                       bg="white"
                     >
                       Join us
@@ -595,7 +608,7 @@ const LandingPage = () => {
             >
               Testimonials
             </Text>
-            <Text fontSize="28px" fontFamily="body" color="black">
+            <Text fontSize="24px" fontFamily="body" color="black">
               Here is what our clients have to say about us
             </Text>
             <Box h="5" />
@@ -740,7 +753,7 @@ const LandingPage = () => {
               >
                 <AccordionItem
                   p={4}
-                  my={5}
+                  my={3}
                   fontSize="24px"
                   className="custom-accordion-item"
                 >
@@ -764,7 +777,7 @@ const LandingPage = () => {
 
                 <AccordionItem
                   p={4}
-                  my={5}
+                  my={3}
                   fontSize="24px"
                   className="custom-accordion-item"
                 >
@@ -790,7 +803,7 @@ const LandingPage = () => {
 
                 <AccordionItem
                   p={4}
-                  my={5}
+                  my={3}
                   fontSize="24px"
                   className="custom-accordion-item"
                 >
@@ -814,7 +827,7 @@ const LandingPage = () => {
 
                 <AccordionItem
                   p={4}
-                  my={5}
+                  my={3}
                   fontSize="24px"
                   className="custom-accordion-item"
                 >
@@ -837,7 +850,7 @@ const LandingPage = () => {
 
                 <AccordionItem
                   p={4}
-                  my={5}
+                  my={3}
                   fontSize="24px"
                   className="custom-accordion-item"
                 >
@@ -862,7 +875,7 @@ const LandingPage = () => {
 
                 <AccordionItem
                   p={4}
-                  my={5}
+                  my={3}
                   fontSize="18px"
                   className="custom-accordion-item"
                 >
@@ -890,7 +903,7 @@ const LandingPage = () => {
             </Box>
 
             <Box w="-20px" />
-            <Box>
+            <Box  marginTop="-15px">
               <Box
                 bg="white"
                 justifyContent="center"
@@ -912,6 +925,7 @@ const LandingPage = () => {
               </Box>
 
               <Box
+              marginTop="-25px"
                 bg="white"
                 justifyContent="center"
                 alignItems="center"
@@ -921,7 +935,7 @@ const LandingPage = () => {
               >
                 <Box marginRight="30px">
                   <Image
-                    src={Folder}
+                    src={Papa}
                     alt="Logo"
                     w="551px"
                     h="280px"
@@ -929,13 +943,13 @@ const LandingPage = () => {
                     data-aos-duration="10000"
                   />
                 </Box>
-                <Box marginLeft="480px" marginTop="-75px">
+                <Box marginLeft="500px" marginTop="-75px">
                   <a href="https://example.com">
                     <Image
                       src={WhatsAppIcon}
                       alt="Logo"
-                      w="150px"
-                      h="147px"
+                      w="80px"
+                      h="80px"
                       data-aos="fade-down"
                       data-aos-duration="10000"
                     />
@@ -993,6 +1007,7 @@ const LandingPage = () => {
         </Box>
         {/* Footer */}
         <Box
+          borderRadius="10px"
           bg="#A210C6"
           display="flex"
           w="1441"
@@ -1008,7 +1023,7 @@ const LandingPage = () => {
               color="white"
               textAlign="left"
               fontSize="20px"
-              marginTop="40px"
+              marginTop="20px"
             >
               We leverage technological <br></br>
               advancement to provide care<br></br>
@@ -1029,7 +1044,7 @@ const LandingPage = () => {
                 fontFamily="Montserrat"
                 color="white"
                 fontSize="20px"
-                marginTop="40px"
+                marginTop="20px"
               >
                 About
               </Text>
@@ -1039,7 +1054,7 @@ const LandingPage = () => {
                 fontFamily="Montserrat"
                 color="white"
                 fontSize="20px"
-                marginTop="40px"
+                marginTop="10px"
               >
                 Contact us
               </Text>
@@ -1050,7 +1065,7 @@ const LandingPage = () => {
                 fontFamily="Montserrat"
                 color="white"
                 fontSize="20px"
-                marginTop="40px"
+                marginTop="10px"
               >
                 FAQs
               </Text>
@@ -1060,7 +1075,7 @@ const LandingPage = () => {
                 fontFamily="Montserrat"
                 color="white"
                 fontSize="20px"
-                marginTop="40px"
+                marginTop="10px"
               >
                 Join Mikul Health
               </Text>
@@ -1070,7 +1085,7 @@ const LandingPage = () => {
                 fontFamily="Montserrat"
                 color="white"
                 fontSize="20px"
-                marginTop="40px"
+                marginTop="10px"
               >
                 Terms and Privacy policy
               </Text>
@@ -1085,14 +1100,13 @@ const LandingPage = () => {
             >
               Socials
             </Text>
-            <Box marginLeft="5px" display="flex">
+            <Box marginTop="20px" marginLeft="5px" display="flex">
               <a href="https://web.facebook.com/mikulhealthcare/?_rdc=1&_rdr://example.com">
                 <Image
                   src={FBIcon}
                   alt="Logo"
                   w="32px"
                   h="32px"
-                  marginTop="40px"
                   marginLeft="20px"
                 />
               </a>
@@ -1102,7 +1116,6 @@ const LandingPage = () => {
                   alt="Logo"
                   w="32px"
                   h="32px"
-                  marginTop="40px"
                   marginLeft="20px"
                 />
               </a>
@@ -1112,7 +1125,6 @@ const LandingPage = () => {
                   alt="Logo"
                   w="32px"
                   h="32px"
-                  marginTop="40px"
                   marginLeft="20px"
                 />
               </a>

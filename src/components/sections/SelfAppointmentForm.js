@@ -180,15 +180,13 @@ const SelfAppointmentModal = ({ isOpen, onClose }) => {
           status: "success",
           duration: 6000,
         });
-        const id = response.data.data.id;
-        localStorage.setItem("appointmentId", id);
-        localStorage.setItem("costOfService", formFields.costOfService);
+        const appointmentId = response.data.data.id;
+        const costOfService = response.data.data.costOfService;
         setTimeout(() => {
-          navigate("/make-payment");
+          navigate("/make-payment", { state: { costOfService, appointmentId } });
         }, 1000);
       } else {
         setLoading(false);
-
         console.error("Error booking appointment");
         const errorMessage = response.data
           ? response.data.message
