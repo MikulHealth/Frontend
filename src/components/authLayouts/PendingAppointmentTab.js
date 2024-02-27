@@ -21,8 +21,26 @@ import {
   Box,
   Text,
   Flex,
+  extendTheme,
   Divider,
 } from "@chakra-ui/react";
+
+const customTheme = extendTheme({
+  components: {
+    Link: {
+      baseStyle: {
+        _focus: {
+          boxShadow: "none",
+        },
+      },
+    },
+  },
+  fonts: {
+    body: "Montserrat, sans-serif",
+    heading: "Gill Sans MT, sans-serif",
+  },
+});
+
 
 export default function PendingApp() {
   const navigate = useNavigate();
@@ -204,6 +222,7 @@ export default function PendingApp() {
       overflow="scroll"
       w="45vw"
       h="28vh"
+      theme={customTheme}
     >
       {loading ? (
         <LoadingSpinner />
@@ -229,7 +248,7 @@ export default function PendingApp() {
           {pendingAppointments.map((appointment) => (
             <Box key={appointment.id}>
               <Flex>
-                <Text fontWeight="bold" color="black">
+                <Text fontStyle="body" fontSize="16px" fontWeight="bold" color="black">
                   Care beneficiary:
                 </Text>
                 <Text marginLeft="5px" color="black">
@@ -237,7 +256,7 @@ export default function PendingApp() {
                 </Text>
               </Flex>
               <Flex>
-                <Text fontWeight="bold" color="black">
+                <Text fontStyle="body" fontSize="16px" fontWeight="bold" color="black">
                   Booked on:
                 </Text>
                 <Text marginLeft="5px" color="black">

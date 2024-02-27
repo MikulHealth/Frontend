@@ -67,7 +67,6 @@ const AppointmentPage = () => {
     setShowAppointmentModal(false);
   };
 
-
   const settingsContainerStyle = {
     animation: "slideInUp 0.9s ease-in-out",
   };
@@ -84,7 +83,6 @@ const AppointmentPage = () => {
       >
         <NavBar />
         <Box
-         
           marginTop="10px"
           border="1px solid gray"
           borderRadius="md"
@@ -170,22 +168,31 @@ const AppointmentPage = () => {
         </Flex>
 
         <Flex
-          marginLeft="-300px"
+          w="50vw"
+          marginLeft="-250px"
           justifyContent="space-between"
           className="appointment-tabs"
         >
-          <VStack >
+          <VStack>
             <Tabs colorScheme="purple.100" mt="40px">
               <TabList justifyContent="space-between">
-                <Tab>All</Tab>
+                <Tab color="#A210C6" fontWeight="bold">
+                  All
+                </Tab>
 
-                <Tab>Pending</Tab>
+                <Tab color="yellow.500" fontWeight="bold">
+                  Pending
+                </Tab>
 
-                <Tab>Active</Tab>
+                <Tab color="green.500" fontWeight="bold">
+                  Active
+                </Tab>
 
-                <Tab>Completed</Tab>
+                <Tab color="blue.500" fontWeight="bold">
+                  Completed
+                </Tab>
               </TabList>
-              <TabPanels   marginLeft="-30px">
+              <TabPanels marginLeft="-30px">
                 <TabPanel>
                   <AppointmentTab />
                 </TabPanel>

@@ -64,14 +64,14 @@ const BookAppointmentModal = ({ isOpen, onClose }) => {
               color="white"
               onClick={() => handleOpenSelfAppointmentModal(2)}
             >
-              Book for self
+              Book for yourself
             </Button>
             <Button
                bg="#A210C6"
               color="white"
               onClick={() => handleOpenBookAppointmentModal()}
             >
-              Book for beneficiary
+              Book for your beneficiary
             </Button>
             <Button
               bg="#A210C6"
