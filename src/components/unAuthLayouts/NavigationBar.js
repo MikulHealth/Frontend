@@ -1,56 +1,37 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import {
-    useDisclosure,
-    Box,
-    Input,
-    Button,
-    Link as ChakraLink,
-    HStack,
-    Spacer,
-    Image,
-    extendTheme,
-    ChakraProvider,
-    Text,
-    Accordion,
-    AccordionItem,
-    AccordionButton,
-    AccordionPanel,
-    AccordionIcon,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    Divider,
-    Switch,
-    FormControl,
-    FormLabel,
-  } from "@chakra-ui/react";
-  import logo from "../../assets/Whitelogo.png";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useDisclosure, Box, Button, HStack, Spacer, Image } from "@chakra-ui/react";
+import logo from "../../assets/Whitelogo.png";
+import GetStartedModal from "./GetStarted";
 
 export default function NavigationBar() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const location = useLocation();
+  const [pageTitle, setPageTitle] = useState("Home");
 
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const [timeoutId, setTimeoutId] = useState(null);
+  useEffect(() => {
+    switch (location.pathname) {
+      case "/":
+        setPageTitle("Home");
+        break;
+      case "/about":
+        setPageTitle("About");
+        break;
+      case "/contact":
+        setPageTitle("Contact");
+        break;
+      case "/services":
+        setPageTitle("Services");
+        break;
+      default:
+        setPageTitle("Home");
+        break;
+    }
+  }, [location]);
 
-    const handleMouseOver = () => {
-        // Open the modal when the user hovers over the button
-        onOpen();
-      };
-    
-      const handleMouseOut = () => {
-        // Close the modal when the user moves the cursor away from the button
-        onClose();
-      };
-    
   return (
-    <div style={{
-        position: "sticky",
-    }}>
-       <Box
+    <div style={{ position: "sticky" }}>
+        <Box
           bg="#A210C6"
           p={3}
           color="white"
@@ -74,85 +55,58 @@ export default function NavigationBar() {
             <Spacer />
             <Link
               to="/"
-              style={{ textDecoration: "underline", color: "white" }}
+              style={{
+                textDecoration: pageTitle === "Home" ? "underline" : "none",
+                fontWeight: pageTitle === "Home" ? "bold" : "normal",
+                color: "white"
+              }}
             >
               Home
             </Link>
 
-            <Link to="/about">About</Link>
-            <Link to="/contact">Contact</Link>
+            <Link
+              to="/about"
+              style={{
+                textDecoration: pageTitle === "About" ? "underline" : "none",
+                fontWeight: pageTitle === "About" ? "bold" : "normal",
+                color: "white"
+              }}
+            >
+              About
+            </Link>
+
+            <Link
+              to="/servicesSection"
+              style={{
+                textDecoration: pageTitle === "Services" ? "underline" : "none",
+                fontWeight: pageTitle === "Services" ? "bold" : "normal",
+                color: "white"
+              }}
+            >
+              Services
+            </Link>
+
+            <Link
+              to="/contact"
+              style={{
+                textDecoration: pageTitle === "Contact" ? "underline" : "none",
+                fontWeight: pageTitle === "Contact" ? "bold" : "normal",
+                color: "white"
+              }}
+            >
+              Contact
+            </Link>
             <Spacer />
             <Button
               bg="white"
               color="#A210C6"
-              //  onMouseOver={handleMouseOver}
-              //  onMouseOut={handleMouseOut}
               onClick={onOpen}
             >
               Get started
             </Button>
           </HStack>
         </Box>
-
-        <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent bg="gray">
-            <ChakraLink fontStyle="italic" href="/login" color="#A210C6">
-              <Button
-                marginTop="30px"
-                marginLeft="80px"
-                bg="gray"
-                color="black"
-                w="300px"
-                border="1px solid white"
-              >
-                Login
-              </Button>
-            </ChakraLink>
-            <ChakraLink
-              fontStyle="italic"
-              href="/customer-signUp"
-              color="#A210C6"
-            >
-              <Button
-                marginTop="30px"
-                marginLeft="80px"
-                bg="gray"
-                color="black"
-                w="300px"
-                border="1px solid white"
-              >
-                Sign up
-              </Button>
-            </ChakraLink>
-            <ChakraLink fontStyle="italic" href="/join" color="#A210C6">
-              <Button
-                marginTop="30px"
-                marginLeft="80px"
-                bg="gray"
-                color="black"
-                w="300px"
-                border="1px solid white"
-              >
-                Sign up as medic
-              </Button>
-            </ChakraLink>
-            <ModalCloseButton />
-
-            <ModalFooter>
-              <Button
-                marginTop="30px"
-                marginLeft="200px"
-                bg="black"
-                color="white"
-                mr={3}
-                onClick={onClose}
-              >
-                Close
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
+      <GetStartedModal isOpen={isOpen} onClose={onClose} /> 
     </div>
-  )
+  );
 }

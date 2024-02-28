@@ -1,48 +1,33 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import {
   Box,
-  Button,
   Link as ChakraLink,
-  HStack,
-  Spacer,
   Image,
   extendTheme,
   ChakraProvider,
   Text,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
 } from "@chakra-ui/react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import logo from "../../assets/Whitelogo.png";
-import SignUp from "../../assets/SignUp.svg";
-import SelectCare from "../../assets/SelectService.svg";
-import GetMatched from "../../assets/GetMatched.svg";
-import ReceieveCare from "../../assets/RecieveCare.svg";
-import WhatsAppIcon from "../../assets/WhatsApp.svg";
-import FBIcon from "../../assets/FaceBookIcon.svg";
-import IGIcon from "../../assets/InstagramIcon.svg";
-import WHIcon from "../../assets/WAIcon.svg";
-import AbtPic from "../../assets/AboutPic.svg";
-import Wallet from "../../assets/WalletWhite.svg";
-import Eye from "../../assets/Eye.svg";
-import Persona from "../../assets/Pesona.svg";
-import Safety from "../../assets/Safety.svg";
-import Quality from "../../assets/Quality.svg";
-import Flexible from "../../assets/Flexible.svg";
-import Sylvia from "../../assets/Sylvia.svg";
-import Michael from "../../assets/Michael.svg";
-import Jim from "../../assets/Jim.svg";
-import Hafsie from "../../assets/Hafsie.svg";
-import "../../styles/pages/LandingPage.css";
+import SignUp from "../../../assets/SignUp.svg";
+import SelectCare from "../../../assets/SelectService.svg";
+import GetMatched from "../../../assets/GetMatched.svg";
+import ReceieveCare from "../../../assets/RecieveCare.svg";
+import AbtPic from "../../../assets/AboutPic.svg";
+import Wallet from "../../../assets/WalletWhite.svg";
+import Eye from "../../../assets/Eye.svg";
+import Persona from "../../../assets/Pesona.svg";
+import Safety from "../../../assets/Safety.svg";
+import Quality from "../../../assets/Quality.svg";
+import Flexible from "../../../assets/Flexible.svg";
+import Sylvia from "../../../assets/Sylvia.svg";
+import Michael from "../../../assets/Michael.svg";
+import Jim from "../../../assets/Jim.svg";
+import Hafsie from "../../../assets/Hafsie.svg";
+import "../../../styles/pages/LandingPage.css";
+import NavigationBar from "../../unAuthLayouts/NavigationBar";
+import Footer from "../../unAuthLayouts/Footer";
 
 const customTheme = extendTheme({
   components: {
@@ -65,107 +50,10 @@ const LandingPage = () => {
     AOS.init();
   }, []);
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <ChakraProvider theme={customTheme}>
       <Box>
-        <Box
-          bg="#A210C6"
-          p={3}
-          color="white"
-          position="sticky"
-          top="0"
-          zIndex="1000"
-          borderBottom="1px solid white"
-        >
-          <HStack spacing={10}>
-            <Box w="5px" />
-            <a href="/">
-              <Image src={logo} alt="Logo" w="100px" h="30px" />
-            </a>
-            <Spacer />
-            <Spacer />
-            <Spacer />
-            <Spacer />
-            <Spacer />
-            <Spacer />
-            <Spacer />
-            <Link to="/">Home</Link>
-            <Link
-              to="/about"
-              style={{ textDecoration: "underline", color: "white" }}
-            >
-              About
-            </Link>
-            <Link to="/contact">Contact</Link>
-            <Spacer />
-            <Button onClick={onOpen} bg="white">
-              Get started
-            </Button>
-            <Box w="5px" />
-          </HStack>
-        </Box>
-
-        <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent bg="gray">
-            <ChakraLink fontStyle="italic" href="/login" color="#A210C6">
-              <Button
-                marginTop="30px"
-                marginLeft="80px"
-                bg="gray"
-                color="black"
-                w="300px"
-                border="1px solid white"
-              >
-                Login
-              </Button>
-            </ChakraLink>
-            <ChakraLink
-              fontStyle="italic"
-              href="/customer-signUp"
-              color="#A210C6"
-            >
-              <Button
-                marginTop="30px"
-                marginLeft="80px"
-                bg="gray"
-                color="black"
-                w="300px"
-                border="1px solid white"
-              >
-                Sign up
-              </Button>
-            </ChakraLink>
-            <ChakraLink fontStyle="italic" href="/join" color="#A210C6">
-              <Button
-                marginTop="30px"
-                marginLeft="80px"
-                bg="gray"
-                color="black"
-                w="300px"
-                border="1px solid white"
-              >
-                Sign up as medic
-              </Button>
-            </ChakraLink>
-            <ModalCloseButton />
-
-            <ModalFooter>
-              <Button
-                marginTop="30px"
-                marginLeft="200px"
-                bg="black"
-                color="white"
-                mr={3}
-                onClick={onClose}
-              >
-                Close
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-
+        <NavigationBar />
         <Box
           marginTop="-1px"
           bgImage={`url(${AbtPic})`}
@@ -203,7 +91,12 @@ const LandingPage = () => {
             >
               WHY USE MIKUL HEALTH?
             </Text>
-            <Text textAlign="left" fontSize="60px" fontFamily="body" color="black">
+            <Text
+              textAlign="left"
+              fontSize="60px"
+              fontFamily="body"
+              color="black"
+            >
               With Mikul Health, <br></br>
               your are assured of
             </Text>
@@ -444,7 +337,6 @@ const LandingPage = () => {
           </Box>
           <Box h="20px" />
           <Box display="flex">
-          
             <Box
               bg="white"
               justifyContent="center"
@@ -463,10 +355,8 @@ const LandingPage = () => {
               >
                 <Image src={Michael} alt="Logo" w="462px" h="422px" />
               </Box>
-
-           
             </Box>
-           
+
             <Box
               justifyContent="center"
               alignItems="center"
@@ -475,12 +365,10 @@ const LandingPage = () => {
               flexDirection="row"
               w="656px"
               h="275px"
-              
               marginTop="50px"
               data-aos="fade-right"
               data-aos-duration="10000"
             >
-           
               <Text fontSize="xl" fontWeight="bold" textAlign="left">
                 Michael Joshua. Co-founder, CEO
               </Text>
@@ -598,26 +486,25 @@ const LandingPage = () => {
             data-aos="fade-right"
             data-aos-duration="10000"
           >
-           <Box marginLeft="50px">
-           <Text fontSize="xl" fontWeight="bold" textAlign="left">
-              Dr. Hafsat Jijiwa. Medical Director.
-            </Text>
-            <Text
-              textAlign="left"
-              marginTop="10px"
-              fontSize="22px"
-              fontFamily="Montserrat"
-            >
-              She holds a Bachelor of Medicine, Bachelor of Surgery <br></br>
-              (M.B.B.S) from Gulf Medical University, U.A.E. <br></br>
-              Dr. Jijiwa is a board certified family medicine <br></br>
-              physician seasoned with exemplary patient care. She <br></br>
-              has vast experience working with Home care <br></br>
-              companies in the U.S and is also <br></br>
-              passionate about public health.
-            </Text>
-           </Box>
-           
+            <Box marginLeft="50px">
+              <Text fontSize="xl" fontWeight="bold" textAlign="left">
+                Dr. Hafsat Jijiwa. Medical Director.
+              </Text>
+              <Text
+                textAlign="left"
+                marginTop="10px"
+                fontSize="22px"
+                fontFamily="Montserrat"
+              >
+                She holds a Bachelor of Medicine, Bachelor of Surgery <br></br>
+                (M.B.B.S) from Gulf Medical University, U.A.E. <br></br>
+                Dr. Jijiwa is a board certified family medicine <br></br>
+                physician seasoned with exemplary patient care. She <br></br>
+                has vast experience working with Home care <br></br>
+                companies in the U.S and is also <br></br>
+                passionate about public health.
+              </Text>
+            </Box>
           </Box>
         </Box>
 
@@ -839,135 +726,7 @@ const LandingPage = () => {
           </Box>
           <Box h="60px" />
         </Box>
-
-        {/* Footer */}
-        <Box
-          bg="#A210C6"
-          display="flex"
-          w="1441"
-          h="543"
-          pd="48px, 84px, 32px, 60px"
-        >
-          <Box marginLeft="40px" marginTop="40px">
-            <Text fontFamily="body" color="white" fontSize="32px">
-              MIKUL HEALTH
-            </Text>
-            <Text
-              fontFamily="Montserrat"
-              color="white"
-              fontSize="20px"
-              marginTop="40px"
-              textAlign="left"
-            >
-              We leverage technological <br></br>
-              advancement to provide care<br></br>
-              for you and your loved ones.
-            </Text>
-          </Box>
-          <Box marginLeft="380px" marginTop="40px">
-            <Text
-              fontFamily="body"
-              color="white"
-              fontSize="32px"
-              textDecoration="underline"
-            >
-              Quick Links
-            </Text>
-            <a href="/about">
-              <Text
-                fontFamily="Montserrat"
-                color="white"
-                fontSize="20px"
-                marginTop="40px"
-              >
-                About
-              </Text>
-            </a>
-            <a href="/contact">
-              <Text
-                fontFamily="Montserrat"
-                color="white"
-                fontSize="20px"
-                marginTop="40px"
-              >
-                Contact us
-              </Text>
-            </a>
-
-            <a href="https://example.com">
-              <Text
-                fontFamily="Montserrat"
-                color="white"
-                fontSize="20px"
-                marginTop="40px"
-              >
-                FAQs
-              </Text>
-            </a>
-            <a href="/join">
-              <Text
-                fontFamily="Montserrat"
-                color="white"
-                fontSize="20px"
-                marginTop="40px"
-              >
-                Join Mikul Health
-              </Text>
-            </a>
-            <a href="https://example.com">
-              <Text
-                fontFamily="Montserrat"
-                color="white"
-                fontSize="20px"
-                marginTop="40px"
-              >
-                Terms and Privacy policy
-              </Text>
-            </a>
-          </Box>
-          <Box marginLeft="300px" marginTop="40px">
-            <Text
-              fontFamily="body"
-              color="white"
-              fontSize="32px"
-              textDecoration="underline"
-            >
-              Socials
-            </Text>
-            <Box marginLeft="5px" display="flex">
-              <a href="https://web.facebook.com/mikulhealthcare/?_rdc=1&_rdr://example.com">
-                <Image
-                  src={FBIcon}
-                  alt="Logo"
-                  w="32px"
-                  h="32px"
-                  marginTop="40px"
-                  marginLeft="20px"
-                />
-              </a>
-              <a href="https://www.instagram.com/mikulhealth/">
-                <Image
-                  src={IGIcon}
-                  alt="Logo"
-                  w="32px"
-                  h="32px"
-                  marginTop="40px"
-                  marginLeft="20px"
-                />
-              </a>
-              <a href="https://wa.me/message/3VO5QNBR2AB4L1://example.com">
-                <Image
-                  src={WHIcon}
-                  alt="Logo"
-                  w="32px"
-                  h="32px"
-                  marginTop="40px"
-                  marginLeft="20px"
-                />
-              </a>
-            </Box>
-          </Box>
-        </Box>
+        <Footer />
       </Box>
     </ChakraProvider>
   );

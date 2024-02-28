@@ -1,9 +1,9 @@
 import logo from "./assets/Whitelogo.png";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LandingPage from "./components/pages/LandingPage";
-import AboutPage from "./components/pages/AboutPage";
-import ConatactPage from "./components/pages/ConatctPage";
+import LandingPage from "./components/pages/unAuthPages/LandingPage";
+import AboutPage from "./components/pages/unAuthPages/AboutPage";
+import ConatactPage from "./components/pages/unAuthPages/Contact";
 import MedicRegPage from "./components/pages/MedicRegPage";
 import MedicRegPage2 from "./components/pages/MedicRegPage2";
 import VerifyNumber from "./components/pages/VerifyNumber";
@@ -21,7 +21,7 @@ import PaymentConfirmationPage from "./components/sections/PaymentConfirmationMo
 import WalletPage from "./components/pages/WalletPage";
 import SettingsPage from "./components/pages/SettingsPage";
 import EdithProfilePage from "./components/pages/EdithProfilePage";
-import ChangePasswordPage from "./components/pages/ChangePasswordPage"
+import ChangePasswordPage from "./components/pages/ChangePasswordPage";
 import NotificationSettingsPage from "./components/pages/NotificationSettingsPage";
 import HelpPage from "./components/pages/HelpPage";
 import ServicePage from "./components/pages/ServicePage";
@@ -30,8 +30,8 @@ import DebitPage from "./components/pages/DebitWalletPage";
 import CustomizeServicePage from "./components/pages/CustomizeServicePage";
 import RootLayout from "./components/authLayouts/RootLayout";
 import BookButton from "./components/authLayouts/BookButton";
-
-
+import ServicesSection from "./components/unAuthLayouts/ServicesSection";
+import Faqs from "./components/unAuthLayouts/Faqs";
 function App() {
   return (
     <div className="App">
@@ -65,7 +65,10 @@ function App() {
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/edit-profile" element={<EdithProfilePage />} />
           <Route path="/change-password" element={<ChangePasswordPage />} />
-          <Route path="/notification-settings" element={<NotificationSettingsPage />} />
+          <Route
+            path="/notification-settings"
+            element={<NotificationSettingsPage />}
+          />
           <Route path="/help" element={<HelpPage />} />
           <Route path="/services" element={<ServicePage />} />
           <Route path="/credit" element={<LeftSideBar />} />
@@ -73,6 +76,8 @@ function App() {
           <Route path="/customize-service" element={<CustomizeServicePage />} />
           <Route path="/root" element={<RootLayout />} />
           <Route path="/book" element={<BookButton />} />
+          <Route path="/servicesSection" element={<ServicesSection />} />
+          <Route path="/faqs" element={<Faqs />} />
         </Routes>
       </BrowserRouter>
     </div>
