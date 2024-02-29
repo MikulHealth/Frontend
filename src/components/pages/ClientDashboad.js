@@ -29,10 +29,10 @@ import BeneficiariesModal from "../sections/Beneficiaries";
 import Tele from "../../assets/Telemed.svg";
 import LoadingSpinner from "../../utils/Spiner";
 import NavBar from "../authLayouts/NavBar";
-import Folder from "../../assets/istockphoto-1127693399-612x612.jpg";
-import BookIcon from "../../assets/Booking.jpg";
-import Beneficiary from "../../assets/postpartum.jpg";
-import Report from "../../assets/Laura.jpg";
+import Services from "../../assets/services.jpg";
+import BookIcon from "../../assets/appointment.png";
+import Beneficiary from "../../assets/beneficiaries.png";
+import Report from "../../assets/folder.png";
 import LeftSideBar from "../authLayouts/LeftSideBar";
 const customTheme = extendTheme({
   components: {
@@ -411,7 +411,7 @@ const ClientDash = () => {
                   <Flex>
                     <Image
                       margin="15px"
-                      src={Folder}
+                      src={Services}
                       w="60px"
                       h="60px"
                       borderRadius="100px"
