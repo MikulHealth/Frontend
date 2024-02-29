@@ -1,5 +1,5 @@
-
 import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   FaMapMarkerAlt,
   FaFile,
@@ -16,13 +16,13 @@ import {
   Flex,
   InputGroup,
   Select,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+  DrawerCloseButton,
   InputRightElement,
   Image,
   Box,
@@ -36,12 +36,11 @@ import BeneficiariesModal from "./Beneficiaries";
 import LocationIcon from "../../assets/LocationIcon.svg";
 import CalenderIcon from "../../assets/CalenderIcon.svg";
 
-
 const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
   const [selectedDob, setSelectedDob] = useState(null);
   const [loading, setLoading] = useState(false);
   const { user } = useSelector((state) => state.userReducer);
-  const [isBeneficiary, setBeneficiary] = useState(false);
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     customerPhoneNumber: user.phoneNumber,
@@ -60,7 +59,7 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-  
+
     if (name === "DOB") {
       setSelectedDob(value);
       setFormData({
@@ -80,7 +79,6 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
     setFormData({ ...formData, recipientDOB: date });
   };
 
-  
   const handleAddBeneficiary = async () => {
     setLoading(true);
     try {
@@ -90,23 +88,22 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
           Authorization: `Bearer ${token}`,
         },
       };
-  
-   
+
       const formattedDate = selectedDob
-        ? selectedDob.toISOString().split('T')[0]
-        : '';
-  
+        ? selectedDob.toISOString().split("T")[0]
+        : "";
+
       const dataToSend = {
         ...formData,
         recipientDOB: formattedDate,
       };
-  
+
       const response = await axios.post(
         "http://localhost:8080/v1/appointment/addNewBeneficiary",
         dataToSend,
         config
       );
-  
+
       if (response.data.success) {
         setLoading(false);
         toast({
@@ -115,6 +112,8 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
           duration: 6000,
         });
         onClose();
+        setTimeout(() => {}, 3000);
+       
       } else {
         setLoading(false);
         toast({
@@ -138,12 +137,12 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="2xl" borderRadius="0px">
-      <ModalOverlay />
-      <ModalContent maxH="80vh" overflowY="auto">
-        <ModalHeader color="#A210C6">Add Beneficiary</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody marginLeft="45px">
+    <Drawer isOpen={isOpen} onClose={onClose} size="lg">
+      <DrawerOverlay />
+      <DrawerContent maxH="70vh" overflowY="auto">
+        <DrawerHeader color="#A210C6">Add Beneficiary</DrawerHeader>
+        <DrawerCloseButton />
+        <DrawerBody marginLeft="45px">
           <VStack align="start" spacing={4}>
             <FormControl w="40vw">
               <FormLabel fontWeight="bold"> Enter Beneficiary name</FormLabel>
@@ -278,8 +277,8 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
               </Flex>
             </FormControl>
           </VStack>
-        </ModalBody>
-        <ModalFooter>
+        </DrawerBody>
+        <DrawerFooter>
           <Box marginRight="20px">
             <Button onClick={onClose} color="black" ml={3}>
               Cancel
@@ -295,16 +294,10 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
               {loading ? "Saving..." : "Save"}
             </Button>
           </Box>
-        </ModalFooter>
-      </ModalContent>
-      {isBeneficiary && (
-    <BeneficiariesModal
-      isOpen={isBeneficiary}
-      onClose={() => setBeneficiary(false)}
-    />
-  )}
-    </Modal>
-  )
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  );
 };
 
 export default AddBeneficiaryForm;

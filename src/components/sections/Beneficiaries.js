@@ -3,13 +3,13 @@ import {
   VStack,
   Text,
   Button,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+  DrawerCloseButton,
   Box,
   Flex,
   Progress,
@@ -20,7 +20,7 @@ import {
 import axios from "axios";
 import AddBeneficiaryForm from "./AddBeneficiaryFom";
 import BookBeneficiaryAppointmentModal from "./BeneficiaryAppForm";
-import {AddIcon} from '@chakra-ui/icons'
+import { AddIcon } from "@chakra-ui/icons";
 const BeneficiariesModal = ({ isOpen, onClose }) => {
   const [beneficiaries, setBeneficiaries] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -63,7 +63,6 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
         );
 
         if (response.data.success) {
-   
           setBeneficiaries(response.data.data);
         } else {
           toast({
@@ -157,12 +156,14 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose} size="3xl" borderRadius="0px">
-        <ModalOverlay />
-        <ModalContent maxH="80vh" overflowY="auto">
-          <ModalHeader color="#A210C6">Beneficiaries</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody marginLeft="40px">
+      <Drawer isOpen={isOpen} onClose={onClose} placement="right" size="xl">
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader fontSize="lg" fontWeight="bold" color="#A210C6">
+            Beneficiaries
+          </DrawerHeader>
+          <DrawerCloseButton />
+          <DrawerBody marginLeft="40px">
             <Progress marginBottom="20px" size="xs" isIndeterminate />
             {loading ? (
               <Flex align="center" justify="center" height="200px">
@@ -171,7 +172,7 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
             ) : (
               <VStack align="start" spacing={4}>
                 {beneficiaries.length === 0 ? (
-                  <Text fontWeight="bold" >You have no beneficiaries yet.</Text>
+                  <Text fontWeight="bold">You have no beneficiaries yet.</Text>
                 ) : (
                   beneficiaries.map((beneficiary) => (
                     <Box key={beneficiary.id}>
@@ -235,7 +236,7 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
                             </Text>
                           </Flex>
                         </Box>
-                        <Flex marginTop="100px">
+                        <Flex marginLeft="110px" marginTop="100px">
                           <Box>
                             <Text
                               fontSize="17px"
@@ -280,16 +281,17 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
                 )}
               </VStack>
             )}
-          </ModalBody>
-          <ModalFooter>
+          </DrawerBody>
+          <DrawerFooter>
             <Button
               onClick={handleOpenAddBeneficiaryForm}
               color="white"
               bg="#A210C6"
-              leftIcon={<AddIcon />} 
+              leftIcon={<AddIcon />}
             >
               Add Beneficiary
             </Button>
+
             {isAddBeneficiaryFormOpen && (
               <AddBeneficiaryForm
                 isOpen={isAddBeneficiaryFormOpen}
@@ -303,38 +305,34 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
                 selectedBeneficiary={selectedBeneficiary}
               />
             )}
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
       {isConfirmationModalOpen && (
-        <Modal
+        <Drawer
           isOpen={isConfirmationModalOpen}
           onClose={() => setConfirmationModalOpen(false)}
           size="sm"
         >
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Confirmation</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
+          <DrawerOverlay />
+          <DrawerContent maxH="30vh" overflowY="auto">
+            <DrawerHeader>Confirmation</DrawerHeader>
+            <DrawerBody>
               <Text>Are you sure you want to remove this beneficiary?</Text>
-            </ModalBody>
-            <ModalFooter>
+            </DrawerBody>
+            <DrawerFooter>
               <Button
                 colorScheme="red"
                 onClick={handleConfirmRemoveBeneficiary}
               >
                 Confirm
               </Button>
-              <Button
-                variant="ghost"
-                onClick={() => setConfirmationModalOpen(false)}
-              >
+              <Button variant="ghost" onClick={() => setConfirmationModalOpen(false)}>
                 Cancel
               </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
       )}
     </>
   );

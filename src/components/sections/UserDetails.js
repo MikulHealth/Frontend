@@ -5,29 +5,29 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
   VStack,
   Flex,
   Image,
   Text,
   Divider,
   Button,
-  ModalFooter,
+  DrawerFooter,
+  IconButton,
 } from "@chakra-ui/react";
+import { CloseIcon } from "@chakra-ui/icons";
 import defaultImage from "../../assets/userImage.svg";
 import EditProfileModal from "./EditUser";
 
-const UserDetailsModal = ({ isOpen, onClose }) => {
+const UserDetailsDrawer = ({ isOpen, onClose }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // useEffect to make the API call on mount
   useEffect(() => {
     const fetchData = async () => {
       if (localStorage.getItem("token")) {
@@ -74,12 +74,18 @@ const UserDetailsModal = ({ isOpen, onClose }) => {
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Profile Details</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
+      <Drawer isOpen={isOpen} onClose={onClose} size="lg">
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader display="flex" justifyContent="space-between" alignItems="center">
+            Profile Details
+            <IconButton
+              icon={<CloseIcon />}
+              onClick={onClose}
+              aria-label="Close drawer"
+            />
+          </DrawerHeader>
+          <DrawerBody>
             <Flex>
               <VStack
                 marginLeft="20px"
@@ -137,8 +143,8 @@ const UserDetailsModal = ({ isOpen, onClose }) => {
                 marginTop="40px"
               />
             </Flex>
-          </ModalBody>
-          <ModalFooter>
+          </DrawerBody>
+          <DrawerFooter>
             <Text
               fontSize="19px"
               marginRight="20px"
@@ -152,11 +158,10 @@ const UserDetailsModal = ({ isOpen, onClose }) => {
             >
               Edit Profile
             </Text>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
 
-      {/* New EditProfileModal */}
       <EditProfileModal
         isOpen={isEditModalOpen}
         onClose={handleEditModalClose}
@@ -165,4 +170,4 @@ const UserDetailsModal = ({ isOpen, onClose }) => {
   );
 };
 
-export default UserDetailsModal;
+export default UserDetailsDrawer;

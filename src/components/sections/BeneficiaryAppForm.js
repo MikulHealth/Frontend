@@ -5,12 +5,13 @@ import CalenderIcon from "../../assets/CalenderIcon.svg";
 import {
   InputLeftAddon,
   InputGroup,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+  DrawerCloseButton,
   useToast,
   ModalFooter,
   Button,
@@ -184,9 +185,14 @@ const BookBeneficiaryAppointmentModal = ({
         });
         const appointmentId = response.data.data.id;
         const costOfService = response.data.data.costOfService;
-        const beneficiary = response.data.data.recipientFirstName +" "+ response.data.data.recipientLastName
+        const beneficiary =
+          response.data.data.recipientFirstName +
+          " " +
+          response.data.data.recipientLastName;
         setTimeout(() => {
-          navigate("/make-payment", { state: { costOfService, appointmentId, beneficiary } });
+          navigate("/make-payment", {
+            state: { costOfService, appointmentId, beneficiary },
+          });
         }, 1000);
       } else {
         setLoading(false);
@@ -331,19 +337,76 @@ const BookBeneficiaryAppointmentModal = ({
   }, [formPages.servicePlan, formPages.shift]);
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <ModalContent>
-        <ModalHeader color="#A210C6">
+    <Drawer isOpen={isOpen} onClose={onClose} size="lg" >
+      <DrawerOverlay />
+      <DrawerContent>
+        <DrawerHeader color="#A210C6">
+          {" "}
           Book Appointment for{" "}
           {`${selectedBeneficiary.recipientFirstName || ""} ${
             selectedBeneficiary.recipientLastName || ""
           }`}
-        </ModalHeader>
-
-        <ModalCloseButton />
-        <ModalBody>
+        </DrawerHeader>
+        <DrawerBody>
           <FormControl isRequired>
-            <Box>
+          <Box>
+          <Flex>
+                <Box marginLeft="40px">
+                  <FormLabel fontWeight="bold" marginTop="20px">
+                    Service Plan{" "}
+                  </FormLabel>
+                  <Select
+                    name="servicePlan"
+                    placeholder="preferred service plan"
+                    w="270px"
+                    value={formPages.servicePlan}
+                    onChange={handleInputChange}
+                  >
+                    {/* Predefined options */}
+                    <option value="Elderly care by a Licensed Nurse">
+                      Elderly care by a Licensed Nurse
+                    </option>
+                    <option value="Elderly care by a Nurse Assistant">
+                      Elderly care by a Nurse Assistant
+                    </option>
+                    <option value="Postpartum care">
+                      Postpartum care by a Licensed Nurse/Midwife
+                    </option>
+                    <option value="Nanny care">
+                      Nanny service by a Professional Nanny
+                    </option>
+                    <option value="Recovery care">
+                      Recovery care by a Licensed Nurse
+                    </option>
+                    <option value="Short home visit">
+                      Short home visit by a Licensed Nurse
+                    </option>
+                    {/* Customized plans */}
+                    {customizedPlans.map((plan) => (
+                      <option key={plan.id} value={plan.name}>
+                        {plan.name}
+                      </option>
+                    ))}
+                  </Select>
+                </Box>
+
+                <Box marginLeft="5px">
+                  <FormLabel fontWeight="bold" marginTop="20px">
+                    Shift{" "}
+                  </FormLabel>
+                  <Select
+                    name="shift"
+                    placeholder="select preferred shift"
+                    w="270px"
+                    value={formPages.shift}
+                    onChange={handleInputChange}
+                  >
+                    <option value="Day Shift (8hrs)">Day Shift (8hrs)</option>
+
+                    <option value="Live-in (24hrs)">Live-in (24hrs)</option>
+                  </Select>
+                </Box>
+              </Flex>
               <Flex marginLeft="40px">
                 <Box w="270px">
                   <FormLabel fontWeight="bold" marginTop="20px">
@@ -409,63 +472,7 @@ const BookBeneficiaryAppointmentModal = ({
                   </Flex>
                 </Box>
               </Flex>
-              <Flex>
-                <Box marginLeft="40px">
-                  <FormLabel fontWeight="bold" marginTop="20px">
-                    Service Plan{" "}
-                  </FormLabel>
-                  <Select
-                    name="servicePlan"
-                    placeholder="preferred service plan"
-                    w="270px"
-                    value={formPages.servicePlan}
-                    onChange={handleInputChange}
-                  >
-                    {/* Predefined options */}
-                    <option value="Elderly care by a Licensed Nurse">
-                      Elderly care by a Licensed Nurse
-                    </option>
-                    <option value="Elderly care by a Nurse Assistant">
-                      Elderly care by a Nurse Assistant
-                    </option>
-                    <option value="Postpartum care">
-                      Postpartum care by a Licensed Nurse/Midwife
-                    </option>
-                    <option value="Nanny care">
-                      Nanny service by a Professional Nanny
-                    </option>
-                    <option value="Recovery care">
-                      Recovery care by a Licensed Nurse
-                    </option>
-                    <option value="Short home visit">
-                      Short home visit by a Licensed Nurse
-                    </option>
-                    {/* Customized plans */}
-                    {customizedPlans.map((plan) => (
-                      <option key={plan.id} value={plan.name}>
-                        {plan.name}
-                      </option>
-                    ))}
-                  </Select>
-                </Box>
-
-                <Box marginLeft="5px">
-                  <FormLabel fontWeight="bold" marginTop="20px">
-                    Shift{" "}
-                  </FormLabel>
-                  <Select
-                    name="shift"
-                    placeholder="select preferred shift"
-                    w="270px"
-                    value={formPages.shift}
-                    onChange={handleInputChange}
-                  >
-                    <option value="Day Shift (8hrs)">Day Shift (8hrs)</option>
-
-                    <option value="Live-in (24hrs)">Live-in (24hrs)</option>
-                  </Select>
-                </Box>
-              </Flex>
+           
 
               <Box marginLeft="40px">
                 <FormLabel fontWeight="bold" marginTop="20px">
@@ -527,23 +534,22 @@ const BookBeneficiaryAppointmentModal = ({
               </Box>
             </Box>
           </FormControl>
-        </ModalBody>
-
-        <ModalFooter>
+        </DrawerBody>
+        <DrawerFooter>
           <Button
             isLoading={loading}
             loadingText="Processing..."
             bg="#A210C6"
             color="white"
-            onClick={() => handleFormSubmit()}
+            onClick={handleFormSubmit}
             borderRadius="100px"
             _hover={{ color: "" }}
           >
             {loading ? "Processing..." : "Book appointment"}
           </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
   );
 };
 
