@@ -582,7 +582,7 @@ export default function PendingApp() {
 
               {!selectedAppointment.paid && (
                 <Button
-                  bg="#A210C6"
+                  bg="green.400"
                   color="white"
                   _hover={{ color: "" }}
                   onClick={() => handlePayment(selectedAppointment)}

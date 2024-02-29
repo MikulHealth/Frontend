@@ -48,7 +48,7 @@ const PayForAppointmentModal = ({ isOpen, onClose, appointment }) => {
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>
-          <WarningIcon w={10} h={10} color="yellow.500" />
+          <WarningIcon w={10} h={10} color="yellow.400" />
         </ModalHeader>
 
         <ModalBody>
@@ -61,7 +61,7 @@ const PayForAppointmentModal = ({ isOpen, onClose, appointment }) => {
         <ModalFooter>
           <Button
             leftIcon={<CheckIcon />}
-            bg="#A210C6"
+            bg="green.400"
             color="white"
             mr={3}
             onClick={handlePayment}

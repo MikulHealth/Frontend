@@ -252,7 +252,7 @@ const PaymentConfirmationPage = () => {
                 <Box mr={3}>
                   <Button
                     _hover={{ color: "" }}
-                    bg="#A210C6"
+                    bg="green.400"
                     color="white"
                     onClick={handlePayment}
                     isLoading={loading}
@@ -262,6 +262,8 @@ const PaymentConfirmationPage = () => {
                       <PaystackButton
                         {...paymentData}
                         text="Process Payment"
+                        fontFamily="body"
+                        fontWight="bold"
                         className="submits"
                         onSuccess={handlePaymentSuccess}
                         onClose={handlePaymentFailure}
@@ -273,7 +275,7 @@ const PaymentConfirmationPage = () => {
                   <Button
                     _hover={{ color: "" }}
                     color="white"
-                    bg="gray"
+                    bg="red.400"
                     onClick={handleCancel}
                   >
                     Cancel payment
