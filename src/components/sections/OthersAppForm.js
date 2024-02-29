@@ -335,7 +335,10 @@ const BeneficiaryAppointmentModal = ({ isOpen, onClose }) => {
 
   return (
     <Drawer isOpen={isOpen} onClose={onClose} size="lg">
-      <DrawerOverlay />
+      <DrawerOverlay
+        bg="#A210C6.300"
+        backdropFilter="blur(10px) hue-rotate(90deg)"
+      />
       <DrawerContent alignItems="center">
         <DrawerCloseButton />
         <DrawerHeader color="#A210C6">Book Appointment</DrawerHeader>

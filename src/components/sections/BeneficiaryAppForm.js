@@ -337,8 +337,11 @@ const BookBeneficiaryAppointmentModal = ({
   }, [formPages.servicePlan, formPages.shift]);
 
   return (
-    <Drawer isOpen={isOpen} onClose={onClose} size="lg" >
-      <DrawerOverlay />
+    <Drawer isOpen={isOpen} onClose={onClose} size="lg">
+      <DrawerOverlay
+        bg="#A210C6.300"
+        backdropFilter="blur(10px) hue-rotate(90deg)"
+      />
       <DrawerContent>
         <DrawerHeader color="#A210C6">
           {" "}
@@ -349,8 +352,8 @@ const BookBeneficiaryAppointmentModal = ({
         </DrawerHeader>
         <DrawerBody>
           <FormControl isRequired>
-          <Box>
-          <Flex>
+            <Box>
+              <Flex>
                 <Box marginLeft="40px">
                   <FormLabel fontWeight="bold" marginTop="20px">
                     Service Plan{" "}
@@ -472,7 +475,6 @@ const BookBeneficiaryAppointmentModal = ({
                   </Flex>
                 </Box>
               </Flex>
-           
 
               <Box marginLeft="40px">
                 <FormLabel fontWeight="bold" marginTop="20px">
@@ -537,7 +539,7 @@ const BookBeneficiaryAppointmentModal = ({
         </DrawerBody>
         <DrawerFooter>
           <Button
-          w="150px"
+            w="150px"
             isLoading={loading}
             loadingText="Processing..."
             bg="#A210C6"

@@ -113,7 +113,6 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
         });
         onClose();
         setTimeout(() => {}, 3000);
-       
       } else {
         setLoading(false);
         toast({
@@ -138,7 +137,10 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
 
   return (
     <Drawer isOpen={isOpen} onClose={onClose} size="lg">
-      <DrawerOverlay />
+      <DrawerOverlay
+        bg="#A210C6.300"
+        backdropFilter="blur(10px) hue-rotate(90deg)"
+      />
       <DrawerContent maxH="70vh" overflowY="auto">
         <DrawerHeader color="#A210C6">Add Beneficiary</DrawerHeader>
         <DrawerCloseButton />

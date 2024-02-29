@@ -37,16 +37,22 @@ const PayForAppointmentModal = ({ isOpen, onClose, appointment }) => {
   const handlePayment = () => {
     const costOfService = appointment.costOfService;
     const appointmentId = appointment.id;
-    const beneficiary = appointment.recipientFirstname + " " + appointment.recipientLastname;
-    console.log("ego", costOfService)
-    console.log("idi", appointmentId)
-    navigate("/make-payment", { state: { costOfService, appointmentId, beneficiary } });
+    const beneficiary =
+      appointment.recipientFirstname + " " + appointment.recipientLastname;
+    console.log("ego", costOfService);
+    console.log("idi", appointmentId);
+    navigate("/make-payment", {
+      state: { costOfService, appointmentId, beneficiary },
+    });
   };
 
   return (
     <Modal theme={customTheme} isOpen={isOpen} onClose={onClose}>
-      <ModalOverlay />
-      <ModalContent>
+      <ModalOverlay backdropFilter="blur(10px) hue-rotate(90deg)" />
+      <ModalContent
+        border="2px solid #A210C6"
+        borderRadius="25px 25px 25px 0px"
+      >
         <ModalHeader>
           <WarningIcon w={10} h={10} color="yellow.400" />
         </ModalHeader>

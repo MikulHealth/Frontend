@@ -157,7 +157,10 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
   return (
     <>
       <Drawer isOpen={isOpen} onClose={onClose} placement="right" size="lg">
-        <DrawerOverlay />
+        <DrawerOverlay
+          bg="#A210C6.300"
+          backdropFilter="blur(10px) hue-rotate(90deg)"
+        />
         <DrawerContent>
           <DrawerHeader fontSize="lg" fontWeight="bold" color="#A210C6">
             Beneficiaries
@@ -309,7 +312,10 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
           onClose={() => setConfirmationModalOpen(false)}
           size="sm"
         >
-          <DrawerOverlay />
+          <DrawerOverlay
+            bg="#A210C6.300"
+            backdropFilter="blur(10px) hue-rotate(90deg)"
+          />
           <DrawerContent maxH="30vh" overflowY="auto">
             <DrawerHeader>Confirmation</DrawerHeader>
             <DrawerBody>

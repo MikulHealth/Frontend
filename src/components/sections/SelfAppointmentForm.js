@@ -186,7 +186,7 @@ const SelfAppointmentModal = ({ isOpen, onClose }) => {
           response.data.recipientFirstName +
           " " +
           response.data.recipientLastName;
-          console.log("beneficiary", beneficiary)
+        console.log("beneficiary", beneficiary);
         setTimeout(() => {
           navigate("/make-payment", {
             state: { costOfService, appointmentId, beneficiary },
@@ -284,7 +284,10 @@ const SelfAppointmentModal = ({ isOpen, onClose }) => {
 
   return (
     <Drawer isOpen={isOpen} onClose={onClose} size="lg" placement="right">
-      <DrawerOverlay />
+      <DrawerOverlay
+        bg="#A210C6.300"
+        backdropFilter="blur(10px) hue-rotate(90deg)"
+      />
       <DrawerContent alignItems="center">
         <DrawerCloseButton />
         <DrawerHeader color="#A210C6">Book Appointment</DrawerHeader>

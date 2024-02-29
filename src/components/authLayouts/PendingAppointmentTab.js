@@ -332,7 +332,10 @@ export default function PendingApp() {
           onClose={closeDetailsDrawer}
           size="md"
         >
-          <DrawerOverlay />
+          <DrawerOverlay
+            bg="#A210C6.300"
+            backdropFilter="blur(10px) hue-rotate(90deg)"
+          />
           <DrawerContent>
             <DrawerHeader
               display="flex"
@@ -602,8 +605,14 @@ export default function PendingApp() {
           onClose={handleCancelModalClose}
           size="md"
         >
-          <ModalOverlay />
-          <ModalContent>
+          <ModalOverlay
+            bg="#A210C6.300"
+            backdropFilter="blur(10px) hue-rotate(90deg)"
+          />
+          <ModalContent
+            border="2px solid #A210C6"
+            borderRadius="25px 25px 25px 0px"
+          >
             <ModalHeader>Confirmation</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
@@ -611,10 +620,10 @@ export default function PendingApp() {
               This action is irreversible.
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme="red" onClick={handleCancelModalClose}>
+              <Button bg="#A210C6" color="white" onClick={handleCancelModalClose}>
                 No
               </Button>
-              <Button marginLeft="5px" onClick={handleConfirmation}>
+              <Button bg="red.500" color="white"  marginLeft="5px" onClick={handleConfirmation}>
                 Yes
               </Button>
             </ModalFooter>

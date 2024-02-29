@@ -239,16 +239,19 @@ export default function AppointmentTab() {
           placement="right"
           size="md"
         >
-          <DrawerOverlay />
+          <DrawerOverlay
+            bg="#A210C6.300"
+            backdropFilter="blur(10px) hue-rotate(90deg)"
+          />
           <DrawerContent>
             <DrawerHeader
-             display="flex"
-             justifyContent="space-between"
-             alignItems="center"
-             borderBottomWidth="1px"
-             fontSize="lg"
-             fontWeight="bold"
-             color="#A210C6"
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              borderBottomWidth="1px"
+              fontSize="lg"
+              fontWeight="bold"
+              color="#A210C6"
             >
               Appointment Details
               <Button
@@ -461,10 +464,10 @@ export default function AppointmentTab() {
           </DrawerContent>
         </Drawer>
       )}
-       <BookAppointmentModal
-          isOpen={showAppointmentModal}
-          onClose={handleCloseAppointmentModal}
-        />
+      <BookAppointmentModal
+        isOpen={showAppointmentModal}
+        onClose={handleCloseAppointmentModal}
+      />
     </Box>
   );
 }

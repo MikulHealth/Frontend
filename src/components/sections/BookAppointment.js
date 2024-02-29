@@ -6,11 +6,18 @@ import {
   DrawerHeader,
   DrawerBody,
   DrawerFooter,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalFooter,
+  ModalCloseButton,
   Progress,
   DrawerCloseButton,
   Box,
   VStack,
   Button,
+  ModalHeader,
+  ModalBody,
 } from "@chakra-ui/react";
 import SelfAppointmentModal from "./SelfAppointmentForm";
 import BeneficiaryAppointmentModal from "./OthersAppForm";
@@ -51,19 +58,27 @@ const BookAppointmentModal = ({ isOpen, onClose }) => {
   };
 
   return (
-    <Drawer  isOpen={isOpen} onClose={onClose} size="md" placement="right">
-      <DrawerOverlay />
-      <DrawerContent maxH="45vh" >
-        <DrawerHeader color="#A210C6">Book appointment</DrawerHeader>
-        <DrawerCloseButton color="white" />
-        <DrawerBody>
+    <Modal isOpen={isOpen} onClose={onClose} size="md">
+      <ModalOverlay
+        bg="blackAlpha.300"
+        backdropFilter="blur(10px) hue-rotate(90deg)"
+      />
+      <ModalContent
+        border="5px solid white"
+        borderRadius="25px 25px 25px 0px"
+        maxH="48vh"
+        bg="yellow.070"
+      >
+        <ModalHeader  color="#A210C6" fontWeight="bold">Book appointment</ModalHeader>
+        <ModalCloseButton color="#A210C6" />
+        <ModalBody>
           {/* <Progress size="xs" isIndeterminate /> */}
-          <VStack spacing={4} marginTop="10px">
+          <VStack spacing={4} marginBottom="20px">
             <Box
               borderWidth="1px"
               borderColor="white"
-              bg="#A210C6"
-              color="white"
+              bg="white"
+              color="#A210C6"
               onClick={() => handleOpenSelfAppointmentModal(2)}
               w="400px"
               h="7vh"
@@ -73,6 +88,10 @@ const BookAppointmentModal = ({ isOpen, onClose }) => {
               style={{
                 fontStyle: "italic",
                 cursor: "pointer",
+                transition: "transform 0.3s ease-in-out",
+              }}
+              _hover={{
+                transform: "translateY(-10px)",
               }}
             >
               Book for yourself
@@ -80,8 +99,8 @@ const BookAppointmentModal = ({ isOpen, onClose }) => {
             <Box
               borderWidth="1px"
               borderColor="#A210C6"
-              bg="#A210C6"
-              color="white"
+              bg="white"
+              color="#A210C6"
               onClick={() => handleOpenBookAppointmentModal()}
               w="400px"
               h="7vh"
@@ -91,15 +110,19 @@ const BookAppointmentModal = ({ isOpen, onClose }) => {
               style={{
                 fontStyle: "italic",
                 cursor: "pointer",
+                transition: "transform 0.3s ease-in-out",
+              }}
+              _hover={{
+                transform: "translateY(-10px)",
               }}
             >
-              Book for your beneficiary
+              Book for a beneficiary
             </Box>
             <Box
-              borderWidth="1px"
-              borderColor="#A210C6"
-              bg="#A210C6"
-              color="white"
+              // borderWidth="1px"
+              // borderColor="#A210C6"
+              bg="white"
+              color="#A210C6"
               onClick={() => handleOpenBeneficiaryAppointmentModal(3)}
               w="400px"
               h="7vh"
@@ -109,13 +132,17 @@ const BookAppointmentModal = ({ isOpen, onClose }) => {
               style={{
                 fontStyle: "italic",
                 cursor: "pointer",
+                transition: "transform 0.3s ease-in-out",
+              }}
+              _hover={{
+                transform: "translateY(-10px)",
               }}
             >
               Book for others
             </Box>
           </VStack>
-        </DrawerBody>
-        <DrawerFooter></DrawerFooter>
+        </ModalBody>
+
         {isSelfAppointmentModalOpen && (
           <SelfAppointmentModal
             isOpen={isSelfAppointmentModalOpen}
@@ -136,8 +163,8 @@ const BookAppointmentModal = ({ isOpen, onClose }) => {
             onClose={() => setBookAppointmentModalOpen(false)}
           />
         )}
-      </DrawerContent>
-    </Drawer>
+      </ModalContent>
+    </Modal>
   );
 };
 
