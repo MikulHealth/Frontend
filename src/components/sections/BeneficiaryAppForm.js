@@ -537,6 +537,7 @@ const BookBeneficiaryAppointmentModal = ({
         </DrawerBody>
         <DrawerFooter>
           <Button
+          w="150px"
             isLoading={loading}
             loadingText="Processing..."
             bg="#A210C6"
@@ -545,7 +546,7 @@ const BookBeneficiaryAppointmentModal = ({
             borderRadius="100px"
             _hover={{ color: "" }}
           >
-            {loading ? "Processing..." : "Book appointment"}
+            {loading ? "Processing..." : "Submit"}
           </Button>
         </DrawerFooter>
       </DrawerContent>

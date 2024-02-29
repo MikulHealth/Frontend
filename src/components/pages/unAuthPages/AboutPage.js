@@ -50,11 +50,16 @@ const LandingPage = () => {
     AOS.init();
   }, []);
 
+  const settingsContainerStyle = {
+    animation: "slideInUp 0.9s ease-in-out",
+  };
+
   return (
     <ChakraProvider theme={customTheme}>
       <Box>
         <NavigationBar />
         <Box
+          style={settingsContainerStyle}
           marginTop="-1px"
           bgImage={`url(${AbtPic})`}
           bgSize="cover"

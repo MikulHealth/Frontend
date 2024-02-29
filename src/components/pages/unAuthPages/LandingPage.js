@@ -72,11 +72,18 @@ const LandingPage = () => {
     // Close the modal when the user moves the cursor away from the button
     onClose();
   };
-
+  const settingsContainerStyle = {
+    animation: "slideInUp 0.9s ease-in-out",
+  };
   return (
     <ChakraProvider theme={customTheme}>
       <NavigationBar />
-      <Box marginBottom="100px" marginTop="50px" display="flex">
+      <Box
+        style={settingsContainerStyle}
+        marginBottom="100px"
+        marginTop="50px"
+        display="flex"
+      >
         <HStack spacing={8} alignItems="center">
           <Box w="25px" />
           <Box>
@@ -280,7 +287,7 @@ const LandingPage = () => {
         </Box>
         <Box h="60px" />
       </Box>
-    <Faqs />
+      <Faqs />
       <Box bg="white">
         <Divider />
         <Box h="60px" />

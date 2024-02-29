@@ -45,7 +45,7 @@ const Footer = ({ onFaqsClick }) => {
           >
             Quick Links
           </Text>
-          <a href="/">
+          <NavLink to="/">
             <Text
               fontFamily="Montserrat"
               color="white"
@@ -54,8 +54,8 @@ const Footer = ({ onFaqsClick }) => {
             >
              Home
             </Text>
-          </a>
-          <a href="/about">
+          </NavLink>
+          <NavLink to="/about">
             <Text
               fontFamily="Montserrat"
               color="white"
@@ -64,8 +64,8 @@ const Footer = ({ onFaqsClick }) => {
             >
               About
             </Text>
-          </a>
-          <a href="/contact">
+          </NavLink>
+          <NavLink to="/contact">
             <Text
               fontFamily="Montserrat"
               color="white"
@@ -74,10 +74,10 @@ const Footer = ({ onFaqsClick }) => {
             >
               Contact us
             </Text>
-          </a>
+          </NavLink>
 
          
-          <a href="/join">
+          <NavLink to="/join">
             <Text
               fontFamily="Montserrat"
               color="white"
@@ -86,8 +86,8 @@ const Footer = ({ onFaqsClick }) => {
             >
               Join Mikul Health
             </Text>
-          </a>
-          <a href="https://wa.me/2347032579006">
+          </NavLink>
+          <NavLink to="https://wa.me/2347032579006">
             <Text
               fontFamily="Montserrat"
               color="white"
@@ -96,7 +96,7 @@ const Footer = ({ onFaqsClick }) => {
             >
               Terms and Privacy policy
             </Text>
-          </a>
+          </NavLink>
         </Box>
         <Box marginLeft="300px" marginTop="40px">
           <Text

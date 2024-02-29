@@ -55,12 +55,16 @@ const LandingPage = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const settingsContainerStyle = {
+    animation: "slideInUp 0.9s ease-in-out",
+  };
+
   return (
     <ChakraProvider theme={customTheme}>
-      <Box overflow="hidden">
+      <Box  overflow="hidden">
         <Box overflowY="scroll" height="100vh">
           <NavigationBar />
-          <Box marginTop="80px" bg="white" marginLeft="-400px" display="flex">
+          <Box style={settingsContainerStyle} marginTop="80px" bg="white" marginLeft="-400px" display="flex">
             <Box marginLeft="500px">
               <Text
                 fontSize="28px"
@@ -98,7 +102,7 @@ const LandingPage = () => {
             </Box>
 
             <Box
-            borderRadius="10px"
+              borderRadius="10px"
               bg="white"
               marginLeft="100px"
               marginRight="-150px"

@@ -14,12 +14,13 @@ import {
   FaUser,
 } from "react-icons/fa";
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
   Image,
   ModalFooter,
   FormControl,
@@ -197,9 +198,14 @@ const BeneficiaryAppointmentModal = ({ isOpen, onClose }) => {
         });
         const appointmentId = response.data.data.id;
         const costOfService = response.data.data.costOfService;
-        const beneficiary = response.data.data.recipientFirstName +" "+ response.data.data.recipientLastName
+        const beneficiary =
+          response.data.data.recipientFirstName +
+          " " +
+          response.data.data.recipientLastName;
         setTimeout(() => {
-          navigate("/make-payment", { state: { costOfService, appointmentId, beneficiary } });
+          navigate("/make-payment", {
+            state: { costOfService, appointmentId, beneficiary },
+          });
         }, 1000);
       } else {
         setLoading(false);
@@ -328,13 +334,13 @@ const BeneficiaryAppointmentModal = ({ isOpen, onClose }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader color="#A210C6">Book Appointment</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <FormControl marginLeft="40px">
+    <Drawer isOpen={isOpen} onClose={onClose} size="lg">
+      <DrawerOverlay />
+      <DrawerContent alignItems="center">
+        <DrawerCloseButton />
+        <DrawerHeader color="#A210C6">Book Appointment</DrawerHeader>
+        <DrawerBody>
+          <FormControl>
             <Box>
               <FormLabel fontWeight="bold">Enter Beneficiary details</FormLabel>
               <Flex>
@@ -346,11 +352,11 @@ const BeneficiaryAppointmentModal = ({ isOpen, onClose }) => {
                     onChange={handleInputChange}
                     w="270px"
                   />
-                  <InputRightElement marginRight="45px" pointerEvents="none">
+                  <InputRightElement pointerEvents="none">
                     <FaUser color="gray.300" />
                   </InputRightElement>
                 </InputGroup>
-                <InputGroup>
+                <InputGroup marginLeft="40px">
                   <Input
                     name="recipientLastname"
                     marginLeft="-35px"
@@ -359,7 +365,7 @@ const BeneficiaryAppointmentModal = ({ isOpen, onClose }) => {
                     onChange={handleInputChange}
                     w="270px"
                   />
-                  <InputRightElement marginRight="80px" pointerEvents="none">
+                  <InputRightElement pointerEvents="none">
                     <FaUser color="gray.300" />
                   </InputRightElement>
                 </InputGroup>
@@ -669,9 +675,10 @@ const BeneficiaryAppointmentModal = ({ isOpen, onClose }) => {
               />
             </Flex>
           </FormControl>
-        </ModalBody>
-        <ModalFooter>
+        </DrawerBody>
+        <DrawerFooter>
           <Button
+            w="150px"
             borderRadius="100px"
             isLoading={loading}
             loadingText="Processing..."
@@ -679,11 +686,11 @@ const BeneficiaryAppointmentModal = ({ isOpen, onClose }) => {
             color="white"
             onClick={handleFormSubmit}
           >
-            {loading ? "Processing..." : "Book appointment"}
+            {loading ? "Processing..." : "Submit"}
           </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
   );
 };
 
