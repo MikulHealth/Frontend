@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LoadingSpinner from "../../utils/Spiner";
+import BookAppointmentModal from "../sections/BookAppointment";
 import { EditIcon, CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import {
   ChakraProvider,
@@ -133,6 +134,10 @@ export default function AppointmentTab() {
 
   const handleOpenAppointmentModal = () => {
     setShowAppointmentModal(true);
+  };
+
+  const handleCloseAppointmentModal = () => {
+    setShowAppointmentModal(false);
   };
   return (
     <Box
@@ -456,6 +461,10 @@ export default function AppointmentTab() {
           </DrawerContent>
         </Drawer>
       )}
+       <BookAppointmentModal
+          isOpen={showAppointmentModal}
+          onClose={handleCloseAppointmentModal}
+        />
     </Box>
   );
 }

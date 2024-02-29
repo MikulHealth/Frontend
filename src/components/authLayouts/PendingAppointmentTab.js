@@ -3,6 +3,7 @@ import LoadingSpinner from "../../utils/Spiner";
 import { useSelector } from "react-redux";
 import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
+import BookAppointmentModal from "../sections/BookAppointment";
 import { EditIcon, CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import EditPendingAppointmentModal from "../sections/EditPendingAppointmentModal";
 import {
@@ -12,6 +13,7 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerBody,
+  DrawerFooter,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -88,7 +90,6 @@ export default function PendingApp() {
   const closeDetailsDrawer = () => {
     setDetailsModalOpen(false);
   };
-
 
   const handleCloseEditModal = () => {
     setEditModalOpen(false);
@@ -172,6 +173,10 @@ export default function PendingApp() {
 
   const handleOpenAppointmentModal = () => {
     setShowAppointmentModal(true);
+  };
+
+  const handleCloseAppointmentModal = () => {
+    setShowAppointmentModal(false);
   };
 
   const handleConfirmation = async () => {
@@ -548,51 +553,45 @@ export default function PendingApp() {
                   <Divider my={4} borderColor="gray.500" />
                 </Box>
 
-                <Box>
-                  <Flex marginTop="5px">
-                    <Text fontWeight="bold" color="black">
-                      Health History:
-                    </Text>
-                    <Text
-                      marginLeft="10px"
-                      color="black"
-                      maxW="600px"
-                      maxH="1000px"
-                    >
-                      {selectedAppointment.recipientHealthHistory ||
-                        "Not available"}
-                    </Text>
-                  </Flex>
-
-                  <Divider my={4} borderColor="gray.500" />
-                  <Button
-                    bg="#A210C6"
-                    marginTop="10px"
-                    marginBottom="10px"
-                    color="white"
-                    _hover={{ color: "" }}
-                    leftIcon={<EditIcon />}
-                    onClick={handleEditAppointment}
+                <Flex marginTop="5px">
+                  <Text fontWeight="bold" color="black">
+                    Health History:
+                  </Text>
+                  <Text
+                    marginLeft="10px"
+                    color="black"
+                    maxW="600px"
+                    maxH="1000px"
                   >
-                    Update appointment details
-                  </Button>
-                </Box>
-                {!selectedAppointment.paid && (
-                  <Button
-                    marginLeft="330px"
-                    bg="#A210C6"
-                    marginTop="10px"
-                    marginBottom="10px"
-                    color="white"
-                    _hover={{ color: "" }}
-                    onClick={() => handlePayment(selectedAppointment)}
-                    leftIcon={<CheckIcon />}
-                  >
-                    Pay for appointment
-                  </Button>
-                )}
+                    {selectedAppointment.recipientHealthHistory ||
+                      "Not available"}
+                  </Text>
+                </Flex>
               </Flex>
             </DrawerBody>
+            <DrawerFooter justifyContent="space-between">
+              <Button
+                bg="#A210C6"
+                color="white"
+                _hover={{ color: "" }}
+                leftIcon={<EditIcon />}
+                onClick={handleEditAppointment}
+              >
+                Edit appointment
+              </Button>
+
+              {!selectedAppointment.paid && (
+                <Button
+                  bg="#A210C6"
+                  color="white"
+                  _hover={{ color: "" }}
+                  onClick={() => handlePayment(selectedAppointment)}
+                  leftIcon={<CheckIcon />}
+                >
+                  Pay for appointment
+                </Button>
+              )}
+            </DrawerFooter>
           </DrawerContent>
         </Drawer>
       )}
@@ -626,6 +625,10 @@ export default function PendingApp() {
         isOpen={editModalOpen}
         onClose={handleCloseEditModal}
         appointmentDetails={selectedAppointment}
+      />
+      <BookAppointmentModal
+        isOpen={showAppointmentModal}
+        onClose={handleCloseAppointmentModal}
       />
     </Box>
   );

@@ -143,7 +143,7 @@ const EditPendingAppointment = ({
       <Drawer isOpen={isOpen} onClose={onClose} size="md">
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader>Update appointment details</DrawerHeader>
+          <DrawerHeader color="#A210C6">Edit appointment </DrawerHeader>
           <DrawerBody>
             <Box>
               <FormControl marginTop="5px">
@@ -270,7 +270,7 @@ const EditPendingAppointment = ({
             >
               Save
             </Button>
-            <Button variant="ghost" onClick={onClose}>
+            <Button color="red.500" variant="ghost" onClick={onClose}>
               Cancel
             </Button>
           </DrawerFooter>

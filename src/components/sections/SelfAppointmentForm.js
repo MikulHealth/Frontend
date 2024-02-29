@@ -183,9 +183,10 @@ const SelfAppointmentModal = ({ isOpen, onClose }) => {
         const appointmentId = response.data.data.id;
         const costOfService = response.data.data.costOfService;
         const beneficiary =
-          response.data.data.recipientFirstName +
+          response.data.recipientFirstName +
           " " +
-          response.data.data.recipientLastName;
+          response.data.recipientLastName;
+          console.log("beneficiary", beneficiary)
         setTimeout(() => {
           navigate("/make-payment", {
             state: { costOfService, appointmentId, beneficiary },

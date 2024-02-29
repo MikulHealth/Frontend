@@ -62,6 +62,7 @@ const PaymentConfirmationPage = () => {
 
   console.log("cost ", costOfService);
   console.log("ID ", appointmentId);
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
