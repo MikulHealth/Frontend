@@ -17,9 +17,9 @@ export default function GetStartedModal({ isOpen, onClose }) {
         <ChakraLink fontStyle="italic" href="/login" color="#A210C6">
           <Button
             marginTop="30px"
-            color="white"
-            bg="#A210C6"
-            border="1px solid white"
+            color="#A210C6"
+            bg="white"
+            border="1px solid #A210C6"
           >
             Login
           </Button>
@@ -27,9 +27,9 @@ export default function GetStartedModal({ isOpen, onClose }) {
         <ChakraLink fontStyle="italic" href="/customer-signUp" color="#A210C6">
           <Button
             marginTop="30px"
-            color="white"
-            bg="#A210C6"
-            border="1px solid white"
+            color="#A210C6"
+            bg="white"
+            border="1px solid #A210C6"
           >
             Sign up
           </Button>
@@ -37,9 +37,9 @@ export default function GetStartedModal({ isOpen, onClose }) {
         <ChakraLink fontStyle="italic" href="/join" color="#A210C6">
           <Button
             marginTop="30px"
-            color="white"
-            bg="#A210C6"
-            border="1px solid white"
+            color="#A210C6"
+            bg="white"
+            border="1px solid #A210C6"
           >
             Sign up as medic
           </Button>
