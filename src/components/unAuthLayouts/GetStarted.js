@@ -44,7 +44,7 @@ export default function GetStartedModal({ isOpen, onClose }) {
             Sign up as medic
           </Button>
         </ChakraLink>
-        <ModalCloseButton />
+        <ModalCloseButton color="white" />
 
         <ModalFooter></ModalFooter>
       </ModalContent>
