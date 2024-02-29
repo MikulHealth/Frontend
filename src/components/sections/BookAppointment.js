@@ -53,17 +53,17 @@ const BookAppointmentModal = ({ isOpen, onClose }) => {
   return (
     <Drawer  isOpen={isOpen} onClose={onClose} size="md" placement="right">
       <DrawerOverlay />
-      <DrawerContent maxH="50vh" bg="#A210C6">
-        <DrawerHeader color="white">Book appointment</DrawerHeader>
+      <DrawerContent maxH="45vh" >
+        <DrawerHeader color="#A210C6">Book appointment</DrawerHeader>
         <DrawerCloseButton color="white" />
         <DrawerBody>
-          <Progress size="xs" isIndeterminate />
-          <VStack spacing={4} marginTop="35px">
+          {/* <Progress size="xs" isIndeterminate /> */}
+          <VStack spacing={4} marginTop="10px">
             <Box
               borderWidth="1px"
               borderColor="white"
-              bg="white"
-              color="#A210C6"
+              bg="#A210C6"
+              color="white"
               onClick={() => handleOpenSelfAppointmentModal(2)}
               w="400px"
               h="7vh"
@@ -80,8 +80,8 @@ const BookAppointmentModal = ({ isOpen, onClose }) => {
             <Box
               borderWidth="1px"
               borderColor="#A210C6"
-              bg="white"
-              color="#A210C6"
+              bg="#A210C6"
+              color="white"
               onClick={() => handleOpenBookAppointmentModal()}
               w="400px"
               h="7vh"
@@ -98,8 +98,8 @@ const BookAppointmentModal = ({ isOpen, onClose }) => {
             <Box
               borderWidth="1px"
               borderColor="#A210C6"
-              bg="white"
-              color="#A210C6"
+              bg="#A210C6"
+              color="white"
               onClick={() => handleOpenBeneficiaryAppointmentModal(3)}
               w="400px"
               h="7vh"

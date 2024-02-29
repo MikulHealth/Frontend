@@ -18,6 +18,7 @@ import {
   Button,
   DrawerFooter,
   IconButton,
+  Avatar,
 } from "@chakra-ui/react";
 import { CloseIcon } from "@chakra-ui/icons";
 import defaultImage from "../../assets/userImage.svg";
@@ -77,7 +78,12 @@ const UserDetailsDrawer = ({ isOpen, onClose }) => {
       <Drawer isOpen={isOpen} onClose={onClose} size="lg">
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader display="flex" justifyContent="space-between" alignItems="center">
+          <DrawerHeader
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            color="#A210C6"
+          >
             Profile Details
             <IconButton
               icon={<CloseIcon />}
@@ -133,15 +139,17 @@ const UserDetailsDrawer = ({ isOpen, onClose }) => {
                 <Divider my={1} borderColor="gray.500" />
               </VStack>
 
-              <Image
-                src={user?.image || defaultImage}
+              <Avatar
+                src={user?.image}
+                // name={user?.firstName}
                 alt="User Image"
                 borderRadius="8px"
                 h="55vh"
                 w="20vw"
                 marginLeft="50px"
                 marginTop="40px"
-              />
+                bg="#A210C6"
+              ></Avatar>
             </Flex>
           </DrawerBody>
           <DrawerFooter>
