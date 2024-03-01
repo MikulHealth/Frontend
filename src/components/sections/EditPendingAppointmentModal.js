@@ -141,10 +141,7 @@ const EditPendingAppointment = ({
   return (
     <>
       <Drawer isOpen={isOpen} onClose={onClose} size="md">
-        <DrawerOverlay
-          bg="#A210C6.300"
-          backdropFilter="blur(10px) hue-rotate(90deg)"
-        />
+        <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader color="#A210C6">Edit appointment </DrawerHeader>
           <DrawerBody>
@@ -285,10 +282,7 @@ const EditPendingAppointment = ({
         isOpen={isConfirmationModalOpen}
         onClose={handleConfirmationCancel}
       >
-        <DrawerOverlay
-          bg="#A210C6.300"
-          backdropFilter="blur(10px) hue-rotate(90deg)"
-        />
+        <DrawerOverlay />
         <DrawerContent maxW="30vw" maxH="30vh" overflowY="auto">
           <DrawerHeader fontSize="lg" fontWeight="bold">
             Confirm Changes

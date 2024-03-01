@@ -48,17 +48,18 @@ const PayForAppointmentModal = ({ isOpen, onClose, appointment }) => {
 
   return (
     <Modal theme={customTheme} isOpen={isOpen} onClose={onClose}>
-      <ModalOverlay backdropFilter="blur(10px) hue-rotate(90deg)" />
+      <ModalOverlay />
       <ModalContent
-        border="2px solid #A210C6"
+        border="5px solid white"
         borderRadius="25px 25px 25px 0px"
+        bg="#510863"
       >
         <ModalHeader>
           <WarningIcon w={10} h={10} color="yellow.400" />
         </ModalHeader>
 
         <ModalBody>
-          <Text>
+          <Text color="white">
             {" "}
             Hello {user?.firstName}, We notice your pending appointment has not
             been paid for, kindly make payment to get matched with a caregiver.

@@ -18,7 +18,7 @@ export default function GetStartedModal({ isOpen, onClose }) {
         marginTop="100px"
         border="5px solid white"
         alignItems="center"
-        bg="yellow.070"
+        bg="#510863"
         borderRadius="25px 25px 25px 0px"
       >
         <ChakraLink fontStyle="italic" href="/login" color="#A210C6">
@@ -50,7 +50,7 @@ export default function GetStartedModal({ isOpen, onClose }) {
             w="400px"
             h="7vh"
             bg="white"
-            marginTop="10px"
+            marginTop="20px"
             color="#A210C6"
             padding="10px"
             borderRadius="8px"
@@ -73,7 +73,7 @@ export default function GetStartedModal({ isOpen, onClose }) {
             w="400px"
             h="7vh"
             bg="white"
-            marginTop="10px"
+            marginTop="20px"
             color="#A210C6"
             padding="10px"
             borderRadius="8px"

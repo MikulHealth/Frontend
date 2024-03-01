@@ -196,12 +196,9 @@ const BeneficiaryAppointmentModal = ({ isOpen, onClose }) => {
           status: "success",
           duration: 6000,
         });
-        const appointmentId = response.data.data.id;
-        const costOfService = response.data.data.costOfService;
-        const beneficiary =
-          response.data.data.recipientFirstName +
-          " " +
-          response.data.data.recipientLastName;
+        const { id: appointmentId, costOfService, recipientFirstname, recipientLastname } = response.data.data;
+        const beneficiary = `${recipientFirstname} ${recipientLastname}`;
+        console.log("beneficiary", beneficiary);
         setTimeout(() => {
           navigate("/make-payment", {
             state: { costOfService, appointmentId, beneficiary },
@@ -335,13 +332,10 @@ const BeneficiaryAppointmentModal = ({ isOpen, onClose }) => {
 
   return (
     <Drawer isOpen={isOpen} onClose={onClose} size="lg">
-      <DrawerOverlay
-        bg="#A210C6.300"
-        backdropFilter="blur(10px) hue-rotate(90deg)"
-      />
+      <DrawerOverlay />
       <DrawerContent alignItems="center">
         <DrawerCloseButton />
-        <DrawerHeader color="#A210C6">Book Appointment</DrawerHeader>
+        <DrawerHeader color="#510863">Book Appointment</DrawerHeader>
         <DrawerBody>
           <FormControl>
             <Box>
@@ -685,7 +679,7 @@ const BeneficiaryAppointmentModal = ({ isOpen, onClose }) => {
             borderRadius="100px"
             isLoading={loading}
             loadingText="Processing..."
-            bg="#A210C6"
+            bg="#510863"
             color="white"
             onClick={handleFormSubmit}
           >

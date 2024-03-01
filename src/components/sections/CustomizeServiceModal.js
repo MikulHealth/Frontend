@@ -245,10 +245,7 @@ const CustomizePlanModal = ({ isOpen, onClose }) => {
   return (
     <>
       <Drawer isOpen={isOpen} onClose={onClose} size="lg">
-        <DrawerOverlay
-          bg="#A210C6.300"
-          backdropFilter="blur(10px) hue-rotate(90deg)"
-        />
+        <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader color="#A210C6">Customize Your Care Plan</DrawerHeader>
@@ -352,10 +349,7 @@ const CustomizePlanModal = ({ isOpen, onClose }) => {
         placement="right"
         size="lg"
       >
-        <DrawerOverlay
-          bg="#A210C6.300"
-          backdropFilter="blur(10px) hue-rotate(90deg)"
-        />
+        <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader color="#A210C6">

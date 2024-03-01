@@ -6,6 +6,7 @@ import axios from "axios";
 import BookAppointmentModal from "../sections/BookAppointment";
 import { EditIcon, CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import EditPendingAppointmentModal from "../sections/EditPendingAppointmentModal";
+import { WarningIcon } from "@chakra-ui/icons";
 import {
   VStack,
   Drawer,
@@ -332,10 +333,7 @@ export default function PendingApp() {
           onClose={closeDetailsDrawer}
           size="md"
         >
-          <DrawerOverlay
-            bg="#A210C6.300"
-            backdropFilter="blur(10px) hue-rotate(90deg)"
-          />
+          <DrawerOverlay />
           <DrawerContent>
             <DrawerHeader
               display="flex"
@@ -605,25 +603,31 @@ export default function PendingApp() {
           onClose={handleCancelModalClose}
           size="md"
         >
-          <ModalOverlay
-            bg="#A210C6.300"
-            backdropFilter="blur(10px) hue-rotate(90deg)"
-          />
+          <ModalOverlay />
           <ModalContent
-            border="2px solid #A210C6"
+            border="5px solid #A210C6"
             borderRadius="25px 25px 25px 0px"
           >
-            <ModalHeader>Confirmation</ModalHeader>
+            <ModalHeader> <WarningIcon w={10} h={10} color="yellow.400" /></ModalHeader>
             <ModalCloseButton />
             <ModalBody>
               Are you sure you want to cancel this appointment? <br></br>
               This action is irreversible.
             </ModalBody>
             <ModalFooter>
-              <Button bg="#A210C6" color="white" onClick={handleCancelModalClose}>
+              <Button
+                bg="#A210C6"
+                color="white"
+                onClick={handleCancelModalClose}
+              >
                 No
               </Button>
-              <Button bg="red.500" color="white"  marginLeft="5px" onClick={handleConfirmation}>
+              <Button
+                bg="red.500"
+                color="white"
+                marginLeft="5px"
+                onClick={handleConfirmation}
+              >
                 Yes
               </Button>
             </ModalFooter>

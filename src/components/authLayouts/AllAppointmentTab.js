@@ -239,10 +239,7 @@ export default function AppointmentTab() {
           placement="right"
           size="md"
         >
-          <DrawerOverlay
-            bg="#A210C6.300"
-            backdropFilter="blur(10px) hue-rotate(90deg)"
-          />
+          <DrawerOverlay />
           <DrawerContent>
             <DrawerHeader
               display="flex"

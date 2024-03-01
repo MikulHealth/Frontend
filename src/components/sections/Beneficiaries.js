@@ -157,12 +157,9 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
   return (
     <>
       <Drawer isOpen={isOpen} onClose={onClose} placement="right" size="lg">
-        <DrawerOverlay
-          bg="#A210C6.300"
-          backdropFilter="blur(10px) hue-rotate(90deg)"
-        />
+        <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader fontSize="lg" fontWeight="bold" color="#A210C6">
+          <DrawerHeader fontSize="lg" fontWeight="bold" color="#510863">
             Beneficiaries
           </DrawerHeader>
           <DrawerCloseButton />
@@ -246,7 +243,7 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
                               fontStyle: "italic",
                               cursor: "pointer",
                             }}
-                            _hover={{ color: "#A210C6" }}
+                            _hover={{ color: "#510863" }}
                             onClick={() =>
                               handleOpenBookAppointmentModal(beneficiary)
                             }
@@ -284,7 +281,7 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
             <Button
               onClick={handleOpenAddBeneficiaryForm}
               color="white"
-              bg="#A210C6"
+              bg="#510863"
               leftIcon={<AddIcon />}
             >
               Add Beneficiary
@@ -312,16 +309,13 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
           onClose={() => setConfirmationModalOpen(false)}
           size="sm"
         >
-          <DrawerOverlay
-            bg="#A210C6.300"
-            backdropFilter="blur(10px) hue-rotate(90deg)"
-          />
+          <DrawerOverlay />
           <DrawerContent maxH="30vh" overflowY="auto">
-            <DrawerHeader>Confirmation</DrawerHeader>
+            <DrawerHeader color="#510863">Confirmation</DrawerHeader>
             <DrawerBody>
               <Text>Are you sure you want to remove this beneficiary?</Text>
             </DrawerBody>
-            <DrawerFooter>
+            <DrawerFooter alignContent="space-between">
               <Button
                 colorScheme="red"
                 onClick={handleConfirmRemoveBeneficiary}
@@ -329,7 +323,9 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
                 Confirm
               </Button>
               <Button
-                variant="ghost"
+                marginLeft="5px"
+                bg="#510863"
+                color="white"
                 onClick={() => setConfirmationModalOpen(false)}
               >
                 Cancel

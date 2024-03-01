@@ -1,4 +1,4 @@
-// LogoutModal.js
+import { WarningIcon } from "@chakra-ui/icons";
 import React from "react";
 import {
   Modal,
@@ -13,22 +13,19 @@ import {
 const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <ModalOverlay
-        bg="#A210C6.300"
-        backdropFilter="blur(10px) hue-rotate(90deg)"
-      />
+      <ModalOverlay />
       <ModalContent
-        border="2px solid #A210C6"
+        border="5px solid #A210C6"
         borderRadius="25px 25px 25px 0px"
       >
-        <ModalHeader>Logout Confirmation</ModalHeader>
+        <ModalHeader><WarningIcon w={10} h={10} color="yellow.400" /></ModalHeader>
         <ModalBody>Are you sure you want to logout?</ModalBody>
         <ModalFooter>
           <Button color="white" bg="#A210C6" mr={3} onClick={onClose}>
-            Cancel
+            No
           </Button>
-          <Button  bg="red.500" color="white" onClick={onConfirm}>
-            Logout
+          <Button bg="red.500" color="white" onClick={onConfirm}>
+            Yes
           </Button>
         </ModalFooter>
       </ModalContent>

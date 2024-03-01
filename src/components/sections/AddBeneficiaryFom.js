@@ -137,12 +137,9 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
 
   return (
     <Drawer isOpen={isOpen} onClose={onClose} size="lg">
-      <DrawerOverlay
-        bg="#A210C6.300"
-        backdropFilter="blur(10px) hue-rotate(90deg)"
-      />
+      <DrawerOverlay />
       <DrawerContent maxH="70vh" overflowY="auto">
-        <DrawerHeader color="#A210C6">Add Beneficiary</DrawerHeader>
+        <DrawerHeader color="#510863">Add Beneficiary</DrawerHeader>
         <DrawerCloseButton />
         <DrawerBody marginLeft="45px">
           <VStack align="start" spacing={4}>
@@ -288,7 +285,7 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
             <Button
               marginLeft="10px"
               color="white"
-              bg="#A210C6"
+              bg="#510863"
               isLoading={loading}
               loadingText="Saving..."
               onClick={handleAddBeneficiary}
