@@ -79,17 +79,32 @@ const LandingPage = () => {
     <ChakraProvider theme={customTheme}>
       <NavigationBar />
       <Box
-        style={settingsContainerStyle}
-        marginBottom="100px"
-        marginTop="50px"
+        flexWrap="wrap"
+        marginBottom={{ base: "50px", md: "100px" }}
+        marginTop={{ base: "50px", md: "50px" }}
         display="flex"
+        flexDirection={{ base: "column", md: "row" }}
+        alignItems={{ base: "center", md: "flex-start" }}
+        justifyContent={{ base: "center", md: "flex-start" }}
+        textAlign={{ base: "center", md: "left" }}
+        px={{ base: "20px", md: "unset" }}
+        marginLeft={{ base: 0, md: "50px" }}
       >
-        <HStack spacing={8} alignItems="center">
-          <Box w="25px" />
-          <Box>
+        <HStack
+          flexWrap="wrap"
+          spacing={8}
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Box
+            marginTop={{ base: "50px", md: "50px" }}
+            width={{ base: "100%", md: "auto" }}
+            mb={{ base: "20px", md: "unset" }}
+            textAlign={{ base: "center", md: "left" }} 
+          >
             <Text
-              textAlign="left"
-              fontSize="48px"
+              fontSize={{ base: "36px", md: "48px" }}
+              textAlign={{ base: "center", md: "left" }}
               fontWeight="bold"
               fontFamily="body"
             >
@@ -97,8 +112,8 @@ const LandingPage = () => {
             </Text>
             <Text
               marginTop="-10px"
-              textAlign="left"
-              fontSize="48px"
+              textAlign={{ base: "center", md: "left" }}
+              fontSize={{ base: "36px", md: "48px" }}
               fontWeight="bold"
               fontFamily="body"
             >
@@ -106,10 +121,10 @@ const LandingPage = () => {
             </Text>
             <Text
               marginTop="10px"
-              textAlign="left"
+              textAlign={{ base: "center", md: "left" }}
               fontWeight="bold"
               fontFamily="body"
-              fontSize="20px"
+              fontSize={{ base: "16px", md: "20px" }}
               color="#A210C6"
             >
               We source carefully trained medics to help <br />
@@ -119,19 +134,18 @@ const LandingPage = () => {
             </Text>
 
             <Button
-              marginTop="15px"
+              marginTop={{ base: "10px", md: "50px" }}
+              marginBottom={{ base: "50px", md: "50px" }}
               bg="#A210C6"
               color="white"
               borderRadius="100px"
-              marginLeft="-450px"
-              //  onMouseOver={handleMouseOver}
-              //  onMouseOut={handleMouseOut}
               onClick={onOpen}
             >
               Get started
             </Button>
           </Box>
         </HStack>
+
         <Spacer />
 
         <style>
@@ -150,41 +164,45 @@ const LandingPage = () => {
         `}
         </style>
         <Box
-          marginLeft="50px"
+          marginTop={{ base: "0", md: "50px" }}
+          marginLeft={{ base: "0", md: "0px" }}
+          padding={{ base: "90px", md: "0px" }}
           className="box"
           data-aos="zoom-out"
           data-aos-duration="10000"
-          h="500px"
-          w="520px"
+          h={{ base: "auto", md: "500px" }}
+          w={{ base: "100%", md: "520px" }}
           animation="zoomInOut 8s infinite"
           overflow="hidden"
+          display={{ base: "block", lg: "block" }}
         >
           <Image
-            // borderRadius="100px"
             src={MHNurse}
-            alt="Logo"
-            style={{ width: "500px", height: "520px" }}
+            alt="Nurse"
+            style={{ width: "100%", height: "100%" }}
           />
         </Box>
       </Box>
       <Services />
       <Divider />
-      <Box bg="white">
-        <Box h="60px" />
-        <Box>
+      <Box flexWrap="wrap" bg="white">
+        <Box marginTop={{ base: "20px", md: "50px" }}>
           <Text
-            fontSize="48px"
+            fontSize={{ base: "36px", md: "48px" }}
             fontWeight="bold"
             fontFamily="body"
             color="black"
           >
             How it works
           </Text>
-          <Box h="5" />
         </Box>
-        <Box h="20px" />
-        <Box display="flex">
-          <Box w="70px" />
+        <Box
+          justifyContent={{ base: "center", md: "space-between" }}
+          // marginLeft={{ base: "0", md: "0px" }}
+          padding={{ base: "0", md: "50px" }}
+          flexWrap="wrap"
+          display="flex"
+        >
           <Box
             bg="white"
             justifyContent="center"
@@ -198,7 +216,7 @@ const LandingPage = () => {
             <Box marginLeft="20px">
               <Image src={SignUp} alt="Logo" w="200px" h="200px" />
             </Box>
-            <Box h="5" />
+
             <Text fontSize="xl" fontWeight="bold" textAlign="center">
               Sign up
             </Text>
@@ -209,7 +227,7 @@ const LandingPage = () => {
               care
             </Text>
           </Box>
-          <Box w="10" />
+
           <Box
             bg="white"
             justifyContent="center"
@@ -223,7 +241,7 @@ const LandingPage = () => {
             <Box marginLeft="20px">
               <Image src={SelectCare} alt="Logo" w="200px" h="200px" />
             </Box>
-            <Box h="5" />
+
             <Text fontSize="xl" fontWeight="bold" textAlign="center">
               Select Care
             </Text>
@@ -234,7 +252,7 @@ const LandingPage = () => {
               service you need
             </Text>
           </Box>
-          <Box w="10" />
+
           <Box
             bg="white"
             justifyContent="center"
@@ -248,7 +266,7 @@ const LandingPage = () => {
             <Box marginLeft="15px">
               <Image src={GetMatched} alt="Logo" w="200px" h="200px" />
             </Box>
-            <Box h="5" />
+
             <Text fontSize="xl" fontWeight="bold" textAlign="center">
               Get Matched
             </Text>
@@ -259,7 +277,7 @@ const LandingPage = () => {
               tailored to your needs
             </Text>
           </Box>
-          <Box w="10" />
+
           <Box
             bg="white"
             justifyContent="center"
@@ -273,7 +291,7 @@ const LandingPage = () => {
             <Box marginLeft="15px">
               <Image src={ReceieveCare} alt="Logo" w="200px" h="200px" />
             </Box>
-            <Box h="5" />
+
             <Text fontSize="xl" fontWeight="bold" textAlign="center">
               Receive Care
             </Text>
@@ -285,31 +303,36 @@ const LandingPage = () => {
             </Text>
           </Box>
         </Box>
-        <Box h="60px" />
       </Box>
       <Faqs />
-      <Box bg="white">
+      <Box flexWrap="wrap" bg="white">
         <Divider />
-        <Box h="60px" />
-        <Box>
+
+        <Box marginTop={{ base: "10", md: "30px" }}>
           <Text
-            fontSize="48px"
+            fontSize={{ base: "2xl", md: "48px" }}
             fontWeight="bold"
             fontFamily="Montserrat"
             color="black"
           >
             Testimonials
           </Text>
-          <Text fontSize="24px" fontFamily="body" color="black">
+          <Text
+            fontSize={{ base: "xl", md: "2xl" }}
+            fontFamily="body"
+            color="black"
+          >
             Here is what our clients have to say about us
           </Text>
-          <Box h="5" />
         </Box>
-        <Box h="20px" />
-        <Box display="flex" marginLeft="100px">
-          <Box w="70px" />
 
-          <Box marginRight="-110">
+        <Box
+          padding={{ base: "20", md: "30px" }}
+          marginLeft={{ base: "0", md: "45px" }}
+          flexWrap="wrap"
+          display="flex"
+        >
+          <Box>
             <Box
               justifyContent="center"
               alignItems="center"
@@ -320,7 +343,7 @@ const LandingPage = () => {
               <Box marginLeft="2px">
                 <Image
                   src={Kudirat}
-                  alt="Logo"
+                  alt="image"
                   w="398px"
                   h="191px"
                   data-aos="fade-left"
@@ -337,23 +360,21 @@ const LandingPage = () => {
               borderRadius="20px"
               flexDirection="row"
             >
-              <Box marginRight="40px">
+              <Box>
                 <Image
                   src={Adeola}
-                  alt="Logo"
+                  alt="image"
                   w="398px"
                   h="191px"
                   data-aos="fade-right"
                   data-aos-duration="10000"
                 />
               </Box>
-              <Box h="5" />
             </Box>
           </Box>
 
-          <Box w="-20px" />
-
           <Box
+            display={{ base: "none", lg: "block" }}
             justifyContent="center"
             alignItems="center"
             padding="20px"
@@ -363,18 +384,16 @@ const LandingPage = () => {
             <Box>
               <Image
                 src={CenterMed}
-                alt="Logo"
+                alt="image"
                 w="306px"
                 h="413px"
                 data-aos="zoom-in"
                 data-aos-duration="10000"
               />
             </Box>
-            <Box h="5" />
           </Box>
 
-          <Box w="-20px" />
-          <Box marginLeft="-110px">
+          <Box>
             <Box
               justifyContent="center"
               alignItems="center"
@@ -382,10 +401,10 @@ const LandingPage = () => {
               borderRadius="20px"
               flexDirection="row"
             >
-              <Box marginRight="40px">
+              <Box>
                 <Image
                   src={Joy}
-                  alt="Logo"
+                  alt="image"
                   w="398px"
                   h="191px"
                   data-aos="fade-left"
@@ -393,7 +412,7 @@ const LandingPage = () => {
                 />
               </Box>
             </Box>
-            <Box w="10" />
+
             <Box
               justifyContent="center"
               alignItems="center"
@@ -401,23 +420,22 @@ const LandingPage = () => {
               borderRadius="20px"
               flexDirection="row"
             >
-              <Box marginRight="10px">
+              <Box>
                 <Image
                   src={Gift}
-                  alt="Logo"
+                  alt="image"
                   w="398px"
                   h="191px"
                   data-aos="fade-right"
                   data-aos-duration="10000"
                 />
               </Box>
-              <Box h="5" />
             </Box>
           </Box>
         </Box>
-        <Box h="60px" />
       </Box>
-      <Box
+      {/* <Box
+        flexWrap="wrap"
         marginLeft="300px"
         marginBottom="80px"
         bg="#D087E2"
@@ -459,7 +477,7 @@ const LandingPage = () => {
             </Button>
           </form>
         )}
-      </Box>
+      </Box> */}
       <Footer />
       <GetStartedModal isOpen={isOpen} onClose={onClose} />
     </ChakraProvider>

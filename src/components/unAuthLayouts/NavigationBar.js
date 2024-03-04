@@ -1,13 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useDisclosure, Box, Button, HStack, Spacer, Image } from "@chakra-ui/react";
+import {
+  useDisclosure,
+  Box,
+  Button,
+  HStack,
+  Spacer,
+  Image,
+  VStack,
+  Collapse,
+  IconButton,
+} from "@chakra-ui/react";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import logo from "../../assets/Whitelogo.png";
 import GetStartedModal from "./GetStarted";
 
 export default function NavigationBar() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onToggle } = useDisclosure();
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("Home");
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     switch (location.pathname) {
@@ -29,84 +41,110 @@ export default function NavigationBar() {
     }
   }, [location]);
 
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <div style={{ position: "sticky" }}>
-        <Box
-          bg="#A210C6"
-          p={3}
-          color="white"
-          position="sticky"
-          top="0"
-          zIndex="1000"
-          borderBottom="1px solid white"
-        >
-          <HStack spacing={10}>
-            <Box w="5px" />
-            <a href="/">
-              <Image src={logo} alt="Logo" w="100px" h="30px" />
-            </a>
+      <Box
+        bg="#A210C6"
+        p={3}
+        color="white"
+        position="sticky"
+        top="0"
+        zIndex="1000"
+        borderBottom="1px solid white"
+      >
+        <HStack spacing={6} alignItems="center">
+          <Box w="5px" />
+          <a href="/">
+            <Image src={logo} alt="Logo" w="100px" h="30px" />
+          </a>
 
-            <Spacer />
-            <Spacer />
-            <Spacer />
-            <Spacer />
-            <Spacer />
-            <Spacer />
-            <Spacer />
-            <Link
-              to="/"
-              style={{
-                textDecoration: pageTitle === "Home" ? "underline" : "none",
-                fontWeight: pageTitle === "Home" ? "bold" : "normal",
-                color: "white"
-              }}
-            >
+          <IconButton
+            bg="white"
+            color="#510863"
+            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+            display={{ base: "block", md: "none" }}
+            onClick={onToggle}
+            aria-label="Toggle Navigation"
+            ml="auto" // Aligns the icon to the right end on mobile and tablet devices
+          />
+          <HStack
+            marginRight={{ base: "0px", md: "50px" }}
+            spacing={6}
+            display={{ base: "none", md: "flex" }}
+            flexGrow="1"
+            justifyContent="flex-end"
+          >
+            <NavLink to="/" pageTitle={pageTitle}>
               Home
-            </Link>
-
-            <Link
-              to="/about"
-              style={{
-                textDecoration: pageTitle === "About" ? "underline" : "none",
-                fontWeight: pageTitle === "About" ? "bold" : "normal",
-                color: "white"
-              }}
-            >
-              About
-            </Link>
-
-            <Link
-              to="/servicesSection"
-              style={{
-                textDecoration: pageTitle === "Services" ? "underline" : "none",
-                fontWeight: pageTitle === "Services" ? "bold" : "normal",
-                color: "white"
-              }}
-            >
+            </NavLink>
+            <NavLink to="/about" pageTitle={pageTitle}>
+              About Us
+            </NavLink>
+            <NavLink to="/servicesSection" pageTitle={pageTitle}>
               Services
-            </Link>
+            </NavLink>
+            <NavLink to="/contact" pageTitle={pageTitle}>
+              Contact Us
+            </NavLink>
+          </HStack>
 
-            <Link
-              to="/contact"
-              style={{
-                textDecoration: pageTitle === "Contact" ? "underline" : "none",
-                fontWeight: pageTitle === "Contact" ? "bold" : "normal",
-                color: "white"
-              }}
-            >
-              Contact
-            </Link>
-            <Spacer />
-            <Button
-              bg="white"
-              color="#A210C6"
-              onClick={onOpen}
-            >
+          <Button
+            bg="white"
+            color="#A210C6"
+            onClick={handleOpenModal}
+            display={{ base: "none", md: "block" }}
+          >
+            Get started
+          </Button>
+        </HStack>
+      </Box>
+
+      {/* Responsive Collapse Menu */}
+      <Collapse in={isOpen} animateOpacity>
+        <Box p={4} bg="#A210C6" color="white" textAlign="center">
+          <VStack spacing={4}>
+            <NavLink to="/" pageTitle={pageTitle}>
+              Home
+            </NavLink>
+            <NavLink to="/about" pageTitle={pageTitle}>
+              About Us
+            </NavLink>
+            <NavLink to="/servicesSection" pageTitle={pageTitle}>
+              Services
+            </NavLink>
+            <NavLink to="/contact" pageTitle={pageTitle}>
+              Contact Us
+            </NavLink>
+            <Button bg="white" color="#A210C6" onClick={handleOpenModal}>
               Get started
             </Button>
-          </HStack>
+          </VStack>
         </Box>
-      <GetStartedModal isOpen={isOpen} onClose={onClose} /> 
+      </Collapse>
+
+      <GetStartedModal isOpen={showModal} onClose={handleCloseModal} />
     </div>
   );
 }
+
+// NavLink Component
+const NavLink = ({ to, children, pageTitle }) => (
+  <Link
+    to={to}
+    style={{
+      textDecoration: pageTitle === children ? "underline" : "none",
+      fontWeight: pageTitle === children ? "bold" : "normal",
+      color: "white",
+    }}
+  >
+    {children}
+  </Link>
+);

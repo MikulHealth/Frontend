@@ -50,6 +50,8 @@ const customTheme = extendTheme({
   },
 });
 
+
+
 const ClientDash = () => {
   const [loading, setLoading] = useState(false);
   const [isBeneficiariesModalOpen, setBeneficiariesModalOpen] = useState(false);

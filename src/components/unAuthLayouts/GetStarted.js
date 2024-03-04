@@ -8,9 +8,13 @@ import {
   Button,
   Link as ChakraLink,
   Box,
+  useMediaQuery,
 } from "@chakra-ui/react";
 
 export default function GetStartedModal({ isOpen, onClose }) {
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
+  const modalWidth = isLargerThan768 ? "400px" : "90vw";
+
   return (
     <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -19,12 +23,13 @@ export default function GetStartedModal({ isOpen, onClose }) {
         border="5px solid white"
         alignItems="center"
         bg="#510863"
-        borderRadius="25px 25px 25px 0px"
+        borderRadius={{ base: "25px 25px 25px 0px", md: "25px 25px 25px 0px" }}
+        width={modalWidth}
       >
         <ChakraLink fontStyle="italic" href="/login" color="#A210C6">
           <Box
-            // border="2px solid #A210C6"
-            w="400px"
+            w="100%"
+            textAlign="center"
             h="7vh"
             bg="white"
             marginTop="40px"
@@ -46,8 +51,8 @@ export default function GetStartedModal({ isOpen, onClose }) {
         </ChakraLink>
         <ChakraLink fontStyle="italic" href="/customer-signUp" color="#A210C6">
           <Box
-            // border="2px solid #A210C6"
-            w="400px"
+            w="100%"
+            textAlign="center"
             h="7vh"
             bg="white"
             marginTop="20px"
@@ -69,8 +74,8 @@ export default function GetStartedModal({ isOpen, onClose }) {
         </ChakraLink>
         <ChakraLink fontStyle="italic" href="/join" color="#A210C6">
           <Box
-            // border="2px solid #A210C6"
-            w="400px"
+            w="100%"
+            textAlign="center"
             h="7vh"
             bg="white"
             marginTop="20px"
@@ -91,7 +96,6 @@ export default function GetStartedModal({ isOpen, onClose }) {
           </Box>
         </ChakraLink>
         <ModalCloseButton color="white" />
-
         <ModalFooter></ModalFooter>
       </ModalContent>
     </Modal>
