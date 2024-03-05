@@ -37,7 +37,7 @@ const Footer = ({ onFaqsClick }) => {
             provide care for you and your loved ones.
           </Text>
         </Box>
-        <Box mb={{ base: "6", md: "0" }} ml={{ base: "0", md: "0px" }}>
+        <Box mb={{ base: "6", md: "0" }} ml={{ base: "0", md: "-200px" }}>
           <Text
             fontSize={{ base: "2xl", md: "3xl" }}
             fontWeight="bold"
@@ -67,7 +67,7 @@ const Footer = ({ onFaqsClick }) => {
             </ul>
           </Box>
         </Box>
-        <Box mb={{ base: "6", md: "0" }} ml={{ base: "0", md: "0px" }}>
+        <Box mb={{ base: "6", md: "0" }} mr={{ base: "0", md: "25px" }}>
           <Text
             fontSize={{ base: "2xl", md: "3xl" }}
             fontWeight="bold"

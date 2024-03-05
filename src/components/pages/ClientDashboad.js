@@ -50,8 +50,6 @@ const customTheme = extendTheme({
   },
 });
 
-
-
 const ClientDash = () => {
   const [loading, setLoading] = useState(false);
   const [isBeneficiariesModalOpen, setBeneficiariesModalOpen] = useState(false);
@@ -107,7 +105,7 @@ const ClientDash = () => {
 
   const checkUnpaidAppointments = (appointments) => {
     appointments.forEach((appointmentData) => {
-      const appointment = appointmentData.appointment; 
+      const appointment = appointmentData.appointment;
       if (!appointment.paid) {
         console.log("This is the un-paid appointment:", appointment);
         setPendingAppointment(appointment);
@@ -117,7 +115,7 @@ const ClientDash = () => {
       }
     });
   };
-  
+
   useEffect(() => {
     const fetchMatchedAppointments = async () => {
       try {
@@ -221,19 +219,22 @@ const ClientDash = () => {
       <VStack
         style={settingsContainerStyle}
         marginLeft="250px"
-        position="fixed"
+        // position="fixed"
         w="80%"
         h="100vh"
       >
         <NavBar />
-        <Flex>
+        <Flex marginTop="50px">
           <Box>
             <Box
+              paddingBottom="20"
+              textAlign="center"
+              w={{ base: "90%", md: "100%" }}
+              h={{ base: "40%", md: "35%" }}
+              mt={{ base: "4px", md: "0" }}
+              mb={{ base: "10px", md: "30" }}
               bg="#A210C6"
-              w="50vw"
-              h="25vh"
               borderRadius="20px"
-              marginBottom="30px"
             >
               {" "}
               <Flex>
@@ -252,9 +253,11 @@ const ClientDash = () => {
                 </VStack>
                 <VStack>
                   <Button
+                    marginLeft={{ base: "60px", md: "300px" }}
+                    w={{ base: "90%", md: "35%" }}
+                    h={{ base: "50%", md: "50%" }}
                     borderRadius="15px"
                     color="#A210C6"
-                    marginLeft="300px"
                     marginTop="20px"
                     onClick={handleOpenWalletModal}
                     bg="white"
@@ -264,14 +267,14 @@ const ClientDash = () => {
                   </Button>
                 </VStack>
               </Flex>
-              <Flex marginLeft="20px" marginTop="30px">
-                <VStack color="white">
-                  <Text marginLeft="-130px" fontSize="12px">
+              <Flex marginLeft={{ base: "65px", md: "50px" }} marginTop="30px">
+                <VStack marginLeft={{ base: "-50px", md: "-120px" }} color="white">
+                  <Text marginLeft={{ base: "65px", md: "-30px" }}  fontSize="12px">
                     Wallet ID:
                   </Text>
-                  <Text fontSize="16px">Wema Bank 0124536789</Text>
+                  <Text marginLeft={{ base: "65px", md: "95px" }}   fontSize="16px">Wema Bank 0124536789</Text>
                 </VStack>
-                <Flex marginLeft="250px">
+                <Flex marginLeft={{ base: "", md: "250px" }}>
                   <VStack color="white">
                     <Text fontSize="14px">Total funded</Text>
                     <Text color="white" fontSize="12px" marginLeft="-44px">

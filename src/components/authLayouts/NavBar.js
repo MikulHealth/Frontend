@@ -1,26 +1,18 @@
 import {
   Avatar,
-  HStack,
   Heading,
   Spacer,
   Box,
   Text,
   Flex,
   extendTheme,
-  Image,
-  Divider,
   ChakraProvider,
-  VStack,
 } from "@chakra-ui/react";
-import { BellIcon } from "@chakra-ui/icons";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { SetUser } from "../../redux/userSlice";
-import { GetCurrentUser } from "../../apiCalls/UserApis";
 import UserDetailsModal from "../sections/UserDetails";
-import NotificationIcon from "../../assets/notification.svg";
-import logo from "../../assets/Secondary logo.svg";
+
 const customTheme = extendTheme({
   components: {
     Link: {
@@ -52,29 +44,6 @@ export default function NavBar() {
     setShowUserDetailsModal(false);
   };
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     if (localStorage.getItem("token")) {
-  //       try {
-  //         const response = await GetCurrentUser();
-
-  //         if (response.success) {
-  //           dispatch(SetUser(response.data));
-  //         } else {
-  //           console.error("API request failed:", response.error);
-  //         }
-  //       } catch (error) {
-  //         console.error("Error in GetCurrentUser API:", error);
-  //       } finally {
-  //       }
-  //     } else {
-  //       navigate("/login");
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
-
   const pageTitles = {
     "/dashboard": "Dashboard",
     "/appointment": "Appointments",
@@ -95,94 +64,56 @@ export default function NavBar() {
   return (
     <ChakraProvider theme={customTheme}>
       <Flex
-        h="20%"
-        overflow="hidden"
-        fontFamily="Gill Sans MT, sans-serif"
-        as="h4"
-        p="10px"
-        width={{ base: "100%" }}
         alignItems="center"
-        marginTop="-10px"
+        p="10px"
+        marginTop="20px"
+        direction={{ base: "row", md: "row" }}
+        justifyContent="space-between"
+        width="100%"
+        px={{ base: "10px", md: "20px" }}
       >
-        <Box marginLeft="20px">
+        <Box>
           {isDashboard ? (
-            <>
-              <Flex marginLeft="30px">
-                <Heading fontSize="24px" color="#A210C6" fontWeight="bold">
-                  Hello {user?.firstName},
-                </Heading>
-                <Text
-                  style={{
-                    fontStyle: "italic",
-                  }}
-                  marginLeft="5px"
-                  fontFamily="Montserrat, sans-serif"
-                  fontSize="16px"
-                  marginTop="5px"
-                  // fontWeight="bold"
-                >
-                  How are you doing today?
-                </Text>
-              </Flex>
-            </>
+            <Flex flexDirection={{ base: "column", md: "row" }}>
+              <Heading fontSize={{ base: "16", md: "24px" }} color="#A210C6" fontWeight="bold">
+                Hello {user?.firstName},
+              </Heading>
+              <Text
+                fontStyle="italic"
+                marginLeft={{ base: "10px", md: "5px" }}
+                fontFamily="Montserrat, sans-serif"
+                fontSize={{ base: "10px", md: "16px" }}
+                marginTop={{ base: "5px", md: "5px" }}
+              >
+                How are you doing today?
+              </Text>
+            </Flex>
           ) : (
-            <Heading
-              marginLeft="-30px"
-              fontSize="24px"
-              color="#A210C6"
-              fontWeight="bold"
-            >
+            <Heading fontSize="24px" color="#A210C6" fontWeight="bold">
               {pageTitle}
             </Heading>
           )}
         </Box>
-        <Spacer />
-        <HStack spacing="20px" marginRight="30px">
-          <Box
-            style={{
-              cursor: "pointer",
-              borderRadius: "100%",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <Image
-              h="30px"
-              w="30px"
-              style={{
-                cursor: "pointer",
-              }}
-              src={NotificationIcon}
-              alt="Notification icon"
-            />
-          </Box>
-          <Box
-            style={{
-              cursor: "pointer",
-              borderRadius: "100%",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <Avatar
-              style={{
-                cursor: "pointer",
-              }}
-              h="30px"
-              w="30px"
-              onClick={handleOpenUserDetailsModal}
-              src={user?.image}
-              name={user?.firstName}
-              bg="#A210C6"
-            ></Avatar>
-          </Box>
-        </HStack>
-
-        <UserDetailsModal
-          isOpen={showUserDetailsModal}
-          onClose={handleCloseUserDetailsModal}
-        />
+        <Box
+          style={{ cursor: "pointer" }}
+          onClick={handleOpenUserDetailsModal}
+          display={{ base: "block", md: "flex" }} // Ensure Avatar is always visible
+        >
+          <Avatar
+            borderRadius="full"
+            boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
+            size={{ base: "sm", md: "md" }} 
+            marginTop={{ base: "5px", md: "0" }}
+            src={user?.image}
+            name={user?.firstName}
+            bg="#A210C6"
+          />
+        </Box>
       </Flex>
-      {/* <Box borderBottom="2px solid #A210C6" w="100%" marginX={3} /> */}
-      {/* <Divider my={2} borderColor="#A210C6" /> */}
-      </ChakraProvider>
+      <UserDetailsModal
+        isOpen={showUserDetailsModal}
+        onClose={handleCloseUserDetailsModal}
+      />
+    </ChakraProvider>
   );
 }

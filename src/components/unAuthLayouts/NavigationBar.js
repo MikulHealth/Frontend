@@ -50,14 +50,12 @@ export default function NavigationBar() {
   };
 
   return (
-    <div style={{ position: "sticky" }}>
+    <header style={{ position: "sticky", top: 0, zIndex: 1000 }}>
       <Box
+        w="100%"
         bg="#A210C6"
         p={3}
         color="white"
-        position="sticky"
-        top="0"
-        zIndex="1000"
         borderBottom="1px solid white"
       >
         <HStack spacing={6} alignItems="center">
@@ -131,7 +129,7 @@ export default function NavigationBar() {
       </Collapse>
 
       <GetStartedModal isOpen={showModal} onClose={handleCloseModal} />
-    </div>
+    </header>
   );
 }
 

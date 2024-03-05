@@ -79,6 +79,7 @@ const LandingPage = () => {
     <ChakraProvider theme={customTheme}>
       <NavigationBar />
       <Box
+        style={settingsContainerStyle}
         flexWrap="wrap"
         marginBottom={{ base: "50px", md: "100px" }}
         marginTop={{ base: "50px", md: "50px" }}
@@ -100,7 +101,7 @@ const LandingPage = () => {
             marginTop={{ base: "50px", md: "50px" }}
             width={{ base: "100%", md: "auto" }}
             mb={{ base: "20px", md: "unset" }}
-            textAlign={{ base: "center", md: "left" }} 
+            textAlign={{ base: "center", md: "left" }}
           >
             <Text
               fontSize={{ base: "36px", md: "48px" }}
