@@ -42,17 +42,23 @@ const SettingsPage = () => {
   return (
     <ChakraProvider theme={customTheme}>
       <LeftSideBar />
-      <VStack style={settingsContainerStyle} position="fixed" marginLeft="280px" w="70%" h="100vh">
+      <VStack
+        style={settingsContainerStyle}
+        position="fixed"
+        ml={{ md: "200px" }}
+        w={{ base: "100%", md: "70%" }}
+        h={{ base: "100%", md: "100%" }}
+      >
         <NavBar />
-        <Flex marginTop="-30px" marginLeft="-250px">
+        <Flex  mt={{ md: "30px" }} ml={{md:"-80px"}}>
           <SettingsSideBar />
-          <Box marginTop="20px">
+          <Box mt={{ base: "100px", md: "20px" }}>
             <Image
               src={BigSettingsIcon}
               alt="Settings Icon"
               boxSize="50px"
-              h="456px"
-              w="488px"
+              h={{ base: "256", md: "456px" }}
+              w={{ base: "288px", md: "488px" }}
             />
           </Box>
         </Flex>

@@ -242,15 +242,18 @@ export default function PendingApp() {
       className="pending-appointment"
       marginLeft="2%"
       overflow="scroll"
-      w="45vw"
-      h="28vh"
+      w={{ base: "100%", md: "45vw" }}
+      h={{ base: "60vh", md: "28vh" }}
       theme={customTheme}
     >
       {loading ? (
         <LoadingSpinner />
       ) : pendingAppointments.length === 0 ? (
-        <Text marginLeft="35px">
-          You have no pending appointments yet. click{" "}
+        <Text
+          fontSize={{ base: "10px", md: "16px" }}
+          ml={{ base: "10px", md: "35px" }}
+        >
+          No pending appointments yet. click{" "}
           <a
             href="#"
             style={{
@@ -268,35 +271,60 @@ export default function PendingApp() {
       ) : (
         <VStack align="start" spacing={4}>
           {pendingAppointments.map((appointment) => (
-            <Box key={appointment.id}>
+            <Box
+              ml={{ base: "20px" }}
+              fontSize={{ base: "12px", md: "16px" }}
+              key={appointment.id}
+            >
               <Flex>
-                <Text
-                  fontStyle="body"
-                  fontSize="16px"
-                  fontWeight="bold"
-                  color="black"
-                >
+                <Text fontStyle="body" fontWeight="bold" color="black">
                   Care beneficiary:
                 </Text>
-                <Text marginLeft="5px" color="black">
+                <Text ml={{ base: "10px", md: "5px" }} color="black">
                   {`${appointment.appointment.recipientFirstname} ${appointment.appointment.recipientLastname}`}
                 </Text>
               </Flex>
               <Flex>
-                <Text
-                  fontStyle="body"
-                  fontSize="16px"
-                  fontWeight="bold"
-                  color="black"
-                >
+                <Text fontStyle="body" fontWeight="bold" color="black">
                   Booked on:
                 </Text>
-                <Text marginLeft="5px" color="black">
+                <Text ml={{ base: "10px", md: "5px" }} color="black">
                   {formatDateTime(appointment.createdAt)}
                 </Text>
+                <Flex display={{ base: "none", md: "flex" }}>
+                  <Text
+                    ml={{ md: "60px" }}
+                    fontSize={{ base: "12px", md: "16px" }}
+                    onClick={() => handleViewMore(appointment.id)}
+                    style={{
+                      color: "#A210C6",
+                      fontStyle: "italic",
+                      cursor: "pointer",
+                    }}
+                    _hover={{ color: "#A210C6" }}
+                  >
+                    Details
+                  </Text>
+                  <Text
+                    ml={{ md: "60px" }}
+                    fontSize={{ base: "12px", md: "16px" }}
+                    onClick={() => handleCancelAppointment(appointment.id)}
+                    style={{
+                      color: "red",
+                      fontStyle: "italic",
+                      cursor: "pointer",
+                    }}
+                    _hover={{ color: "#A210C6" }}
+                  >
+                    Cancel
+                  </Text>
+                </Flex>
+              </Flex>
+              <Flex
+                fontSize={{ base: "12px", md: "16px" }}
+                display={{ base: "flex", md: "none" }}
+              >
                 <Text
-                  marginLeft="60px"
-                  fontSize="16px"
                   onClick={() => handleViewMore(appointment.id)}
                   style={{
                     color: "#A210C6",
@@ -308,8 +336,7 @@ export default function PendingApp() {
                   Details
                 </Text>
                 <Text
-                  marginLeft="60px"
-                  fontSize="16px"
+                  ml={{ base: "150px" }}
                   onClick={() => handleCancelAppointment(appointment.id)}
                   style={{
                     color: "red",
@@ -321,7 +348,6 @@ export default function PendingApp() {
                   Cancel
                 </Text>
               </Flex>
-
               <Divider my={4} borderColor="gray.500" />
             </Box>
           ))}
@@ -608,7 +634,10 @@ export default function PendingApp() {
             border="5px solid #A210C6"
             borderRadius="25px 25px 25px 0px"
           >
-            <ModalHeader> <WarningIcon w={10} h={10} color="yellow.400" /></ModalHeader>
+            <ModalHeader>
+              {" "}
+              <WarningIcon w={10} h={10} color="yellow.400" />
+            </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
               Are you sure you want to cancel this appointment? <br></br>

@@ -144,15 +144,18 @@ export default function AppointmentTab() {
       className="all-appointment"
       overflow="scroll"
       marginLeft="2%"
-      w="45vw"
-      h="28vh"
+      w={{ base: "100%", md: "45vw" }}
+      h={{ base: "60vh", md: "28vh" }}
     >
       <VStack align="start" spacing={4}>
         {loading ? (
           <LoadingSpinner />
         ) : appointments.length === 0 ? (
-          <Text marginLeft="35px">
-            You have no appointments yet. click{" "}
+          <Text
+            fontSize={{ base: "10px", md: "16px" }}
+            ml={{ base: "10px", md: "35px" }}
+          >
+            No appointments yet. click{" "}
             <a
               href="#"
               style={{
@@ -170,12 +173,16 @@ export default function AppointmentTab() {
         ) : (
           <VStack align="start" spacing={4}>
             {appointments.map((appointment) => (
-              <Box key={appointment.id}>
+              <Box
+                ml={{ base: "20px" }}
+                fontSize={{ base: "12px", md: "16px" }}
+                key={appointment.id}
+              >
                 <Flex>
                   <Text fontWeight="bold" color="black">
                     Care beneficiary:
                   </Text>
-                  <Text marginLeft="5px" color="black">
+                  <Text ml={{ base: "10px", md: "5px" }} color="black">
                     {`${appointment.recipientFirstname} ${appointment.recipientLastname}`}
                   </Text>
                 </Flex>
@@ -183,14 +190,58 @@ export default function AppointmentTab() {
                   <Text fontWeight="bold" color="black">
                     Booked on:
                   </Text>
-                  <Text marginLeft="5px" color="black">
+                  <Text ml={{ base: "10px", md: "5px" }} color="black">
                     {formatDateTime(appointment.createdAt)}
                   </Text>
+                  <Flex display={{ base: "none", md: "flex" }}>
+                    <Text
+                      fontSize={{ base: "12px", md: "16px" }}
+                      onClick={() => handleViewMore(appointment.id)}
+                      style={{
+                        marginLeft: "60px",
+                        color: "#A210C6",
+                        fontStyle: "italic",
+                        cursor: "pointer",
+                      }}
+                      _hover={{ color: "#A210C6" }}
+                    >
+                      Details
+                    </Text>
+                    <Text
+                      fontSize="16px"
+                      marginLeft="60px"
+                      color={
+                        appointment.appointmentCompleted
+                          ? "green.500"
+                          : appointment.appointmentActive
+                          ? "blue.500"
+                          : appointment.appointmentMatched
+                          ? "yellow.500"
+                          : appointment.appointmentPending
+                          ? "yellow.500"
+                          : "black"
+                      }
+                      fontStyle="italic"
+                    >
+                      {appointment.appointmentCompleted
+                        ? "Completed"
+                        : appointment.appointmentActive
+                        ? "Active"
+                        : appointment.appointmentMatched
+                        ? "Paired"
+                        : appointment.appointmentPending
+                        ? "Pending"
+                        : "Unknown"}
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex
+                    fontSize={{ base: "12px", md: "16px" }}
+                  display={{ base: "flex", md: "none" }}
+                >
                   <Text
-                    fontSize="16px"
                     onClick={() => handleViewMore(appointment.id)}
                     style={{
-                      marginLeft: "60px",
                       color: "#A210C6",
                       fontStyle: "italic",
                       cursor: "pointer",
@@ -200,8 +251,7 @@ export default function AppointmentTab() {
                     Details
                   </Text>
                   <Text
-                    fontSize="16px"
-                    marginLeft="60px"
+                    ml={{ base: "150px" }}
                     color={
                       appointment.appointmentCompleted
                         ? "green.500"

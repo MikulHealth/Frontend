@@ -106,15 +106,19 @@ const ServicePage = () => {
       <LeftSideBar />
       <VStack
         style={settingsContainerStyle}
-        marginLeft="225px"
         position="fixed"
-        w="80%"
-        h="100vh"
+        ml={{ md: "225px" }}
+        w={{ base: "100%", md: "80%" }}
+        h={{ base: "100%", md: "100%" }}
       >
-        <VStack marginTop="40px">
+        <VStack marginTop="10px">
           <NavBar />
           <VStack>
-            <Box marginLeft="-120px" marginTop="15px">
+            <Box
+              justifyContent={{ base: "center" }}
+              ml={{ md: "-120px" }}
+              mt={{ md: "15px" }}
+            >
               {services.map((service, index) => (
                 <Box
                   key={index}
@@ -134,7 +138,9 @@ const ServicePage = () => {
                   <Flex>
                     <Image margin="15px" src={service.icon} w="30px" h="30px" />
                     <Box marginLeft="10px" marginTop="15px">
-                      <Text fontSize="20px">{service.title}</Text>
+                      <Text fontSize={{ base: "16px", md: "20px" }}>
+                        {service.title}
+                      </Text>
                     </Box>
                     <Image
                       src={Chevron}
@@ -163,9 +169,11 @@ const ServicePage = () => {
                   _hover={{ color: "#A210C6" }}
                 >
                   <Flex>
-                  <Image margin="15px" src={Costom} w="30px" h="30px" />
+                    <Image margin="15px" src={Costom} w="30px" h="30px" />
                     <Box marginTop="15px">
-                      <Text fontSize="20px">Customize service</Text>
+                      <Text fontSize={{ base: "16px", md: "20px" }}>
+                        Customize service
+                      </Text>
                     </Box>
                     <Image
                       src={Chevron}
@@ -180,7 +188,11 @@ const ServicePage = () => {
                 </Box>
               </NavLink>
             </Box>
-            <Box marginTop="-85px" marginLeft="900px">
+            <Box
+              display={{ base: "none", md: "block" }}
+              marginTop="-85px"
+              marginLeft="900px"
+            >
               <NavLink to="/help">
                 <Image
                   src={HelppIcon}

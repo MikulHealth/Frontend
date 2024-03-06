@@ -76,10 +76,10 @@ const AppointmentPage = () => {
       <LeftSideBar />
       <VStack
         style={settingsContainerStyle}
+        ml={{ md: "200px" }}
         position="fixed"
-        marginLeft="270px"
-        w="70%"
-        h="100vh"
+        w={{ base: "100%", md: "80%" }}
+        h={{ base: "100%", md: "100%" }}
       >
         <NavBar />
         <Box
@@ -87,7 +87,7 @@ const AppointmentPage = () => {
           border="1px solid gray"
           borderRadius="md"
           padding="3px"
-          w="70vw"
+          w={{ base: "90vw", md: "70vw" }}
         >
           <Flex>
             <SearchIcon boxSize={4} marginRight="10px" marginTop="5px" />
@@ -110,32 +110,35 @@ const AppointmentPage = () => {
         <Flex
           marginTop="10px"
           bg="#A210C6"
-          w="70vw"
-          h="30vh"
+          w={{ base: "90vw", md: "70vw" }}
+          h={{ base: "19vh", md: "30vh" }}
           borderRadius="20px"
+          justifyContent="space-between"
         >
-          <VStack color="white">
+          <VStack paddingLeft="10px" justify="left" color="white">
             <Text
-              fontSize="20px"
+              fontSize={{ base: "12px", md: "20px" }}
               fontFamily="heading"
               marginTop="15px"
-              marginLeft="-98px"
+              ml={{ base: "", md: "-98px" }}
+              textAlign="left"
             >
               Hello {user?.firstName},
             </Text>
             <Text
               fontFamily="body"
-              fontSize="15px"
-              marginLeft="43px"
-              marginTop="5px"
+              fontSize={{ base: "10px", md: "15px" }}
+              ml={{ base: "", md: "43px" }}
+              mt={{ md: "5px" }}
+              textAlign="left"
             >
               Would you like to book an appointment
             </Text>
             <Text
               fontFamily="body"
-              fontSize="15px"
-              marginTop="2px"
-              marginLeft="-36px"
+              fontSize={{ base: "10px", md: "15px" }}
+              mt={{ md: "2px" }}
+              ml={{ base: "", md: "-36px" }}
             >
               for yourself or a loved one?
             </Text>
@@ -145,10 +148,14 @@ const AppointmentPage = () => {
               bg="white"
               color="#A210C6"
               fontFamily="body"
-              marginTop="10px"
+              mt={{ md: "10px" }}
               _hover={{ color: "" }}
-              marginLeft="-40px"
-              borderRadius="100px"
+              padding={{ base: "5px", md: "0" }}
+              ml={{ base: "", md: "-40px" }}
+              w={{ base: "140px", md: "190px" }}
+              h={{ base: "30px", md: "40px" }}
+              fontSize={{ base: "12px", md: "16px" }}
+              borderRadius="15px"
               leftIcon={<CheckIcon />}
             >
               Book appointment
@@ -158,23 +165,23 @@ const AppointmentPage = () => {
             <Image
               src={familyIcon}
               alt="family icon"
-              h="150px"
-              w="150px"
-              marginTop="20px"
-              marginBottom="10px"
-              marginLeft="400px"
+              w={{ base: "80px", md: "150px" }}
+              h={{ base: "80x", md: "150px" }}
+              mt={{ base: "40px", md: "20px" }}
+              mb={{ base: "0", md: "50px" }}
+              mr={{ base: "30px", md: "30px" }}
             />
           </Box>
         </Flex>
 
         <Flex
-          w="50vw"
-          marginLeft="-250px"
+          w={{ base: "", md: "50vh" }}
+          ml={{ base: "", md: "-400px" }}
           justifyContent="space-between"
           className="appointment-tabs"
         >
-          <VStack>
-            <Tabs colorScheme="purple.100" mt="40px">
+          <VStack ml={{ base: "", md: "-100px" }}>
+            <Tabs colorScheme="purple.100" mt={{ base: "", md: "40px" }}>
               <TabList justifyContent="space-between">
                 <Tab color="#A210C6" fontWeight="bold">
                   All
@@ -192,7 +199,7 @@ const AppointmentPage = () => {
                   Completed
                 </Tab>
               </TabList>
-              <TabPanels marginLeft="-30px">
+              <TabPanels  ml={{ base: "", md: "-30px" }}>
                 <TabPanel>
                   <AppointmentTab />
                 </TabPanel>
