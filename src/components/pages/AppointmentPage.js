@@ -76,8 +76,8 @@ const AppointmentPage = () => {
       <LeftSideBar />
       <VStack
         style={settingsContainerStyle}
-        ml={{ md: "200px" }}
         position="fixed"
+        ml={{ md: "200px" }}
         w={{ base: "100%", md: "80%" }}
         h={{ base: "100%", md: "100%" }}
       >
@@ -88,15 +88,15 @@ const AppointmentPage = () => {
           borderRadius="md"
           padding="3px"
           w={{ base: "90vw", md: "70vw" }}
+          h={{ base: "5vw" }}
         >
           <Flex>
             <SearchIcon boxSize={4} marginRight="10px" marginTop="5px" />
             <Text
-              fontSize="16px"
+              fontSize={{ base: "12px", md: "16px" }}
               fontFamily="body"
+              mt={{ md: "2px" }}
               style={{
-                marginLeft: "5px",
-                marginTop: "2px",
                 fontStyle: "italic",
                 cursor: "pointer",
               }}
@@ -199,7 +199,7 @@ const AppointmentPage = () => {
                   Completed
                 </Tab>
               </TabList>
-              <TabPanels  ml={{ base: "", md: "-30px" }}>
+              <TabPanels ml={{ base: "", md: "-30px" }}>
                 <TabPanel>
                   <AppointmentTab />
                 </TabPanel>

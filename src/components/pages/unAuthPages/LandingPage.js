@@ -305,7 +305,7 @@ const LandingPage = () => {
           </Box>
         </Box>
       </Box>
-      <Faqs />
+     
       <Box flexWrap="wrap" bg="white">
         <Divider />
 
@@ -435,50 +435,7 @@ const LandingPage = () => {
           </Box>
         </Box>
       </Box>
-      {/* <Box
-        flexWrap="wrap"
-        marginLeft="300px"
-        marginBottom="80px"
-        bg="#D087E2"
-        padding="40px"
-        w="750px"
-        borderRadius="10px"
-      >
-        <FormControl display="flex" alignItems="center">
-          <FormLabel
-            htmlFor="email-alerts"
-            mb="0"
-            fontFamily="body"
-            fontSize="20px"
-          >
-            Don't want to miss out on any information? Subscribe to our
-            newsletter
-          </FormLabel>
-          <Switch
-            size="lg"
-            id="email-alerts"
-            isChecked={isSwitchOn}
-            onChange={handleSwitchToggle}
-            colorScheme={isSwitchOn ? "green" : "gray"}
-          />
-        </FormControl>
-        {isSwitchOn && (
-          <form>
-            <FormControl marginLeft="150px" w="400px" marginTop="10px">
-              <Input type="email" id="email" placeholder="Enter your email" />
-            </FormControl>
-            <Button
-              type="submit"
-              mt="4"
-              color="white"
-              bg="#A210C6"
-              marginLeft="-45px"
-            >
-              Subscribe
-            </Button>
-          </form>
-        )}
-      </Box> */}
+      <Faqs />
       <Footer />
       <GetStartedModal isOpen={isOpen} onClose={onClose} />
     </ChakraProvider>

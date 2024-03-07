@@ -288,9 +288,9 @@ const WalletPage = () => {
       <VStack
         style={settingsContainerStyle}
         position="fixed"
-        marginLeft="270px"
-        w="70%"
-        h="100vh"
+        ml={{ md: "270px" }}
+        w={{ base: "", md: "70%" }}
+        h={{ base: "100%", md: "100%" }}
       >
         <NavBar />
         <Box
@@ -298,17 +298,17 @@ const WalletPage = () => {
           border="1px solid gray"
           borderRadius="md"
           padding="3px"
-          w="70vw"
+          w={{ base: "89vw", md: "70vw" }}
           h="6vh"
+          ml={{ base: "20px", md: "10px" }}
         >
-          <Flex marginLeft="10px">
+          <Flex ml={{ md: "10px" }}>
             <SearchIcon boxSize={4} marginRight="10px" marginTop="5px" />
             <Text
               fontSize="16px"
               fontFamily="body"
+              mt={{ md: "2px" }}
               style={{
-                marginLeft: "5px",
-                marginTop: "1px",
                 fontStyle: "italic",
                 cursor: "pointer",
               }}
@@ -322,60 +322,77 @@ const WalletPage = () => {
         <Box
           marginTop="10px"
           bg="#A210C6"
-          w="70vw"
-          h="25vh"
+          w={{ base: "90vw", md: "70vw" }}
+          ml={{ base: "20px", md: "10px" }}
+          h={{ base: "19vh", md: "25vh" }}
           borderRadius="20px"
           display="flex"
         >
-          <VStack>
-            <Flex marginTop="15px" marginLeft="30">
-              <VStack color="white">
-                <Text fontSize="16px" fontFamily="body">
-                  Mikul health wallet
-                </Text>
-                <Text marginLeft="-58px" fontSize="24px">
-                  ₦ {balance.toFixed(2)}
-                </Text>
-              </VStack>
-
-              <Button
-                borderRadius="15px"
-                color="#A210C6"
-                marginLeft="650px"
-                onClick={handleOpenFundWalletModal}
-                bg="white"
-                _hover={{ color: "" }}
+          <Flex  w={{ base: "90vw", md: "80vw" }}>
+            <VStack marginLeft="20px">
+              <Text
+                fontSize={{ base: "12px", md: "16px" }}
+                fontFamily="body"
+                color="white"
+                textAlign="left"
+                mt={{ base: "10px", md: "20px" }}
               >
-                Fund wallet
-              </Button>
-            </Flex>
-            <Flex marginLeft="15px" marginTop="10px">
+                Mikul Health Savings Account
+              </Text>
+              <Text
+                color="white"
+                fontSize={{ base: "12px", md: "16px" }}
+                marginLeft="-80%"
+              >
+                ₦ {balance.toFixed(2)}
+              </Text>
+            </VStack>
+            <Button
+              padding={{ base: "5px", md: "0" }}
+              ml={{ base: "40px", md: "460px" }}
+              w={{ base: "100px", md: "200px" }}
+              h={{ base: "30px", md: "40px" }}
+              fontSize={{ base: "12px", md: "16px" }}
+              borderRadius="15px"
+              color="#A210C6"
+              marginTop="20px"
+              onClick={handleOpenFundWalletModal}
+              bg="white"
+              _hover={{ color: "" }}
+            >
+              Fund wallet
+            </Button>
+          </Flex>
+          <Flex marginLeft={{ base: "5px", md: "56px" }} marginTop="100px">
+            <VStack
+              marginBottom={{ base: "50px", md: "0" }}
+              marginLeft={{ base: "-50px", md: "-935px" }}
+              color="white"
+            >
+              <Text fontSize={{ base: "12px", md: "16px" }}>Wallet ID:</Text>
+              <Text fontFamily="body" fontSize="16px">
+                Wema Bank 0124536789
+              </Text>
+            </VStack>
+            <Flex
+              display={{ base: "flex", md: "flex" }}
+              marginLeft={{ base: "", md: "500px" }}
+            >
               <VStack color="white">
-                <Text marginLeft="-110px" fontSize="16px">
-                  Wallet ID:
-                </Text>
-                <Text fontFamily="body" fontSize="16px">
-                  Wema Bank 0124536789
+                <Text fontSize="14px">Total funded</Text>
+                <Text color="white" fontSize="12px" marginLeft="-44px">
+                  ₦{balance.toFixed(2)}
                 </Text>
               </VStack>
-              <Flex marginLeft="480px">
-                <VStack w="8vw" color="white">
-                  <Text fontSize="14px">Total funded</Text>
-                  <Text marginLeft="-20px" color="white" fontSize="12px">
-                    ₦{balance.toFixed(2)}
-                  </Text>
-                </VStack>
-                <VStack w="8vw" color="white" marginLeft="10px">
-                  <Text fontSize="14px">Total spent</Text>
-                  <Text marginLeft="-20px" color="white" fontSize="12px">
-                    ₦{balance.toFixed(2)}
-                  </Text>
-                </VStack>
-              </Flex>
+              <VStack color="white" marginLeft="50px">
+                <Text fontSize="14px">Total spent</Text>
+                <Text color="white" fontSize="12px" marginLeft="-34px">
+                  ₦{balance.toFixed(2)}
+                </Text>
+              </VStack>
             </Flex>
-          </VStack>
+          </Flex>
         </Box>
-
         <Box>
           <VStack>
             <Text

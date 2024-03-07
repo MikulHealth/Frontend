@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "animate.css";
+import AOS from "aos";
 import "aos/dist/aos.css";
 import { ArrowUpIcon } from "@chakra-ui/icons";
 import {
@@ -10,10 +11,11 @@ import {
   Flex,
   Text,
 } from "@chakra-ui/react";
-import Elderly from "../../assets/ElderlyCare.svg";
-import PostPaturm from "../../assets/Postpatum.svg";
-import Recovery from "../../assets/RecoveryCare.svg";
-import Online from "../../assets/OnlineConsult.svg";
+import Elderly from "../../assets/Elder.svg";
+import PostPaturm from "../../assets/Postpartum.svg";
+import Recovery from "../../assets/Recovery.svg";
+import ShortHome from "../../assets/ShortService.svg";
+import Nanny from "../../assets/Nanny.svg";
 import Doctor from "../../assets/Doctor.svg";
 import "../../styles/pages/LandingPage.css";
 import { NavLink } from "react-router-dom";
@@ -22,6 +24,10 @@ export default function ServicesSection() {
   const handleClick = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   return (
     <div>
@@ -49,24 +55,31 @@ export default function ServicesSection() {
           gap={{ base: "20px", md: "40px" }}
         >
           <ServiceBox
-            image={PostPaturm}
-            title="Post-Partum Care"
-            description="Get personalized health care support for you and your newborn."
-          />
-          <ServiceBox
             image={Elderly}
             title="Elderly Care"
-            description="Get expert home care services for your elderly parents and loved ones."
+            description="Comprehensive nursing care focusing on the needs and overall well-being of the elderly"
+          />
+
+          <ServiceBox
+            image={PostPaturm}
+            title="Post-Partum Care"
+            description="Specialized care for new-born babies and their mothers post-delivery"
           />
           <ServiceBox
             image={Recovery}
             title="Recovery Care"
-            description="Receive professional in-home care after discharge from a Hospital or Rehabilitation Centre."
+            description="All-inclusive care for people recovering from surgery, critical and long-term illnesses"
+          />
+
+          <ServiceBox
+            image={Nanny}
+            title="Nanny services"
+            description="Professional child-care services provided by well-trained nannies for children of all ages"
           />
           <ServiceBox
-            image={Online}
-            title="Online Consult"
-            description="Get care from qualified medical professionals from the comfort of your home."
+            image={ShortHome}
+            title="Short home visit"
+            description="Professional home nursing services to address specific healthcare needs"
           />
         </Flex>
 
@@ -160,20 +173,28 @@ export default function ServicesSection() {
 const ServiceBox = ({ image, title, description }) => {
   return (
     <Box
-      bg="white"
       borderRadius="20px"
-      padding="4"
+      data-aos="zoom-in"
+      data-aos-duration="10000"
       textAlign="center"
-      w={{ base: "70%", md: "40%" }}
+      w={{ base: "70%", md: "30%" }}
       mt={{ base: "4", md: "0" }}
     >
       <Flex justifyContent="center" alignItems="center" mb="4">
-        <Image src={image} alt={title} w="100px" h="auto" />
+        <Image src={image} alt={title} w="300px" h="300" />
       </Flex>
-      <Text fontSize={{ base: "xl", md: "2xl" }} fontWeight="bold" mt="4">
+      <Text
+        color="white"
+        textAlign="center"
+        fontSize={{ base: "24", md: "28px" }}
+        fontWeight="bold"
+        mt="4"
+      >
         {title}
       </Text>
-      <Text mt="2">{description}</Text>
+      <Text color="white" textAlign="center" mt="2">
+        {description}
+      </Text>
     </Box>
   );
 };

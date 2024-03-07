@@ -316,7 +316,7 @@ const ClientDash = () => {
             </Box>
 
             <Box marginTop="-5px">
-              <Flex>
+              <Flex >
                 <Box
                   style={{
                     // boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
@@ -439,7 +439,7 @@ const ClientDash = () => {
                   </Text>
                 </Box>
               </Flex>
-              <Flex marginTop="25px">
+              <Flex mt={{ base: "", md: "10px" }}>
                 <Box
                   style={{
                     // boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
