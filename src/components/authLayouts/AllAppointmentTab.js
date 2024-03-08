@@ -173,11 +173,7 @@ export default function AppointmentTab() {
         ) : (
           <VStack align="start" spacing={4}>
             {appointments.map((appointment) => (
-              <Box
-                ml={{ base: "20px" }}
-                fontSize={{ base: "12px", md: "16px" }}
-                key={appointment.id}
-              >
+              <Box fontSize={{ base: "12px", md: "16px" }} key={appointment.id}>
                 <Flex>
                   <Text fontWeight="bold" color="black">
                     Care beneficiary:
@@ -236,7 +232,7 @@ export default function AppointmentTab() {
                   </Flex>
                 </Flex>
                 <Flex
-                    fontSize={{ base: "12px", md: "16px" }}
+                  fontSize={{ base: "12px", md: "16px" }}
                   display={{ base: "flex", md: "none" }}
                 >
                   <Text

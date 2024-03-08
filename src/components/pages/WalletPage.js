@@ -299,7 +299,7 @@ const WalletPage = () => {
           borderRadius="md"
           padding="3px"
           w={{ base: "89vw", md: "70vw" }}
-          h="6vh"
+          h={{ base: "7vw", md: "5vh" }}
           ml={{ base: "20px", md: "10px" }}
         >
           <Flex ml={{ md: "10px" }}>

@@ -293,7 +293,7 @@ export default function PendingApp() {
                 </Text>
                 <Flex display={{ base: "none", md: "flex" }}>
                   <Text
-                    ml={{ md: "60px" }}
+                    // ml={{ md: "60px" }}
                     fontSize={{ base: "12px", md: "16px" }}
                     onClick={() => handleViewMore(appointment.id)}
                     style={{

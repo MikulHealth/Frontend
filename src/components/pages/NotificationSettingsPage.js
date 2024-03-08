@@ -78,12 +78,22 @@ const NotificationSettingsPage = () => {
     // setTextNotification(notificationSettings.text);
   }, []);
 
+  const settingsContainerStyle = {
+    animation: "slideInUp 0.9s ease-in-out",
+  };
+
   return (
     <ChakraProvider theme={customTheme}>
       <LeftSideBar />
-      <VStack position="fixed" marginLeft="280px" w="70%" h="100vh">
+      <VStack
+        style={settingsContainerStyle}
+        position="fixed"
+        marginLeft="280px"
+        w="70%"
+        h="100vh"
+      >
         <NavBar />
-        <Flex marginTop="-30px" marginLeft="-328px">
+        <Flex mt={{ md: "30px" }} ml={{ base: "50px", md: "-250px" }}>
           <SettingsSideBar />
           <Box
             marginTop="10px"

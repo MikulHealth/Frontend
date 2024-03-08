@@ -50,15 +50,15 @@ const SettingsPage = () => {
         h={{ base: "100%", md: "100%" }}
       >
         <NavBar />
-        <Flex  mt={{ md: "30px" }} ml={{md:"-80px"}}>
+        <Flex  mt={{ md: "30px" }} ml={{ base: "50px", md:"-50px"}}>
           <SettingsSideBar />
-          <Box mt={{ base: "100px", md: "20px" }}>
+          <Box  display={{ base: "none", md: "block" }} mt={{ base: "100px", md: "20px" }}>
             <Image
               src={BigSettingsIcon}
               alt="Settings Icon"
-              boxSize="50px"
-              h={{ base: "256", md: "456px" }}
-              w={{ base: "288px", md: "488px" }}
+              boxSize={{ base: "24px", md: "50px" }}
+              h={{ base: "156", md: "456px" }}
+              w={{ base: "188px", md: "488px" }}
             />
           </Box>
         </Flex>

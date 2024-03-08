@@ -208,16 +208,215 @@ const EdithProfilePage = () => {
       console.error("Failed to update user details:", error);
     }
   };
+  const settingsContainerStyle = {
+    animation: "slideInUp 0.9s ease-in-out",
+  };
 
   return (
     <ChakraProvider theme={customTheme}>
       <LeftSideBar />
-      <VStack position="fixed" marginLeft="280px" w="70%" h="100vh">
+      <VStack
+        style={settingsContainerStyle}
+        position="fixed"
+        ml={{ base: "40px", md: "280px" }}
+        w="70%"
+        h="100vh"
+      >
         <NavBar />
-        <Flex marginTop="-30px" marginLeft="130px">
+        <Flex
+          display={{ base: "none", md: "flex" }}
+          mt={{ md: "30px" }}
+          ml={{ base: "50px", md: "120px" }}
+        >
           <SettingsSideBar />
 
-          <VStack marginLeft="30px"  spacing={-10}>
+          <VStack marginLeft="-40px" spacing={-10}>
+            <Text fontWeight="bold" fontSize="20px">
+              Edit profile
+            </Text>
+            <FormControl>
+              <FormLabel fontSize="16px">First Name</FormLabel>
+              <Input
+                type="text"
+                name="firstName"
+                value={formData?.firstName}
+                onChange={handleInputChange}
+                borderColor="black"
+                _hover={{ color: "" }}
+              />
+            </FormControl>
+            <FormControl marginTop="15px">
+              <FormLabel fontSize="16px">Last Name</FormLabel>
+              <Input
+                type="text"
+                name="lastName"
+                value={formData?.lastName}
+                onChange={handleInputChange}
+                borderColor="black"
+                _hover={{ color: "" }}
+              />
+            </FormControl>
+            <FormControl marginTop="15px">
+              <FormLabel fontSize="16px">Date of Birth</FormLabel>
+              <Flex
+                border="1px solid black"
+                borderRadius="6px"
+                paddingTop="10px"
+                h="7vh"
+                w="30vw"
+              >
+                <Box marginRight="10px"></Box>
+                <DatePicker
+                  selected={
+                    selectedDate ||
+                    (formData.dob ? new Date(formData.dob) : null)
+                  }
+                  onChange={(date) => handleDOBChange(date)}
+                  dateFormat="dd/MM/yyyy"
+                  placeholderText="dd/mm/yyyy"
+                  maxDate={new Date()}
+                  peekNextMonth
+                  showMonthDropdown
+                  showYearDropdown
+                  dropdownMode="select"
+                  value={formatDate(formData.dob)}
+                  style={{
+                    marginTop: "60px",
+                    marginLeft: "50px",
+                    display: "",
+                  }}
+                />
+
+                <Image
+                  marginLeft="160px"
+                  h="24px"
+                  w="24px"
+                  src={DateIcon}
+                  alt="Date icon"
+                />
+              </Flex>
+            </FormControl>
+            <FormControl marginTop="15px">
+              <FormLabel fontSize="16px">Email Address</FormLabel>
+              <Input
+                type="email"
+                name="email"
+                value={formData?.email}
+                onChange={handleInputChange}
+                borderColor="black"
+                _hover={{ color: "" }}
+              />
+            </FormControl>
+            <FormControl marginTop="15px">
+              <FormLabel fontSize="16px">Home Address</FormLabel>
+              <Input
+                type="text"
+                name="address"
+                value={formData?.address}
+                onChange={handleInputChange}
+                borderColor="black"
+                _hover={{ color: "" }}
+              />
+            </FormControl>
+            {/* <FormControl marginTop="15px">
+                  <FormLabel>Gender </FormLabel>
+                  <Select
+                    name="gender"
+                    placeholder="Select your gender"
+                    w="240px"
+                    onChange={handleInputChange}
+                  >
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </Select>
+                </FormControl> */}
+            <Button
+              marginTop="10px"
+              color="white"
+              bg="#A210C6"
+              onClick={handleOpenConfirmationModal}
+              _hover={{ color: "white" }}
+            >
+              Save changes
+            </Button>
+          </VStack>
+
+          <Box marginLeft="30px" width="15%">
+            <Box
+              borderRadius="10px"
+              marginTop="30px"
+              marginLeft="40px"
+              p={3}
+              h="150px"
+              w="180px"
+              bg="white"
+              boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
+            >
+              <Avatar
+                style={{
+                  cursor: "pointer",
+                }}
+                h="120px"
+                w="100px"
+                src={formData?.image}
+                name={formData?.firstName}
+                bg="#A210C6"
+              ></Avatar>
+
+              <Input
+                marginTop="30px"
+                marginBottom="20px"
+                id="fileInput"
+                name="image"
+                type="file"
+                accept="image/*"
+                borderColor="black"
+                padding="5px"
+                _hover={{ color: "" }}
+                onChange={(e) => {
+                  handleImageChange(e.target.files[0], formData, setFormData);
+                }}
+              />
+            </Box>
+            <Flex marginTop="80px">
+              {imageLoading && <LoadingSpinner size={20} />}
+              <Button
+                fontSize="15px"
+                borderColor="#A210C6"
+                marginLeft="50px"
+                bg="none"
+                _hover={{ color: "" }}
+                onClick={handleOpenConfirmationModal}
+              >
+                Change picture
+              </Button>
+              <Divider orientation="vertical" borderColor="black" my={1} />
+              <Button
+                _hover={{ color: "" }}
+                bg="none"
+                fontSize="15px"
+                color="red"
+                marginLeft="75px"
+              >
+                Delete picture
+              </Button>
+            </Flex>
+            <Button
+              bg="gray"
+              color="white"
+              marginTop="5px"
+              marginLeft="35px"
+              style={{}}
+              _hover={{ color: "" }}
+              onClick={handlePhoneModalOpen}
+            >
+              Change phone number
+            </Button>
+          </Box>
+        </Flex>
+
+        <Flex display={{ base: "flex", md: "none" }} ml={{ base: "50px" }}>
+          <VStack marginLeft="-40px" spacing={-10}>
             <Text fontWeight="bold" fontSize="20px">
               Edit profile
             </Text>

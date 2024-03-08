@@ -37,13 +37,22 @@ const customTheme = extendTheme({
   },
 });
 
+const settingsContainerStyle = {
+  animation: "slideInUp 0.9s ease-in-out",
+};
+
 const HelpPage = () => {
   return (
     <ChakraProvider theme={customTheme}>
       <LeftSideBar />
-      <VStack marginLeft="279px" height="100vh" w="70vw">
+      <VStack
+        style={settingsContainerStyle}
+        marginLeft="250px"
+        height="100vh"
+        w="70vw"
+      >
         <NavBar />
-        <Box marginTop="-30px">
+        <Box marginTop="20px">
           <SettingsSideBar />
           <Flex>
             <VStack marginLeft="150px">
@@ -215,7 +224,7 @@ const HelpPage = () => {
                   </Text>
                 </VStack>
               </Box>
-              <Box marginLeft="100px" marginTop="100px">
+              <Box marginLeft="100px" marginTop="50px">
                 <a href="https://wa.me/2347032579006">
                   <Image
                     // onClick={help}

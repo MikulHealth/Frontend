@@ -49,11 +49,16 @@ export default function SettingsSideBar() {
   return (
     <ChakraProvider theme={customTheme}>
       <Box p={3}>
-        <VStack w="20vw">
-          <Text   marginLeft="-135px" textAlign="left" fontFamily="heading" fontSize="24px">
+        <VStack ml={{ base: "100px" }} w="20vw">
+          <Text
+            ml={{ base: "-290px", md: "-290px" }}
+            textAlign="left"
+            fontFamily="heading"
+            fontSize={{ base: "18px", md: "24px" }}
+          >
             Account
           </Text>
-          <Flex flexDirection="column">
+          <Flex ml={{ base: "-150px" }} flexDirection="column">
             <NavLink to="/edit-profile">
               <Flex
                 alignItems="center"
@@ -62,10 +67,10 @@ export default function SettingsSideBar() {
                 _hover={activeStyle}
                 {...(isActive("/edit-profile") && { color: "#A210C6" })}
               >
-                <SettingsIcon boxSize={8} />
+                <SettingsIcon boxSize={{ base: "24px", md: "32px" }} />
                 <Text
                   marginBottom="5px"
-                  fontSize="20px"
+                  fontSize={{ base: "18px", md: "20px" }}
                   marginLeft="10px"
                   marginTop="10px"
                 >
@@ -84,10 +89,10 @@ export default function SettingsSideBar() {
                 _hover={activeStyle}
                 {...(isActive("/change-password") && { color: "#A210C6" })}
               >
-                <LockIcon boxSize={8} />
+                <LockIcon boxSize={{ base: "24px", md: "32px" }} />
                 <Text
                   marginBottom="5px"
-                  fontSize="20px"
+                  fontSize={{ base: "18px", md: "20px" }}
                   marginLeft="10px"
                   marginTop="10px"
                 >
@@ -108,10 +113,10 @@ export default function SettingsSideBar() {
                   color: "#A210C6",
                 })}
               >
-                <BellIcon boxSize={8} />
+                <BellIcon boxSize={{ base: "28px", md: "32px" }} />
                 <Text
                   marginBottom="5px"
-                  fontSize="20px"
+                  fontSize={{ base: "18px", md: "20px" }}
                   marginLeft="10px"
                   marginTop="10px"
                 >
@@ -130,10 +135,10 @@ export default function SettingsSideBar() {
                 _hover={activeStyle}
                 {...(isActive("/help") && { color: "#A210C6" })}
               >
-                <QuestionIcon boxSize={8} />
+                <QuestionIcon boxSize={{ base: "24px", md: "32px" }} />
                 <Text
                   marginBottom="5px"
-                  fontSize="20px"
+                  fontSize={{ base: "18px", md: "20px" }}
                   marginLeft="10px"
                   marginTop="10px"
                 >

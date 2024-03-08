@@ -88,14 +88,14 @@ const AppointmentPage = () => {
           borderRadius="md"
           padding="3px"
           w={{ base: "90vw", md: "70vw" }}
-          h={{ base: "5vw" }}
+          h={{ base: "7vw", md: "5vh" }}
         >
           <Flex>
             <SearchIcon boxSize={4} marginRight="10px" marginTop="5px" />
             <Text
               fontSize={{ base: "12px", md: "16px" }}
               fontFamily="body"
-              mt={{ md: "2px" }}
+              // mt={{ md: "15px" }}
               style={{
                 fontStyle: "italic",
                 cursor: "pointer",
@@ -176,30 +176,46 @@ const AppointmentPage = () => {
 
         <Flex
           w={{ base: "", md: "50vh" }}
-          ml={{ base: "", md: "-400px" }}
+          ml={{ base: "-75px", md: "-400px" }}
           justifyContent="space-between"
           className="appointment-tabs"
         >
-          <VStack ml={{ base: "", md: "-100px" }}>
+          <VStack ml={{ md: "-100px" }}>
             <Tabs colorScheme="purple.100" mt={{ base: "", md: "40px" }}>
               <TabList justifyContent="space-between">
-                <Tab color="#A210C6" fontWeight="bold">
+                <Tab
+                  fontSize={{ base: "12px", md: "16px" }}
+                  color="#A210C6"
+                  fontWeight="bold"
+                >
                   All
                 </Tab>
 
-                <Tab color="yellow.500" fontWeight="bold">
+                <Tab
+                  fontSize={{ base: "12px", md: "16px" }}
+                  color="yellow.500"
+                  fontWeight="bold"
+                >
                   Pending
                 </Tab>
 
-                <Tab color="green.500" fontWeight="bold">
+                <Tab
+                  fontSize={{ base: "12px", md: "16px" }}
+                  color="green.500"
+                  fontWeight="bold"
+                >
                   Active
                 </Tab>
 
-                <Tab color="blue.500" fontWeight="bold">
+                <Tab
+                  fontSize={{ base: "12px", md: "16px" }}
+                  color="blue.500"
+                  fontWeight="bold"
+                >
                   Completed
                 </Tab>
               </TabList>
-              <TabPanels ml={{ base: "", md: "-30px" }}>
+              <TabPanels ml={{ base: "-20px", md: "-30px" }}>
                 <TabPanel>
                   <AppointmentTab />
                 </TabPanel>
