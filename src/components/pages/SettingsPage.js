@@ -50,9 +50,9 @@ const SettingsPage = () => {
         h={{ base: "100%", md: "100%" }}
       >
         <NavBar />
-        <Flex  mt={{ md: "30px" }} ml={{ base: "50px", md:"-50px"}}>
+        <Flex mt={{ md: "30px" }} ml={{ base: "-100px", md: "-50px" }}>
           <SettingsSideBar />
-          <Box  display={{ base: "none", md: "block" }} mt={{ base: "100px", md: "20px" }}>
+          <Box display={{ base: "none", md: "block" }} mt={{ md: "20px" }}>
             <Image
               src={BigSettingsIcon}
               alt="Settings Icon"

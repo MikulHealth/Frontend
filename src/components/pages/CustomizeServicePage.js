@@ -200,27 +200,29 @@ const CustomizeServicePage = () => {
       <LeftSideBar />
       <VStack
         style={settingsContainerStyle}
-        marginLeft="280px"
-        height="100vh"
-        w="70%"
+        position="fixed"
+        ml={{ md: "250px" }}
+        w={{ base: "100%", md: "70%" }}
+        h={{ base: "100%", md: "100%" }}
       >
         <NavBar />
 
-        <Box w="70vw" h="80vh">
-          <Flex>
+        <Box
+          overflow={{ base: "scroll", md: "none" }}
+          w={{ base: "100%", md: "90%" }}
+          h={{ base: "100%", md: "100%" }}
+        >
+          <Flex margin="20px">
             <Box>
-              <Text fontSize="18px" marginLeft="30px" marginTop="5px">
-                Welcome to the custom service section! Here, you have the
-              </Text>
               <Text
-                fontSize="18px"
-                marginLeft="10px"
+                textAlign="left"
+                fontSize={{ base: "12px", md: "18px" }}
                 marginTop="3px"
                 marginBottom="20px"
               >
+                Welcome to the custom service section! Here, you have the
                 flexibility to tailor services according to your preferences.
               </Text>
-              <Divider my={4} borderColor="gray.500" />
             </Box>
             <Button
               onClick={handlebackToService}
@@ -229,19 +231,21 @@ const CustomizeServicePage = () => {
               color="#A210C6"
               fontFamily="body"
               marginTop="10px"
-              _hover={{ color: "" }}
-              marginLeft="300px"
+              ml={{ base: "30px", md: "300px" }}
+              fontSize={{ base: "12px" }}
+              h={{ base: "3vh", md: "5vh" }}
               borderRadius="100px"
             >
               Back
             </Button>
           </Flex>
-
+          <Divider my={4} borderColor="gray.500" />
           <Box
             className="all-customized-services"
             marginLeft="2%"
-            w="64vw"
-            h="75vh"
+            textAlign="left"
+            w={{ base: "100%", md: "64vw" }}
+            h={{ base: "100%", md: "75vh" }}
             overflow="scroll"
             marginTop="10px"
           >
@@ -270,36 +274,46 @@ const CustomizeServicePage = () => {
                 </Text>
               </Flex>
             ) : (
-              <VStack marginTop="10px" align="start" spacing={4}>
+              <VStack
+                overflow="scroll"
+                marginTop="10px"
+                textAlign="left"
+                align="start"
+                w={{ base: "100%", md: "50vw" }}
+                spacing={4}
+              >
                 {customizedServices.map((service) => (
                   <Box marginTop="20px" key={service.id}>
                     <Box
                       padding="40px"
                       style={{
                         cursor: "pointer",
-                        // boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
                       }}
                       borderColor="#A210C6"
                       borderWidth="2px"
                       p={4}
                       borderRadius="2xl"
-                      // h="50vh"
-                      w="40vw"
+                      ml={{ base: "10px" }}
+                      w={{ base: "85%", md: "30vw" }}
                     >
                       <Box>
-                        <Box marginLeft="90px">
+                        <Box>
                           <Flex>
                             <Text fontWeight="bold" color="black">
                               Name:
                             </Text>
-                            <Text marginLeft="5px" color="black">
-                              {`${service.name}`}
-                            </Text>
-                            <Flex marginLeft="45px">
+                            <Text
+                              marginLeft="5px"
+                              color="black"
+                            >{`${service.name}`}</Text>
+                            <Flex ml={{ base: "30px", md: "55px" }}>
                               <Text fontWeight="bold" color="black">
                                 Frequency:
                               </Text>
-                              <Text marginLeft="5px" color="black">
+                              <Text
+                                ml={{ base: "5px", md: "5px" }}
+                                color="black"
+                              >
                                 {`${service.frequency}`}
                               </Text>
                             </Flex>
@@ -308,7 +322,10 @@ const CustomizeServicePage = () => {
                             <Text fontWeight="bold" color="black">
                               Preferred Caregiver:
                             </Text>
-                            <Text marginLeft="35px" color="black">
+                            <Text
+                              ml={{ base: "30px", md: "45px" }}
+                              color="black"
+                            >
                               {`${service.medicSpecialization}`}
                             </Text>
                           </Flex>
@@ -317,30 +334,39 @@ const CustomizeServicePage = () => {
                               <Text fontWeight="bold" color="black">
                                 Duration:
                               </Text>
-                              <Text marginLeft="5px" color="black">
-                                {`${service.duration}`}
-                              </Text>
+                              <Text
+                                ml={{ base: "5px", md: "5px" }}
+                                color="black"
+                              >{`${service.duration}`}</Text>
                             </Flex>
-                            <Flex marginLeft="85px">
-                              <Text fontWeight="bold" color="black">
+                            <Flex>
+                              <Text
+                                ml={{ base: "30px", md: "45px" }}
+                                fontWeight="bold"
+                                color="black"
+                              >
                                 Shift:
                               </Text>
-                              <Text marginLeft="5px" color="black">
-                                {`${service.shift}`}
-                              </Text>
+                              <Text
+                                marginLeft="5px"
+                                color="black"
+                              >{`${service.shift}`}</Text>
                             </Flex>
                           </Flex>
                           <Flex>
                             <Text fontWeight="bold" color="black">
                               Cost of service:
                             </Text>
-                            <Text marginLeft="90px" color="black">
+                            <Text
+                              ml={{ base: "30px", md: "90px" }}
+                              color="black"
+                            >
                               {`${formattedCost(service.costOfService)}`}
                             </Text>
                           </Flex>
                         </Box>
                       </Box>
-                      <Box marginLeft="-25px" marginTop="3px">
+                      <Box marginTop="3px">
                         <Flex direction="column">
                           <Text
                             fontWeight="bold"
@@ -358,7 +384,7 @@ const CustomizeServicePage = () => {
                         </Flex>
                       </Box>
 
-                      <Flex marginLeft="80px" marginTop="10px">
+                      <Flex marginTop="10px">
                         <Text fontWeight="bold" color="black">
                           Created on:
                         </Text>
@@ -366,7 +392,7 @@ const CustomizeServicePage = () => {
                           {formatDateTime(service.createdAt)}
                         </Text>
                       </Flex>
-                      <Box marginLeft="-15px" marginTop="20px">
+                      <Flex justifyContent="space-between" marginTop="20px">
                         <Button
                           fontSize="16px"
                           leftIcon={<CheckIcon />}
@@ -394,7 +420,7 @@ const CustomizeServicePage = () => {
                         >
                           Delete plan
                         </Button>
-                      </Box>
+                      </Flex>
                     </Box>
                   </Box>
                 ))}

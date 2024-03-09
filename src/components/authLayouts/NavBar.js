@@ -296,7 +296,7 @@ export default function NavBar() {
           ) : (
             <Heading
               justifyContent="flex-start"
-              fontSize="24px"
+              fontSize={{ base: "16", md: "24px" }}
               color="#A210C6"
               fontWeight="bold"
             >

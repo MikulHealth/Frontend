@@ -47,6 +47,7 @@ const BookAppointmentModal = ({ isOpen, onClose }) => {
   const handleOpenBookAppointmentModal = () => {
     setBookAppointmentModalOpen(true);
   };
+  
   const handleOpenBeneficiaryAppointmentModal = (numPages) => {
     setPages(numPages);
     setBeneficiaryAppointmentModalOpen(true);

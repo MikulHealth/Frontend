@@ -8,7 +8,7 @@ import NavBar from "../authLayouts/NavBar";
 import {
   ChakraProvider,
   VStack,
-  useToast,
+  Button,
   Image,
   Box,
   Text,
@@ -82,18 +82,26 @@ const NotificationSettingsPage = () => {
     animation: "slideInUp 0.9s ease-in-out",
   };
 
+  const handleback = () => {
+    navigate("/settings");
+  };
+
   return (
     <ChakraProvider theme={customTheme}>
       <LeftSideBar />
       <VStack
         style={settingsContainerStyle}
         position="fixed"
-        marginLeft="280px"
+        ml={{ base: "40px", md: "280px" }}
         w="70%"
         h="100vh"
       >
         <NavBar />
-        <Flex mt={{ md: "30px" }} ml={{ base: "50px", md: "-250px" }}>
+        <Flex
+          display={{ base: "none", md: "flex" }}
+          mt={{ md: "30px" }}
+          ml={{ md: "-210px" }}
+        >
           <SettingsSideBar />
           <Box
             marginTop="10px"
@@ -104,7 +112,7 @@ const NotificationSettingsPage = () => {
             {" "}
             <Text fontSize="20px">Notification settings</Text>{" "}
             <VStack spacing={4}>
-              <Flex marginTop="30px" alignItems="center">
+              {/* <Flex marginTop="30px" alignItems="center">
                 <Image
                   src={WebIcon}
                   alt="Web Icon"
@@ -127,14 +135,14 @@ const NotificationSettingsPage = () => {
                   isChecked={webAppNotification}
                   onChange={handleWebAppNotificationChange}
                 />
-              </Flex>
-              <Text marginTop="-15px" marginLeft="20px" fontSize="14px">
+              </Flex> */}
+              {/* <Text marginTop="-15px" marginLeft="20px" fontSize="14px">
                 Receive push notifications on appointments
               </Text>
               <Text marginTop="-15px" marginLeft="-95px" fontSize="14px">
                 {" "}
                 and updates via webapp.
-              </Text>
+              </Text> */}
               <Flex marginTop="5px" alignItems="center">
                 <Image
                   src={EmailIcon}
@@ -154,13 +162,10 @@ const NotificationSettingsPage = () => {
                   onChange={handleEmailNotificationChange}
                 />
               </Flex>
-              <Text marginTop="-15px" marginLeft="20px" fontSize="14px">
-                Receive push notifications on appointments
+              <Text textAlign="left" marginTop="-15px" fontSize="14px">
+                Receive push notifications on appointments and updates via email
               </Text>
-              <Text marginTop="-15px" marginLeft="-112px" fontSize="14px">
-                {" "}
-                and updates via email
-              </Text>
+
               <Flex marginLeft="3px" marginTop="5px" alignItems="center">
                 <Image
                   src={TextIcon}
@@ -180,12 +185,125 @@ const NotificationSettingsPage = () => {
                   onChange={handleTextppNotificationChange}
                 />
               </Flex>
-              <Text marginTop="-15px" marginLeft="20px" fontSize="14px">
-                Receive push notifications on appointments
+              <Text textAlign="left" marginTop="-15px" fontSize="14px">
+                Receive push notifications on appointments and updates via text
               </Text>
-              <Text marginTop="-15px" marginLeft="-123px" fontSize="14px">
-                {" "}
-                and updates via text
+            </VStack>
+          </Box>
+        </Flex>
+
+        <Flex
+          overflow="scroll"
+          display={{ base: "block", md: "none" }}
+          mt={{ md: "30px" }}
+        >
+          <Flex justifyContent="space-between" margin="20px">
+            <Box>
+              <Text
+                textAlign="left"
+                fontSize={{ base: "18px" }}
+                marginTop="3px"
+                marginBottom="20px"
+              >
+                Notification Settings
+              </Text>
+            </Box>
+            <Button
+              onClick={handleback}
+              borderColor="#A210C6"
+              borderWidth="1px"
+              color="#A210C6"
+              fontFamily="body"
+              _hover={{ color: "" }}
+              fontSize={{ base: "12px" }}
+              h="3vh"
+              borderRadius="100px"
+            >
+              Back
+            </Button>
+          </Flex>
+
+          <Box
+            marginTop="10px"
+            className="notification-settings"
+            p={3}
+            ml={{ base: "-10px" }}
+          >
+            <VStack justify="left" spacing={4}>
+              {/* <Flex>
+                <Image
+                  src={WebIcon}
+                  alt="Web Icon"
+                  boxSize="50px"
+                  marginBottom="2%"
+                  h="24px"
+                  w="30px"
+                  borderRadius="100%"
+                  marginRight="10px"
+                />
+                <Text textAlign="left" fontSize="16px">
+                  WebApp Push Notifications
+                </Text>
+                <Switch
+                  style={{
+                    backgroundColor: webAppNotification
+                      ? "purple.500"
+                      : "gray.400",
+                  }}
+                  isChecked={webAppNotification}
+                  onChange={handleWebAppNotificationChange}
+                />
+              </Flex>
+              <Text textAlign="left" marginTop="-15px" fontSize="14px">
+                Receive push notifications on appointments and updates via
+                webapp.
+              </Text> */}
+
+              <Flex marginTop="5px">
+                <Image
+                  justify="left"
+                  src={EmailIcon}
+                  alt="Email Icon"
+                  boxSize="50px"
+                  marginBottom="2%"
+                  h="24px"
+                  w="30px"
+                  borderRadius="100%"
+                  marginRight="10px"
+                />
+                <Text marginRight="10px" textAlign="left" fontSize="16px">
+                  Email push notifications
+                </Text>
+                <Switch
+                  isChecked={emailNotification}
+                  onChange={handleEmailNotificationChange}
+                />
+              </Flex>
+              <Text textAlign="left" marginTop="-15px" fontSize="14px">
+                Receive push notifications on appointments and updates via email
+              </Text>
+
+              <Flex marginTop="5px" alignItems="center">
+                <Image
+                  src={TextIcon}
+                  alt="Text Icon"
+                  boxSize="50px"
+                  marginBottom="2%"
+                  h="24px"
+                  w="30px"
+                  borderRadius="100%"
+                  marginRight="10px"
+                />
+                <Text marginRight="10px" textAlign="left" fontSize="16px">
+                  Text message notifications
+                </Text>
+                <Switch
+                  isChecked={textNotification}
+                  onChange={handleTextppNotificationChange}
+                />
+              </Flex>
+              <Text textAlign="left" marginTop="-15px" fontSize="14px">
+                Receive push notifications on appointments and updates via text
               </Text>
             </VStack>
           </Box>

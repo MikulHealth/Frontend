@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Flex,
   Text,
@@ -18,6 +18,7 @@ import {
 } from "@chakra-ui/icons";
 
 import { NavLink, useLocation } from "react-router-dom";
+import ProfileSettingsMobile from "../sections/ProfileSettingsMobile";
 
 const customTheme = extendTheme({
   components: {
@@ -37,13 +38,21 @@ const customTheme = extendTheme({
 
 export default function SettingsSideBar() {
   const location = useLocation();
-
+  const [showProfileMobile, setshowProfileMobile] = useState(false);
   const isActive = (pathname) => {
     return location.pathname === pathname;
   };
 
   const activeStyle = {
     color: "#A210C6",
+  };
+
+  const handleCloseProleMobile = () => {
+    setshowProfileMobile(false);
+  };
+
+  const handleOpenProleMobile = () => {
+    setshowProfileMobile(true);
   };
 
   return (
@@ -69,6 +78,7 @@ export default function SettingsSideBar() {
               >
                 <SettingsIcon boxSize={{ base: "24px", md: "32px" }} />
                 <Text
+                  // onClick={handleOpenProleMobile}
                   marginBottom="5px"
                   fontSize={{ base: "18px", md: "20px" }}
                   marginLeft="10px"
@@ -152,6 +162,10 @@ export default function SettingsSideBar() {
         </VStack>
       </Box>
       <Box />
+      {/* <ProfileSettingsMobile
+        isOpen={showProfileMobile}
+        onClose={handleCloseProleMobile}
+      /> */}
     </ChakraProvider>
   );
 }

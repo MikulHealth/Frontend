@@ -180,7 +180,7 @@ const AppointmentPage = () => {
           justifyContent="space-between"
           className="appointment-tabs"
         >
-          <VStack ml={{ md: "-100px" }}>
+          <VStack ml={{ base: "50px", md: "-100px" }}>
             <Tabs colorScheme="purple.100" mt={{ base: "", md: "40px" }}>
               <TabList justifyContent="space-between">
                 <Tab
