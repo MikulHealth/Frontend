@@ -40,8 +40,8 @@ const ElderlyCareModal = ({ isOpen, onClose }) => {
           <Flex
             flexWrap={{ base: "wrap" }}
             marginBottom="30px"
-            mt={{base: "20px", md: "50px" }}
-            ml={{md: "90px" }}
+            mt={{ base: "20px", md: "50px" }}
+            ml={{ md: "90px" }}
             alignItems="center"
           >
             <Box
@@ -53,7 +53,7 @@ const ElderlyCareModal = ({ isOpen, onClose }) => {
                 transition: "transform 0.3s ease-in-out",
               }}
               w={{ base: "100vw", md: "40vw" }}
-              h={{ base: "62vh", md: "64vh" }}
+              h={{ base: "60vh", md: "64vh" }}
               marginTop="10px"
               _hover={{
                 transform: "translateY(-10px)",
@@ -82,7 +82,11 @@ const ElderlyCareModal = ({ isOpen, onClose }) => {
                 their unique needs and promoting overall well-being.
               </Text>
               <Flex mt="15px" direction="column">
-                <Box ml={{ base: "15px", md: "20px" }} fontSize="16px">
+                <Box
+                  paddingRight={{ base: "2" }}
+                  ml={{ base: "15px", md: "20px" }}
+                  fontSize="16px"
+                >
                   <Text>- Vital signs check</Text>
                   <Text>- Serving/feeding food</Text>
                   <Text>- Blood sugar monitoring</Text>
@@ -166,6 +170,7 @@ const ElderlyCareModal = ({ isOpen, onClose }) => {
               </Text>
               <Flex mt="15px" direction="column">
                 <Box
+                  paddingRight={{ base: "2" }}
                   color="white"
                   ml={{ base: "15px", md: "20px" }}
                   fontSize="16px"
@@ -217,7 +222,7 @@ const ElderlyCareModal = ({ isOpen, onClose }) => {
             flexWrap={{ base: "wrap" }}
             marginBottom="30px"
             mt={{ base: "30px", md: "50px" }}
-            ml={{md: "90px" }}
+            ml={{ md: "90px" }}
             alignItems="center"
           >
             <Box
@@ -230,7 +235,7 @@ const ElderlyCareModal = ({ isOpen, onClose }) => {
               }}
               marginTop="10px"
               w={{ base: "100vw", md: "40vw" }}
-              h={{ base: "62vh", md: "64vh" }}
+              h={{ base: "60vh", md: "64vh" }}
               _hover={{
                 transform: "translateY(-10px)",
               }}
@@ -258,7 +263,11 @@ const ElderlyCareModal = ({ isOpen, onClose }) => {
                 their unique needs and promoting overall well-being.
               </Text>
               <Flex mt="15px" direction="column">
-                <Box ml={{ base: "15px", md: "20px" }} fontSize="16px">
+                <Box
+                  ml={{ base: "15px", md: "20px" }}
+                  paddingRight={{ base: "2" }}
+                  fontSize="16px"
+                >
                   <Text>- Vital signs check</Text>
                   <Text>- Serving/feeding food</Text>
                   <Text>- Blood sugar monitoring</Text>
@@ -314,6 +323,7 @@ const ElderlyCareModal = ({ isOpen, onClose }) => {
               mt={{ base: "30px", md: "-10px" }}
               w={{ base: "100vw", md: "40vw" }}
               h={{ base: "60vh", md: "64vh" }}
+              paddingRight={{ base: "2" }}
               _hover={{
                 transform: "translateY(-10px)",
               }}
@@ -344,6 +354,7 @@ const ElderlyCareModal = ({ isOpen, onClose }) => {
                 <Box
                   color="white"
                   ml={{ base: "15px", md: "20px" }}
+                  paddingRight={{ base: "2" }}
                   fontSize="16px"
                 >
                   <Text>- Vital signs check</Text>

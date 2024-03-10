@@ -216,7 +216,7 @@ const CustomizeServicePage = () => {
             <Box>
               <Text
                 textAlign="left"
-                fontSize={{ base: "12px", md: "18px" }}
+                fontSize={{ base: "14px", md: "18px" }}
                 marginTop="3px"
                 marginBottom="20px"
               >
@@ -231,6 +231,7 @@ const CustomizeServicePage = () => {
               color="#A210C6"
               fontFamily="body"
               marginTop="10px"
+            
               ml={{ base: "30px", md: "300px" }}
               fontSize={{ base: "12px" }}
               h={{ base: "3vh", md: "5vh" }}
@@ -242,7 +243,7 @@ const CustomizeServicePage = () => {
           <Divider my={4} borderColor="gray.500" />
           <Box
             className="all-customized-services"
-            marginLeft="2%"
+            // marginLeft="2%"
             textAlign="left"
             w={{ base: "100%", md: "64vw" }}
             h={{ base: "100%", md: "75vh" }}
@@ -253,7 +254,7 @@ const CustomizeServicePage = () => {
               <LoadingSpinner />
             ) : customizedServices.length === 0 ? (
               <Flex alignItems="center">
-                <Text marginLeft="60px" marginTop="30px">
+                <Text   fontSize={{ base: "12px" }}  ml={{ base: "20px", md: "60px" }} marginTop="30px">
                   You have no customized plan yet. Click{" "}
                 </Text>
                 <Text
@@ -264,12 +265,12 @@ const CustomizeServicePage = () => {
                     cursor: "pointer",
                   }}
                   marginTop="30px"
-                  marginLeft="5px"
+                  fontSize={{ base: "12px" }}  ml={{ base: "5px", md: "5px" }}
                   onClick={handleOpenCustomizePlanFormModal}
                 >
                   customize service
                 </Text>
-                <Text marginLeft="5px" marginTop="30px">
+                <Text  fontSize={{ base: "12px" }}  ml={{ base: "5px", md: "5px" }} marginTop="30px">
                   to begin.
                 </Text>
               </Flex>
@@ -285,7 +286,7 @@ const CustomizeServicePage = () => {
                 {customizedServices.map((service) => (
                   <Box marginTop="20px" key={service.id}>
                     <Box
-                      padding="40px"
+                      padding="20px"
                       style={{
                         cursor: "pointer",
                       }}
@@ -293,7 +294,7 @@ const CustomizeServicePage = () => {
                       borderWidth="2px"
                       p={4}
                       borderRadius="2xl"
-                      ml={{ base: "10px" }}
+                      ml={{ base: "15px" }}
                       w={{ base: "85%", md: "30vw" }}
                     >
                       <Box>
@@ -358,7 +359,7 @@ const CustomizeServicePage = () => {
                               Cost of service:
                             </Text>
                             <Text
-                              ml={{ base: "30px", md: "90px" }}
+                              ml={{ base: "50px", md: "90px" }}
                               color="black"
                             >
                               {`${formattedCost(service.costOfService)}`}

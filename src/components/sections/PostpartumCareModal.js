@@ -61,7 +61,7 @@ const PostpartumCareModal = ({ isOpen, onClose }) => {
                 transition: "transform 0.3s ease-in-out",
               }}
               w={{ base: "100vw", md: "40vw" }}
-              h={{ base: "62vh", md: "60vh" }}
+              h={{ base: "56vh", md: "60vh" }}
               _hover={{
                 transform: "translateY(-10px)",
               }}
@@ -137,7 +137,7 @@ const PostpartumCareModal = ({ isOpen, onClose }) => {
               borderRadius="10px"
               bg="#A210C6"
               w={{ base: "100vw", md: "40vw" }}
-              h={{ base: "60vh", md: "60vh" }}
+              h={{ base: "56vh", md: "60vh" }}
               _hover={{
                 transform: "translateY(-10px)",
               }}

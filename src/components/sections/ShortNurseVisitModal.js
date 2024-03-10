@@ -58,12 +58,12 @@ const ShortNurseVisitModal = ({ isOpen, onClose }) => {
                 boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
                 transition: "transform 0.3s ease-in-out",
               }}
-              mt={{base: "5px",md: "-30vh" }}
+              mt={{base: "5px", md: "-15px" }}
               borderRadius="10px"
-              ml={{md: "105vh" }}
+              ml={{md: "100px" }}
               bg="#A210C6"
               w={{ base: "100vw", md: "35vw" }}
-              h={{ base: "62vh", md: "67vh" }}
+              h={{ base: "60vh", md: "67vh" }}
               _hover={{
                 transform: "translateY(-10px)",
               }}
