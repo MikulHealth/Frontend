@@ -74,7 +74,6 @@ const EditPendingAppointment = ({
       return "";
     }
 
-    // Add one day to the selected date
     const adjustedDate = new Date(selectedDate);
     adjustedDate.setDate(adjustedDate.getDate() + 1);
 
@@ -143,7 +142,7 @@ const EditPendingAppointment = ({
       <Drawer isOpen={isOpen} onClose={onClose} size="md">
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader color="#A210C6">Edit appointment </DrawerHeader>
+          <DrawerHeader color="#A210C6">Edit appointment</DrawerHeader>
           <DrawerBody>
             <Box>
               <FormControl marginTop="5px">
@@ -154,7 +153,7 @@ const EditPendingAppointment = ({
                   name="currentLocation"
                   value={formData?.currentLocation}
                   onChange={handleChange}
-                  w="450px"
+                  w={{ base: "90%", md: "450px" }}
                 />
               </FormControl>
               <FormControl marginTop="5px">
@@ -166,11 +165,11 @@ const EditPendingAppointment = ({
                   value={formData?.recipientPhoneNumber}
                   onChange={handleChange}
                   type="tel"
-                  w="450px"
+                  w={{ base: "90%", md: "450px" }}
                 />
               </FormControl>
 
-              <Box w="450px">
+              <Box w={{ base: "90%", md: "450px" }}>
                 <FormLabel fontWeight="bold" marginTop="20px">
                   Start Date
                 </FormLabel>
@@ -202,7 +201,7 @@ const EditPendingAppointment = ({
                   />
                 </Flex>
               </Box>
-              <Box w="450px">
+              <Box w={{ base: "90%", md: "450px" }}>
                 <FormLabel fontWeight="bold" marginTop="20px">
                   End Date
                 </FormLabel>
@@ -244,7 +243,7 @@ const EditPendingAppointment = ({
                   name="medicalReport"
                   type="file"
                   onChange={handleChange}
-                  w="450px"
+                  w={{ base: "90%", md: "450px" }}
                 />
               </FormControl>
               <FormControl marginTop="20px">
@@ -252,7 +251,7 @@ const EditPendingAppointment = ({
                   Health History:
                 </FormLabel>
                 <Textarea
-                  w="450px"
+                  w={{ base: "90%", md: "450px" }}
                   name="recipientHealthHistory"
                   value={formData?.recipientHealthHistory}
                   onChange={handleChange}
@@ -277,18 +276,14 @@ const EditPendingAppointment = ({
         </DrawerContent>
       </Drawer>
 
-      {/* Confirmation Modal */}
-      <Drawer
-        isOpen={isConfirmationModalOpen}
-        onClose={handleConfirmationCancel}
-      >
-        <DrawerOverlay />
-        <DrawerContent maxW="30vw" maxH="30vh" overflowY="auto">
-          <DrawerHeader fontSize="lg" fontWeight="bold">
+      <Modal isOpen={isConfirmationModalOpen} onClose={handleConfirmationCancel}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader fontSize="lg" fontWeight="bold">
             Confirm Changes
-          </DrawerHeader>
-          <DrawerBody>Are you sure you want to save the changes?</DrawerBody>
-          <DrawerFooter>
+          </ModalHeader>
+          <ModalBody>Are you sure you want to save the changes?</ModalBody>
+          <ModalFooter>
             <Button onClick={handleConfirmationCancel}>Cancel</Button>
             <Button
               bg="#A210C6"
@@ -298,9 +293,9 @@ const EditPendingAppointment = ({
             >
               Confirm
             </Button>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   );
 };

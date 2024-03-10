@@ -5,7 +5,6 @@ import {
   ModalContent,
   ModalFooter,
   ModalCloseButton,
-  Button,
   Link as ChakraLink,
   Box,
   useMediaQuery,
@@ -23,80 +22,70 @@ export default function GetStartedModal({ isOpen, onClose }) {
         border="5px solid white"
         alignItems="center"
         bg="#510863"
-        borderRadius={{ base: "25px 25px 25px 0px", md: "25px 25px 25px 0px" }}
+        borderRadius="25px 25px 25px 0px"
         width={modalWidth}
       >
-        <ChakraLink fontStyle="italic" href="/login" color="#A210C6">
-          <Box
-            w="100%"
-            textAlign="center"
-            h="7vh"
-            bg="white"
-            marginTop="40px"
+        <ModalCloseButton color="white" />
+        <Box padding="10px">
+          <ChakraLink
+            fontStyle="italic"
+            href="/login"
             color="#A210C6"
+            textDecoration="none"
+            display="block"
+            bg="white"
             padding="10px"
             borderRadius="8px"
             fontWeight="bold"
-            style={{
-              fontStyle: "italic",
-              cursor: "pointer",
-              transition: "transform 0.3s ease-in-out",
-            }}
+            textAlign="center"
+            marginY="20px"
+            transition="transform 0.3s ease-in-out"
             _hover={{
               transform: "translateY(-10px)",
             }}
           >
             Login
-          </Box>
-        </ChakraLink>
-        <ChakraLink fontStyle="italic" href="/customer-signUp" color="#A210C6">
-          <Box
-            w="100%"
-            textAlign="center"
-            h="7vh"
-            bg="white"
-            marginTop="20px"
+          </ChakraLink>
+          <ChakraLink
+            fontStyle="italic"
+            href="/customer-signUp"
             color="#A210C6"
+            textDecoration="none"
+            display="block"
+            bg="white"
             padding="10px"
             borderRadius="8px"
             fontWeight="bold"
-            style={{
-              fontStyle: "italic",
-              cursor: "pointer",
-              transition: "transform 0.3s ease-in-out",
-            }}
+            textAlign="center"
+            marginY="20px"
+            transition="transform 0.3s ease-in-out"
             _hover={{
               transform: "translateY(-10px)",
             }}
           >
             Sign up
-          </Box>
-        </ChakraLink>
-        <ChakraLink fontStyle="italic" href="/join" color="#A210C6">
-          <Box
-            w="100%"
-            textAlign="center"
-            h="7vh"
-            bg="white"
-            marginTop="20px"
+          </ChakraLink>
+          <ChakraLink
+            fontStyle="italic"
+            href="/join"
             color="#A210C6"
+            textDecoration="none"
+            display="block"
+            bg="white"
             padding="10px"
             borderRadius="8px"
             fontWeight="bold"
-            style={{
-              fontStyle: "italic",
-              cursor: "pointer",
-              transition: "transform 0.3s ease-in-out",
-            }}
+            textAlign="center"
+            marginY="20px"
+            transition="transform 0.3s ease-in-out"
             _hover={{
               transform: "translateY(-10px)",
             }}
           >
             Sign up as medic
-          </Box>
-        </ChakraLink>
-        <ModalCloseButton color="white" />
-        <ModalFooter></ModalFooter>
+          </ChakraLink>
+        </Box>
+        <ModalFooter />
       </ModalContent>
     </Modal>
   );

@@ -22,7 +22,7 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalFooter,
-  Progress,
+  useMediaQuery,
   Button,
   useToast,
   Box,
@@ -81,7 +81,8 @@ export default function PendingApp() {
       state: { costOfService, appointmentId, beneficiary },
     });
   };
-
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
+  const modalWidth = isLargerThan768 ? "400px" : "90vw";
   const handleEditAppointment = (id) => {
     setSelectedAppointmentId(id);
     setEditModalOpen(true);
@@ -609,6 +610,7 @@ export default function PendingApp() {
 
               {!selectedAppointment.paid && (
                 <Button
+                  ml={{ base: "5px" }}
                   bg="green.400"
                   color="white"
                   _hover={{ color: "" }}
@@ -630,10 +632,7 @@ export default function PendingApp() {
           size="md"
         >
           <ModalOverlay />
-          <ModalContent
-            border="5px solid #A210C6"
-            borderRadius="25px 25px 25px 0px"
-          >
+          <ModalContent width={modalWidth} borderRadius="25px 25px 25px 0px">
             <ModalHeader>
               {" "}
               <WarningIcon w={10} h={10} color="yellow.400" />
@@ -645,7 +644,7 @@ export default function PendingApp() {
             </ModalBody>
             <ModalFooter>
               <Button
-                bg="#A210C6"
+                bg="#510863"
                 color="white"
                 onClick={handleCancelModalClose}
               >
