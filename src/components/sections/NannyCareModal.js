@@ -26,7 +26,7 @@ const NannyCareModal = ({ isOpen, onClose }) => {
     setShowAppointmentModal(true);
   };
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="6xl">
+    <Modal isOpen={isOpen} onClose={onClose} size="full">
       <ModalOverlay />
       <ModalContent marginTop="30px">
         <ModalHeader textAlign="center">NANNY SERVICES</ModalHeader>
@@ -48,7 +48,8 @@ const NannyCareModal = ({ isOpen, onClose }) => {
           <Flex
             marginBottom="30px"
             marginTop="30px"
-            marginLeft="8px"
+            ml={{ md: "90px" }}
+            flexWrap={{ base: "wrap" }}
             alignItems="center"
           >
             <Box
@@ -60,8 +61,8 @@ const NannyCareModal = ({ isOpen, onClose }) => {
                 boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
                 transition: "transform 0.3s ease-in-out",
               }}
-              w="40vw"
-              h="60vh"
+              w={{ base: "100vw", md: "40vw" }}
+              h={{ base: "62vh", md: "60vh" }}
               _hover={{
                 transform: "translateY(-10px)",
               }}
@@ -93,6 +94,14 @@ const NannyCareModal = ({ isOpen, onClose }) => {
               </Flex>
               <Box>
                 <Divider my={1} borderColor="black.500" />
+                <Text
+                  display={{ base: "block", md: "none" }}
+                  textAlign="center"
+                  marginTop="16px"
+                  color="#A210C6"
+                >
+                  Cost excludes pre-nanny test
+                </Text>
                 <Flex justifyContent="space-between">
                   <Flex>
                     <Text
@@ -104,7 +113,12 @@ const NannyCareModal = ({ isOpen, onClose }) => {
                     >
                       ₦70,000
                     </Text>
-                    <Text marginLeft="5px" marginTop="16px" color="#A210C6">
+                    <Text
+                      display={{ base: "none", md: "block" }}
+                      marginLeft="5px"
+                      marginTop="16px"
+                      color="#A210C6"
+                    >
                       (excluding pre-nanny test)
                     </Text>
                   </Flex>
@@ -137,12 +151,12 @@ const NannyCareModal = ({ isOpen, onClose }) => {
                 boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
                 transition: "transform 0.3s ease-in-out",
               }}
-              marginTop="-20px"
               borderRadius="10px"
-              marginLeft="30px"
               bg="#A210C6"
-              w="40vw"
-              h="60vh"
+              ml={{ md: "30px" }}
+              mt={{ base: "30px", md: "-20px" }}
+              w={{ base: "100vw", md: "40vw" }}
+              h={{ base: "60vh", md: "60vh" }}
               _hover={{
                 transform: "translateY(-10px)",
               }}
@@ -174,7 +188,14 @@ const NannyCareModal = ({ isOpen, onClose }) => {
               </Flex>
               <Box>
                 <Divider my={1} borderColor="white" />
-
+                <Text
+                  display={{ base: "block", md: "none" }}
+                  textAlign="center"
+                  marginTop="16px"
+                  color="white"
+                >
+                  Cost excludes pre-nanny test
+                </Text>
                 <Flex justifyContent="space-between">
                   <Flex>
                     <Text
@@ -186,7 +207,12 @@ const NannyCareModal = ({ isOpen, onClose }) => {
                     >
                       ₦90,000
                     </Text>
-                    <Text marginLeft="5px" marginTop="16px" color="white">
+                    <Text
+                      display={{ base: "none", md: "block" }}
+                      marginLeft="5px"
+                      marginTop="16px"
+                      color="white"
+                    >
                       (excluding pre-nanny test)
                     </Text>
                   </Flex>

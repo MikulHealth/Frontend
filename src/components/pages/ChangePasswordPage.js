@@ -305,7 +305,7 @@ const ChangePasswordPage = () => {
           w="100%"
           mt={{ md: "30px" }}
         >
-          <Flex justifyContent="space-between" margin="20px">
+          <Flex justifyContent="space-between" >
             <Box>
               <Text
                 textAlign="left"
@@ -325,6 +325,7 @@ const ChangePasswordPage = () => {
               fontSize={{ base: "12px" }}
               h="3vh"
               borderRadius="100px"
+             
             >
               Back
             </Button>

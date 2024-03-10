@@ -197,7 +197,7 @@ const NotificationSettingsPage = () => {
           display={{ base: "block", md: "none" }}
           mt={{ md: "30px" }}
         >
-          <Flex justifyContent="space-between" margin="20px">
+          <Flex justifyContent="space-between" >
             <Box>
               <Text
                 textAlign="left"

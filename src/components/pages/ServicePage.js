@@ -125,7 +125,7 @@ const ServicePage = () => {
                   marginTop="20px"
                   marginLeft="8px"
                   h="10vh"
-                  w="65vw"
+                  w={{ base: "90vw", md: "65vw" }}
                   borderRadius="15px"
                   paddingBottom="5px"
                   style={{
@@ -159,7 +159,7 @@ const ServicePage = () => {
                   marginTop="20px"
                   marginLeft="8px"
                   h="10vh"
-                  w="65vw"
+                  w={{ base: "90vw", md: "65vw" }}
                   borderRadius="15px"
                   paddingBottom="5px"
                   style={{

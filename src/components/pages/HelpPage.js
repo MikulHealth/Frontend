@@ -55,7 +55,7 @@ const HelpPage = () => {
         style={settingsContainerStyle}
         ml={{ md: "500px" }}
         height="100vh"
-        w={{ base: "100%", md: "70vh" }}
+        w={{ base: "95%", md: "70vh" }}
       >
         <NavBar />
 

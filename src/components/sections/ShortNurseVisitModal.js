@@ -48,8 +48,8 @@ const ShortNurseVisitModal = ({ isOpen, onClose }) => {
           </Text>
           <Flex
             marginBottom="30px"
-            marginTop="50px"
-            marginLeft="15px"
+            mt={{base: "20px", md: "50px" }}
+            ml={{ md: "15px" }}
             alignItems="center"
           >
             <Box
@@ -58,12 +58,12 @@ const ShortNurseVisitModal = ({ isOpen, onClose }) => {
                 boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
                 transition: "transform 0.3s ease-in-out",
               }}
-              marginTop="-30px"
+              mt={{base: "5px",md: "-30vh" }}
               borderRadius="10px"
-              marginLeft="105px"
+              ml={{md: "105vh" }}
               bg="#A210C6"
-              w="35vw"
-              h="67vh"
+              w={{ base: "100vw", md: "35vw" }}
+              h={{ base: "62vh", md: "67vh" }}
               _hover={{
                 transform: "translateY(-10px)",
               }}

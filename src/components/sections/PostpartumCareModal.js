@@ -26,7 +26,7 @@ const PostpartumCareModal = ({ isOpen, onClose }) => {
     setShowAppointmentModal(true);
   };
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="6xl">
+    <Modal isOpen={isOpen} onClose={onClose} size="full">
       <ModalOverlay />
       <ModalContent marginTop="30px">
         <ModalHeader textAlign="center">POSTPATUM CARE</ModalHeader>
@@ -46,9 +46,11 @@ const PostpartumCareModal = ({ isOpen, onClose }) => {
           </Text>
           <Flex
             marginBottom="30px"
-            marginTop="30px"
+            mt={{base: "20px", md: "30px" }}
             marginLeft="8px"
             alignItems="center"
+            ml={{md: "90px" }}
+            flexWrap={{ base: "wrap" }}
           >
             <Box
               borderColor="#A210C6"
@@ -58,8 +60,8 @@ const PostpartumCareModal = ({ isOpen, onClose }) => {
                 boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
                 transition: "transform 0.3s ease-in-out",
               }}
-              w="40vw"
-              h="60vh"
+              w={{ base: "100vw", md: "40vw" }}
+              h={{ base: "62vh", md: "60vh" }}
               _hover={{
                 transform: "translateY(-10px)",
               }}
@@ -130,12 +132,12 @@ const PostpartumCareModal = ({ isOpen, onClose }) => {
                 boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
                 transition: "transform 0.3s ease-in-out",
               }}
-              marginTop="-20px"
+              ml={{ md: "30px" }}
+              mt={{ base: "30px", md: "-20px" }}
               borderRadius="10px"
-              marginLeft="30px"
               bg="#A210C6"
-              w="40vw"
-              h="60vh"
+              w={{ base: "100vw", md: "40vw" }}
+              h={{ base: "60vh", md: "60vh" }}
               _hover={{
                 transform: "translateY(-10px)",
               }}
