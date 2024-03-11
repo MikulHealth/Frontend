@@ -5,6 +5,7 @@ import {
   Link as ChakraLink,
   Image,
   extendTheme,
+  Flex,
   ChakraProvider,
   Text,
 } from "@chakra-ui/react";
@@ -59,21 +60,18 @@ const LandingPage = () => {
       <Box>
         <NavigationBar />
         <Box
-          style={settingsContainerStyle}
           marginTop="-1px"
           bgImage={`url(${AbtPic})`}
           bgSize="cover"
           bgPosition="center"
-          w="1350px"
-          h="1140px"
+          minHeight="100vh" // Set minimum height to ensure content is visible on all screen sizes
         >
           <Text
-            fontSize="64px"
+            fontSize={{ base: "32px", md: "48px", lg: "64px" }} // Adjust font size based on screen size
             fontWeight="bold"
             textAlign="center"
             color="white"
-            // marginLeft="3px"
-            paddingTop="70px"
+            paddingTop={{ base: "20px", md: "50px", lg: "70px" }} // Adjust padding top based on screen size
             textDecoration="underline"
             data-aos="fade-up"
             data-aos-duration="10000"
@@ -82,14 +80,13 @@ const LandingPage = () => {
           </Text>
         </Box>
         <Box bg="#A210C6" paddingTop="60px" marginLeft="-40px">
-          <Box h="60px" />
           <Box
             marginLeft="-510px"
             data-aos="fade-right"
             data-aos-duration="10000"
           >
             <Text
-              fontSize="28px"
+              fontSize={{ base: "22px", md: "28px" }}
               fontFamily="body"
               color="white"
               marginLeft="-150px"
@@ -98,7 +95,7 @@ const LandingPage = () => {
             </Text>
             <Text
               textAlign="left"
-              fontSize="60px"
+              fontSize={{ base: "22px", md: "28px" }}
               fontFamily="body"
               color="black"
             >
@@ -107,14 +104,13 @@ const LandingPage = () => {
             </Text>
           </Box>
 
-          <Box h="60px" />
-          <Box
-            display="flex"
+          <Flex
+            justifyContent="space-between"
+            flexWrap="wrap"
             marginLeft="80px"
             data-aos="fade-up"
             data-aos-duration="10000"
           >
-            <Box w="70px" />
             <Box
               justifyContent="center"
               alignItems="center"
@@ -133,7 +129,7 @@ const LandingPage = () => {
               </Box>
 
               <Text
-                fontSize="xl"
+                fontSize={{ base: "22px", md: "28px" }}
                 fontWeight="bold"
                 textAlign="center"
                 marginTop="10px"
@@ -141,7 +137,12 @@ const LandingPage = () => {
                 Affordability & <br></br>
                 Accessibility
               </Text>
-              <Text textAlign="center" marginTop="10px" color="white">
+              <Text
+                fontSize={{ base: "16px", md: "18px" }}
+                textAlign="center"
+                marginTop="10px"
+                color="white"
+              >
                 We offer competitive pricing for homecare <br></br>
                 services, making it affordable for everyone <br></br>
                 to receive quality care. We also offer round-<br></br>
@@ -150,7 +151,7 @@ const LandingPage = () => {
                 when you need it.
               </Text>
             </Box>
-            <Box w="20" />
+
             <Box
               justifyContent="center"
               alignItems="center"
@@ -169,7 +170,7 @@ const LandingPage = () => {
               </Box>
 
               <Text
-                fontSize="xl"
+                fontSize={{ base: "22px", md: "28px" }}
                 fontWeight="bold"
                 textAlign="center"
                 marginTop="10px"
@@ -177,7 +178,12 @@ const LandingPage = () => {
                 Viscibility & <br></br>
                 Transperency{" "}
               </Text>
-              <Text textAlign="center" marginTop="10px" color="white">
+              <Text
+                fontSize={{ base: "16px", md: "18px" }}
+                textAlign="center"
+                marginTop="10px"
+                color="white"
+              >
                 We use state-of-the-art technology to <br></br>
                 protect your personal and medical <br></br>
                 information, ensuring that your data is <br></br>
@@ -187,7 +193,6 @@ const LandingPage = () => {
                 reducing the risk of accidents or incidents.
               </Text>
             </Box>
-            <Box w="20" />
 
             <Box
               justifyContent="center"
@@ -206,29 +211,34 @@ const LandingPage = () => {
                 />
               </Box>
               <Text
-                fontSize="xl"
+                fontSize={{ base: "22px", md: "28px" }}
                 fontWeight="bold"
                 textAlign="center"
                 marginTop="20px"
               >
                 Personalization
               </Text>
-              <Text textAlign="center" marginTop="28px" color="white">
+              <Text
+                fontSize={{ base: "16px", md: "18px" }}
+                textAlign="center"
+                marginTop="28px"
+                color="white"
+              >
                  We offer personalized care plans based on <br></br>
                 your individual needs and preferences,<br></br>
                 ensuring that you receive the best possible care.
               </Text>
             </Box>
-          </Box>
+          </Flex>
 
-          <Box
-            display="flex"
+          <Flex
+            justifyContent="space-between"
+            flexWrap="wrap"
             marginLeft="90px"
             marginTop="50px"
             data-aos="fade-left"
             data-aos-duration="10000"
           >
-            <Box w="50px" />
             <Box
               justifyContent="center"
               alignItems="center"
@@ -246,21 +256,26 @@ const LandingPage = () => {
                 />
               </Box>
               <Text
-                fontSize="xl"
+                fontSize={{ base: "22px", md: "28px" }}
                 fontWeight="bold"
                 textAlign="center"
                 marginTop="10px"
               >
                 Safety & Security
               </Text>
-              <Text textAlign="center" marginTop="10px" color="white">
+              <Text
+                fontSize={{ base: "16px", md: "18px" }}
+                textAlign="center"
+                marginTop="10px"
+                color="white"
+              >
                 All our caregivers are thoroughly screened <br></br>
                 and background checks are carried out. We <br></br>
                 do this to provide you with the assurance <br></br>
                 that you're receiving safe and trustworthy care.
               </Text>
             </Box>
-            <Box w="20" />
+
             <Box
               justifyContent="center"
               alignItems="center"
@@ -278,21 +293,26 @@ const LandingPage = () => {
                 />
               </Box>
               <Text
-                fontSize="xl"
+                fontSize={{ base: "22px", md: "28px" }}
                 fontWeight="bold"
                 textAlign="center"
                 marginTop="10px"
               >
                 Quality Care
               </Text>
-              <Text textAlign="center" marginTop="10px" color="white">
+              <Text
+                fontSize={{ base: "16px", md: "18px" }}
+                textAlign="center"
+                marginTop="10px"
+                color="white"
+              >
                 We ensure that all caregivers registered <br></br>
                 with us meet high-quality standards, <br></br>
                 ensuring that you receive the best possible <br></br>
                 care at all times.
               </Text>
             </Box>
-            <Box w="20" />
+
             <Box
               justifyContent="center"
               alignItems="center"
@@ -310,7 +330,7 @@ const LandingPage = () => {
                 />
               </Box>
               <Text
-                fontSize="xl"
+                fontSize={{ base: "22px", md: "28px" }}
                 fontWeight="bold"
                 textAlign="center"
                 marginTop="10px"
@@ -323,13 +343,10 @@ const LandingPage = () => {
                 care when it's most convenient for you.
               </Text>
             </Box>
-            <Box w="20" />
-          </Box>
-          <Box h="60px" />
+          </Flex>
         </Box>
 
         <Box bg="white">
-          <Box h="60px" />
           <Box marginLeft="-450px">
             <Text
               fontSize="64px"
@@ -340,8 +357,8 @@ const LandingPage = () => {
               Meet Our Team
             </Text>
           </Box>
-          <Box h="20px" />
-          <Box display="flex">
+
+          <Flex flexWrap="wrap">
             <Box
               bg="white"
               justifyContent="center"
@@ -392,10 +409,10 @@ const LandingPage = () => {
                 Global Foundation.
               </Text>
             </Box>
-          </Box>
+          </Flex>
         </Box>
 
-        <Box display="flex" marginLeft="100px">
+        <Flex flexWrap="wrap" ml={{ md: "100px" }}>
           <Box
             justifyContent="center"
             alignItems="center"
@@ -456,9 +473,9 @@ const LandingPage = () => {
               />
             </Box>
           </Box>
-        </Box>
+        </Flex>
 
-        <Box display="flex" marginTop="200px">
+        <Flex flexWrap="wrap" mt={{ md: "200px" }}>
           <Box
             justifyContent="center"
             alignItems="center"
@@ -511,9 +528,9 @@ const LandingPage = () => {
               </Text>
             </Box>
           </Box>
-        </Box>
+        </Flex>
 
-        <Box display="flex" marginLeft="100px">
+        <Flex flexWrap="wrap" ml={{ md: "200px" }}>
           <Box
             justifyContent="center"
             alignItems="center"
@@ -577,7 +594,7 @@ const LandingPage = () => {
               />
             </Box>
           </Box>
-        </Box>
+        </Flex>
 
         <Box bg="white" marginTop="200px">
           <Box>
@@ -590,11 +607,9 @@ const LandingPage = () => {
             >
               Medics
             </Text>
-            <Box h="5" />
           </Box>
-          <Box h="20px" />
+
           <Box display="flex">
-            <Box w="70px" />
             <Box
               bg="white"
               justifyContent="center"
@@ -607,7 +622,7 @@ const LandingPage = () => {
               <Box>
                 <Image src={SignUp} alt="Logo" w="200px" h="200px" />
               </Box>
-              <Box h="5" />
+
               <Text fontSize="xl" fontWeight="bold" textAlign="center">
                 1000+ Caregivers Onboarderd
               </Text>
@@ -618,7 +633,7 @@ const LandingPage = () => {
                 care
               </Text>
             </Box>
-            <Box w="10" />
+
             <Box
               bg="white"
               justifyContent="center"
@@ -631,7 +646,7 @@ const LandingPage = () => {
               <Box>
                 <Image src={SelectCare} alt="Logo" w="200px" h="200px" />
               </Box>
-              <Box h="5" />
+
               <Text fontSize="xl" fontWeight="bold" textAlign="center">
                 500+ Vetted
               </Text>
@@ -643,7 +658,6 @@ const LandingPage = () => {
               </Text>
             </Box>
           </Box>
-          <Box h="60px" />
         </Box>
 
         <Box bg="white">
@@ -656,11 +670,9 @@ const LandingPage = () => {
             >
               Partners
             </Text>
-            <Box h="5" />
           </Box>
-          <Box h="20px" />
+
           <Box display="flex">
-            <Box w="70px" />
             <Box
               bg="white"
               justifyContent="center"
@@ -672,12 +684,12 @@ const LandingPage = () => {
               <Box marginLeft="20px">
                 <Image src={SignUp} alt="Logo" w="200px" h="200px" />
               </Box>
-              <Box h="5" />
+
               <Text fontSize="xl" fontWeight="bold" textAlign="center">
                 Over 1000 Medics Onboarderd
               </Text>
             </Box>
-            <Box w="10" />
+
             <Box
               bg="white"
               justifyContent="center"
@@ -689,12 +701,12 @@ const LandingPage = () => {
               <Box marginLeft="20px">
                 <Image src={SelectCare} alt="Logo" w="200px" h="200px" />
               </Box>
-              <Box h="5" />
+
               <Text fontSize="xl" fontWeight="bold" textAlign="center">
                 Over 500 Vetted
               </Text>
             </Box>
-            <Box w="10" />
+
             <Box
               bg="white"
               justifyContent="center"
@@ -706,12 +718,12 @@ const LandingPage = () => {
               <Box marginLeft="15px">
                 <Image src={GetMatched} alt="Logo" w="200px" h="200px" />
               </Box>
-              <Box h="5" />
+
               <Text fontSize="xl" fontWeight="bold" textAlign="center">
                 Get Matched
               </Text>
             </Box>
-            <Box w="10" />
+
             <Box
               bg="white"
               justifyContent="center"
@@ -723,13 +735,12 @@ const LandingPage = () => {
               <Box marginLeft="15px">
                 <Image src={ReceieveCare} alt="Logo" w="200px" h="200px" />
               </Box>
-              <Box h="5" />
+
               <Text fontSize="xl" fontWeight="bold" textAlign="center">
                 Receive Care
               </Text>
             </Box>
           </Box>
-          <Box h="60px" />
         </Box>
         <Footer />
       </Box>
