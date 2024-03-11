@@ -276,14 +276,14 @@ const EditPendingAppointment = ({
         </DrawerContent>
       </Drawer>
 
-      <Modal isOpen={isConfirmationModalOpen} onClose={handleConfirmationCancel}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader fontSize="lg" fontWeight="bold">
+      <Drawer isOpen={isConfirmationModalOpen} onClose={onClose}>
+        <DrawerOverlay />
+        <DrawerContent h="30vh">
+          <DrawerHeader fontSize="lg" fontWeight="bold">
             Confirm Changes
-          </ModalHeader>
-          <ModalBody>Are you sure you want to save the changes?</ModalBody>
-          <ModalFooter>
+          </DrawerHeader>
+          <DrawerBody>Are you sure you want to save the changes?</DrawerBody>
+          <DrawerFooter>
             <Button onClick={handleConfirmationCancel}>Cancel</Button>
             <Button
               bg="#A210C6"
@@ -293,9 +293,9 @@ const EditPendingAppointment = ({
             >
               Confirm
             </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
     </>
   );
 };
