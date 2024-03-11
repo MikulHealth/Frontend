@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { CheckIcon} from "@chakra-ui/icons";
+import { useNavigate, NavLink } from "react-router-dom";
+import BookAppointmentModal from "../sections/BookAppointment";
 import {
   Modal,
   ModalOverlay,
@@ -11,42 +14,56 @@ import {
   ModalCloseButton,
   Text,
   Tooltip,
+  Button,
 } from "@chakra-ui/react";
 
 const ShortNurseVisitModal = ({ isOpen, onClose }) => {
+  const [showAppointmentModal, setShowAppointmentModal] = useState(false);
+
+  const handleCloseAppointmentModal = () => {
+    setShowAppointmentModal(false);
+  };
+
+  const handleOpenAppointmentModal = () => {
+    setShowAppointmentModal(true);
+  };
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
+    <Modal isOpen={isOpen} onClose={onClose} size="3xl">
       <ModalOverlay />
       <ModalContent marginTop="30px">
-        <ModalHeader>SHORT HOME VISIT</ModalHeader>
+        <ModalHeader textAlign="center">SHORT HOME VISIT</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Text fontWeight="bold" marginLeft="80px" color="#A210C6">
-            Mikul health Short Nursing-Care Service [3 hours Maximun]
+          <Text fontWeight="bold" textAlign="center" color="#A210C6">
+            MIKUL HEALTH SHORT NURSING-CARE SERVICE (3 HOURS MAXIMUM)
           </Text>
-          <Text fontWeight="bold" marginLeft="150px" color="#A210C6">
-            Exclusively provided by a licensed nurse.
+          <Text
+            fontSize="16px"
+            fontStyle="italic"
+            fontWeight="bold"
+            textAlign="center"
+            color="#A210C6"
+          >
+            Exclusively provided by a licensed nurse
           </Text>
           <Flex
             marginBottom="30px"
-            marginTop="50px"
-            marginLeft="15px"
+            mt={{base: "20px", md: "50px" }}
+            ml={{ md: "15px" }}
             alignItems="center"
           >
-             <Tooltip borderRadius="100px" bg="#A210C6" label="Click on the box to book" aria-label="daily tooltip">
-           
             <Box
               style={{
                 cursor: "pointer",
                 boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
                 transition: "transform 0.3s ease-in-out",
               }}
-              marginTop="-30px"
+              mt={{base: "5px", md: "-15px" }}
               borderRadius="10px"
-              marginLeft="55px"
+              ml={{md: "100px" }}
               bg="#A210C6"
-              w="35vw"
-              h="65vh"
+              w={{ base: "100vw", md: "35vw" }}
+              h={{ base: "60vh", md: "67vh" }}
               _hover={{
                 transform: "translateY(-10px)",
               }}
@@ -55,12 +72,12 @@ const ShortNurseVisitModal = ({ isOpen, onClose }) => {
                 color="white"
                 fontWeight="bold"
                 marginTop="30px"
-                marginLeft="210px"
+                textAlign="center"
                 fontSize="18px"
               >
-               DAILY
+                DAILY
               </Text>
-              <Divider my={1} borderColor="white"  />
+              <Divider my={1} borderColor="white" />
               <Text color="white" ml="15px" fontSize="16px" mt="5px">
                 Professional nursing care provided for short-term visits to
                 address specific healthcare needs.
@@ -79,20 +96,43 @@ const ShortNurseVisitModal = ({ isOpen, onClose }) => {
                 </Box>
               </Flex>
               <Divider my={1} borderColor="white" />
-              <Text
-                color="white"
-                fontWeight="bold"
-                marginTop="10px"
-                marginLeft="200px"
-                fontSize="24px"
-              >
-                ₦15,000
-              </Text>
+              <Flex justifyContent="space-between">
+                <Text
+                  color="white"
+                  fontWeight="bold"
+                  marginTop="10px"
+                  marginLeft="20px"
+                  fontSize="24px"
+                >
+                  ₦15,000
+                </Text>
+
+                <Button
+                  marginTop="10px"
+                  borderRadius="100px"
+                  fontSize="16px"
+                  bg="white"
+                  marginRight="20px"
+                  leftIcon={<CheckIcon />}
+                  color="#A210C6"
+                  onClick={handleOpenAppointmentModal}
+                  style={{
+                    fontStyle: "italic",
+                    cursor: "pointer",
+                  }}
+                  _hover={{ color: "#A210C6" }}
+                >
+                  Book plan
+                </Button>
+              </Flex>
             </Box>
-            </Tooltip>
           </Flex>
         </ModalBody>
       </ModalContent>
+      <BookAppointmentModal
+        isOpen={showAppointmentModal}
+        onClose={handleCloseAppointmentModal}
+      />
     </Modal>
   );
 };

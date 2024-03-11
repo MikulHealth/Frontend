@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { FiUnlock } from "react-icons/fi";
 import {
   Box,
   Button,
@@ -27,6 +28,7 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
+  Icon,
   ModalCloseButton,
   useDisclosure,
   useToast,
@@ -38,6 +40,7 @@ import Shade from "../../assets/Shade.svg";
 import Google from "../../assets/GoogleIcon.svg";
 import logo from "../../assets/Whitelogo.png";
 import "../../styles/pages/LandingPage.css";
+import { UnlockIcon } from "@chakra-ui/icons";
 
 const customTheme = extendTheme({
   components: {
@@ -96,6 +99,8 @@ const LandingPage = () => {
           status: "success",
           duration: 5000,
           isClosable: true,
+          position: "bottom-right",
+          icon: <UnlockIcon/>
         });
 
         setLoading(false);

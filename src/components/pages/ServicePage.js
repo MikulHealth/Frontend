@@ -1,50 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { GetCurrentUser, UpdateCustomer } from "../../apiCalls/UserApis";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { SetUser } from "../../redux/userSlice";
-import DatePicker from "react-datepicker";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
-import RightArrow from "../../assets/RightArrow.svg";
-import Help from "../../assets/Help.svg";
-
 import ElderlyCareModal from "../sections/ElderlyCareModal";
 import PostpartumCareModal from "../sections/PostpartumCareModal";
 import RecoveryCareModal from "../sections/RecoveryCareModal";
 import NannyCareModal from "../sections/NannyCareModal";
 import ShortNurseVisitModal from "../sections/ShortNurseVisitModal";
-
-import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from "@chakra-ui/icons";
+import LeftSideBar from "../authLayouts/LeftSideBar";
 import {
   ChakraProvider,
   VStack,
-  Input,
-  Button,
-  useToast,
   Image,
   Box,
   Text,
   Flex,
-  Link,
-  Divider,
   extendTheme,
-  FormControl,
-  FormLabel,
 } from "@chakra-ui/react";
-import userImageIcon from "../../assets/userImage.svg";
-import NotificationIcon from "../../assets/notification.svg";
-import familyIcon from "../../assets/family.svg";
-import UserDetailsModal from "../sections/UserDetails";
-import LoadingSpinner from "../../utils/Spiner";
-import Wallet from "../../assets/Wallet.svg";
-import logo from "../../assets/LogoColoured.svg";
-import SettingsIcon from "../../assets/SettingsIcon.svg";
-import LogoutIcon from "../../assets/Logout.svg";
-import AppointmentsIcon from "../../assets/AppointmentIcon.svg";
-import HomeIcon from "../../assets/HomeBlack.svg";
+import PostPaturm from "../../assets/Postpatum.svg";
+import Elderly from "../../assets/ElderlyCare.svg";
+import Recovery from "../../assets/RecoveryCare.svg";
+import Online from "../../assets/OnlineConsult.svg";
+import Doctor from "../../assets/Doctor.svg";
+import Costom from "../../assets/CustomIcon.svg";
+import NavBar from "../authLayouts/NavBar";
 import HelppIcon from "../../assets/HelppIcon.svg";
-import LogoutModal from "../sections/LogoutModal";
-import serviceIcon from "../../assets/WhiteServiceIcon.svg";
+import Chevron from "../../assets/ChevronDown.svg";
+import MobileFooter from "../authLayouts/MobileFooter";
 
 const customTheme = extendTheme({
   components: {
@@ -63,16 +44,6 @@ const customTheme = extendTheme({
 });
 
 const ServicePage = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const toast = useToast();
-  const { user } = useSelector((state) => state.userReducer);
-  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
-  const [showWalletModal, setShowWalletModal] = useState(false);
-
   const [showElderlyCareModal, setShowElderlyCareModal] = useState(false);
   const [showPostpartumCareModal, setShowPostpartumCareModal] = useState(false);
   const [showRecoveryCareModal, setShowRecoveryCareModal] = useState(false);
@@ -99,522 +70,182 @@ const ServicePage = () => {
     setShowShortCareModal(true);
   };
 
-  const handleOpenUserDetailsModal = () => {
-    setShowUserDetailsModal(true);
-  };
+  const services = [
+    {
+      title: "Elderly care",
+      icon: Elderly,
+      onClick: handleOpenElderlyCareModal,
+    },
+    {
+      title: "Postpartum care",
+      icon: PostPaturm,
+      onClick: handleOpenPostpatumCareModal,
+    },
+    {
+      title: "Recovery care",
+      icon: Recovery,
+      onClick: handleOpenRecoveryCareModal,
+    },
+    {
+      title: "Nanny services",
+      icon: PostPaturm,
+      onClick: handleOpenNannyCareModal,
+    },
+    {
+      title: "Short home visit",
+      icon: Online,
+      onClick: handleOpenShortCareModal,
+    },
+  ];
 
-  const handleCloseUserDetailsModal = () => {
-    setShowUserDetailsModal(false);
-  };
-
-  const handleOpenHelpModal = () => {};
-
-  const handleOpenWalletModal = () => {
-    navigate("/wallet");
-  };
-
-  const help = () => {
-    navigate("/help");
-  };
-
-  const handleOpenSettingsModal = () => {
-    navigate("/settings");
-  };
-
-  const handleOpenLogoutModal = () => {
-    setShowLogoutModal(true);
-  };
-
-  const handleConfirmLogout = () => {
-    // Close the logout confirmation modal
-    setShowLogoutModal(false);
-
-    // Perform the actual logout
-    localStorage.removeItem("token");
-    localStorage.removeItem("phoneNumber");
-    localStorage.removeItem("orderId");
-    navigate("/");
-  };
-
-  const handleOpenDashboard = () => {
-    navigate("/dashboard");
-  };
-
-  const handleOpenCustomizeModal = () => {
-    navigate("/customize-service");
-  };
-
-
-  const handleOpenAppointmentsModal = () => {
-    navigate("/appointment");
+  const settingsContainerStyle = {
+    animation: "slideInUp 0.9s ease-in-out",
   };
 
   return (
     <ChakraProvider theme={customTheme}>
-      <Box width="25%" p={3} h="90vh">
-        <Image
-          src={logo}
-          alt="Logo"
-          w="160px"
-          h="60px"
-          marginLeft="90px"
-          marginTop="10px"
-        />
-
-        <VStack spacing={3} align="center" mt={5}>
-          <Flex marginTop="50px" alignItems="center">
-            <Image
-              marginLeft="-47px"
-              w="20px"
-              h="20px"
-              src={HomeIcon}
-              alt="HomeIcon"
-            />
-
-            <Text
-              marginLeft="15px"
-              color="black"
-              fontSize="18px"
-              onClick={() => {
-                handleOpenDashboard();
-              }}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Home
-            </Text>
-          </Flex>
-
-          <Flex
-            alignItems="center"
-            marginTop="20px"
-            w="15vw"
-            p={3}
-            borderRadius="md"
-          >
-            <Image
-              marginLeft="25px"
-              w="20px"
-              h="20px"
-              src={AppointmentsIcon}
-              alt="Appointments"
-            />
-            <Text
-              marginLeft="15px"
-              fontSize="18px"
-              color="black"
-              onClick={handleOpenAppointmentsModal}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "" }}
-            >
-              Appointments
-            </Text>
-          </Flex>
-
-          <Flex alignItems="center" marginTop="20px" marginLeft="-48px">
-            <Image w="20px" h="20px" src={Wallet} alt="wallet" />
-            <Text
-              marginLeft="15px"
-              color="black"
-              fontSize="18px"
-              onClick={handleOpenWalletModal}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Wallet
-            </Text>
-          </Flex>
-
-          <Flex
-            bg="#A210C6"
-            w="15vw"
-            p={3}
-            borderRadius="md"
-            alignItems="center"
-            marginTop="20px"
-            marginLeft="28px"
-          >
-            <Image
-              marginLeft="13px"
-              w="20px"
-              h="20px"
-              src={serviceIcon}
-              alt="Help"
-            />
-            <Text
-              marginLeft="15px"
-              color="white"
-              fontSize="18px"
-              onClick={handleOpenHelpModal}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "" }}
-            >
-              Service
-            </Text>
-          </Flex>
-
-          <Flex
-            alignItems="center"
-            marginTop="20px"
-            w="15vw"
-            p={3}
-            borderRadius="md"
-          >
-            <Image
-              marginLeft="26px"
-              w="20px"
-              fontSize="24px"
-              h="20px"
-              src={SettingsIcon}
-              alt="Settings"
-            />
-            <Text
-              marginLeft="15px"
-              color="black"
-              fontSize="18px"
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "" }}
-              onClick={handleOpenSettingsModal}
-            >
-              Settings
-            </Text>
-          </Flex>
-
-          <Flex alignItems="center" marginTop="80px" marginLeft="-55px">
-            <Image
-              marginLeft="15px"
-              w="20px"
-              h="20px"
-              src={LogoutIcon}
-              alt="Logout"
-            />
-            <Text
-              onClick={handleOpenLogoutModal}
-              fontSize="18px"
-              marginLeft="15px"
-              color="#A210C6"
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Logout
-            </Text>
-          </Flex>
-        </VStack>
-        <Box
-          borderRight="2px solid #A210C6"
-          height="113%"
-          marginX={3}
-          marginTop="-615px"
-        />
-      </Box>
-      <Box
+      <LeftSideBar />
+      <VStack
+        style={settingsContainerStyle}
         position="fixed"
-        top="0"
-        left="25%"
-        width="85%"
-        height="100%"
-        backgroundColor="white"
-        zIndex="1000"
+        ml={{ md: "225px" }}
+        w={{ base: "100%", md: "80%" }}
+        h={{ base: "100%", md: "100%" }}
       >
-        <Flex>
-          <Text
-            fontSize="36px"
-            fontFamily="heading"
-            color="#A210C6"
-            marginLeft="60px"
-            marginTop="30px"
-          >
-            Services
-          </Text>
-          <Flex
-            marginLeft="650px"
-            style={{
-              cursor: "pointer",
-            }}
-            _hover={{ color: "#A210C6" }}
-          >
-            <Box marginTop="30px">
-              <Image
-                src={NotificationIcon}
-                alt="Notificatio icon"
-                h="26px"
-                w="30px"
-                marginBottom="10px"
-              />
+        <VStack marginTop="10px">
+          <NavBar />
+          <VStack>
+            <Box
+              justifyContent={{ base: "center" }}
+              ml={{ md: "-120px" }}
+              mt={{ md: "15px" }}
+            >
+              {services.map((service, index) => (
+                <Box
+                  key={index}
+                  marginTop="20px"
+                  marginLeft="8px"
+                  h="10vh"
+                  w={{ base: "90vw", md: "65vw" }}
+                  borderRadius="15px"
+                  paddingBottom="5px"
+                  style={{
+                    cursor: "pointer",
+                    boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
+                  }}
+                  _hover={{ color: "#A210C6" }}
+                  onClick={service.onClick}
+                >
+                  <Flex>
+                    <Image margin="15px" src={service.icon} w="30px" h="30px" />
+                    <Box marginLeft="10px" marginTop="15px">
+                      <Text fontSize={{ base: "16px", md: "20px" }}>
+                        {service.title}
+                      </Text>
+                    </Box>
+                    <Image
+                      src={Chevron}
+                      marginLeft="830px"
+                      marginTop="15px"
+                      w="30px"
+                      h="30px"
+                      color="#A210C6"
+                      position="absolute"
+                    />
+                  </Flex>
+                </Box>
+              ))}
+              <NavLink to="/customize-service">
+                <Box
+                  marginTop="20px"
+                  marginLeft="8px"
+                  h="10vh"
+                  w={{ base: "90vw", md: "65vw" }}
+                  borderRadius="15px"
+                  paddingBottom="5px"
+                  style={{
+                    cursor: "pointer",
+                    boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
+                  }}
+                  _hover={{ color: "#A210C6" }}
+                >
+                  <Flex>
+                    <Image margin="15px" src={Costom} w="30px" h="30px" />
+                    <Box marginTop="15px">
+                      <Text fontSize={{ base: "16px", md: "20px" }}>
+                        Customize service
+                      </Text>
+                    </Box>
+                    <Image
+                      src={Chevron}
+                      marginLeft="830px"
+                      marginTop="15px"
+                      w="30px"
+                      h="30px"
+                      color="#A210C6"
+                      position="absolute"
+                    />
+                  </Flex>
+                </Box>
+              </NavLink>
             </Box>
-
-            <Box marginLeft="10px" marginTop="30px">
-              {user?.image ? (
-                <Link onClick={handleOpenUserDetailsModal}>
-                  <Image
-                    borderRadius="100px"
-                    h="29px"
-                    w="30px"
-                    src={user?.image}
-                    alt="User Image"
-                  />
-                </Link>
-              ) : (
-                <Link onClick={handleOpenUserDetailsModal}>
-                  <Image
-                    src={userImageIcon}
-                    alt="User Image Icon"
-                    boxSize="50px"
-                    marginBottom="2%"
-                    h="19px"
-                    w="20px"
-                    borderRadius="100%"
-                  />
-                </Link>
-              )}
+            <Box
+              display={{ base: "none", md: "block" }}
+              marginTop="-85px"
+              marginLeft="900px"
+            >
+              <NavLink to="/help">
+                <Image
+                  src={HelppIcon}
+                  alt="Logo"
+                  w="70px"
+                  h="70px"
+                  style={{
+                    cursor: "pointer",
+                    animation: "zoomInOut 2s infinite alternate",
+                  }}
+                />
+              </NavLink>
+              <style>
+                {`
+              @keyframes zoomInOut {
+                0% {
+                  transform: scale(1);
+                }
+                100% {
+                  transform: scale(1.2);
+                }
+              }
+            `}
+              </style>
             </Box>
-          </Flex>
-        </Flex>
+            <MobileFooter/>
+          </VStack>
 
-        <Box marginLeft="20px" marginTop="40px">
-          <Box
-            marginTop="20px"
-            marginLeft="8px"
-            h="10vh"
-            w="65vw"
-            borderRadius="15px"
-            paddingBottom="5px"
-            style={{
-              cursor: "pointer",
-              boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
-            }}
-            _hover={{ color: "#A210C6" }}
-            onClick={handleOpenElderlyCareModal}
-          >
-            <Flex>
-              <Box marginLeft="30px" marginTop="15px">
-                <Text fontSize="24px">Elderly care</Text>
-              </Box>
-              <Image
-                marginLeft="670px"
-                marginTop="15px"
-                w="30px"
-                h="30px"
-                src={RightArrow}
-                alt="Settings"
-              />
-            </Flex>
-          </Box>
-
-          <Box
-            marginTop="20px"
-            marginLeft="8px"
-            h="10vh"
-            w="65vw"
-            borderRadius="15px"
-            paddingBottom="5px"
-            style={{
-              cursor: "pointer",
-              boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
-            }}
-            _hover={{ color: "#A210C6" }}
-            onClick={handleOpenPostpatumCareModal}
-          >
-            <Flex>
-              <Box marginLeft="30px" marginTop="15px">
-                <Text fontSize="24px">Postpartum care</Text>
-              </Box>
-              <Image
-                marginLeft="612px"
-                marginTop="15px"
-                w="30px"
-                h="30px"
-                src={RightArrow}
-                alt="Settings"
-              />
-            </Flex>
-          </Box>
-
-          <Box
-            marginTop="20px"
-            marginLeft="8px"
-            h="10vh"
-            w="65vw"
-            borderRadius="15px"
-            paddingBottom="5px"
-            style={{
-              cursor: "pointer",
-              boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
-            }}
-            _hover={{ color: "#A210C6" }}
-            onClick={handleOpenRecoveryCareModal}
-          >
-            <Flex>
-              <Box marginLeft="30px" marginTop="15px">
-                <Text fontSize="24px">Recovery care</Text>
-              </Box>
-              <Image
-                marginLeft="640px"
-                marginTop="15px"
-                w="30px"
-                h="30px"
-                src={RightArrow}
-                alt="Settings"
-              />
-            </Flex>
-          </Box>
-
-          <Box
-            marginTop="20px"
-            marginLeft="8px"
-            h="10vh"
-            w="65vw"
-            borderRadius="15px"
-            paddingBottom="5px"
-            style={{
-              cursor: "pointer",
-              boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
-            }}
-            _hover={{ color: "#A210C6" }}
-            onClick={handleOpenNannyCareModal}
-          >
-            <Flex>
-              <Box marginLeft="28px" marginTop="15px">
-                <Text fontSize="24px">Nanny services</Text>
-              </Box>
-              <Image
-                marginLeft="630px"
-                marginTop="15px"
-                w="30px"
-                h="30px"
-                src={RightArrow}
-                alt="Settings"
-              />
-            </Flex>
-          </Box>
-
-          <Box
-            marginTop="20px"
-            marginLeft="8px"
-            h="10vh"
-            w="65vw"
-            borderRadius="15px"
-            paddingBottom="5px"
-            style={{
-              cursor: "pointer",
-              boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
-            }}
-            _hover={{ color: "#A210C6" }}
-            onClick={handleOpenShortCareModal}
-          >
-            <Flex>
-              <Box marginLeft="30px" marginTop="15px">
-                <Text fontSize="24px">Short home visit</Text>
-              </Box>
-              <Image
-                marginLeft="620px"
-                marginTop="15px"
-                w="30px"
-                h="30px"
-                src={RightArrow}
-                alt="Settings"
-              />
-            </Flex>
-          </Box>
-          <Box
-            marginTop="20px"
-            marginLeft="8px"
-            h="10vh"
-            w="65vw"
-            borderRadius="15px"
-            paddingBottom="5px"
-            style={{
-              cursor: "pointer",
-              boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
-            }}
-            _hover={{ color: "#A210C6" }}
-            onClick={handleOpenCustomizeModal}
-          >
-            <Flex>
-              <Box marginLeft="30px" marginTop="15px">
-                <Text fontSize="24px">Customize service</Text>
-              </Box>
-              <Image
-                marginLeft="598px"
-                marginTop="15px"
-                w="30px"
-                h="30px"
-                src={RightArrow}
-                alt="Settings"
-              />
-            </Flex>
-          </Box>
-          <Box marginLeft="905px" marginTop="-50px">
-            <Image
-              onClick={help}
-              src={HelppIcon}
-              alt="Logo"
-              w="70px"
-              h="70px"
-              style={{
-                cursor: "pointer",
-                animation: "zoomInOut 2s infinite alternate",
-              }}
-            />
-
-            <style>
-              {`
-          @keyframes zoomInOut {
-            0% {
-              transform: scale(1);
-            }
-            100% {
-              transform: scale(1.2);
-            }
-          }
-        `}
-            </style>
-          </Box>
-        </Box>
-      </Box>
-      <UserDetailsModal
-        isOpen={showUserDetailsModal}
-        onClose={handleCloseUserDetailsModal}
-      />
-      <LogoutModal
-        isOpen={showLogoutModal}
-        onClose={() => setShowLogoutModal(false)}
-        onConfirm={handleConfirmLogout}
-      />
-
-      <ElderlyCareModal
-        isOpen={showElderlyCareModal}
-        onClose={() => setShowElderlyCareModal(false)}
-      />
-      <PostpartumCareModal
-        isOpen={showPostpartumCareModal}
-        onClose={() => setShowPostpartumCareModal(false)}
-      />
-      <NannyCareModal
-        isOpen={showNannyCareModal}
-        onClose={() => setShowNannyCareModal(false)}
-      />
-      <RecoveryCareModal
-        isOpen={showRecoveryCareModal}
-        onClose={() => setShowRecoveryCareModal(false)}
-      />
-      <ShortNurseVisitModal
-        isOpen={showShortCareModal}
-        onClose={() => setShowShortCareModal(false)}
-      />
+          <ElderlyCareModal
+            isOpen={showElderlyCareModal}
+            onClose={() => setShowElderlyCareModal(false)}
+          />
+          <PostpartumCareModal
+            isOpen={showPostpartumCareModal}
+            onClose={() => setShowPostpartumCareModal(false)}
+          />
+          <NannyCareModal
+            isOpen={showNannyCareModal}
+            onClose={() => setShowNannyCareModal(false)}
+          />
+          <RecoveryCareModal
+            isOpen={showRecoveryCareModal}
+            onClose={() => setShowRecoveryCareModal(false)}
+          />
+          <ShortNurseVisitModal
+            isOpen={showShortCareModal}
+            onClose={() => setShowShortCareModal(false)}
+          />
+        </VStack>
+      </VStack>
     </ChakraProvider>
   );
 };
+
 export default ServicePage;

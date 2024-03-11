@@ -5,12 +5,13 @@ import CalenderIcon from "../../assets/CalenderIcon.svg";
 import {
   InputLeftAddon,
   InputGroup,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+  DrawerCloseButton,
   useToast,
   ModalFooter,
   Button,
@@ -82,8 +83,10 @@ const BookBeneficiaryAppointmentModal = ({
       const selectedPlan = customizedPlans.find((plan) => plan.name === value);
 
       console.log("Selected Plan:", selectedPlan);
-    console.log("Cost of Service:", selectedPlan ? selectedPlan.costOfService : "N/A");
-    
+      console.log(
+        "Cost of Service:",
+        selectedPlan ? selectedPlan.costOfService : "N/A"
+      );
 
       // Set the shift and costOfService based on the selected plan
       if (selectedPlan) {
@@ -180,14 +183,18 @@ const BookBeneficiaryAppointmentModal = ({
           status: "success",
           duration: 6000,
         });
-        const id = response.data.data.id;
-        localStorage.setItem("appointmentId", id);
-        localStorage.setItem("costOfService", formPages.costOfService);
-        console.log("cost of service is ", formPages.costOfService)
-        console.log("caregiver of service is ", formPages.medicSpecialization)
-        console.log("shift of service is ", formPages.shift)
+        const {
+          id: appointmentId,
+          costOfService,
+          recipientFirstname,
+          recipientLastname,
+        } = response.data.data;
+        const beneficiary = `${recipientFirstname} ${recipientLastname}`;
+        console.log("beneficiary", beneficiary);
         setTimeout(() => {
-          navigate("/make-payment");
+          navigate("/make-payment", {
+            state: { costOfService, appointmentId, beneficiary },
+          });
         }, 1000);
       } else {
         setLoading(false);
@@ -289,9 +296,9 @@ const BookBeneficiaryAppointmentModal = ({
 
   const calculateServiceCost = () => {
     const { servicePlan, shift } = formPages;
-  
+
     let costOfService = 0;
-  
+
     switch (servicePlan) {
       case "Elderly care by a Licensed Nurse":
         costOfService = shift === "Day Shift (8hrs)" ? 18000000 : 22000000;
@@ -310,111 +317,51 @@ const BookBeneficiaryAppointmentModal = ({
         costOfService = 1500000;
         break;
       default:
-        const customPlan = customizedPlans.find((plan) => plan.name === servicePlan);
+        const customPlan = customizedPlans.find(
+          (plan) => plan.name === servicePlan
+        );
         if (customPlan) {
           // Adding two decimal places to costOfService for custom plans
-          costOfService = parseInt(customPlan.costOfService.replace(/[\.,]/g, ""));
+          costOfService = parseInt(
+            customPlan.costOfService.replace(/[\.,]/g, "")
+          );
         } else {
           costOfService = 0;
         }
         break;
     }
-  
+
     setFormPages({ ...formPages, costOfService });
   };
-  
+
   useEffect(() => {
     calculateServiceCost();
   }, [formPages.servicePlan, formPages.shift]);
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-      <ModalContent>
-        <ModalHeader color="#A210C6">
+    <Drawer isOpen={isOpen} onClose={onClose} size={{ base: "md", md: "lg" }}>
+      <DrawerOverlay />
+      <DrawerContent>
+        <DrawerHeader color="#510863">
+          {" "}
           Book Appointment for{" "}
           {`${selectedBeneficiary.recipientFirstName || ""} ${
             selectedBeneficiary.recipientLastName || ""
           }`}
-        </ModalHeader>
-
-        <ModalCloseButton />
-        <ModalBody>
+        </DrawerHeader>
+        <DrawerCloseButton />
+        <DrawerBody>
           <FormControl isRequired>
             <Box>
-              <Flex marginLeft="40px">
-                <Box w="270px">
-                  <FormLabel fontWeight="bold" marginTop="20px">
-                    Start Date
-                  </FormLabel>
-                  <Flex
-                    h="6vh"
-                    padding="5px"
-                    paddingLeft="15px"
-                    style={{ border: "1px solid #ccc", borderRadius: "5px" }}
-                  >
-                    <DatePicker
-                      selected={selectedStartDate}
-                      onChange={handleStartDateChange}
-                      peekNextMonth
-                      showMonthDropdown
-                      showYearDropdown
-                      dropdownMode="select"
-                      dateFormat="dd-MM-yyyy"
-                      placeholderText="preferred date to start"
-                      className="form-control"
-                      minDate={new Date()}
-                    />
-                    <Image
-                      marginLeft="30px"
-                      w="24px"
-                      h="24px"
-                      src={CalenderIcon}
-                      alt="CalenderIcon"
-                    />
-                  </Flex>
-                </Box>
-                <Box w="270px" marginLeft="5px">
-                  <FormLabel fontWeight="bold" marginTop="20px">
-                    End Date
-                  </FormLabel>
-                  <Flex
-                    h="6vh"
-                    padding="5px"
-                    paddingLeft="15px"
-                    style={{ border: "1px solid #ccc", borderRadius: "5px" }}
-                  >
-                    <DatePicker
-                      selected={selectedEndDate}
-                      onChange={handleEndDateChange}
-                      peekNextMonth
-                      showMonthDropdown
-                      showYearDropdown
-                      dropdownMode="select"
-                      dateFormat="dd-MM-yyyy"
-                      placeholderText="preferred date to end"
-                      className="form-control"
-                      minDate={new Date()}
-                      style={{ border: "none" }}
-                    />
-                    <Image
-                      marginLeft="30px"
-                      w="24px"
-                      h="24px"
-                      src={CalenderIcon}
-                      alt="CalenderIcon"
-                    />
-                  </Flex>
-                </Box>
-              </Flex>
-              <Flex>
-                <Box marginLeft="40px">
+              <Flex flexWrap="wrap">
+                <Box ml={{ md: "40px" }}>
                   <FormLabel fontWeight="bold" marginTop="20px">
                     Service Plan{" "}
                   </FormLabel>
                   <Select
                     name="servicePlan"
                     placeholder="preferred service plan"
-                    w="270px"
+                    w={{ base: "300px", md: "270px" }}
                     value={formPages.servicePlan}
                     onChange={handleInputChange}
                   >
@@ -453,7 +400,7 @@ const BookBeneficiaryAppointmentModal = ({
                   <Select
                     name="shift"
                     placeholder="select preferred shift"
-                    w="270px"
+                    w={{ base: "300px", md: "270px" }}
                     value={formPages.shift}
                     onChange={handleInputChange}
                   >
@@ -463,8 +410,73 @@ const BookBeneficiaryAppointmentModal = ({
                   </Select>
                 </Box>
               </Flex>
+              <Flex flexWrap="wrap" ml={{ md: "40px" }}>
+                <Box w={{ base: "300px", md: "270px" }}>
+                  <FormLabel fontWeight="bold" marginTop="20px">
+                    Start Date
+                  </FormLabel>
+                  <Flex
+                    h="6vh"
+                    padding="5px"
+                    paddingLeft="15px"
+                    style={{ border: "1px solid #ccc", borderRadius: "5px" }}
+                  >
+                    <DatePicker
+                      selected={selectedStartDate}
+                      onChange={handleStartDateChange}
+                      peekNextMonth
+                      showMonthDropdown
+                      showYearDropdown
+                      dropdownMode="select"
+                      dateFormat="dd-MM-yyyy"
+                      placeholderText="preferred date to start"
+                      className="form-control"
+                      minDate={new Date()}
+                    />
+                    <Image
+                      ml={{ base: "50px", md: "30px" }}
+                      w="24px"
+                      h="24px"
+                      src={CalenderIcon}
+                      alt="CalenderIcon"
+                    />
+                  </Flex>
+                </Box>
+                <Box w={{ base: "297px", md: "270px" }} marginLeft="5px">
+                  <FormLabel fontWeight="bold" marginTop="20px">
+                    End Date
+                  </FormLabel>
+                  <Flex
+                    h="6vh"
+                    padding="5px"
+                    paddingLeft="15px"
+                    style={{ border: "1px solid #ccc", borderRadius: "5px" }}
+                  >
+                    <DatePicker
+                      selected={selectedEndDate}
+                      onChange={handleEndDateChange}
+                      peekNextMonth
+                      showMonthDropdown
+                      showYearDropdown
+                      dropdownMode="select"
+                      dateFormat="dd-MM-yyyy"
+                      placeholderText="preferred date to end"
+                      className="form-control"
+                      minDate={new Date()}
+                      style={{ border: "none" }}
+                    />
+                    <Image
+                      ml={{base: "50px", md: "30px"}}
+                      w="24px"
+                      h="24px"
+                      src={CalenderIcon}
+                      alt="CalenderIcon"
+                    />
+                  </Flex>
+                </Box>
+              </Flex>
 
-              <Box marginLeft="40px">
+              <Box ml={{ md: "40px" }}>
                 <FormLabel fontWeight="bold" marginTop="20px">
                   Current Location{" "}
                 </FormLabel>
@@ -476,7 +488,7 @@ const BookBeneficiaryAppointmentModal = ({
                     placeholder="current Location"
                     value={formPages.currentLocation}
                     onChange={handleInputChange}
-                    w="550px"
+                    w={{ base: "300px", md: "550px" }}
                   />
                   <Image
                     marginTop="10px"
@@ -489,7 +501,7 @@ const BookBeneficiaryAppointmentModal = ({
                 </Flex>
               </Box>
 
-              <Box marginLeft="40px">
+              <Box ml={{ md: "40px" }}>
                 <FormLabel fontWeight="bold" marginTop="20px">
                   Upload necessary document (test results, medical report,
                   scans, etc)
@@ -500,7 +512,7 @@ const BookBeneficiaryAppointmentModal = ({
                     name="medicalReport"
                     type="file"
                     onChange={handleInputChange}
-                    w="550px"
+                    w={{ base: "300px", md: "550px" }}
                     placeholder="Upload necessary document"
                   />
                   {/* <InputRightElement
@@ -509,7 +521,7 @@ const BookBeneficiaryAppointmentModal = ({
                   /> */}
                 </InputGroup>
               </Box>
-              <Box marginLeft="40px">
+              <Box ml={{ md: "40px" }}>
                 <FormLabel fontWeight="bold" marginTop="20px">
                   Health History{" "}
                 </FormLabel>
@@ -519,28 +531,28 @@ const BookBeneficiaryAppointmentModal = ({
                   placeholder="share health history and any special need we should know"
                   value={formPages.recipientHealthHistory}
                   onChange={handleInputChange}
-                  w="550px"
+                  w={{ base: "300px", md: "550px" }}
                 />
               </Box>
             </Box>
           </FormControl>
-        </ModalBody>
-
-        <ModalFooter>
+        </DrawerBody>
+        <DrawerFooter>
           <Button
+            w="150px"
             isLoading={loading}
             loadingText="Processing..."
-            bg="#A210C6"
+            bg="#510863"
             color="white"
-            onClick={() => handleFormSubmit()}
+            onClick={handleFormSubmit}
             borderRadius="100px"
             _hover={{ color: "" }}
           >
-            {loading ? "Processing..." : "Book appointment"}
+            {loading ? "Processing..." : "Submit"}
           </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
   );
 };
 

@@ -5,29 +5,30 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
   VStack,
   Flex,
   Image,
   Text,
   Divider,
   Button,
-  ModalFooter,
+  DrawerFooter,
+  IconButton,
+  Avatar,
 } from "@chakra-ui/react";
+import { CloseIcon } from "@chakra-ui/icons";
 import defaultImage from "../../assets/userImage.svg";
 import EditProfileModal from "./EditUser";
 
-const UserDetailsModal = ({ isOpen, onClose }) => {
+const UserDetailsDrawer = ({ isOpen, onClose }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // useEffect to make the API call on mount
   useEffect(() => {
     const fetchData = async () => {
       if (localStorage.getItem("token")) {
@@ -74,15 +75,39 @@ const UserDetailsModal = ({ isOpen, onClose }) => {
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Profile Details</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Flex>
+      <Drawer isOpen={isOpen} onClose={onClose} size={{ base: "xm", md: "lg" }}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            color="#A210C6"
+          >
+            Profile Details
+            <IconButton
+              icon={<CloseIcon />}
+              onClick={onClose}
+              aria-label="Close drawer"
+            />
+          </DrawerHeader>
+          <DrawerBody>
+            <Flex
+              justifyContent="center"
+              display={{ base: "block", md: "flex" }}
+            >
+              <Avatar
+                src={user?.image}
+                alt="User Image"
+                borderRadius="8px"
+                ml={{ base: "85px", md: "10px" }}
+                h={{ base: "260px", md: "55vh" }}
+                w={{ base: "200px", md: "20vw" }}
+                marginTop="40px"
+                bg="#A210C6"
+              ></Avatar>
               <VStack
-                marginLeft="20px"
+                ml={{ md: "20px" }}
                 marginTop="30px"
                 align="center"
                 spacing={4}
@@ -126,19 +151,9 @@ const UserDetailsModal = ({ isOpen, onClose }) => {
                 </Text>
                 <Divider my={1} borderColor="gray.500" />
               </VStack>
-
-              <Image
-                src={user?.image || defaultImage}
-                alt="User Image"
-                borderRadius="8px"
-                h="55vh"
-                w="20vw"
-                marginLeft="50px"
-                marginTop="40px"
-              />
             </Flex>
-          </ModalBody>
-          <ModalFooter>
+          </DrawerBody>
+          <DrawerFooter>
             <Text
               fontSize="19px"
               marginRight="20px"
@@ -152,11 +167,10 @@ const UserDetailsModal = ({ isOpen, onClose }) => {
             >
               Edit Profile
             </Text>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
 
-      {/* New EditProfileModal */}
       <EditProfileModal
         isOpen={isEditModalOpen}
         onClose={handleEditModalClose}
@@ -165,4 +179,4 @@ const UserDetailsModal = ({ isOpen, onClose }) => {
   );
 };
 
-export default UserDetailsModal;
+export default UserDetailsDrawer;

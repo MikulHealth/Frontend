@@ -2,15 +2,11 @@ import React, { useState, useEffect } from "react";
 import { GetCurrentUser, UpdateCustomer } from "../../apiCalls/UserApis";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { SetUser } from "../../redux/userSlice";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import RightArrow from "../../assets/RightArrow.svg";
-import Help from "../../assets/Help.svg";
-import Bar from "../../assets/ColoredBar.svg";
 import DateIcon from "../../assets/DateIcon.svg";
-
-import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from "@chakra-ui/icons";
+import NavBar from "../authLayouts/NavBar";
+import LeftSideBar from "../authLayouts/LeftSideBar";
 import {
   ChakraProvider,
   VStack,
@@ -23,38 +19,21 @@ import {
   ModalCloseButton,
   ModalBody,
   useToast,
+  Avatar,
   Image,
   Box,
   Text,
   Flex,
   Link,
   Divider,
-  Select,
-  InputGroup,
-  InputLeftAddon,
   FormControl,
   extendTheme,
   FormLabel,
 } from "@chakra-ui/react";
-import userImageIcon from "../../assets/userImage.svg";
-import NotificationIcon from "../../assets/notification.svg";
-import familyIcon from "../../assets/family.svg";
-import UserDetailsModal from "../sections/UserDetails";
 import LoadingSpinner from "../../utils/Spiner";
-import Wallet from "../../assets/Wallet.svg";
-import logo from "../../assets/LogoColoured.svg";
-import SettingsIcon from "../../assets/SettingsIconWhite.svg";
-import LogoutIcon from "../../assets/Logout.svg";
-import AppointmentsIcon from "../../assets/AppointmentIcon.svg";
-import HomeIcon from "../../assets/HomeBlack.svg";
-import ProfileIcon from "../../assets/ProfileIcone.svg";
-import ProfileIconWhite from "../../assets/ProfileIconWh.svg";
-import PasswordIcon from "../../assets/PasswordIcon.svg";
-import LogoutModal from "../sections/LogoutModal";
-import ColorArrowIcon from "../../assets/RightArrowColor.svg";
-import NotificationIconn from "../../assets/Notification.Icon.svg";
 import UpdatePhoneNumber from "../sections/UpdatePhoneNumber";
-import serviceIcon from "../../assets/ServiceIcon.svg";
+import SettingsSideBar from "../authLayouts/SettingsSideBar";
+import MobileFooter from "../authLayouts/MobileFooter";
 
 const customTheme = extendTheme({
   components: {
@@ -77,13 +56,9 @@ const EdithProfilePage = () => {
   const dispatch = useDispatch();
   const toast = useToast();
   const { user } = useSelector((state) => state.userReducer);
-  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
-  const [showWalletModal, setShowWalletModal] = useState(false);
   const [isPhoneModalOpen, setPhoneModalOpen] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [image, setPic] = useState();
   const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
@@ -141,61 +116,6 @@ const EdithProfilePage = () => {
 
   const handleCloseConfirmationModal = () => {
     setConfirmationModalOpen(false);
-  };
-
-  const handleOpenUserDetailsModal = () => {
-    setShowUserDetailsModal(true);
-  };
-
-  const handleOpenHelpModal = () => {};
-
-  const handleOpenWalletModal = () => {
-    navigate("/wallet");
-  };
-
-  const handleOpenLogoutModal = () => {
-    setShowLogoutModal(true);
-  };
-
-  const handleConfirmLogout = () => {
-    setShowLogoutModal(false);
-
-    localStorage.removeItem("token");
-    localStorage.removeItem("phoneNumber");
-    localStorage.removeItem("orderId");
-    navigate("/");
-  };
-
-  const handleOpenDashboard = () => {
-    navigate("/dashboard");
-  };
-
-  const handleOpenAppointmentsModal = () => {
-    navigate("/appointment");
-  };
-
-  const handleOpenSettingsModal = () => {
-    navigate("/settings");
-  };
-
-  const handleChangePassowrdModal = () => {
-    navigate("/change-password");
-  };
-
-  const handleOpenNotificationssModal = () => {
-    navigate("/notification-settings");
-  };
-
-  const help = () => {
-    navigate("/help");
-  };
-
-  const Services = () => {
-    navigate("/services");
-  };
-
-  const handleCloseUserDetailsModal = () => {
-    setShowUserDetailsModal(false);
   };
 
   const handlePhoneModalOpen = () => {
@@ -289,479 +209,121 @@ const EdithProfilePage = () => {
       console.error("Failed to update user details:", error);
     }
   };
+  const settingsContainerStyle = {
+    animation: "slideInUp 0.9s ease-in-out",
+  };
+
+  const handleback = () => {
+    navigate("/settings");
+  };
 
   return (
     <ChakraProvider theme={customTheme}>
-      <Box width="25%" p={3} h="90vh">
-        <Image
-          src={logo}
-          alt="Logo"
-          w="160px"
-          h="60px"
-          marginLeft="90px"
-          marginTop="10px"
-        />
-
-        <VStack spacing={3} align="center" mt={5}>
-          <Flex marginTop="50px" alignItems="center">
-            <Image
-              marginLeft="-47px"
-              w="20px"
-              h="20px"
-              src={HomeIcon}
-              alt="HomeIcon"
-            />
-
-            <Text
-              marginLeft="15px"
-              color="black"
-              fontSize="18px"
-              onClick={() => {
-                handleOpenDashboard();
-              }}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Home
-            </Text>
-          </Flex>
-
-          <Flex
-            alignItems="center"
-            marginTop="10px"
-            // bg="#A210C6"
-            w="15vw"
-            p={3}
-            borderRadius="md"
-          >
-            <Image
-              marginLeft="25px"
-              w="20px"
-              h="20px"
-              src={AppointmentsIcon}
-              alt="Appointments"
-            />
-            <Text
-              marginLeft="15px"
-              fontSize="18px"
-              color="black"
-              onClick={handleOpenAppointmentsModal}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "" }}
-            >
-              Appointments
-            </Text>
-          </Flex>
-
-          <Flex alignItems="center" marginTop="10px" marginLeft="-48px">
-            <Image w="20px" h="20px" src={Wallet} alt="wallet" />
-            <Text
-              marginLeft="15px"
-              color="black"
-              fontSize="18px"
-              onClick={handleOpenWalletModal}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Wallet
-            </Text>
-          </Flex>
-
-          <Flex alignItems="center" marginTop="30px" marginLeft="-60px">
-            <Image
-              marginLeft="26px"
-              w="20px"
-              h="20px"
-              src={serviceIcon}
-              alt="Help"
-            />
-            <Text
-              marginLeft="15px"
-              color="black"
-              fontSize="18px"
-              onClick={Services}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Service
-            </Text>
-          </Flex>
-
-          <Flex
-            alignItems="center"
-            bg="#A210C6"
-            w="15vw"
-            p={3}
-            borderRadius="md"
-            marginTop="30px"
-            marginLeft="28px"
-          >
-            <Image
-              marginLeft="10px"
-              w="20px"
-              fontSize="24px"
-              h="20px"
-              src={SettingsIcon}
-              alt="Settings"
-            />
-            <Text
-              marginLeft="15px"
-              color="white"
-              fontSize="18px"
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "" }}
-              onClick={handleOpenSettingsModal}
-            >
-              Settings
-            </Text>
-          </Flex>
-
-          <Flex alignItems="center" marginTop="100px" marginLeft="-55px">
-            <Image
-              marginLeft="15px"
-              w="20px"
-              h="20px"
-              src={LogoutIcon}
-              alt="Logout"
-            />
-            <Text
-              onClick={handleOpenLogoutModal}
-              fontSize="18px"
-              marginLeft="15px"
-              color="black"
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Logout
-            </Text>
-          </Flex>
-        </VStack>
-        <Box
-          borderRight="2px solid #A210C6"
-          height="113%"
-          marginX={3}
-          marginTop="-590px"
-        />
-      </Box>
-      <Box
+      <LeftSideBar />
+      <VStack
+        style={settingsContainerStyle}
         position="fixed"
-        top="0"
-        left="25%"
-        width="85%"
-        height="100%"
-        backgroundColor="white"
-        zIndex="1000"
+        ml={{ base: "40px", md: "280px" }}
+        w="70%"
+        h="100vh"
       >
-        <Flex>
-          <Text
-            fontSize="36px"
-            fontFamily="heading"
-            color="#A210C6"
-            marginLeft="25px"
-            marginTop="30px"
-          >
-            Settings
-          </Text>
-          <Flex
-            marginLeft="700px"
-            style={{
-              cursor: "pointer",
-            }}
-            _hover={{ color: "#A210C6" }}
-          >
-            <Box marginTop="30px">
-              <Image
-                src={NotificationIcon}
-                alt="Notificatio icon"
-                h="16px"
-                w="20px"
-                marginBottom="10px"
-              />
-            </Box>
+        <NavBar />
+        <Flex
+          display={{ base: "none", md: "flex" }}
+          mt={{ md: "30px" }}
+          ml={{ base: "50px", md: "120px" }}
+        >
+          <SettingsSideBar />
 
-            <Box marginLeft="10px" marginTop="30px">
-              {user?.image ? (
-                <Link onClick={handleOpenUserDetailsModal}>
-                  <Image
-                    borderRadius="100px"
-                    h="19px"
-                    w="20px"
-                    src={user?.image}
-                    alt="User Image"
-                  />
-                </Link>
-              ) : (
-                <Link onClick={handleOpenUserDetailsModal}>
-                  <Image
-                    src={userImageIcon}
-                    alt="User Image Icon"
-                    boxSize="50px"
-                    marginBottom="2%"
-                    h="19px"
-                    w="20px"
-                    borderRadius="100%"
-                  />
-                </Link>
-              )}
-            </Box>
-          </Flex>
-        </Flex>
-        <Flex>
-          <Box width="25%" p={3} h="80vh">
-            <Text fontFamily="heading" marginLeft="-160px" fontSize="24px">
-              Account
+          <VStack marginLeft="-40px" spacing={-10}>
+            <Text fontWeight="bold" fontSize="20px">
+              Edit profile
             </Text>
+            <FormControl>
+              <FormLabel fontSize="16px">First Name</FormLabel>
+              <Input
+                type="text"
+                name="firstName"
+                value={formData?.firstName}
+                onChange={handleInputChange}
+                borderColor="black"
+                _hover={{ color: "" }}
+              />
+            </FormControl>
+            <FormControl marginTop="15px">
+              <FormLabel fontSize="16px">Last Name</FormLabel>
+              <Input
+                type="text"
+                name="lastName"
+                value={formData?.lastName}
+                onChange={handleInputChange}
+                borderColor="black"
+                _hover={{ color: "" }}
+              />
+            </FormControl>
+            <FormControl marginTop="15px">
+              <FormLabel fontSize="16px">Date of Birth</FormLabel>
+              <Flex
+                border="1px solid black"
+                borderRadius="6px"
+                paddingTop="10px"
+                h="7vh"
+                w="30vw"
+              >
+                <Box marginRight="10px"></Box>
+                <DatePicker
+                  selected={
+                    selectedDate ||
+                    (formData.dob ? new Date(formData.dob) : null)
+                  }
+                  onChange={(date) => handleDOBChange(date)}
+                  dateFormat="dd/MM/yyyy"
+                  placeholderText="dd/mm/yyyy"
+                  maxDate={new Date()}
+                  peekNextMonth
+                  showMonthDropdown
+                  showYearDropdown
+                  dropdownMode="select"
+                  value={formatDate(formData.dob)}
+                  style={{
+                    marginTop: "60px",
+                    marginLeft: "50px",
+                    display: "",
+                  }}
+                />
 
-            <Box>
-              <Flex
-                marginTop="25px"
-                style={{
-                  cursor: "pointer",
-                }}
-                _hover={{ color: "#A210C6" }}
-                marginLeft="-25px"
-              >
                 <Image
-                  src={Bar}
-                  alt="Profile Icon"
-                  boxSize="50px"
-                  marginBottom="2%"
-                  h="50px"
-                  w="50px"
-                  borderRadius="100%"
-                />
-
-                <Image
-                  src={ProfileIconWhite}
-                  alt="Profile Icon"
-                  boxSize="50px"
-                  marginBottom="2%"
-                  h="50px"
-                  w="50px"
-                  borderRadius="10%"
-                  marginLeft="-20px"
-                />
-                <Text
-                  color="#A210C6"
-                  fontSize="20px"
-                  marginLeft="5px"
-                  marginTop="10px"
-                >
-                  Profile
-                </Text>
-                <Image
-                  marginLeft="130px"
-                  marginTop="20px"
-                  w="10px"
-                  h="15px"
-                  src={ColorArrowIcon}
-                  alt="right arrow"
+                  marginLeft="160px"
+                  h="24px"
+                  w="24px"
+                  src={DateIcon}
+                  alt="Date icon"
                 />
               </Flex>
-              <Divider my={1} borderColor="black.500" />
-            </Box>
-            <Box>
-              {" "}
-              <Flex
-                marginTop="25px"
-                style={{
-                  cursor: "pointer",
-                }}
-                _hover={{ color: "#A210C6" }}
-                onClick={handleChangePassowrdModal}
-              >
-                <Image
-                  src={PasswordIcon}
-                  alt="Password Icon"
-                  boxSize="50px"
-                  marginBottom="2%"
-                  h="50px"
-                  w="50px"
-                  borderRadius="10%"
-                />
-                <Text fontSize="20px" marginLeft="5px" marginTop="10px">
-                  Change password
-                </Text>
-                <Image
-                  marginLeft="32px"
-                  marginTop="20px"
-                  w="10px"
-                  h="15px"
-                  src={RightArrow}
-                  alt="right arrow"
-                />
-              </Flex>
-              <Divider my={1} borderColor="black.500" />{" "}
-            </Box>
-            <Box>
-              {" "}
-              <Flex
-                marginTop="25px"
-                style={{
-                  cursor: "pointer",
-                }}
-                _hover={{ color: "#A210C6" }}
-                onClick={handleOpenNotificationssModal}
-              >
-                <Image
-                  src={NotificationIconn}
-                  alt="Notification Icon"
-                  boxSize="50px"
-                  marginBottom="2%"
-                  h="50px"
-                  w="50px"
-                  borderRadius="10%"
-                />
-                <Text fontSize="20px" marginLeft="5px" marginTop="10px">
-                  Notification Settings
-                </Text>
-                <Image
-                  marginLeft="10px"
-                  marginTop="20px"
-                  w="10px"
-                  h="15px"
-                  src={RightArrow}
-                  alt="right arrow"
-                />
-              </Flex>
-              <Divider my={1} borderColor="black.500" />{" "}
-            </Box>
-            <Box>
-              {" "}
-              <Flex
-                marginTop="25px"
-                style={{
-                  cursor: "pointer",
-                }}
-                _hover={{ color: "#A210C6" }}
-                onClick={help}
-              >
-                <Image
-                  src={Help}
-                  alt="Notification Icon"
-                  boxSize="50px"
-                  marginBottom="2%"
-                  h="50px"
-                  w="50px"
-                  borderRadius="10%"
-                />
-                <Text fontSize="20px" marginLeft="5px" marginTop="10px">
-                  Help
-                </Text>
-                <Image
-                  marginLeft="145px"
-                  marginTop="20px"
-                  w="10px"
-                  h="15px"
-                  src={RightArrow}
-                  alt="right arrow"
-                />
-              </Flex>
-              <Divider my={1} borderColor="black.500" />{" "}
-            </Box>
-          </Box>
-          <Box marginLeft="420px" width="10%" p={3} h="80vh">
-            <Box className="edit-profile">
-              <VStack width="30vw" marginLeft="-400px" spacing={-10}>
-                <Text fontSize="20px">Edit profile</Text>
-                <FormControl>
-                  <FormLabel fontSize="16px">First Name</FormLabel>
-                  <Input
-                    type="text"
-                    name="firstName"
-                    value={formData?.firstName}
-                    onChange={handleInputChange}
-                    borderColor="black"
-                    _hover={{ color: "" }}
-                  />
-                </FormControl>
-                <FormControl marginTop="15px">
-                  <FormLabel fontSize="16px">Last Name</FormLabel>
-                  <Input
-                    type="text"
-                    name="lastName"
-                    value={formData?.lastName}
-                    onChange={handleInputChange}
-                    borderColor="black"
-                    _hover={{ color: "" }}
-                  />
-                </FormControl>
-                <FormControl marginTop="15px">
-                  <FormLabel fontSize="16px">Date of Birth</FormLabel>
-                  <Flex
-                    border="1px solid black"
-                    borderRadius="6px"
-                    marginLeft="-5px"
-                    paddingTop="10px"
-                    h="7vh"
-                    w="30vw"
-                  >
-                    <Box marginRight="15px"></Box>
-                    <DatePicker
-                      selected={
-                        selectedDate ||
-                        (formData.dob ? new Date(formData.dob) : null)
-                      }
-                      onChange={(date) => handleDOBChange(date)}
-                      dateFormat="dd/MM/yyyy"
-                      placeholderText="dd/mm/yyyy"
-                      maxDate={new Date()}
-                      peekNextMonth
-                      showMonthDropdown
-                      showYearDropdown
-                      dropdownMode="select"
-                      value={formatDate(formData.dob)}
-                      style={{
-                        marginTop: "60px",
-                        marginLeft: "50px",
-                        display: "",
-                      }}
-                    />
-
-                    <Image
-                      marginLeft="160px"
-                      h="24px"
-                      w="24px"
-                      src={DateIcon}
-                      alt="Date icon"
-                    />
-                  </Flex>
-                </FormControl>
-                <FormControl marginTop="15px">
-                  <FormLabel fontSize="16px">Email Address</FormLabel>
-                  <Input
-                    type="email"
-                    name="email"
-                    value={formData?.email}
-                    onChange={handleInputChange}
-                    borderColor="black"
-                    _hover={{ color: "" }}
-                  />
-                </FormControl>
-                <FormControl marginTop="15px">
-                  <FormLabel fontSize="16px">Home Address</FormLabel>
-                  <Input
-                    type="text"
-                    name="address"
-                    value={formData?.address}
-                    onChange={handleInputChange}
-                    borderColor="black"
-                    _hover={{ color: "" }}
-                  />
-                </FormControl>
-                {/* <FormControl marginTop="15px">
+            </FormControl>
+            <FormControl marginTop="15px">
+              <FormLabel fontSize="16px">Email Address</FormLabel>
+              <Input
+                type="email"
+                name="email"
+                value={formData?.email}
+                onChange={handleInputChange}
+                borderColor="black"
+                _hover={{ color: "" }}
+              />
+            </FormControl>
+            <FormControl marginTop="15px">
+              <FormLabel fontSize="16px">Home Address</FormLabel>
+              <Input
+                type="text"
+                name="address"
+                value={formData?.address}
+                onChange={handleInputChange}
+                borderColor="black"
+                _hover={{ color: "" }}
+              />
+            </FormControl>
+            {/* <FormControl marginTop="15px">
                   <FormLabel>Gender </FormLabel>
                   <Select
                     name="gender"
@@ -773,19 +335,18 @@ const EdithProfilePage = () => {
                     <option value="Female">Female</option>
                   </Select>
                 </FormControl> */}
-                <Button
-                  marginTop="10px"
-                  color="white"
-                  bg="#A210C6"
-                  onClick={handleOpenConfirmationModal}
-                  _hover={{ color: "white" }}
-                >
-                  Save changes
-                </Button>
-              </VStack>
-            </Box>
-          </Box>
-          <Box marginLeft="-80px" width="15%">
+            <Button
+              marginTop="10px"
+              color="white"
+              bg="#A210C6"
+              onClick={handleOpenConfirmationModal}
+              _hover={{ color: "white" }}
+            >
+              Save changes
+            </Button>
+          </VStack>
+
+          <Box marginLeft="30px" width="15%">
             <Box
               borderRadius="10px"
               marginTop="30px"
@@ -796,30 +357,19 @@ const EdithProfilePage = () => {
               bg="white"
               boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
             >
-              {" "}
-              <Box marginLeft="25px" marginTop="10px">
-                {formData.image ? (
-                  <Image
-                    borderRadius="5px"
-                    h="100px"
-                    w="100px"
-                    src={formData.image}
-                    alt="User Image"
-                  />
-                ) : (
-                  <Image
-                    src={userImageIcon}
-                    alt="User Image Icon"
-                    boxSize="50px"
-                    marginBottom="2%"
-                    h="100px"
-                    w="100px"
-                    borderRadius="100%"
-                  />
-                )}
-              </Box>
+              <Avatar
+                style={{
+                  cursor: "pointer",
+                }}
+                h="120px"
+                w="100px"
+                src={formData?.image}
+                name={formData?.firstName}
+                bg="#A210C6"
+              ></Avatar>
+
               <Input
-                marginTop="40px"
+                marginTop="30px"
                 marginBottom="20px"
                 id="fileInput"
                 name="image"
@@ -833,7 +383,7 @@ const EdithProfilePage = () => {
                 }}
               />
             </Box>
-            <Flex marginTop="55px">
+            <Flex marginTop="80px">
               {imageLoading && <LoadingSpinner size={20} />}
               <Button
                 fontSize="15px"
@@ -869,7 +419,223 @@ const EdithProfilePage = () => {
             </Button>
           </Box>
         </Flex>
-      </Box>
+
+        <Flex
+          overflow="scroll"
+          display={{ base: "block", md: "none" }}
+          mt={{ md: "30px" }}
+          ml={{ base: "30px" }}
+          mb={{base: "60px"}}
+        >
+          <Flex justifyContent="space-between" margin="20px">
+            <Box>
+              <Text
+                textAlign="left"
+                fontSize={{ base: "18px" }}
+                marginTop="3px"
+                marginBottom="20px"
+              >
+                Edit Profile
+              </Text>
+            </Box>
+            <Button
+              onClick={handleback}
+              borderColor="#A210C6"
+              borderWidth="1px"
+              color="#A210C6"
+              fontFamily="body"
+              _hover={{ color: "" }}
+              fontSize={{ base: "12px" }}
+              h="3vh"
+              borderRadius="100px"
+            >
+              Back
+            </Button>
+          </Flex>
+
+          <VStack spacing={-10}>
+            <Box
+              borderRadius="10px"
+              p={3}
+              h="150px"
+              w="180px"
+              bg="white"
+              boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
+            >
+              <Avatar
+                style={{
+                  cursor: "pointer",
+                }}
+                h="120px"
+                w="100px"
+                src={formData?.image}
+                name={formData?.firstName}
+                bg="#A210C6"
+              ></Avatar>
+
+              <Input
+                marginTop="30px"
+                marginBottom="20px"
+                id="fileInput"
+                name="image"
+                type="file"
+                accept="image/*"
+                borderColor="black"
+                padding="5px"
+                _hover={{ color: "" }}
+                onChange={(e) => {
+                  handleImageChange(e.target.files[0], formData, setFormData);
+                }}
+              />
+            </Box>
+            <Flex marginTop="60px">
+              {imageLoading && <LoadingSpinner size={20} />}
+              <Button
+                fontSize="15px"
+                borderColor="#A210C6"
+                bg="none"
+                _hover={{ color: "" }}
+                onClick={handleOpenConfirmationModal}
+              >
+                Change picture
+              </Button>
+              <Divider orientation="vertical" borderColor="black" my={1} />
+              <Button
+                _hover={{ color: "" }}
+                bg="none"
+                fontSize="15px"
+                color="red"
+              >
+                Delete picture
+              </Button>
+            </Flex>
+            <Button
+              bg="gray"
+              color="white"
+              marginTop="10px"
+              style={{}}
+              _hover={{ color: "" }}
+              onClick={handlePhoneModalOpen}
+            >
+              Change phone number
+            </Button>
+            <Box marginTop="15px" w="100%">
+              <FormControl w="280px">
+                <FormLabel fontSize="16px">First Name</FormLabel>
+                <Input
+                  type="text"
+                  name="firstName"
+                  value={formData?.firstName}
+                  onChange={handleInputChange}
+                  borderColor="black"
+                  _hover={{ color: "" }}
+                />
+
+                <FormLabel marginTop="15px" fontSize="16px">
+                  Last Name
+                </FormLabel>
+                <Input
+                  type="text"
+                  name="lastName"
+                  value={formData?.lastName}
+                  onChange={handleInputChange}
+                  borderColor="black"
+                  _hover={{ color: "" }}
+                />
+
+                <FormLabel marginTop="15px" fontSize="16px">
+                  Date of Birth
+                </FormLabel>
+                <Flex
+                  border="1px solid black"
+                  borderRadius="6px"
+                  paddingTop="10px"
+                  h="6vh"
+                  w="280px"
+                >
+                  <Box marginRight="10px"></Box>
+                  <DatePicker
+                    selected={
+                      selectedDate ||
+                      (formData.dob ? new Date(formData.dob) : null)
+                    }
+                    onChange={(date) => handleDOBChange(date)}
+                    dateFormat="dd/MM/yyyy"
+                    placeholderText="dd/mm/yyyy"
+                    maxDate={new Date()}
+                    peekNextMonth
+                    showMonthDropdown
+                    showYearDropdown
+                    dropdownMode="select"
+                    value={formatDate(formData.dob)}
+                    style={{
+                      marginTop: "60px",
+                      marginLeft: "50px",
+                      display: "",
+                    }}
+                  />
+
+                  <Image
+                    marginLeft="160px"
+                    h="24px"
+                    w="24px"
+                    src={DateIcon}
+                    alt="Date icon"
+                  />
+                </Flex>
+
+                <FormLabel marginTop="15px" fontSize="16px">
+                  Email Address
+                </FormLabel>
+                <Input
+                  type="email"
+                  name="email"
+                  value={formData?.email}
+                  onChange={handleInputChange}
+                  borderColor="black"
+                  _hover={{ color: "" }}
+                />
+
+                <FormLabel marginTop="15px" fontSize="16px">
+                  Home Address
+                </FormLabel>
+                <Input
+                  type="text"
+                  name="address"
+                  value={formData?.address}
+                  onChange={handleInputChange}
+                  borderColor="black"
+                  _hover={{ color: "" }}
+                />
+              </FormControl>
+              {/* <FormControl marginTop="15px">
+                  <FormLabel>Gender </FormLabel>
+                  <Select
+                    name="gender"
+                    placeholder="Select your gender"
+                    w="240px"
+                    onChange={handleInputChange}
+                  >
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </Select>
+                </FormControl> */}
+              <Button
+                marginTop="10px"
+                marginBottom="50px"
+                color="white"
+                bg="#A210C6"
+                onClick={handleOpenConfirmationModal}
+                _hover={{ color: "white" }}
+              >
+                Save changes
+              </Button>
+            </Box>
+          </VStack>
+        </Flex>
+        <MobileFooter/>
+      </VStack>
+
       <Modal
         isOpen={isConfirmationModalOpen}
         onClose={handleCloseConfirmationModal}
@@ -904,15 +670,7 @@ const EdithProfilePage = () => {
         isOpen={isPhoneModalOpen}
         onClose={handlePhoneModalClose}
       />
-      <UserDetailsModal
-        isOpen={showUserDetailsModal}
-        onClose={handleCloseUserDetailsModal}
-      />
-      <LogoutModal
-        isOpen={showLogoutModal}
-        onClose={() => setShowLogoutModal(false)}
-        onConfirm={handleConfirmLogout}
-      />
+      <VStack />
     </ChakraProvider>
   );
 };

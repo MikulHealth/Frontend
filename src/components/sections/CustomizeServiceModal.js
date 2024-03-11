@@ -17,12 +17,13 @@ import {
   FormLabel,
   Select,
   Spacer,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalCloseButton,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+  DrawerCloseButton,
   extendTheme,
   Textarea,
 } from "@chakra-ui/react";
@@ -243,24 +244,18 @@ const CustomizePlanModal = ({ isOpen, onClose }) => {
 
   return (
     <>
-      <Modal
-        isOpen={isOpen}
-        onClose={onClose}
-        size="2xl"
-        borderRadius="0px"
-        theme={customTheme}
-      >
-        <ModalOverlay />
-        <ModalContent marginTop="30px">
-          <ModalHeader>Customize Your Care Plan</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody marginTop="-10px">
+      <Drawer isOpen={isOpen} onClose={onClose} size="lg">
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader color="#A210C6">Customize Your Care Plan</DrawerHeader>
+          <DrawerBody>
             <Box p={2}>
               <FormControl mb={4}>
                 <FormLabel fontWeight="bold">
-                  Kindly select from the availabe services:
+                  Kindly select from the available services:
                 </FormLabel>
-                <VStack overflow="scroll" h="20vh" align="start">
+                <VStack overflow="scroll" h="40vh" align="start">
                   {availableServices.map((service, index) => (
                     <Checkbox
                       key={index}
@@ -328,13 +323,14 @@ const CustomizePlanModal = ({ isOpen, onClose }) => {
                   placeholder="give the your customized plan a name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  // w="550px"
                 />
               </FormControl>
               <Flex>
                 <Spacer />
                 <Button
+                  w="150px"
                   color="white"
+                  borderRadius="100px"
                   bg="#A210C6"
                   onClick={handleConfirmationModalOpen}
                 >
@@ -342,20 +338,24 @@ const CustomizePlanModal = ({ isOpen, onClose }) => {
                 </Button>
               </Flex>
             </Box>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
 
       {/* Confirmation Modal */}
-      <Modal
+      <Drawer
         isOpen={isConfirmationModalOpen}
         onClose={handleConfirmationModalClose}
+        placement="right"
+        size="lg"
       >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Confirm Your Customized Plan</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader color="#A210C6">
+            Confirm Your Customized Plan
+          </DrawerHeader>
+          <DrawerBody>
             <VStack overflow="scroll" h="40vh" align="start">
               <Text fontWeight="bold">Selected Services:</Text>
               {selectedServices.map((service, index) => (
@@ -386,15 +386,20 @@ const CustomizePlanModal = ({ isOpen, onClose }) => {
               <Text fontWeight="bold">Name of service:</Text>
               <Text marginLeft="5px">{name}</Text>{" "}
             </Flex>
-            <Flex>
-              <Spacer />
-              <Button color="white" bg="#A210C6" mt={4} onClick={handleSubmit}>
-                Create plan
-              </Button>
-            </Flex>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+          </DrawerBody>
+          <DrawerFooter>
+            <Button
+              borderRadius="100px"
+              w="150px"
+              color="white"
+              bg="#A210C6"
+              onClick={handleSubmit}
+            >
+              Create plan
+            </Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
     </>
   );
 };

@@ -1,5 +1,5 @@
-
 import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   FaMapMarkerAlt,
   FaFile,
@@ -16,13 +16,13 @@ import {
   Flex,
   InputGroup,
   Select,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+  DrawerCloseButton,
   InputRightElement,
   Image,
   Box,
@@ -36,12 +36,11 @@ import BeneficiariesModal from "./Beneficiaries";
 import LocationIcon from "../../assets/LocationIcon.svg";
 import CalenderIcon from "../../assets/CalenderIcon.svg";
 
-
 const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
   const [selectedDob, setSelectedDob] = useState(null);
   const [loading, setLoading] = useState(false);
   const { user } = useSelector((state) => state.userReducer);
-  const [isBeneficiary, setBeneficiary] = useState(false);
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     customerPhoneNumber: user.phoneNumber,
@@ -60,7 +59,7 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-  
+
     if (name === "DOB") {
       setSelectedDob(value);
       setFormData({
@@ -80,7 +79,6 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
     setFormData({ ...formData, recipientDOB: date });
   };
 
-  
   const handleAddBeneficiary = async () => {
     setLoading(true);
     try {
@@ -90,23 +88,22 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
           Authorization: `Bearer ${token}`,
         },
       };
-  
-   
+
       const formattedDate = selectedDob
-        ? selectedDob.toISOString().split('T')[0]
-        : '';
-  
+        ? selectedDob.toISOString().split("T")[0]
+        : "";
+
       const dataToSend = {
         ...formData,
         recipientDOB: formattedDate,
       };
-  
+
       const response = await axios.post(
         "http://localhost:8080/v1/appointment/addNewBeneficiary",
         dataToSend,
         config
       );
-  
+
       if (response.data.success) {
         setLoading(false);
         toast({
@@ -115,6 +112,7 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
           duration: 6000,
         });
         onClose();
+        setTimeout(() => {}, 3000);
       } else {
         setLoading(false);
         toast({
@@ -138,43 +136,44 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="2xl" borderRadius="0px">
-      <ModalOverlay />
-      <ModalContent maxH="80vh" overflowY="auto">
-        <ModalHeader color="#A210C6">Add Beneficiary</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody marginLeft="45px">
+    <Drawer isOpen={isOpen} onClose={onClose} size={{ base: "md", md: "lg" }}>
+      <DrawerOverlay />
+      <DrawerContent maxH="70vh" overflowY="auto">
+        <DrawerHeader color="#510863">Add Beneficiary</DrawerHeader>
+        <DrawerCloseButton />
+        <DrawerBody ml={{md: "45px"}}>
           <VStack align="start" spacing={4}>
-            <FormControl w="40vw">
+            <FormControl >
               <FormLabel fontWeight="bold"> Enter Beneficiary name</FormLabel>
-              <Flex>
+              <Flex display={{base: "block", md: "flex"}}>
                 <InputGroup>
                   <Input
                     name="recipientFirstname"
                     placeholder="first name"
                     value={formData.recipientFirstname}
                     onChange={handleInputChange}
-                    w="270px"
+                    w={{ base: "300px", md: "270px" }}
                   />
-                  <InputRightElement marginRight="45px" pointerEvents="none">
+                  {/* <InputRightElement  ml={{ base: "40px", md: "30px" }} pointerEvents="none">
                     <FaUser color="gray.300" />
-                  </InputRightElement>
+                  </InputRightElement> */}
                 </InputGroup>
                 <InputGroup>
                   <Input
                     name="recipientLastname"
-                    marginLeft="5px"
+                    ml={{md: "-15px"}}
+                    mt={{base: "20px", md: "0"}}
                     placeholder="last name"
                     value={formData.recipientLastname}
                     onChange={handleInputChange}
-                    w="270px"
+                    w={{ base: "300px", md: "270px" }}
                   />
-                  <InputRightElement marginRight="80px" pointerEvents="none">
+                  {/* <InputRightElement  ml={{ base: "40px", md: "30px" }} pointerEvents="none">
                     <FaUser color="gray.300" />
-                  </InputRightElement>
+                  </InputRightElement> */}
                 </InputGroup>
               </Flex>
-              <Flex>
+              <Flex flexWrap="wrap">
                 <Box>
                   <FormLabel fontWeight="bold" marginTop="20px">
                     Gender{" "}
@@ -182,7 +181,7 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
                   <Select
                     name="recipientGender"
                     placeholder="select gender"
-                    w="270px"
+                    w={{ base: "300px", md: "270px" }}
                     value={formData.recipientGender}
                     onChange={handleInputChange}
                   >
@@ -190,7 +189,7 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
                     <option value="Female">Female</option>
                   </Select>
                 </Box>
-                <Box marginLeft="5px" w="270px">
+                <Box ml={{md: "5px"}} w={{ base: "300px", md: "270px" }}>
                   <FormLabel fontWeight="bold" marginTop="20px">
                     Date of Birth
                   </FormLabel>
@@ -215,7 +214,7 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
                       className="form-control"
                     />
                     <Image
-                      marginLeft="30px"
+                      ml={{ base: "50px", md: "30px" }}
                       w="24px"
                       h="24px"
                       src={CalenderIcon}
@@ -224,7 +223,7 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
                   </Flex>
                 </Box>
               </Flex>
-              <Flex marginTop="1px">
+              <Flex flexWrap="wrap" marginTop="1px">
                 <Box>
                   <FormLabel fontWeight="bold" marginTop="20px">
                     Contact Number{" "}
@@ -236,21 +235,21 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
                       placeholder="recipient phone number"
                       value={formData.recipientPhoneNumber}
                       onChange={handleInputChange}
-                      w="270px"
+                      w={{ base: "300px", md: "270px" }}
                     />
                     <InputRightElement pointerEvents="none">
                       <FaPhoneAlt color="gray.300" />
                     </InputRightElement>
                   </InputGroup>
                 </Box>
-                <Box marginLeft="5px">
+                <Box ml={{md: "5px"}}>
                   <FormLabel fontWeight="bold" marginTop="20px">
                     Relationship with beneficiary{" "}
                   </FormLabel>
                   <Select
                     name="relationship"
                     placeholder="select the appropriate relationship type"
-                    w="270px"
+                    w={{ base: "300px", md: "270px" }}
                     onChange={handleInputChange}
                   >
                     <option value="Mum">Mum</option>
@@ -278,8 +277,8 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
               </Flex>
             </FormControl>
           </VStack>
-        </ModalBody>
-        <ModalFooter>
+        </DrawerBody>
+        <DrawerFooter>
           <Box marginRight="20px">
             <Button onClick={onClose} color="black" ml={3}>
               Cancel
@@ -287,7 +286,7 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
             <Button
               marginLeft="10px"
               color="white"
-              bg="#A210C6"
+              bg="#510863"
               isLoading={loading}
               loadingText="Saving..."
               onClick={handleAddBeneficiary}
@@ -295,16 +294,10 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
               {loading ? "Saving..." : "Save"}
             </Button>
           </Box>
-        </ModalFooter>
-      </ModalContent>
-      {isBeneficiary && (
-    <BeneficiariesModal
-      isOpen={isBeneficiary}
-      onClose={() => setBeneficiary(false)}
-    />
-  )}
-    </Modal>
-  )
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  );
 };
 
 export default AddBeneficiaryForm;

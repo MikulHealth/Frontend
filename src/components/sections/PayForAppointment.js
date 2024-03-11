@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { CheckIcon, WarningIcon } from "@chakra-ui/icons";
 import {
   Modal,
   ModalOverlay,
@@ -9,49 +10,52 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  extendTheme,
   Text,
+  useMediaQuery,
 } from "@chakra-ui/react";
 
-const customTheme = extendTheme({
-    components: {
-      Link: {
-        baseStyle: {
-          _focus: {
-            boxShadow: "none",
-          },
-        },
-      },
-    },
-    fonts: {
-      body: "Montserrat, sans-serif",
-      heading: "Gill Sans MT, sans-serif",
-    },
-  });
-
-const PayForAppointmentModal = ({ isOpen, onClose }) => {
+const PayForAppointmentModal = ({ isOpen, onClose, appointment }) => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.userReducer);
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
+  const modalWidth = isLargerThan768 ? "400px" : "90vw";
 
   const handlePayment = () => {
-    navigate("/make-payment");
+    const costOfService = appointment.costOfService;
+    const appointmentId = appointment.id;
+    const beneficiary =
+      appointment.recipientFirstname + " " + appointment.recipientLastname;
+    navigate("/make-payment", {
+      state: { costOfService, appointmentId, beneficiary },
+    });
   };
 
   return (
-    <Modal theme={customTheme} isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} size="md">
       <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Attention!</ModalHeader>
+      <ModalContent
+        // border="5px solid white"
+        borderRadius="25px 25px 25px 0px"
+        bg="white"
+        width={modalWidth}
+      >
+        <ModalHeader>
+          <WarningIcon w={10} h={10} color="yellow.400" />
+        </ModalHeader>
         <ModalBody>
-          <Text>
-            {" "}
-            Hello {user?.firstName},
-            We notice your pending appointment has not been paid for, kindly make payment to
-            get matched with a caregiver.
+          <Text color="black">
+            Hello {user?.firstName}, We notice your pending appointment has not
+            been paid for, kindly make payment to get matched with a caregiver.
           </Text>
         </ModalBody>
-        <ModalFooter>
-          <Button   bg="#A210C6" color="white" mr={3} onClick={handlePayment}>
+        <ModalFooter justifyContent="center">
+          <Button
+            leftIcon={<CheckIcon />}
+            bg="green.400"
+            color="white"
+            onClick={handlePayment}
+            marginBottom="10px"
+          >
             Pay for appointment
           </Button>
         </ModalFooter>

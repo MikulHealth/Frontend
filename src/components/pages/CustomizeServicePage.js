@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { GetCurrentUser, UpdateCustomer } from "../../apiCalls/UserApis";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { SetUser } from "../../redux/userSlice";
-import DatePicker from "react-datepicker";
+
 import "react-datepicker/dist/react-datepicker.css";
-import RightArrow from "../../assets/RightArrow.svg";
-import Help from "../../assets/Help.svg";
+
 import BookAppointmentModal from "../sections/BookAppointment";
 import axios from "axios";
-import { PhoneIcon, AddIcon, WarningIcon, SearchIcon } from "@chakra-ui/icons";
+import { CheckIcon, AddIcon, DeleteIcon, SearchIcon } from "@chakra-ui/icons";
 import {
   ChakraProvider,
   VStack,
@@ -20,35 +18,24 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalFooter,
-  Progress,
   Button,
   useToast,
   Image,
   Box,
   Text,
   Flex,
-  Link,
   Divider,
   extendTheme,
-  FormControl,
-  FormLabel,
 } from "@chakra-ui/react";
-import userImageIcon from "../../assets/userImage.svg";
-import NotificationIcon from "../../assets/notification.svg";
-import familyIcon from "../../assets/family.svg";
+
 import UserDetailsModal from "../sections/UserDetails";
 import LoadingSpinner from "../../utils/Spiner";
-import Wallet from "../../assets/Wallet.svg";
-import logo from "../../assets/LogoColoured.svg";
-import SettingsIcon from "../../assets/SettingsIcon.svg";
-import LogoutIcon from "../../assets/Logout.svg";
-import AppointmentsIcon from "../../assets/AppointmentIcon.svg";
-import HomeIcon from "../../assets/HomeBlack.svg";
 import HelppIcon from "../../assets/HelppIcon.svg";
-import LogoutModal from "../sections/LogoutModal";
-import serviceIcon from "../../assets/WhiteServiceIcon.svg";
 import CustomizeServiceModal from "../sections/CustomizeServiceModal";
-
+import SideBar from "../authLayouts/SideBar";
+import NavBar from "../authLayouts/NavBar";
+import LeftSideBar from "../authLayouts/LeftSideBar";
+import MobileFooter from "../authLayouts/MobileFooter";
 const customTheme = extendTheme({
   components: {
     Link: {
@@ -67,11 +54,7 @@ const customTheme = extendTheme({
 
 const CustomizeServicePage = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const toast = useToast();
-  const { user } = useSelector((state) => state.userReducer);
-  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [customizedServices, setCustomizedServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAppointmentModal, setShowAppointmentModal] = useState(false);
@@ -79,57 +62,12 @@ const CustomizeServicePage = () => {
   const [deleteServiceId, setDeleteServiceId] = useState(null);
   const [showCustomizeModal, setShowCustomizeModal] = useState(false);
 
-  const handleOpenUserDetailsModal = () => {
-    setShowUserDetailsModal(true);
-  };
-
-  const handleCloseUserDetailsModal = () => {
-    setShowUserDetailsModal(false);
-  };
-
-  const handleOpenHelpModal = () => {};
-
-  const handleOpenWalletModal = () => {
-    navigate("/wallet");
-  };
-
   const help = () => {
     navigate("/help");
   };
 
-  const handleOpenSettingsModal = () => {
-    navigate("/settings");
-  };
-
   const handlebackToService = () => {
     navigate("/services");
-  };
-
-  const handleOpenLogoutModal = () => {
-    setShowLogoutModal(true);
-  };
-
-  const handleConfirmLogout = () => {
-    // Close the logout confirmation modal
-    setShowLogoutModal(false);
-
-    // Perform the actual logout
-    localStorage.removeItem("token");
-    localStorage.removeItem("phoneNumber");
-    localStorage.removeItem("orderId");
-    navigate("/");
-  };
-
-  const handleOpenDashboard = () => {
-    navigate("/dashboard");
-  };
-
-  // const handleOpenCustomizeModal = () => {
-  //   navigate("/dashboard");
-  // };
-
-  const handleOpenAppointmentsModal = () => {
-    navigate("/appointment");
   };
 
   const handleOpenAppointmentModal = () => {
@@ -254,254 +192,38 @@ const CustomizeServicePage = () => {
     setShowAppointmentModal(false);
   };
 
+  const settingsContainerStyle = {
+    animation: "slideInUp 0.9s ease-in-out",
+  };
+
   return (
     <ChakraProvider theme={customTheme}>
-      <Box width="25%" p={3} h="90vh">
-        <Image
-          src={logo}
-          alt="Logo"
-          w="160px"
-          h="60px"
-          marginLeft="90px"
-          marginTop="10px"
-        />
-
-        <VStack spacing={3} align="center" mt={5}>
-          <Flex marginTop="50px" alignItems="center">
-            <Image
-              marginLeft="-47px"
-              w="20px"
-              h="20px"
-              src={HomeIcon}
-              alt="HomeIcon"
-            />
-
-            <Text
-              marginLeft="15px"
-              color="black"
-              fontSize="18px"
-              onClick={() => {
-                handleOpenDashboard();
-              }}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Home
-            </Text>
-          </Flex>
-
-          <Flex
-            alignItems="center"
-            marginTop="20px"
-            w="15vw"
-            p={3}
-            borderRadius="md"
-          >
-            <Image
-              marginLeft="25px"
-              w="20px"
-              h="20px"
-              src={AppointmentsIcon}
-              alt="Appointments"
-            />
-            <Text
-              marginLeft="15px"
-              fontSize="18px"
-              color="black"
-              onClick={handleOpenAppointmentsModal}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "" }}
-            >
-              Appointments
-            </Text>
-          </Flex>
-
-          <Flex alignItems="center" marginTop="20px" marginLeft="-48px">
-            <Image w="20px" h="20px" src={Wallet} alt="wallet" />
-            <Text
-              marginLeft="15px"
-              color="black"
-              fontSize="18px"
-              onClick={handleOpenWalletModal}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Wallet
-            </Text>
-          </Flex>
-
-          <Flex
-            bg="#A210C6"
-            w="15vw"
-            p={3}
-            borderRadius="md"
-            alignItems="center"
-            marginTop="20px"
-            marginLeft="28px"
-          >
-            <Image
-              marginLeft="13px"
-              w="20px"
-              h="20px"
-              src={serviceIcon}
-              alt="Help"
-            />
-            <Text
-              marginLeft="15px"
-              color="white"
-              fontSize="18px"
-              onClick={handleOpenHelpModal}
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "" }}
-            >
-              Service
-            </Text>
-          </Flex>
-
-          <Flex
-            alignItems="center"
-            marginTop="20px"
-            w="15vw"
-            p={3}
-            borderRadius="md"
-          >
-            <Image
-              marginLeft="26px"
-              w="20px"
-              fontSize="24px"
-              h="20px"
-              src={SettingsIcon}
-              alt="Settings"
-            />
-            <Text
-              marginLeft="15px"
-              color="black"
-              fontSize="18px"
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "" }}
-              onClick={handleOpenSettingsModal}
-            >
-              Settings
-            </Text>
-          </Flex>
-
-          <Flex alignItems="center" marginTop="80px" marginLeft="-55px">
-            <Image
-              marginLeft="15px"
-              w="20px"
-              h="20px"
-              src={LogoutIcon}
-              alt="Logout"
-            />
-            <Text
-              onClick={handleOpenLogoutModal}
-              fontSize="18px"
-              marginLeft="15px"
-              color="#A210C6"
-              style={{
-                cursor: "pointer",
-              }}
-              _hover={{ color: "#A210C6" }}
-            >
-              Logout
-            </Text>
-          </Flex>
-        </VStack>
-        <Box
-          borderRight="2px solid #A210C6"
-          height="113%"
-          marginX={3}
-          marginTop="-615px"
-        />
-      </Box>
-      <Box
+      <LeftSideBar />
+      <VStack
+        style={settingsContainerStyle}
         position="fixed"
-        top="0"
-        left="25%"
-        width="85%"
-        height="100%"
-        backgroundColor="white"
-        zIndex="1000"
+        ml={{ md: "250px" }}
+        w={{ base: "100%", md: "70%" }}
+        h={{ base: "100%", md: "100%" }}
       >
-        <Flex>
-          <Text
-            fontSize="36px"
-            fontFamily="heading"
-            color="#A210C6"
-            marginLeft="30px"
-            marginTop="30px"
-          >
-            Services
-          </Text>
-          <Flex
-            marginLeft="650px"
-            style={{
-              cursor: "pointer",
-            }}
-            _hover={{ color: "#A210C6" }}
-          >
-            <Box marginTop="30px">
-              <Image
-                src={NotificationIcon}
-                alt="Notificatio icon"
-                h="26px"
-                w="30px"
-                marginBottom="10px"
-              />
-            </Box>
+        <NavBar />
 
-            <Box marginLeft="10px" marginTop="30px">
-              {user?.image ? (
-                <Link onClick={handleOpenUserDetailsModal}>
-                  <Image
-                    borderRadius="100px"
-                    h="29px"
-                    w="30px"
-                    src={user?.image}
-                    alt="User Image"
-                  />
-                </Link>
-              ) : (
-                <Link onClick={handleOpenUserDetailsModal}>
-                  <Image
-                    src={userImageIcon}
-                    alt="User Image Icon"
-                    boxSize="50px"
-                    marginBottom="2%"
-                    h="19px"
-                    w="20px"
-                    borderRadius="100%"
-                  />
-                </Link>
-              )}
-            </Box>
-          </Flex>
-        </Flex>
-        <Box w="70vw" h="80vh">
-          <Flex>
+        <Box
+          overflow={{ base: "scroll", md: "none" }}
+          w={{ base: "100%", md: "90%" }}
+          h={{ base: "100%", md: "100%" }}
+        >
+          <Flex margin="20px">
             <Box>
-              <Text fontSize="18px" marginLeft="30px" marginTop="5px">
-                Welcome to the custom service section! Here, you have the
-              </Text>
               <Text
-                fontSize="18px"
-                marginLeft="10px"
+                textAlign="left"
+                fontSize={{ base: "14px", md: "18px" }}
                 marginTop="3px"
                 marginBottom="20px"
               >
+                Welcome to the custom service section! Here, you have the
                 flexibility to tailor services according to your preferences.
               </Text>
-              <Divider my={4} borderColor="gray.500" />
             </Box>
             <Button
               onClick={handlebackToService}
@@ -510,19 +232,21 @@ const CustomizeServicePage = () => {
               color="#A210C6"
               fontFamily="body"
               marginTop="10px"
-              _hover={{ color: "" }}
-              marginLeft="300px"
+              ml={{ base: "30px", md: "300px" }}
+              fontSize={{ base: "12px" }}
+              h={{ base: "3vh", md: "5vh" }}
               borderRadius="100px"
             >
               Back
             </Button>
           </Flex>
-
+          <Divider my={4} borderColor="gray.500" />
           <Box
             className="all-customized-services"
-            marginLeft="2%"
-            w="64vw"
-            h="75vh"
+            // marginLeft="2%"
+            textAlign="left"
+            w={{ base: "100%", md: "64vw" }}
+            h={{ base: "100%", md: "75vh" }}
             overflow="scroll"
             marginTop="10px"
           >
@@ -530,7 +254,11 @@ const CustomizeServicePage = () => {
               <LoadingSpinner />
             ) : customizedServices.length === 0 ? (
               <Flex alignItems="center">
-                <Text marginLeft="60px" marginTop="30px">
+                <Text
+                  fontSize={{ base: "12px" }}
+                  ml={{ base: "20px", md: "60px" }}
+                  marginTop="30px"
+                >
                   You have no customized plan yet. Click{" "}
                 </Text>
                 <Text
@@ -541,46 +269,59 @@ const CustomizeServicePage = () => {
                     cursor: "pointer",
                   }}
                   marginTop="30px"
-                  marginLeft="5px"
+                  fontSize={{ base: "12px" }}
+                  ml={{ base: "5px", md: "5px" }}
                   onClick={handleOpenCustomizePlanFormModal}
                 >
                   customize service
                 </Text>
-                <Text marginLeft="5px" marginTop="30px">
+                <Text
+                  fontSize={{ base: "12px" }}
+                  ml={{ base: "5px", md: "5px" }}
+                  marginTop="30px"
+                >
                   to begin.
                 </Text>
               </Flex>
             ) : (
-              <VStack marginTop="10px" align="start" spacing={4}>
+              <VStack
+                overflow="scroll"
+                marginTop="10px"
+                textAlign="left"
+                align="start"
+                w={{ base: "100%", md: "50vw" }}
+                spacing={4}
+              >
                 {customizedServices.map((service) => (
                   <Box marginTop="20px" key={service.id}>
                     <Box
-                      padding="40px"
-                      style={{
-                        cursor: "pointer",
-                        // boxShadow: "0px 4px 8px rgba(162, 16, 198, 0.4)",
-                      }}
+                      padding="20px"
                       borderColor="#A210C6"
                       borderWidth="2px"
                       p={4}
                       borderRadius="2xl"
-                      // h="50vh"
-                      w="40vw"
+                      // justify="center"
+                      ml={{ base: "10px" }}
+                      w={{ base: "70%", md: "30vw" }}
                     >
                       <Box>
-                        <Box marginLeft="90px">
+                        <Box>
                           <Flex>
                             <Text fontWeight="bold" color="black">
                               Name:
                             </Text>
-                            <Text marginLeft="5px" color="black">
-                              {`${service.name}`}
-                            </Text>
-                            <Flex marginLeft="45px">
+                            <Text
+                              marginLeft="5px"
+                              color="black"
+                            >{`${service.name}`}</Text>
+                            <Flex ml={{ base: "30px", md: "55px" }}>
                               <Text fontWeight="bold" color="black">
                                 Frequency:
                               </Text>
-                              <Text marginLeft="5px" color="black">
+                              <Text
+                                ml={{ base: "5px", md: "5px" }}
+                                color="black"
+                              >
                                 {`${service.frequency}`}
                               </Text>
                             </Flex>
@@ -589,7 +330,10 @@ const CustomizeServicePage = () => {
                             <Text fontWeight="bold" color="black">
                               Preferred Caregiver:
                             </Text>
-                            <Text marginLeft="35px" color="black">
+                            <Text
+                              ml={{ base: "30px", md: "45px" }}
+                              color="black"
+                            >
                               {`${service.medicSpecialization}`}
                             </Text>
                           </Flex>
@@ -598,30 +342,39 @@ const CustomizeServicePage = () => {
                               <Text fontWeight="bold" color="black">
                                 Duration:
                               </Text>
-                              <Text marginLeft="5px" color="black">
-                                {`${service.duration}`}
-                              </Text>
+                              <Text
+                                ml={{ base: "5px", md: "5px" }}
+                                color="black"
+                              >{`${service.duration}`}</Text>
                             </Flex>
-                            <Flex marginLeft="85px">
-                              <Text fontWeight="bold" color="black">
+                            <Flex>
+                              <Text
+                                ml={{ base: "30px", md: "45px" }}
+                                fontWeight="bold"
+                                color="black"
+                              >
                                 Shift:
                               </Text>
-                              <Text marginLeft="5px" color="black">
-                                {`${service.shift}`}
-                              </Text>
+                              <Text
+                                marginLeft="5px"
+                                color="black"
+                              >{`${service.shift}`}</Text>
                             </Flex>
                           </Flex>
                           <Flex>
                             <Text fontWeight="bold" color="black">
                               Cost of service:
                             </Text>
-                            <Text marginLeft="90px" color="black">
+                            <Text
+                              ml={{ base: "50px", md: "90px" }}
+                              color="black"
+                            >
                               {`${formattedCost(service.costOfService)}`}
                             </Text>
                           </Flex>
                         </Box>
                       </Box>
-                      <Box marginLeft="-25px" marginTop="3px">
+                      <Box marginTop="3px">
                         <Flex direction="column">
                           <Text
                             fontWeight="bold"
@@ -639,7 +392,7 @@ const CustomizeServicePage = () => {
                         </Flex>
                       </Box>
 
-                      <Flex marginLeft="80px" marginTop="10px">
+                      <Flex marginTop="10px">
                         <Text fontWeight="bold" color="black">
                           Created on:
                         </Text>
@@ -647,10 +400,14 @@ const CustomizeServicePage = () => {
                           {formatDateTime(service.createdAt)}
                         </Text>
                       </Flex>
-                      <Box marginLeft="-15px" marginTop="20px">
+                      <Flex
+                        margin="20px"
+                        justifyContent="space-between"
+                        marginTop="20px"
+                      >
                         <Button
                           fontSize="16px"
-                          // bg="#A210C6"
+                          leftIcon={<CheckIcon />}
                           color="#A210C6"
                           onClick={handleOpenAppointmentModal}
                           style={{
@@ -658,13 +415,14 @@ const CustomizeServicePage = () => {
                             cursor: "pointer",
                           }}
                           _hover={{ color: "#A210C6" }}
+                          bg="none"
                         >
                           Book plan
                         </Button>
                         <Button
                           marginLeft="120px"
                           fontSize="16px"
-                          // bg="gray"
+                          leftIcon={<DeleteIcon />}
                           color="red"
                           onClick={() => handleDeleteService(service.id)}
                           style={{
@@ -672,17 +430,19 @@ const CustomizeServicePage = () => {
                             cursor: "pointer",
                           }}
                           _hover={{ color: "" }}
+                          bg="none"
                         >
                           Delete plan
                         </Button>
-                      </Box>
+                      </Flex>
                     </Box>
                   </Box>
                 ))}
                 <Button
                   color="green"
                   marginTop="20px"
-                  marginBottom="50px"
+                  marginBottom="100px"
+                  leftIcon={<AddIcon />}
                   onClick={handleOpenCustomizePlanFormModal}
                 >
                   Add another plan
@@ -690,22 +450,22 @@ const CustomizeServicePage = () => {
               </VStack>
             )}
           </Box>
-        </Box>
-        <Box marginLeft="905px" marginTop="-50px">
-          <Image
-            onClick={help}
-            src={HelppIcon}
-            alt="Logo"
-            w="70px"
-            h="70px"
-            style={{
-              cursor: "pointer",
-              animation: "zoomInOut 2s infinite alternate",
-            }}
-          />
 
-          <style>
-            {`
+          <Box marginLeft="910px" marginTop="-150px">
+            <Image
+              onClick={help}
+              src={HelppIcon}
+              alt="Logo"
+              w="70px"
+              h="70px"
+              style={{
+                cursor: "pointer",
+                animation: "zoomInOut 2s infinite alternate",
+              }}
+            />
+
+            <style>
+              {`
           @keyframes zoomInOut {
             0% {
               transform: scale(1);
@@ -715,18 +475,13 @@ const CustomizeServicePage = () => {
             }
           }
         `}
-          </style>
+            </style>
+          </Box>
         </Box>
-      </Box>
-      <UserDetailsModal
-        isOpen={showUserDetailsModal}
-        onClose={handleCloseUserDetailsModal}
-      />
-      <LogoutModal
-        isOpen={showLogoutModal}
-        onClose={() => setShowLogoutModal(false)}
-        onConfirm={handleConfirmLogout}
-      />{" "}
+        <Box />
+        <MobileFooter />
+      </VStack>
+
       {confirmationModalOpen && (
         <Modal
           isOpen={confirmationModalOpen}

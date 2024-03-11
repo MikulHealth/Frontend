@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import CalenderIcon from "../../assets/CalenderIcon.svg";
 import DatePicker from "react-datepicker";
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerFooter,
+  DrawerBody,
   Button,
   FormControl,
   FormLabel,
@@ -17,12 +17,12 @@ import {
   Textarea,
   Flex,
   Input,
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogOverlay,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 } from "@chakra-ui/react";
 import axios from "axios";
 
@@ -74,7 +74,6 @@ const EditPendingAppointment = ({
       return "";
     }
 
-    // Add one day to the selected date
     const adjustedDate = new Date(selectedDate);
     adjustedDate.setDate(adjustedDate.getDate() + 1);
 
@@ -140,104 +139,101 @@ const EditPendingAppointment = ({
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Update appointment details</ModalHeader>
-          <ModalBody>
-            <Box marginLeft="48px">
-              <Flex>
-                <FormControl marginTop="5px">
-                  <FormLabel fontWeight="bold" color="black">
-                    Current Location:
-                  </FormLabel>
-                  <Input
-                    name="currentLocation"
-                    value={formData?.currentLocation}
-                    onChange={handleChange}
-                    w="270px"
+      <Drawer isOpen={isOpen} onClose={onClose} size="md">
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader color="#A210C6">Edit appointment</DrawerHeader>
+          <DrawerBody>
+            <Box>
+              <FormControl marginTop="5px">
+                <FormLabel fontWeight="bold" color="black">
+                  Current Location:
+                </FormLabel>
+                <Input
+                  name="currentLocation"
+                  value={formData?.currentLocation}
+                  onChange={handleChange}
+                  w={{ base: "90%", md: "450px" }}
+                />
+              </FormControl>
+              <FormControl marginTop="5px">
+                <FormLabel fontWeight="bold" color="black">
+                  Phone Number:
+                </FormLabel>
+                <Input
+                  name="recipientPhoneNumber"
+                  value={formData?.recipientPhoneNumber}
+                  onChange={handleChange}
+                  type="tel"
+                  w={{ base: "90%", md: "450px" }}
+                />
+              </FormControl>
+
+              <Box w={{ base: "90%", md: "450px" }}>
+                <FormLabel fontWeight="bold" marginTop="20px">
+                  Start Date
+                </FormLabel>
+                <Flex
+                  h="6vh"
+                  padding="5px"
+                  paddingLeft="15px"
+                  style={{ border: "1px solid #ccc", borderRadius: "5px" }}
+                >
+                  <DatePicker
+                    selected={selectedStartDate}
+                    onChange={handleStartDateChange}
+                    peekNextMonth
+                    showMonthDropdown
+                    showYearDropdown
+                    dropdownMode="select"
+                    dateFormat="dd-MM-yyyy"
+                    placeholderText="preferred date to start"
+                    className="form-control"
+                    minDate={new Date()}
+                    value={formData?.startDate}
                   />
-                </FormControl>
-                <FormControl marginLeft="-30px" marginTop="5px">
-                  <FormLabel fontWeight="bold" color="black">
-                    Phone Number:
-                  </FormLabel>
-                  <Input
-                    name="recipientPhoneNumber"
-                    value={formData?.recipientPhoneNumber}
-                    onChange={handleChange}
-                    type="tel"
-                    w="270px"
+                  <Image
+                    marginLeft="205px"
+                    w="24px"
+                    h="24px"
+                    src={CalenderIcon}
+                    alt="CalenderIcon"
                   />
-                </FormControl>
-              </Flex>
-              <Flex>
-                <Box w="270px">
-                  <FormLabel fontWeight="bold" marginTop="20px">
-                    Start Date
-                  </FormLabel>
-                  <Flex
-                    h="6vh"
-                    padding="5px"
-                    paddingLeft="15px"
-                    style={{ border: "1px solid #ccc", borderRadius: "5px" }}
-                  >
-                    <DatePicker
-                      selected={selectedStartDate}
-                      onChange={handleStartDateChange}
-                      peekNextMonth
-                      showMonthDropdown
-                      showYearDropdown
-                      dropdownMode="select"
-                      dateFormat="dd-MM-yyyy"
-                      placeholderText="preferred date to start"
-                      className="form-control"
-                      minDate={new Date()}
-                      value={formData?.startDate}
-                    />
-                    <Image
-                      marginLeft="30px"
-                      w="24px"
-                      h="24px"
-                      src={CalenderIcon}
-                      alt="CalenderIcon"
-                    />
-                  </Flex>
-                </Box>
-                <Box marginLeft="5px" w="270px">
-                  <FormLabel fontWeight="bold" marginTop="20px">
-                    End Date
-                  </FormLabel>
-                  <Flex
-                    h="6vh"
-                    padding="5px"
-                    paddingLeft="15px"
-                    style={{ border: "1px solid #ccc", borderRadius: "5px" }}
-                  >
-                    <DatePicker
-                      selected={selectedEndDate}
-                      onChange={handleEndDateChange}
-                      peekNextMonth
-                      showMonthDropdown
-                      showYearDropdown
-                      dropdownMode="select"
-                      dateFormat="dd-MM-yyyy"
-                      placeholderText="preferred date to end"
-                      className="form-control"
-                      minDate={new Date()}
-                      style={{ border: "none" }}
-                      value={formData?.endDate}
-                    />
-                    <Image
-                      marginLeft="30px"
-                      w="24px"
-                      h="24px"
-                      src={CalenderIcon}
-                      alt="CalenderIcon"
-                    />
-                  </Flex>
-                </Box>
-              </Flex>
+                </Flex>
+              </Box>
+              <Box w={{ base: "90%", md: "450px" }}>
+                <FormLabel fontWeight="bold" marginTop="20px">
+                  End Date
+                </FormLabel>
+                <Flex
+                  h="6vh"
+                  padding="5px"
+                  paddingLeft="15px"
+                  style={{ border: "1px solid #ccc", borderRadius: "5px" }}
+                >
+                  <DatePicker
+                    selected={selectedEndDate}
+                    onChange={handleEndDateChange}
+                    peekNextMonth
+                    showMonthDropdown
+                    showYearDropdown
+                    dropdownMode="select"
+                    dateFormat="dd-MM-yyyy"
+                    placeholderText="preferred date to end"
+                    className="form-control"
+                    minDate={new Date()}
+                    style={{ border: "none" }}
+                    value={formData?.endDate}
+                  />
+                  <Image
+                    marginLeft="205px"
+                    w="24px"
+                    h="24px"
+                    src={CalenderIcon}
+                    alt="CalenderIcon"
+                  />
+                </Flex>
+              </Box>
 
               <FormControl marginTop="20px">
                 <FormLabel fontWeight="bold" color="black">
@@ -247,7 +243,7 @@ const EditPendingAppointment = ({
                   name="medicalReport"
                   type="file"
                   onChange={handleChange}
-                  w="540px"
+                  w={{ base: "90%", md: "450px" }}
                 />
               </FormControl>
               <FormControl marginTop="20px">
@@ -255,16 +251,16 @@ const EditPendingAppointment = ({
                   Health History:
                 </FormLabel>
                 <Textarea
-                  w="540px"
+                  w={{ base: "90%", md: "450px" }}
                   name="recipientHealthHistory"
                   value={formData?.recipientHealthHistory}
                   onChange={handleChange}
                 />
               </FormControl>
             </Box>
-          </ModalBody>
+          </DrawerBody>
 
-          <ModalFooter>
+          <DrawerFooter>
             <Button
               color="white"
               bg="#A210C6"
@@ -273,42 +269,33 @@ const EditPendingAppointment = ({
             >
               Save
             </Button>
-            <Button variant="ghost" onClick={onClose}>
+            <Button color="red.500" variant="ghost" onClick={onClose}>
               Cancel
             </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
 
-      {/* Confirmation Modal */}
-      <AlertDialog
-        isOpen={isConfirmationModalOpen}
-        onClose={handleConfirmationCancel}
-      >
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              Confirm Changes
-            </AlertDialogHeader>
-
-            <AlertDialogBody>
-              Are you sure you want to save the changes?
-            </AlertDialogBody>
-
-            <AlertDialogFooter>
-              <Button onClick={handleConfirmationCancel}>Cancel</Button>
-              <Button
-                bg="#A210C6"
-                color="white"
-                onClick={handleConfirmationConfirm}
-                ml={3}
-              >
-                Confirm
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </AlertDialog>
+      <Drawer isOpen={isConfirmationModalOpen} onClose={onClose}>
+        <DrawerOverlay />
+        <DrawerContent h="30vh">
+          <DrawerHeader fontSize="lg" fontWeight="bold">
+            Confirm Changes
+          </DrawerHeader>
+          <DrawerBody>Are you sure you want to save the changes?</DrawerBody>
+          <DrawerFooter>
+            <Button onClick={handleConfirmationCancel}>Cancel</Button>
+            <Button
+              bg="#A210C6"
+              color="white"
+              onClick={handleConfirmationConfirm}
+              ml={3}
+            >
+              Confirm
+            </Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
     </>
   );
 };
