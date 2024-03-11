@@ -75,7 +75,7 @@ const UserDetailsDrawer = ({ isOpen, onClose }) => {
 
   return (
     <>
-      <Drawer isOpen={isOpen} onClose={onClose} size="lg">
+      <Drawer isOpen={isOpen} onClose={onClose} size={{ base: "xm", md: "lg" }}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader
@@ -92,9 +92,22 @@ const UserDetailsDrawer = ({ isOpen, onClose }) => {
             />
           </DrawerHeader>
           <DrawerBody>
-            <Flex>
+            <Flex
+              justifyContent="center"
+              display={{ base: "block", md: "flex" }}
+            >
+              <Avatar
+                src={user?.image}
+                alt="User Image"
+                borderRadius="8px"
+                ml={{ base: "85px", md: "10px" }}
+                h={{ base: "260px", md: "55vh" }}
+                w={{ base: "200px", md: "20vw" }}
+                marginTop="40px"
+                bg="#A210C6"
+              ></Avatar>
               <VStack
-                marginLeft="20px"
+                ml={{ md: "20px" }}
                 marginTop="30px"
                 align="center"
                 spacing={4}
@@ -138,18 +151,6 @@ const UserDetailsDrawer = ({ isOpen, onClose }) => {
                 </Text>
                 <Divider my={1} borderColor="gray.500" />
               </VStack>
-
-              <Avatar
-                src={user?.image}
-                // name={user?.firstName}
-                alt="User Image"
-                borderRadius="8px"
-                h="55vh"
-                w="20vw"
-                marginLeft="50px"
-                marginTop="40px"
-                bg="#A210C6"
-              ></Avatar>
             </Flex>
           </DrawerBody>
           <DrawerFooter>

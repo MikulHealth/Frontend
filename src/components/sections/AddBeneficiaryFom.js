@@ -145,7 +145,7 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
           <VStack align="start" spacing={4}>
             <FormControl >
               <FormLabel fontWeight="bold"> Enter Beneficiary name</FormLabel>
-              <Flex flexWrap="wrap">
+              <Flex display={{base: "block", md: "flex"}}>
                 <InputGroup>
                   <Input
                     name="recipientFirstname"
@@ -161,8 +161,8 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
                 <InputGroup>
                   <Input
                     name="recipientLastname"
-                    ml={{md: "5px"}}
-                    mt={{base: "20px"}}
+                    ml={{md: "-15px"}}
+                    mt={{base: "20px", md: "0"}}
                     placeholder="last name"
                     value={formData.recipientLastname}
                     onChange={handleInputChange}
