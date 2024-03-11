@@ -156,14 +156,14 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
 
   return (
     <>
-      <Drawer isOpen={isOpen} onClose={onClose} placement="right" size="lg">
+      <Drawer isOpen={isOpen} onClose={onClose} placement="right" size={{base: "md", md: "lg"}}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader fontSize="lg" fontWeight="bold" color="#510863">
             Beneficiaries
           </DrawerHeader>
           <DrawerCloseButton />
-          <DrawerBody marginLeft="40px">
+          <DrawerBody ml={{md: "40px"}}>
             <Progress marginBottom="20px" size="xs" isIndeterminate />
             {loading ? (
               <Flex align="center" justify="center" height="200px">
@@ -234,7 +234,7 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
                           </Text>
                         </Flex>
                       </Box>
-                      <Flex marginTop="5px">
+                      <Flex justifyContent="space-between" marginTop="5px">
                         <Box>
                           <Text
                             fontSize="17px"
@@ -258,7 +258,7 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
                               handleRemoveBeneficiary(beneficiary.id)
                             }
                             style={{
-                              marginLeft: "250px",
+                              // marginLeft: "250px",
                               color: "red",
                               fontStyle: "italic",
                               cursor: "pointer",

@@ -33,6 +33,7 @@ import {
 import LoadingSpinner from "../../utils/Spiner";
 import UpdatePhoneNumber from "../sections/UpdatePhoneNumber";
 import SettingsSideBar from "../authLayouts/SettingsSideBar";
+import MobileFooter from "../authLayouts/MobileFooter";
 
 const customTheme = extendTheme({
   components: {
@@ -424,6 +425,7 @@ const EdithProfilePage = () => {
           display={{ base: "block", md: "none" }}
           mt={{ md: "30px" }}
           ml={{ base: "30px" }}
+          mb={{base: "60px"}}
         >
           <Flex justifyContent="space-between" margin="20px">
             <Box>
@@ -631,6 +633,7 @@ const EdithProfilePage = () => {
             </Box>
           </VStack>
         </Flex>
+        <MobileFooter/>
       </VStack>
 
       <Modal

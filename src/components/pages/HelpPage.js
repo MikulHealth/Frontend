@@ -21,6 +21,7 @@ import {
 } from "@chakra-ui/react";
 
 import SettingsSideBar from "../authLayouts/SettingsSideBar";
+import MobileFooter from "../authLayouts/MobileFooter";
 
 const customTheme = extendTheme({
   components: {
@@ -226,17 +227,17 @@ const HelpPage = () => {
                 </Accordion>
               </Box>
             </VStack>
-            <VStack marginLeft="20px" marginTop="10px">
+            <VStack overflow="scroll" marginLeft="20px">
               <Box textAlign="left">
                 <Text color="#A210C6" fontSize="20px">
                   Contact us
                 </Text>
-                <VStack fontSize="14px">
+                <VStack textAlign="left" fontSize="14px">
                   <Text>
                     If you have any issues, our Mikul Customer Care agents are
                     always happy to help. You can reach us via:
                   </Text>
-                  <Text marginLeft="-135px">
+                  <Text >
                     Email:{" "}
                     <a
                       href="mailto:support@mikulhealth.com"
@@ -250,14 +251,18 @@ const HelpPage = () => {
                   </Text>
                 </VStack>
               </Box>
-              <Box marginLeft="100px" marginBottom="50px" marginTop="10px">
+              <Box
+                ml={{ base: "200px" }}
+                mb={{ base: "50px" }}
+                mt={{ base: "-8px" }}
+              >
                 <a href="https://wa.me/2347032579006">
                   <Image
                     // onClick={help}
                     src={WhatsAppIcon}
                     alt="Logo"
-                    w="70px"
-                    h="70px"
+                    w="50px"
+                    h="50px"
                     style={{
                       cursor: "pointer",
                       animation: "zoomInOut 2s infinite alternate",
@@ -453,14 +458,18 @@ const HelpPage = () => {
                   </Text>
                 </VStack>
               </Box>
-              <Box marginLeft="100px" marginTop="50px">
+              <Box
+                ml={{ base: "150px", md: "100px" }}
+                mb={{ base: "50px" }}
+                mt={{ base: "-50px", md: "50px" }}
+              >
                 <a href="https://wa.me/2347032579006">
                   <Image
                     // onClick={help}
                     src={WhatsAppIcon}
                     alt="Logo"
-                    w="70px"
-                    h="70px"
+                    w={{ base: "50px", md: "70px" }}
+                    h={{ base: "50px", md: "70px" }}
                     style={{
                       cursor: "pointer",
                       animation: "zoomInOut 2s infinite alternate",
@@ -483,6 +492,7 @@ const HelpPage = () => {
             </VStack>
           </Flex>
         </Box>
+        <MobileFooter />
       </VStack>
     </ChakraProvider>
   );

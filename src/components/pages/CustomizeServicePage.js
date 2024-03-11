@@ -35,6 +35,7 @@ import CustomizeServiceModal from "../sections/CustomizeServiceModal";
 import SideBar from "../authLayouts/SideBar";
 import NavBar from "../authLayouts/NavBar";
 import LeftSideBar from "../authLayouts/LeftSideBar";
+import MobileFooter from "../authLayouts/MobileFooter";
 const customTheme = extendTheme({
   components: {
     Link: {
@@ -231,7 +232,6 @@ const CustomizeServicePage = () => {
               color="#A210C6"
               fontFamily="body"
               marginTop="10px"
-            
               ml={{ base: "30px", md: "300px" }}
               fontSize={{ base: "12px" }}
               h={{ base: "3vh", md: "5vh" }}
@@ -254,7 +254,11 @@ const CustomizeServicePage = () => {
               <LoadingSpinner />
             ) : customizedServices.length === 0 ? (
               <Flex alignItems="center">
-                <Text   fontSize={{ base: "12px" }}  ml={{ base: "20px", md: "60px" }} marginTop="30px">
+                <Text
+                  fontSize={{ base: "12px" }}
+                  ml={{ base: "20px", md: "60px" }}
+                  marginTop="30px"
+                >
                   You have no customized plan yet. Click{" "}
                 </Text>
                 <Text
@@ -265,12 +269,17 @@ const CustomizeServicePage = () => {
                     cursor: "pointer",
                   }}
                   marginTop="30px"
-                  fontSize={{ base: "12px" }}  ml={{ base: "5px", md: "5px" }}
+                  fontSize={{ base: "12px" }}
+                  ml={{ base: "5px", md: "5px" }}
                   onClick={handleOpenCustomizePlanFormModal}
                 >
                   customize service
                 </Text>
-                <Text  fontSize={{ base: "12px" }}  ml={{ base: "5px", md: "5px" }} marginTop="30px">
+                <Text
+                  fontSize={{ base: "12px" }}
+                  ml={{ base: "5px", md: "5px" }}
+                  marginTop="30px"
+                >
                   to begin.
                 </Text>
               </Flex>
@@ -287,15 +296,13 @@ const CustomizeServicePage = () => {
                   <Box marginTop="20px" key={service.id}>
                     <Box
                       padding="20px"
-                      style={{
-                        cursor: "pointer",
-                      }}
                       borderColor="#A210C6"
                       borderWidth="2px"
                       p={4}
                       borderRadius="2xl"
-                      ml={{ base: "15px" }}
-                      w={{ base: "85%", md: "30vw" }}
+                      // justify="center"
+                      ml={{ base: "10px" }}
+                      w={{ base: "70%", md: "30vw" }}
                     >
                       <Box>
                         <Box>
@@ -393,7 +400,11 @@ const CustomizeServicePage = () => {
                           {formatDateTime(service.createdAt)}
                         </Text>
                       </Flex>
-                      <Flex justifyContent="space-between" marginTop="20px">
+                      <Flex
+                        margin="20px"
+                        justifyContent="space-between"
+                        marginTop="20px"
+                      >
                         <Button
                           fontSize="16px"
                           leftIcon={<CheckIcon />}
@@ -404,6 +415,7 @@ const CustomizeServicePage = () => {
                             cursor: "pointer",
                           }}
                           _hover={{ color: "#A210C6" }}
+                          bg="none"
                         >
                           Book plan
                         </Button>
@@ -418,6 +430,7 @@ const CustomizeServicePage = () => {
                             cursor: "pointer",
                           }}
                           _hover={{ color: "" }}
+                          bg="none"
                         >
                           Delete plan
                         </Button>
@@ -428,7 +441,7 @@ const CustomizeServicePage = () => {
                 <Button
                   color="green"
                   marginTop="20px"
-                  marginBottom="50px"
+                  marginBottom="100px"
                   leftIcon={<AddIcon />}
                   onClick={handleOpenCustomizePlanFormModal}
                 >
@@ -466,6 +479,7 @@ const CustomizeServicePage = () => {
           </Box>
         </Box>
         <Box />
+        <MobileFooter />
       </VStack>
 
       {confirmationModalOpen && (

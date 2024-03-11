@@ -180,10 +180,15 @@ const SelfAppointmentModal = ({ isOpen, onClose }) => {
           status: "success",
           duration: 6000,
         });
-        const { id: appointmentId, costOfService, recipientFirstname, recipientLastname } = response.data.data;
+        const {
+          id: appointmentId,
+          costOfService,
+          recipientFirstname,
+          recipientLastname,
+        } = response.data.data;
         const beneficiary = `${recipientFirstname} ${recipientLastname}`;
         console.log("beneficiary", beneficiary);
-      
+
         setTimeout(() => {
           navigate("/make-payment", {
             state: { costOfService, appointmentId, beneficiary },
@@ -280,15 +285,20 @@ const SelfAppointmentModal = ({ isOpen, onClose }) => {
   }, [formFields.servicePlan, formFields.shift]);
 
   return (
-    <Drawer isOpen={isOpen} onClose={onClose} size="lg" placement="right">
+    <Drawer
+      isOpen={isOpen}
+      onClose={onClose}
+      size={{ base: "md", md: "lg" }}
+      placement="right"
+    >
       <DrawerOverlay />
       <DrawerContent alignItems="center">
         <DrawerCloseButton />
         <DrawerHeader color="#510863">Book Appointment</DrawerHeader>
         <DrawerBody>
           <FormControl isRequired>
-            <Flex marginLeft="40px">
-              <Box>
+            <Flex flexWrap="wrap" ml={{ md: "45px" }}>
+              <Box w={{ base: "300px", md: "270px" }}>
                 <FormLabel fontWeight="bold" marginTop="20px">
                   Start Date
                 </FormLabel>
@@ -311,7 +321,7 @@ const SelfAppointmentModal = ({ isOpen, onClose }) => {
                     minDate={new Date()}
                   />
                   <Image
-                    marginLeft="30px"
+                    ml={{ base: "50px", md: "30px" }}
                     w="24px"
                     h="24px"
                     src={CalenderIcon}
@@ -319,7 +329,11 @@ const SelfAppointmentModal = ({ isOpen, onClose }) => {
                   />
                 </Flex>
               </Box>
-              <Box marginLeft="5px" marginTop="20px">
+              <Box
+                w={{ base: "300px", md: "270px" }}
+                ml={{ md: "5px" }}
+                marginTop="20px"
+              >
                 <FormLabel fontWeight="bold">End Date</FormLabel>
                 <Flex
                   h="6vh"
@@ -341,7 +355,7 @@ const SelfAppointmentModal = ({ isOpen, onClose }) => {
                     style={{ border: "none" }}
                   />
                   <Image
-                    marginLeft="30px"
+                    ml={{ base: "50px", md: "30px" }}
                     w="24px"
                     h="24px"
                     src={CalenderIcon}
@@ -350,13 +364,13 @@ const SelfAppointmentModal = ({ isOpen, onClose }) => {
                 </Flex>
               </Box>
             </Flex>
-            <Flex marginTop="20px">
-              <Box marginLeft="40px">
+            <Flex flexWrap="wrap" marginTop="20px">
+              <Box w={{ base: "300px", md: "270px" }} ml={{ md: "40px" }}>
                 <FormLabel fontWeight="bold">Service Plan </FormLabel>
                 <Select
                   name="servicePlan"
                   placeholder="preferred service plan"
-                  w="270px"
+                  w={{ base: "300px", md: "270px" }}
                   value={formFields.servicePlan}
                   onChange={handleInputChange}
                 >
@@ -385,12 +399,12 @@ const SelfAppointmentModal = ({ isOpen, onClose }) => {
                   ))}
                 </Select>
               </Box>
-              <Box marginLeft="5px">
+              <Box ml={{ md: "5px" }}>
                 <FormLabel fontWeight="bold">Shift </FormLabel>
                 <Select
                   name="shift"
                   placeholder="select preferred shift"
-                  w="270px"
+                  w={{ base: "300px", md: "270px" }}
                   value={formFields.shift}
                   onChange={handleInputChange}
                 >
@@ -399,7 +413,7 @@ const SelfAppointmentModal = ({ isOpen, onClose }) => {
                 </Select>
               </Box>
             </Flex>
-            <Box marginLeft="40px" marginTop="20px">
+            <Box ml={{ md: "40px" }} marginTop="20px">
               <FormLabel fontWeight="bold">Current Location </FormLabel>
               <Flex>
                 <Input
@@ -408,7 +422,7 @@ const SelfAppointmentModal = ({ isOpen, onClose }) => {
                   placeholder="current Location"
                   value={formFields.currentLocation}
                   onChange={handleInputChange}
-                  w="550px"
+                  w={{ base: "300px", md: "550px" }}
                 />
                 <Image
                   marginTop="10px"
@@ -420,7 +434,7 @@ const SelfAppointmentModal = ({ isOpen, onClose }) => {
                 />
               </Flex>
             </Box>
-            <Box marginLeft="40px" marginTop="20px">
+            <Box ml={{ md: "40px" }} marginTop="20px">
               <FormLabel fontWeight="bold">
                 Upload necessary document (test results, medical report, scans,
                 etc)
@@ -431,12 +445,12 @@ const SelfAppointmentModal = ({ isOpen, onClose }) => {
                   name="medicalReport"
                   type="file"
                   onChange={handleInputChange}
-                  w="550px"
+                  w={{ base: "300px", md: "550px" }}
                   placeholder="Upload necessary document"
                 />
               </InputGroup>
             </Box>
-            <Box marginLeft="40px" marginTop="20px">
+            <Box ml={{ md: "40px" }} marginTop="20px">
               <FormLabel fontWeight="bold">Health History </FormLabel>
               <Textarea
                 name="recipientHealthHistory"
@@ -444,7 +458,7 @@ const SelfAppointmentModal = ({ isOpen, onClose }) => {
                 placeholder="share health history and any special need we should know"
                 value={formFields.recipientHealthHistory}
                 onChange={handleInputChange}
-                w="550px"
+                w={{ base: "300px", md: "550px" }}
               />
             </Box>
           </FormControl>

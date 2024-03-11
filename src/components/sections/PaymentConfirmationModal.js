@@ -15,6 +15,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Flex,
   Button,
   Image,
 } from "@chakra-ui/react";
@@ -156,19 +157,19 @@ const PaymentConfirmationPage = () => {
       <Box mb={4}>
         <Image src={logo} alt="Logo" w="100px" h="30px" />
       </Box>
-      <Box color="#510863" mx="auto" w={paymentFormWidth}>
+      <Box color="white" mx="auto" w={paymentFormWidth}>
         <Text fontSize="24px" fontWeight="bold" mb={4}>
           Confirm Payment
         </Text>
         <form onSubmit={handlePayment}>
-          <Box color="#510863" p={4} bg="white" borderRadius="xl">
+          <Box color="black" p={4} bg="white" borderRadius="xl">
             <Text fontSize="20px" mb={4}>
               Hi {user?.firstName}, kindly pay the sum of{" "}
-              <Text as="span" textDecoration="underline">
+              <Text as="span" textDecoration="underline"  fontWeight="bold" color="#510863">
                 {costOfService}
               </Text>{" "}
               to proceed with your booking for{" "}
-              <Text as="span" textDecoration="underline">
+              <Text as="span" textDecoration="underline" fontWeight="bold" color="#510863">
                 {beneficiary}'s
               </Text>{" "}
               care. You would be matched with a caregiver within 48hrs upon a
@@ -202,6 +203,9 @@ const PaymentConfirmationPage = () => {
                 onChange={handleInputChange}
                 mb={4}
               />
+              <Flex display={{base: "flex", md: "block"}}>
+
+              
               <Button
                   _hover={{ color: "" }}
                   bg="green.400"
@@ -231,6 +235,7 @@ const PaymentConfirmationPage = () => {
               >
                 Cancel Payment
               </Button>
+              </Flex>
             </FormControl>
           </Box>
         </form>

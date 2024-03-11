@@ -25,6 +25,7 @@ import Costom from "../../assets/CustomIcon.svg";
 import NavBar from "../authLayouts/NavBar";
 import HelppIcon from "../../assets/HelppIcon.svg";
 import Chevron from "../../assets/ChevronDown.svg";
+import MobileFooter from "../authLayouts/MobileFooter";
 
 const customTheme = extendTheme({
   components: {
@@ -218,6 +219,7 @@ const ServicePage = () => {
             `}
               </style>
             </Box>
+            <MobileFooter/>
           </VStack>
 
           <ElderlyCareModal

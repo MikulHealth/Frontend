@@ -13,6 +13,7 @@ import {
 
 import SettingsSideBar from "../authLayouts/SettingsSideBar";
 import BigSettingsIcon from "../../assets/BigSettingsIcon.svg";
+import MobileFooter from "../authLayouts/MobileFooter";
 
 const customTheme = extendTheme({
   components: {
@@ -62,6 +63,7 @@ const SettingsPage = () => {
             />
           </Box>
         </Flex>
+        <MobileFooter/>
       </VStack>
     </ChakraProvider>
   );

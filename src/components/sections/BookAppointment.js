@@ -61,7 +61,7 @@ const BookAppointmentModal = ({ isOpen, onClose }) => {
               p="4"
               textAlign="center"
               w="100%"
-              _hover={{ bg: "#A210C6" }}
+              _hover={{ bg: "gray" }}
             >
               Book for yourself
             </Box>
@@ -75,7 +75,7 @@ const BookAppointmentModal = ({ isOpen, onClose }) => {
               p="4"
               textAlign="center"
               w="100%"
-              _hover={{ bg: "#A210C6" }}
+              _hover={{ bg: "gray" }}
             >
               Book for a beneficiary
             </Box>
@@ -89,7 +89,7 @@ const BookAppointmentModal = ({ isOpen, onClose }) => {
               p="4"
               textAlign="center"
               w="100%"
-              _hover={{ bg: "#A210C6" }}
+              _hover={{ bg: "gray" }}
               marginBottom="20px"
             >
               Book for others

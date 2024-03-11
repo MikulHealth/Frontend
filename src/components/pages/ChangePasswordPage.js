@@ -24,6 +24,7 @@ import {
 } from "@chakra-ui/react";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import SettingsSideBar from "../authLayouts/SettingsSideBar";
+import MobileFooter from "../authLayouts/MobileFooter";
 
 const customTheme = extendTheme({
   components: {
@@ -303,7 +304,7 @@ const ChangePasswordPage = () => {
         <Flex
           display={{ base: "block", md: "none" }}
           w="100%"
-          mt={{ md: "30px" }}
+          mt={{ base: "20px" }}
         >
           <Flex justifyContent="space-between" >
             <Box>
@@ -417,6 +418,7 @@ const ChangePasswordPage = () => {
             </VStack>
           </Box>
         </Flex>
+        <MobileFooter/>
       </VStack>
     </ChakraProvider>
   );

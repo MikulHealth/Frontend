@@ -29,6 +29,7 @@ import NavBar from "../authLayouts/NavBar";
 import Help from "../authLayouts/Help";
 import AppointmentTab from "../authLayouts/AllAppointmentTab";
 import PendingApp from "../authLayouts/PendingAppointmentTab";
+import MobileFooter from "../authLayouts/MobileFooter";
 
 const customTheme = extendTheme({
   components: {
@@ -230,6 +231,7 @@ const AppointmentPage = () => {
                 </TabPanel>
               </TabPanels>
             </Tabs>
+            <MobileFooter/>
           </VStack>
           {/* <Help /> */}
         </Flex>

@@ -34,6 +34,7 @@ import BookIcon from "../../assets/appointment.png";
 import Beneficiary from "../../assets/beneficiaries.png";
 import Report from "../../assets/folder.png";
 import LeftSideBar from "../authLayouts/LeftSideBar";
+import MobileFooter from "../authLayouts/MobileFooter";
 const customTheme = extendTheme({
   components: {
     Link: {
@@ -629,6 +630,7 @@ const ClientDash = () => {
           </Box>
           <Help />
         </Flex>
+        <MobileFooter/>
       </VStack>
 
       <BeneficiariesModal

@@ -32,6 +32,7 @@ import Transfer from "../../assets/TransferPayment.svg";
 import Online from "../../assets/OnlinePayment.svg";
 import RightArrow from "../../assets/RightArrow.svg";
 import NavBar from "../authLayouts/NavBar";
+import MobileFooter from "../authLayouts/MobileFooter";
 
 const customTheme = extendTheme({
   components: {
@@ -448,6 +449,7 @@ const WalletPage = () => {
           />
         </Box>
         {/* <Help/> */}
+        <MobileFooter/>
       </VStack>
       <FundWalletModal
         isOpen={showFundWalletModal}

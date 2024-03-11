@@ -18,6 +18,7 @@ import {
 } from "@chakra-ui/react";
 import SettingsSideBar from "../authLayouts/SettingsSideBar";
 import LeftSideBar from "../authLayouts/LeftSideBar";
+import MobileFooter from "../authLayouts/MobileFooter";
 const customTheme = extendTheme({
   components: {
     Link: {
@@ -195,7 +196,7 @@ const NotificationSettingsPage = () => {
         <Flex
           overflow="scroll"
           display={{ base: "block", md: "none" }}
-          mt={{ md: "30px" }}
+          mt={{ base: "20px" }}
         >
           <Flex justifyContent="space-between" >
             <Box>
@@ -203,7 +204,7 @@ const NotificationSettingsPage = () => {
                 textAlign="left"
                 fontSize={{ base: "18px" }}
                 marginTop="3px"
-                marginBottom="20px"
+                marginBottom="10px"
               >
                 Notification Settings
               </Text>
@@ -224,7 +225,7 @@ const NotificationSettingsPage = () => {
           </Flex>
 
           <Box
-            marginTop="10px"
+            marginTop="5px"
             className="notification-settings"
             p={3}
             ml={{ base: "-10px" }}
@@ -308,6 +309,7 @@ const NotificationSettingsPage = () => {
             </VStack>
           </Box>
         </Flex>
+        <MobileFooter/>
       </VStack>
     </ChakraProvider>
   );

@@ -136,43 +136,44 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
   };
 
   return (
-    <Drawer isOpen={isOpen} onClose={onClose} size="lg">
+    <Drawer isOpen={isOpen} onClose={onClose} size={{ base: "md", md: "lg" }}>
       <DrawerOverlay />
       <DrawerContent maxH="70vh" overflowY="auto">
         <DrawerHeader color="#510863">Add Beneficiary</DrawerHeader>
         <DrawerCloseButton />
-        <DrawerBody marginLeft="45px">
+        <DrawerBody ml={{md: "45px"}}>
           <VStack align="start" spacing={4}>
-            <FormControl w="40vw">
+            <FormControl >
               <FormLabel fontWeight="bold"> Enter Beneficiary name</FormLabel>
-              <Flex>
+              <Flex flexWrap="wrap">
                 <InputGroup>
                   <Input
                     name="recipientFirstname"
                     placeholder="first name"
                     value={formData.recipientFirstname}
                     onChange={handleInputChange}
-                    w="270px"
+                    w={{ base: "300px", md: "270px" }}
                   />
-                  <InputRightElement marginRight="45px" pointerEvents="none">
+                  {/* <InputRightElement  ml={{ base: "40px", md: "30px" }} pointerEvents="none">
                     <FaUser color="gray.300" />
-                  </InputRightElement>
+                  </InputRightElement> */}
                 </InputGroup>
                 <InputGroup>
                   <Input
                     name="recipientLastname"
-                    marginLeft="5px"
+                    ml={{md: "5px"}}
+                    mt={{base: "20px"}}
                     placeholder="last name"
                     value={formData.recipientLastname}
                     onChange={handleInputChange}
-                    w="270px"
+                    w={{ base: "300px", md: "270px" }}
                   />
-                  <InputRightElement marginRight="80px" pointerEvents="none">
+                  {/* <InputRightElement  ml={{ base: "40px", md: "30px" }} pointerEvents="none">
                     <FaUser color="gray.300" />
-                  </InputRightElement>
+                  </InputRightElement> */}
                 </InputGroup>
               </Flex>
-              <Flex>
+              <Flex flexWrap="wrap">
                 <Box>
                   <FormLabel fontWeight="bold" marginTop="20px">
                     Gender{" "}
@@ -180,7 +181,7 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
                   <Select
                     name="recipientGender"
                     placeholder="select gender"
-                    w="270px"
+                    w={{ base: "300px", md: "270px" }}
                     value={formData.recipientGender}
                     onChange={handleInputChange}
                   >
@@ -188,7 +189,7 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
                     <option value="Female">Female</option>
                   </Select>
                 </Box>
-                <Box marginLeft="5px" w="270px">
+                <Box ml={{md: "5px"}} w={{ base: "300px", md: "270px" }}>
                   <FormLabel fontWeight="bold" marginTop="20px">
                     Date of Birth
                   </FormLabel>
@@ -213,7 +214,7 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
                       className="form-control"
                     />
                     <Image
-                      marginLeft="30px"
+                      ml={{ base: "50px", md: "30px" }}
                       w="24px"
                       h="24px"
                       src={CalenderIcon}
@@ -222,7 +223,7 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
                   </Flex>
                 </Box>
               </Flex>
-              <Flex marginTop="1px">
+              <Flex flexWrap="wrap" marginTop="1px">
                 <Box>
                   <FormLabel fontWeight="bold" marginTop="20px">
                     Contact Number{" "}
@@ -234,21 +235,21 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
                       placeholder="recipient phone number"
                       value={formData.recipientPhoneNumber}
                       onChange={handleInputChange}
-                      w="270px"
+                      w={{ base: "300px", md: "270px" }}
                     />
                     <InputRightElement pointerEvents="none">
                       <FaPhoneAlt color="gray.300" />
                     </InputRightElement>
                   </InputGroup>
                 </Box>
-                <Box marginLeft="5px">
+                <Box ml={{md: "5px"}}>
                   <FormLabel fontWeight="bold" marginTop="20px">
                     Relationship with beneficiary{" "}
                   </FormLabel>
                   <Select
                     name="relationship"
                     placeholder="select the appropriate relationship type"
-                    w="270px"
+                    w={{ base: "300px", md: "270px" }}
                     onChange={handleInputChange}
                   >
                     <option value="Mum">Mum</option>

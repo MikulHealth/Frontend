@@ -183,7 +183,12 @@ const BookBeneficiaryAppointmentModal = ({
           status: "success",
           duration: 6000,
         });
-        const { id: appointmentId, costOfService, recipientFirstname, recipientLastname } = response.data.data;
+        const {
+          id: appointmentId,
+          costOfService,
+          recipientFirstname,
+          recipientLastname,
+        } = response.data.data;
         const beneficiary = `${recipientFirstname} ${recipientLastname}`;
         console.log("beneficiary", beneficiary);
         setTimeout(() => {
@@ -334,7 +339,7 @@ const BookBeneficiaryAppointmentModal = ({
   }, [formPages.servicePlan, formPages.shift]);
 
   return (
-    <Drawer isOpen={isOpen} onClose={onClose} size="lg">
+    <Drawer isOpen={isOpen} onClose={onClose} size={{ base: "md", md: "lg" }}>
       <DrawerOverlay />
       <DrawerContent>
         <DrawerHeader color="#510863">
@@ -344,18 +349,19 @@ const BookBeneficiaryAppointmentModal = ({
             selectedBeneficiary.recipientLastName || ""
           }`}
         </DrawerHeader>
+        <DrawerCloseButton />
         <DrawerBody>
           <FormControl isRequired>
             <Box>
-              <Flex>
-                <Box marginLeft="40px">
+              <Flex flexWrap="wrap">
+                <Box ml={{ md: "40px" }}>
                   <FormLabel fontWeight="bold" marginTop="20px">
                     Service Plan{" "}
                   </FormLabel>
                   <Select
                     name="servicePlan"
                     placeholder="preferred service plan"
-                    w="270px"
+                    w={{ base: "300px", md: "270px" }}
                     value={formPages.servicePlan}
                     onChange={handleInputChange}
                   >
@@ -394,7 +400,7 @@ const BookBeneficiaryAppointmentModal = ({
                   <Select
                     name="shift"
                     placeholder="select preferred shift"
-                    w="270px"
+                    w={{ base: "300px", md: "270px" }}
                     value={formPages.shift}
                     onChange={handleInputChange}
                   >
@@ -404,8 +410,8 @@ const BookBeneficiaryAppointmentModal = ({
                   </Select>
                 </Box>
               </Flex>
-              <Flex marginLeft="40px">
-                <Box w="270px">
+              <Flex flexWrap="wrap" ml={{ md: "40px" }}>
+                <Box w={{ base: "300px", md: "270px" }}>
                   <FormLabel fontWeight="bold" marginTop="20px">
                     Start Date
                   </FormLabel>
@@ -428,7 +434,7 @@ const BookBeneficiaryAppointmentModal = ({
                       minDate={new Date()}
                     />
                     <Image
-                      marginLeft="30px"
+                      ml={{ base: "50px", md: "30px" }}
                       w="24px"
                       h="24px"
                       src={CalenderIcon}
@@ -436,7 +442,7 @@ const BookBeneficiaryAppointmentModal = ({
                     />
                   </Flex>
                 </Box>
-                <Box w="270px" marginLeft="5px">
+                <Box w={{ base: "297px", md: "270px" }} marginLeft="5px">
                   <FormLabel fontWeight="bold" marginTop="20px">
                     End Date
                   </FormLabel>
@@ -460,7 +466,7 @@ const BookBeneficiaryAppointmentModal = ({
                       style={{ border: "none" }}
                     />
                     <Image
-                      marginLeft="30px"
+                      ml={{base: "50px", md: "30px"}}
                       w="24px"
                       h="24px"
                       src={CalenderIcon}
@@ -470,7 +476,7 @@ const BookBeneficiaryAppointmentModal = ({
                 </Box>
               </Flex>
 
-              <Box marginLeft="40px">
+              <Box ml={{ md: "40px" }}>
                 <FormLabel fontWeight="bold" marginTop="20px">
                   Current Location{" "}
                 </FormLabel>
@@ -482,7 +488,7 @@ const BookBeneficiaryAppointmentModal = ({
                     placeholder="current Location"
                     value={formPages.currentLocation}
                     onChange={handleInputChange}
-                    w="550px"
+                    w={{ base: "300px", md: "550px" }}
                   />
                   <Image
                     marginTop="10px"
@@ -495,7 +501,7 @@ const BookBeneficiaryAppointmentModal = ({
                 </Flex>
               </Box>
 
-              <Box marginLeft="40px">
+              <Box ml={{ md: "40px" }}>
                 <FormLabel fontWeight="bold" marginTop="20px">
                   Upload necessary document (test results, medical report,
                   scans, etc)
@@ -506,7 +512,7 @@ const BookBeneficiaryAppointmentModal = ({
                     name="medicalReport"
                     type="file"
                     onChange={handleInputChange}
-                    w="550px"
+                    w={{ base: "300px", md: "550px" }}
                     placeholder="Upload necessary document"
                   />
                   {/* <InputRightElement
@@ -515,7 +521,7 @@ const BookBeneficiaryAppointmentModal = ({
                   /> */}
                 </InputGroup>
               </Box>
-              <Box marginLeft="40px">
+              <Box ml={{ md: "40px" }}>
                 <FormLabel fontWeight="bold" marginTop="20px">
                   Health History{" "}
                 </FormLabel>
@@ -525,7 +531,7 @@ const BookBeneficiaryAppointmentModal = ({
                   placeholder="share health history and any special need we should know"
                   value={formPages.recipientHealthHistory}
                   onChange={handleInputChange}
-                  w="550px"
+                  w={{ base: "300px", md: "550px" }}
                 />
               </Box>
             </Box>
