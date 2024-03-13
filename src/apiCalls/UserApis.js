@@ -4,21 +4,33 @@ import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 
 export const GetCurrentUser = async () => {
+
+	const token = localStorage.getItem("token");
+	if (!token) {
+		window.location.href = "/login"; 
+	  return null;
+	}
+
+	
   try {
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
     };
     const response = await axios.get(
-      // "https://spedire.onrender.com/api/v1/user/getCurrentUser",
-      "http://localhost:8080/v1/angel/getCurrentUser",
+    //   "http://localhost:8080/v1/angel/getCurrentUser",
+	  "https://backend-c1pz.onrender.com/v1/angel/getCurrentUser",
       config
     );
     console.log(response.data + "this is response from getCurrentUser");
     return response.data;
   } catch (error) {
     console.log(error);
+	if (error.response && error.response.status === 401) {
+		// Token expired, redirect to login page
+		window.location.href = "/login"; // Modify the path as per your application
+	  }
     return error.response.data;
   }
  

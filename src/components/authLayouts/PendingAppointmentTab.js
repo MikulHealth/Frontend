@@ -106,7 +106,8 @@ export default function PendingApp() {
       };
 
       const response = await axios.get(
-        "http://localhost:8080/v1/appointment/pendingAppointments",
+        // "http://localhost:8080/v1/appointment/pendingAppointments",
+        "https://backend-c1pz.onrender.com/v1/appointment/pendingAppointments",
         config
       );
 
@@ -149,7 +150,8 @@ export default function PendingApp() {
   const fetchAndDisplayAppointmentDetails = async (appointmentId) => {
     try {
       const token = localStorage.getItem("token");
-      const apiUrl = `http://localhost:8080/v1/appointment/findPendingAppointmentDetails/${appointmentId}`;
+      // const apiUrl = `http://localhost:8080/v1/appointment/findPendingAppointmentDetails/${appointmentId}`;
+      const apiUrl = `https://backend-c1pz.onrender.com/v1/appointment/findPendingAppointmentDetails/${appointmentId}`;
 
       const headers = {
         "Content-Type": "application/json",
@@ -184,7 +186,8 @@ export default function PendingApp() {
   const handleConfirmation = async () => {
     try {
       const token = localStorage.getItem("token");
-      const apiUrl = `http://localhost:8080/v1/appointment/cancelAppointment/${cancellingAppointmentId}`;
+      // const apiUrl = `http://localhost:8080/v1/appointment/cancelAppointment/${cancellingAppointmentId}`;
+      const apiUrl = `https://backend-c1pz.onrender.com/v1/appointment/cancelAppointment/${cancellingAppointmentId}`;
 
       const headers = {
         "Content-Type": "application/json",

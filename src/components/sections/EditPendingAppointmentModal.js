@@ -17,12 +17,6 @@ import {
   Textarea,
   Flex,
   Input,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
 } from "@chakra-ui/react";
 import axios from "axios";
 
@@ -96,7 +90,8 @@ const EditPendingAppointment = ({
       const requestBody = formDataWithDates;
 
       const response = await axios.post(
-        `http://localhost:8080/v1/appointment/editAppointmentDetails/${formData.id}`,
+        // `http://localhost:8080/v1/appointment/editAppointmentDetails/${formData.id}`,
+        `https://backend-c1pz.onrender.com/v1/appointment/editAppointmentDetails/${formData.id}`,
         requestBody,
         {
           headers: {

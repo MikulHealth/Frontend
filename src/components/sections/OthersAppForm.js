@@ -166,7 +166,8 @@ const BeneficiaryAppointmentModal = ({ isOpen, onClose }) => {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const apiUrl = "http://localhost:8080/v1/appointment/save";
+      // const apiUrl = "http://localhost:8080/v1/appointment/save";
+      const apiUrl = "https://backend-c1pz.onrender.com/v1/appointment/save";
       const headers = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -283,7 +284,8 @@ const BeneficiaryAppointmentModal = ({ isOpen, onClose }) => {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const apiUrl = "http://localhost:8080/v1/appointment/addNewBeneficiary";
+      // const apiUrl = "http://localhost:8080/v1/appointment/addNewBeneficiary";
+      const apiUrl = "https://backend-c1pz.onrender.com/v1/appointment/addNewBeneficiary";
       const headers = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

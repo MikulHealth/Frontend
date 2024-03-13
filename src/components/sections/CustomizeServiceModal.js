@@ -194,7 +194,8 @@ const CustomizePlanModal = ({ isOpen, onClose }) => {
     // Send the API request using Axios
     axios
       .post(
-        "http://localhost:8080/v1/appointment/save-customized-service",
+        // "http://localhost:8080/v1/appointment/save-customized-service",
+        "https://backend-c1pz.onrender.com/v1/appointment/save-customized-service",
         requestBody,
         {
           headers: {

@@ -86,9 +86,9 @@ export default function NavigationBar() {
             <NavLink to="/about" pageTitle={pageTitle}>
               About Us
             </NavLink>
-            <NavLink to="/servicesSection" pageTitle={pageTitle}>
+            {/* <NavLink to="/servicesSection" pageTitle={pageTitle}>
               Services
-            </NavLink>
+            </NavLink> */}
             <NavLink to="/contact" pageTitle={pageTitle}>
               Contact Us
             </NavLink>

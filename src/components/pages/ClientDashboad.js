@@ -84,7 +84,8 @@ const ClientDash = () => {
         };
 
         const response = await axios.get(
-          "http://localhost:8080/v1/appointment/pendingAppointments",
+          // "http://localhost:8080/v1/appointment/pendingAppointments",
+          "https://backend-c1pz.onrender.com/v1/appointment/pendingAppointments",
           config
         );
 
@@ -260,7 +261,7 @@ const ClientDash = () => {
                 <VStack>
                   <Button
                     padding={{ base: "5px", md: "0" }}
-                    ml={{ base: "40px", md: "250px" }}
+                    ml={{ base: "40px", md: "320px" }}
                     w={{ base: "100px", md: "35%" }}
                     h={{ base: "30px", md: "50%" }}
                     fontSize={{ base: "12px", md: "16px" }}
@@ -271,7 +272,7 @@ const ClientDash = () => {
                     bg="white"
                     leftIcon={<ExternalLinkIcon />}
                   >
-                    Open wallet
+                    fund wallet
                   </Button>
                 </VStack>
               </Flex>

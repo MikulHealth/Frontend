@@ -99,7 +99,8 @@ const AddBeneficiaryForm = ({ isOpen, onClose, openBeneficiariesModal }) => {
       };
 
       const response = await axios.post(
-        "http://localhost:8080/v1/appointment/addNewBeneficiary",
+        // "http://localhost:8080/v1/appointment/addNewBeneficiary",
+        "https://backend-c1pz.onrender.com/v1/appointment/addNewBeneficiary",
         dataToSend,
         config
       );

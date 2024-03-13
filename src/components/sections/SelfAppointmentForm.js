@@ -113,7 +113,8 @@ const SelfAppointmentModal = ({ isOpen, onClose }) => {
         };
 
         const response = await axios.get(
-          "http://localhost:8080/v1/appointment/all-customized-services",
+          // "http://localhost:8080/v1/appointment/all-customized-services",
+          "https://backend-c1pz.onrender.com/v1/appointment/all-customized-services",
           config
         );
 
@@ -138,7 +139,8 @@ const SelfAppointmentModal = ({ isOpen, onClose }) => {
     try {
       const token = localStorage.getItem("token");
 
-      const apiUrl = "http://localhost:8080/v1/appointment/save";
+      // const apiUrl = "http://localhost:8080/v1/appointment/save";
+      const apiUrl = "https://backend-c1pz.onrender.com/v1/appointment/save";
 
       const headers = {
         "Content-Type": "application/json",

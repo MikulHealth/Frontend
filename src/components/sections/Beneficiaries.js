@@ -58,7 +58,8 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
         };
 
         const response = await axios.get(
-          "http://localhost:8080/v1/appointment/findAllBeneficiaries",
+          // "http://localhost:8080/v1/appointment/findAllBeneficiaries",
+          "https://backend-c1pz.onrender.com/v1/appointment/findAllBeneficiaries",
           config
         );
 
@@ -116,7 +117,9 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
       };
 
       const response = await axios.delete(
-        `http://localhost:8080/v1/appointment/removeBeneficiary/${selectedBeneficiaryId}`,
+        // `http://localhost:8080/v1/appointment/removeBeneficiary/${selectedBeneficiaryId}`,
+        `https://backend-c1pz.onrender.com/v1/appointment/removeBeneficiary/${selectedBeneficiaryId}`,
+
         config
       );
 
@@ -253,6 +256,7 @@ const BeneficiariesModal = ({ isOpen, onClose }) => {
                         </Box>
                         <Box>
                           <Text
+                          marginLeft="40px"
                             fontSize="17px"
                             onClick={() =>
                               handleRemoveBeneficiary(beneficiary.id)

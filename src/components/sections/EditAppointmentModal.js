@@ -140,7 +140,8 @@ const EditAppointmentModal = ({ isOpen, onClose, appointmentId, onSave }) => {
   
       // Get the initial appointment details from the server
       const initialResponse = await axios.get(
-        `http://localhost:8080/v1/appointment/findAppointmentDetails/${appointmentId}`,
+        // `http://localhost:8080/v1/appointment/findAppointmentDetails/${appointmentId}`,
+        `https://backend-c1pz.onrender.com/v1/appointment/findAppointmentDetails/${appointmentId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -167,7 +168,8 @@ const EditAppointmentModal = ({ isOpen, onClose, appointmentId, onSave }) => {
   
       // Send only the changed fields to the server
       const response = await axios.post(
-        `http://localhost:8080/v1/appointment/editAppointmentDetails/${appointmentId}`,
+        // `http://localhost:8080/v1/appointment/editAppointmentDetails/${appointmentId}`,
+        `https://backend-c1pz.onrender.com/v1/appointment/editAppointmentDetails/${appointmentId}`,
         changedFields,
         {
           headers: {

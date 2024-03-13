@@ -73,7 +73,8 @@ const LandingPage = () => {
   const handleLogin = async () => {
     setLoading(true);
     try {
-      const apiUrl = "http://localhost:8080/login";
+      // const apiUrl = "http://localhost:8080/login";
+      const apiUrl = "https://backend-c1pz.onrender.com/login"
       const headers = {
         "Content-Type": "application/json",
       };

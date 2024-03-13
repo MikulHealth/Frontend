@@ -47,7 +47,8 @@ export default function AppointmentTab() {
         };
 
         const response = await axios.get(
-          "http://localhost:8080/v1/appointment/allAppointments",
+          // "http://localhost:8080/v1/appointment/allAppointments",
+          "https://backend-c1pz.onrender.com/v1/appointment/allAppointments",
           config
         );
 
